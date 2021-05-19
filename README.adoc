@@ -203,7 +203,7 @@ The first step is to review the entries in `_config.yml` and translate them to y
 [IMPORTANT]
 The site at `localhost:4000` will regenerate incrementally whenever you change pretty much any file in the repo.
 A key exception is `_config.yml`.
-To get site settings and `site`-scoped variables to reflect in a build, use kbd:[Ctrl+T] to stop the server, then re-run `bundle exec jekyll s`.
+To get site settings and `site`-scoped variables to reflect in a build, use kbd:[Ctrl+C] to stop the server, then re-run `bundle exec jekyll s`.
 
 AsciiDocsy is designed to be modified mostly through YAML configuration and datafile settings.
 See link:{theme_docs_www}/theme/config[Configuring AsciiDocsy] in the theme docs for more.
