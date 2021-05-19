@@ -1,0 +1,39 @@
+# Terms specific to asciidocsy
+# Replace this dataset with your own to take advantage of:
+#  automatic glossary generated at /glossary
+#  the [.term] inline-semantic tag
+- term: AsciiDoc
+  slug: asciidoc
+  desc: A programmatic markup language for structuring and formatting all kinds of technical writing for conversion to various rich-text and other formats.
+  xref:
+  href:
+  also: [markup,markdown]
+  refs:
+    - name:
+      href:
+
+- term: flat files
+  slug: flat-files
+  desc: Files containing only ASCII or UTF-8 text.
+  also: [binary-files]
+
+- term: inline semantics
+  slug: inline-semantics
+  desc: Stylized text or inserted icons meant to tag specific content with a purpose or kind.
+
+- term: markup
+  slug: markup
+  desc: |
+    Plaintext syntax intended to designate text with formatting, semantic, or functional intent, to be parsed into rich-text or other more-complex output.
+    Lightweight markup (AsciiDoc, Markdown) indicates mostly tag-free syntax, usually an abstraction of an XML-tagged format (DocBook, HTML).
+
+- term: Markdown
+  slug: markdown
+  desc: |
+    A lightweight markup that shorthands a limited number of non-semantic HTML elements, which many find to be adequate for technical documentation.
+
+- term: inclusion
+  slug: inclusion
+  desc: |
+    The process of embedding code from another file into the current file for processing.
+    Known as "`transclusion`" in some languages, invoked in AsciiDoc using the `include::[]` macro and in Liquid using the `{% include %}` tag.

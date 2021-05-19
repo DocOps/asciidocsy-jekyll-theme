@@ -1,0 +1,21 @@
+:page-permalink: /docs/theme/setup/ruby
+:page-togglers: user-os
+= Ruby Runtime the Right Way
+
+There are numerous options for getting Ruby up and running on your system.
+
+[NOTE]
+====
+Parts of these instructions only apply to certain operating systems.
+
+Select your platform in the sidebar on the right side of this page icon:arrow-circle-right[].
+====
+
+.Why Wha Runtime?
+****
+A runtime environment is a platform for developing, testing, and deploying applications of a given language.
+Since pretty much all Ruby applications are built on massive arrays of open-source components, and since they are intended to be OS-agnostic, a runtime environment is what ensures Ruby apps work the same on all operating systems.
+
+As you might expect, installation is a non-trivial matter for software designed to run the same on all OSes.
+But once Ruby runtime is up and running, you wont' really have to fuss with it.
+****

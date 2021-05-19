@@ -1,0 +1,185 @@
+:page-permalink: /docs/style/asciidoc/semantics
+:dl_table_head: cols="1s,3",grid=none,frame=none
+:page-tags: semantics,inline-semantics
+:example-caption!:
+= Inline Semantics in AsciiDoc(sy)
+
+AsciiDoc offers semantic tagging of words and phrases.
+Called "`inline semantics,`" this syntax enables stylized representation of text depending on its _role_.
+
+For a crash course in the power of semantics, look at AsciiDocsy's term-popover feature.
+AsciiDocsy supports a `terms` data object -- an array of objects representing glossary terms, their definitions, and some other metadata.
+
+.Inline semantic tagging for term '`AsciiDoc`'
+[source,asciidoc]
+ Now let's see what happens when we wrap the term [.term]*AsciiDoc* in semantic syntax.
+
+.Hover your cursor over '`AsciiDoc`' in this rendered sample
+====
+Now let's see what happens when we wrap the term [.term]*AsciiDoc* in semantic syntax.
+====
+
+And then we have [.term.flat-files]*flat file*, which is a version of [.term]*flat files*, a term defined in `terms.yml`.
+Since it carries the role [.code]`.flat-files` (note the `s`), the lookup can find it.
+(Here is that same term [.term]*flat file* without the role helper).
+
+Inline semantic tags do not have to involve popovers or animations, of course.
+For the most part, they are just used for distinctive styling.
+
+Here is an [.gui]*interface element*, just to demonstrate how creative syntax styling can get.
+
+Here is a [.cite]_Book Volume Title: Second Edition_.
+
+Here is a [.path]`/path/to/filename.adoc`.
+
+And finally, a [.cmd]`command --line example`.
+
+Certain types of text receive special formatting considerations, noted inline.
+In AsciiDoc, these types are denoted by "`roles`", designated by a role name wrapped in square brackets and prefixed with a dot, such as `[.cite]`.
+The text to be formatted is then wrapped in characters called "`quotes`", with the character pair itself determined by the role.
+
+[NOTE]
+To be clear, the concept of inline semantic tagging is built into the AsciiDoc language.
+This article documents the specific implementation suggested by AsciiDocsy, also serving to document the way AsciiDocsy handles HTML rendering of these particular styles.
+
+== Inline Semantic Roles
+
+The following roles are established for nCipher product docs, matched with their quote character (`_`, `pass:[`]`, or `*`).
+The rendered rich-text formatting such as font face, color, and styling may vary in published editions.
+
+[NOTE]
+This is a listing of AsciiDocsy's default settings for inline semantics, including the semantics namespace itself and how to display the various types in HTML.
+To customize for your purposes, see link:/theme/config/semantics[Semantics Configuration].
+
+`.term`::
+For significant terms, usually only used for the first appearance.
+A word or phrase marked for the `term` role may also be provided a role that fits the slug for a term in the `site.data.terms` registry, in which case term metadata becomes available.
++
+[{dl_table_head}]
+|===
+| Quotes
+|  asterisk
+| Example
+| `Let's explore [.term]pass:[*inline semantics*]!`
+| Renders
+| Let's explore [.term]*inline semantics*!
+|===
+
+`.cite`::
+For *citations* of publication titles.
++
+[{dl_table_head}]
+|===
+| Quotes
+| underscore
+
+| Example
+m|+++See the [.cite]_Proper Noun User Guide_ for more.+++
+| Renders
+| See the [.cite]_Proper Noun User Guide_ for more.
+|===
+
+`.cmd`::
+For literal characters intended to potentially be copied and pasted to the *commandline*.
+The `cmd` role can also be applied to process/service names that might appear in a terminal console.
++
+[{dl_table_head}]
+|===
+| Quotes
+|  backtick
+| Example
+| `Run the [.cmd]pass:[`typical command`] command.`
+| Renders
+| Run the [.cmd]`typical command` command.
+|===
+
+`.code`::
+Literal characters from one-line code listing.
+Use for variable names, short snippets, and so forth.
++
+[{dl_table_head}]
+|===
+| Quotes
+|  backtick
+| Example
+| `Use the [.code]pass:[`.term`] class to designate a defined word or phrase.`
+| Renders
+| Use the [.code]`.term` class to designate a defined word or phrase.
+|===
+
+`.gui`::
+For exact text from a *graphical user interface* (or other screen element).
++
+[{dl_table_head}]
+|===
+| Quotes
+|  asterisk
+| Example
+| `+++Click [.gui]*Add Item* on the screen.+++`
+| Renders
+| Click [.gui]*Add Item* on the screen.
+|===
+
+`.path`::
+For literal *file paths* to system resources.
++
+[{dl_table_head}]
+|===
+| Quotes
+|  backtick
+| Example
+| `Browse to [.path]pass:[`/etc/&lt;somefile>/path`].`
+| Renders
+| Browse to [.path]`/etc/somefile/path`.
+|===
+
+`.buz`::
+For crass marketing terms.
+Probably best kept out of technical docs altogether, AsciiDocsy violates this rule for demonstration purposes.
++
+[{dl_table_head}]
+|===
+| Quotes
+|  underscore
+| Example
+| `Take advantage of [.buz]pass:[_SuperGloo_] sticky sidebar.`
+| Renders
+| Take advantage of [.buz]_SuperGloo_ sticky sidebar.
+|===
+
+`.case`::
+Identifies "`inline conditions`".
+Usually used when multiple such "`cases`" are presented in the same section of a topic.
++
+[{dl_table_head}]
+|===
+| Quotes
+|  underscore
+| Example
+m| [.case]pass:[_If you chose Implementation Strategy A_], you should establish start with the default settings.
+
+[.case]pass:[_If you chose Implementation Strategy B_], use the guide below to get set up.
+| Renders
+|
+[.case]_If you chose Implementation Strategy A_, you should start with the default settings.
+
+[.case]_If you chose Implementation Strategy B_, use the guide below to get set up.
+|===
+
+`.tok`::
+For literal substitution tokens embedded in code or command examples.
+Use with or without visual wrapping charactes (such as `< >` or `${ }`).
++
+[{dl_table_head}]
+|===
+| Quotes
+|  backtick
+| Example
+m| Use the format +++[.code]+++`base.<file_ext>`, where +++[.tok]+++`<file_ext>` is the filename followed by an underscore and the file extension.+++
+| Renders
+| Use the format [.code]`base.<file_ext>`, where [.tok]`<file_ext>` is the filename followed by an underscore and the file extension.
+|===
+
+////
+NOTE: Generate the above from YAML data objects in prebuild so others can customize.
+////

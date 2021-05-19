@@ -1,0 +1,49 @@
+:page-permalink: /docs/theme/config/tabber
+:tab-table-options: frame=none,cols=1a,caption=''
+= Configure Content Tabbers
+
+[.tabber-panel.tabs-data-format]
+--
+[.tabber-item.tab-data-yaml,{tab-table-options},title='YAML']
+|===
+|
+[source,YAML]
+----
+some: yaml-data
+goes: here
+----
+|===
+
+[.tabber-item.tab-data-json,{tab-table-options},title='JSON']
+|===
+|
+[source,JSON]
+----
+{
+  "some": "yaml-data",
+  "goes": "here"
+}
+----
+|===
+--
+
+
+
+[.tabber-panel]
+--
+[.tab-item.Some_Tab_Class]
+====
+Content.
+
+Content.
+
+More content.
+====
+
+[.tab-item.Another_Tab_Class]
+====
+MORE CONTENT
+
+And more and more.
+====
+--

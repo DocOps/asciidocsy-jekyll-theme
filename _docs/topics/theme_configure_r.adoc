@@ -1,0 +1,19 @@
+:page-permalink: /docs/theme/config
+= Configuring AsciiDocsy
+
+AsciiDocsy is intended to be customizable entirely through YAML data files as well as CSS and JS.
+The idea here is that you can maintain files like `css/custom.css` and `js/custom.js` to supplement or override any settings in the core style and script files, or else you can even disable these prior settings, all without editing the core templates that make up the theme.
+
+In reality, AsciiDocsy is a ways off from this goal.
+A `data/strings.yml` file has been introduced, but still most strings have yet to be migrated there.
+This means if you don't like the wording of something, for the time being you'd have to use brutal JS/CSS to manipulate content post-build to stay out of the HTML templates, or else you'd have to edit those templates, hence diverging from the critical files of this theme.
+
+Nevertheless, the seeds of fully data-based customization of the theme have been planted, so let us take a look at what is available so far.
+
+== Site-scoped Configuration
+
+The main Jekyll configuration file (by default, `_config.yml`) is the source of most theme-affecting settings at this time.
+
+
+
+== Data-scoped Configuration

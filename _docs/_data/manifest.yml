@@ -1,0 +1,50 @@
+# Subject manifest for the AsciiDocsy theme docset
+menu:
+- text: AsciiDocsy Theme Docs
+  type: domain
+  href: /docs/theme
+  kids:
+    - text: Install & Initial Build
+      href: /docs/theme/setup
+      type: task
+      kids:
+        - text: Docs-as-Code Environment
+          href: /docs/theme/setup/docs-as-code
+    - text: Frontend Features Overview
+      href: /docs/theme/features/frontend
+    - text: Configure & Customize the Theme
+      href: /docs/theme/config
+      kids: # Topics in this domain
+        - text: Algolia Search
+          href: /docs/theme/config/search
+          type: reference
+        - text: Togglers
+          href: /docs/theme/config/togglers
+    - text: Extend the Theme
+      href: /docs/theme/extend
+      kids:
+    - text: Advanced Applications
+      href: /docs/theme/advanced
+- text: Docs-as-Code Style Guides
+  type: domain
+  href: /docs/style
+  kids: # Topics in this domain
+    - text: AsciiDoc
+      href: /docs/style/asciidoc
+      kids:
+        - text: Inline Semantics
+          href: /docs/style/asciidoc/semantics
+    - text: YAML
+      href: /docs/style/yaml
+    - text: Liquid
+      href: /docs/style/liquid
+
+breadcrumbs:
+- slug: docs
+  text: Documentation
+- slug: theme
+  text: AsciiDocsy Theme
+- slug: style
+  text: Style Guides
+- slug: config
+  text: Configuration

@@ -1,0 +1,172 @@
+:page-permalink: /docs/theme/syntax
+= Syntax Highlighting
+
+AsciiDocsy comes with syntax highlighting by Highlight.js, but Jekyll and Asciidoctor both support other highlighters, including Rouge and Pygments.
+
+[NOTE]
+AsciiDocsy will eventually incorporate all upstream-supported highlighter options.
+
+== Examples
+
+All of the following examples are taken from the Highlight.js site and are used to demonstrate how snippets of each language would look in AsciiDocsy.
+
+=== Structured Query Language (SQL)
+
+[source,sql]
+----
+CREATE TABLE "topic" (
+    "id" serial NOT NULL PRIMARY KEY,
+    "forum_id" integer NOT NULL,
+    "subject" varchar(255) NOT NULL
+);
+ALTER TABLE "topic"
+ADD CONSTRAINT forum_id FOREIGN KEY ("forum_id")
+REFERENCES "forum" ("id");
+
+-- Initials
+insert into "topic" ("forum_id", "subject")
+values (2, 'D''artagnian');
+----
+
+=== HTML
+
+[source,html]
+----
+<!DOCTYPE html>
+<title>Title</title>
+
+<style>body {width: 500px;}</style>
+
+<script type="application/javascript">
+  function $init() {return true;}
+</script>
+
+<body>
+  <p checked class="title" id='title'>Title</p>
+  <!-- here goes the rest of the page -->
+</body>
+----
+
+=== AsciiDoc
+
+[source,asciidoc]
+----
+Here is some text with a link:/[link to the homepage].
+
+Followed by some *bold* and:
+
+* An
+* Unordered
+* List
+
+definition:: list
+----
+
+=== Ruby
+
+[source,ruby]
+----
+# The Greeter class
+class Greeter
+  def initialize(name)
+    @name = name.capitalize
+  end
+
+  def salute
+    puts "Hello #{@name}!"
+  end
+end
+
+g = Greeter.new("world")
+g.salute
+----
+
+=== JavaScript
+
+[source,javascript]
+----
+function $initHighlight(block, cls) {
+  try {
+    if (cls.search(/\bno\-highlight\b/) != -1)
+      return process(block, true, 0x0F) +
+             ` class="${cls}"`;
+  } catch (e) {
+    /* handle exception */
+  }
+  for (var i = 0 / 2; i < classes.length; i++) {
+    if (checkCondition(classes[i]) === undefined)
+      console.log('undefined');
+  }
+
+  return (
+    <div>
+      <web-component>{block}</web-component>
+    </div>
+  )
+}
+
+export  $initHighlight;
+----
+
+=== JSON
+
+[source,json]
+----
+[
+  {
+    "title": "apples",
+    "count": [12000, 20000],
+    "description": {"text": "...", "sensitive": false}
+  },
+  {
+    "title": "oranges",
+    "count": [17500, null],
+    "description": {"text": "...", "sensitive": false}
+  }
+]
+----
+
+=== YAML
+
+[source,yaml]
+----
+---
+# comment
+string_1: "Bar"
+string_2: 'bar'
+string_3: bar
+inline_keys_ignored: sompath/name/file.jpg
+keywords_in_yaml:
+  - true
+  - false
+  - TRUE
+  - FALSE
+  - 21
+  - 21.0
+  - !!str 123
+"quoted_key": &foobar
+  bar: foo
+  foo:
+  "foo": bar
+
+reference: *foobar
+
+multiline_1: |
+  Multiline
+  String
+multiline_2: >
+  Multiline
+  String
+multiline_3: "
+  Multiline string
+  "
+
+ansible_variables: "foo {{variable}}"
+
+array_nested:
+- a
+- b: 1
+  c: 2
+- b
+- comment
+----

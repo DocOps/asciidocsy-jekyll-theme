@@ -1,0 +1,60 @@
+:page-permalink: /docs/theme/extend
+= Extending the Theme
+
+AsciiDocsy is designed to be customized without the user having to interfere with the core template, style, or script files.
+
+The configuration system is extraordinarily elaborate, enabling control of most major features via Jekyll config or other YAML-formatted files.
+Toggling features on and off and defining settings should mostly entail modifications to files of meticulously organized parameters.
+
+The rest of the customization strategy involves supplementing or replacing AsciiDocsy's core files.
+You can add <<css>> or <<javascript>>, or you can insert your own templates using <<template-hooks,"`hooks`">> embedded in the AsciiDocsy templates.
+
+== CSS
+
+Use the `css/custom.css` file to override any precedent set in the cascade.
+
+Use the <<template-hooks,template extension hooks>> `css_head` and `css_tail` to add whole files to the beginning or end of the stylesheets link list.
+
+== JavaScript
+
+While AsciiDocsy is a fully JAMstack theme, its use of JavaScript to overcome the limits of AsciiDoc and HTML is JAMstack__ish__ at the very least.
+
+Bootstrap provides numerous elements that enhance the way we shape and place novel elements.
+However, jQuery (or another JS framework of your choice) is most helpful with post-render content enhancement and management.
+
+When delivering HTML, JavaScript will almost always provide you with the final say.
+
+As one example, AsciiDocsy uses JS-driven menus that dump into divs.
+The terms-list generated on topic pages that contain glossary terms is also generated this way.
+
+[[template-hooks]]
+== Template Hooks
+
+Most Liquid templates contain at least one [.term]*template hook*, letting you insert or replace code in strategic places.
+
+Anywhere a file contains syntax like [.code]`{% include hook.liquid template="template_ext" spot="file" %}`, a hook is available.
+
+For hooks with `spot=file` (or no `spot` designated) will replace the entire template with an alternate.
+Otherwise, they will include an additional template in place.
+
+Hooked extensions are designated in [.path]`\_data/theme/extend.yml`.
+Hooks look for [.code.tokset_hooks-var]`site.data.theme.extend.hooks.templates.<template_ext>.<spot>`, where [.tok.hooks-var]`<template_ext>` is the filename of the calling template with a literal underscore (`_`) in place of the dot before the extension.
+The last slot, [.tok.hooks-var]`<spot>`, references the `spot` argument of the hook.
+
+.Example hook objects from [.path]`_data/theme/extend.yml`
+[source,yaml]
+----
+include::{path_to_data_dir}/theme/extend.yml[tags=example]
+----
+
+<1> references an insertion point near the top of the calling file.
+<2> designates that the whole file should be replaced by the alternate.
+
+Alternate and supplemental files can be named however you wish.
+By convention, appending `_alt` designates a replacement file, whereas `_sup`
+ suggests supplementary code to be inserted.
+
+[TIP]
+The `breadcrumbs_html` data object is commented out by default.
+To see this extension-hooks method in action, remove the comments and rebuild the site.
+Page breadcrumbs will be replaced by a statement.

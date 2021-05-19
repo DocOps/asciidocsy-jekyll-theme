@@ -1,0 +1,14 @@
+= AsciiDocsy Theme Documentation
+
+This directory (`_docs/`) contains documentation content _about the AsciiDocsy theme_.
+You are welcome to use it as a starting point to internally document your own implementation of AsciiDocsy, but be sure to update or remove this README if you do.
+
+This path also constitutes the main content source for the AsciiDocsy demo site, as configured by files in the project root directory, such as `_config.yml`.
+
+The contents of this docset are mainly (1) a user guide for the theme and (2) a style guide for each markup format (AsciiDoc, YAML, and Liquid) that constitute the documentation languages.
+
+If you are using AsciiDocsy for a documentation project, you might keep this content as part of your documentation platform, as each new release will be the canonical reference for AsciiDocsy theme.
+
+== Build
+
+To build the docs, use the quickstart/demo instructions in the link:../README.adoc[root README file].

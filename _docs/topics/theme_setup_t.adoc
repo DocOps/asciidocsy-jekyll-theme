@@ -1,0 +1,27 @@
+:page-permalink: /docs/theme/setup
+:page-togglers: user-os
+= AsciiDocsy Setup
+
+This topic will guide you through the nitty-gritty of setting up AsciiDocsy with Jekyll -- either integrating it into your existing Jekyll site or starting from scratch.
+
+== Quickstart Demo
+
+To see AsciiDocsy and Jekyll in action, try building the demo site.
+
+include::{path_to_readme}[tags=quickstart-build]
+
+== Requirements
+
+A proper Jekyll/AsciiDocsy environment has a few prerequisites.
+
+=== Ruby
+
+include::{path_to_readme}[tags=requirements-ruby]
+
+=== Terminal & Shell
+
+== Optional
+
+=== CI/CD/Hosting
+
+=== Search Indexing & Querying

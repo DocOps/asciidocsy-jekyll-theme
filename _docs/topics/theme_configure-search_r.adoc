@@ -1,0 +1,2 @@
+:page-permalink: /docs/theme/config/search
+= Algolia Search Integration

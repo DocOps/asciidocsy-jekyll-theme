@@ -1,0 +1,45 @@
+:page-permalink: /docs/theme/config/semantics
+:page-tags: semantics,inline-semantics
+= Configuring Inline Semantics in AsciiDocsy
+
+AsciiDocsy enables robust use of inline semantics, as documented in the link:/docs/style/asciidoc/semantics[Inline Semantics Style Guide].
+
+There are a few ways you can customize these semantics, both meaning and presentation.
+
+The default semantic roles AsciiDocsy provides -- _term_, _cite_, _path_, _cmd_, and so forth -- is relatively arbitrary.
+Some I have seen or used in production, others (like _case_) are more experimental.
+
+These are not coded into the theme in any way except with CSS.
+Simply do not use any role you do not wish to.
+You may also add your own or alter the existing roles however you prefer.
+
+Use your `custom.css` file to modify the rendered presentation, and use your own style policy to alter the source markup (the quote characters).
+
+Which quotes are used to contain your text (backtick, underscore, aserisk, or hash) will determine the fallback styling for any rendering not styled by your semantic CSS, such as Asciidoctor PDF output with no styling designated for the roles.
+
+Role class definitions are not attached to the specific HTML elements used by Asciidoctor.
+This means for other roles, you can swap the quote characters in order to affect the rendered formatting with italics (underscore), bold (asterisk), or no styling (hash symbol).
+You can even use a combination of bold and italic as quotes: [.code]`pass:[*_bold and italic_*]`.
+
+[TIP]
+Do not make more semantic roles than your authors will use properly, and do not use them so frequently that they make the page too busy or awkward.
+Remove any roles that are not in regular use.
+
+== Inline Semantics in Action
+
+Take for example the AsciiDocsy "`Purpose`" section of the README, which is [.term.inclusion]*included* for rendering in the topic template [.path]`_docs/topics/theme_intro.adoc`.
+
+.Purpose section of [.path]`README.adoc`
+[source,AsciiDoc]
+----
+include::{path_to_readme}[tags=purpose]
+----
+
+This code renders like so in the AsciiDocsy theme:
+
+****
+include::{path_to_readme}[tags=purpose]
+****
+
+Without the AsciiDocsy theme -- such as in unthemed PDF or link:{git_source_www}/blob/main/README.adoc#purpose[on GitHub] -- styling "`degrades`" gracefully, falling back on formatting designated by the quotes syntax.
+In this case, the terms marked with the `case` role are bold _and_ italic on GitHub, whereas the term marked `buz` is italic on GitHub even though it is unitalicized in AsciiDocsy.

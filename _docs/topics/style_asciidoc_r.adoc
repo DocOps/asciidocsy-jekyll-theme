@@ -1,0 +1,43 @@
+:page-permalink: /docs/style/asciidoc
+= AsciiDoc Format Style Guide
+
+== Primary Resources
+
+To write effectively in AsciiDoc, you cannot go wrong following the advice of Asciidoctor lead developer Dan Allen and lead writer Sarah White.
+Four documents by them in particular are essential to fully appreciating what AsciiDoc has to offer.
+
+* link:https://docs.asciidoctor.org/asciidoc/latest/[AsciiDoc Language Documentation]
+* link:https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/[AsciiDoc Quick Reference]
+* link:https://asciidoctor.org/docs/asciidoc-writers-guide/[AsciiDoc Writer's Guide]
+* link:https://asciidoctor.org/docs/asciidoc-recommended-practices/[AsciiDoc Recommended Practices]
+
+The rest of this *{Doctitle}* is supplementary and complementary to those works.
+
+== Links
+
+Use the optional `link:` prefix for external URLs.
+This is especially important when the URL is an attribute, so syntax highlighters will identify the components.
+
+[source,asciidoc,subs=none]
+----
+Look at this link:{some-attribute}[hyperlink text].
+
+Compared to this {some-attribute}[hyperlink text].
+----
+
+== Attributes (i.e., Variables)
+
+Name attributes using lowercase letters, hyphens, and underscores.
+
+Use hyphens to break up words or abbreviations that collectively constitute a label.
+
+Use underscores to delineate parts of the variable name, such as by prepending `url_` or appending `\_uri` or `xref_`.
+
+For instance, in `{xref_some-topic-slug}`, the underscore designates `xref` to be a type flag, and the remainder matches a slug.
+The attribute is the cross-reference code for a file with the slug `some-topic-slug`.
+
+Similarly, consider `{platform-backend_source_git}` and `{platform-backend_source_www}`.
+These attributes designate a subject (the platform backend), the type of resource being linked (the source code for said subject product) and a designator for which version (the Git repo itself or the web UI frontend).
+
+[NOTE]
+This convention is contrary to the suggestion in Recommended Practices around link:https://asciidoctor.org/docs/asciidoc-recommended-practices/#attribute-groups[Attribute Groups].

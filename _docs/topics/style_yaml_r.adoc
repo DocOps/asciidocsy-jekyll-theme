@@ -1,0 +1,45 @@
+:page-permalink: /docs/style/yaml
+= YAML for Docs
+
+YAML is a pretty simplistic data markup format.
+Its syntax is more constrained than most programming languages or markup such as AsciiDoc, but there is still some variance.
+
+== Indentation
+
+By convention, use two spaces for a single level of indentation.
+
+== Restricted Feature Use
+
+YAML has a fairly complex specification, but much of it is unduly complex for minimal utility.
+I would venture to guess than at least 99% of YAML's users have no idea such features as tags and alias nodes exist.
+
+Use YAML for what it excels at: plain, human-readable, serializeda data objects.
+
+== Arrays
+
+Arrays are a data type used for serialization.
+Basically, an array is a list of items.
+In YAML, array values can be formatted horizontally or vertically.
+While these are interchangeable regardless of the data type conveyed, we have some style preferences differentiated based on the type of data contained in each list item.
+
+.Preferred YAML array formats
+[source,yaml]
+----
+# for brief arrays of short strings and/or numbers, use a bracketed, comma-separated list
+array-of-scalars: [item 1,item 2,item 3, 4]
+
+# for arrays of objects, use a vertical, hyphen-denoted list
+array-of-objects:
+  - slug: something
+    name: Something
+  - slug: another-thing
+    name: Another Thing
+    nested-list: [item 1,item 2]
+
+# for clusters of common/brief parameters, objects can be horizontal to save scroll
+tiny-objects-arr: [{slug: 'foo', name: 'Foo'},{slug: 'bar', name: 'Bar'}]
+----
+
+Always be willing to make exceptions for readability and scannability.
+
+Note that hyphen-denoted array items are also indented one level, which is technically optional but the preferred style.

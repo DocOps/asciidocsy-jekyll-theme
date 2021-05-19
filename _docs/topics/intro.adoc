@@ -1,0 +1,13 @@
+:page-permalink: /docs
+= AsciiDocsy Documentation
+
+This website serves two roles.
+It both _exemplifies_ and _documents_ the AsciiDocsy theme for Jekyll.
+
+The AsciiDocsy documentation is broken into two domains.
+
+The link:/docs/theme[AsciiDocsy Theme Docs] instruct working with this particular codebase.
+These topics are pretty essential to getting AsciiDocsy working.
+
+Much more optional is the link:/docs/style[Docs-as-Code Style Guide], presently covering link:/docs/style/asciidoc[AsciiDoc] content markup, link:/docs/style/yaml/[YAML] data markup, and link:/docs/style/liquid[Liquid] templating markup.
+These guides may get a canonical home elsewhere, but for now I'm sourcing it right in this repo.

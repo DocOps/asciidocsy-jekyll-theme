@@ -1,0 +1,50 @@
+:page-permalink: /docs/theme/advanced
+= Advanced Applications
+
+AsciiDocsy is intended to accommodate highly complex product sets.
+In fact, it is designed to suit the LiquiDoc Ops framework, which handles multi-product, multi-version documentation sites through single-sourcing.
+
+== Multi-subject Management
+
+For most technical documentation sites, the _subject_ is a product.
+And for a significant subset of these product-focused documentation sites, more than one product needs to be covered in the same place.
+
+At the very least, there must be commonality and continuity between product [.term]*docsets*.
+This is true even if at first the docset sourcing and primary toolchains differ drastically between products.
+At the point of delivery ("`deployment`"), the docs must come together under a common _theme_.
+
+That theme is AsciiDocsy.
+
+A typical AsciiDocsy site combining multiple products will draw content from distinct sources at build-time.
+
+[.case]_If you keep all your documentation source in one repo_, that might be your codebase that also contains the AsciiDocsy theme, your Jekyll configuration, and other required files.
+In this case, you should have a directory inside the docs-source root called something like `content/`, with subdirectories named after the products as slugs, such as `content/frontend-app` and `content/backend-db`.
+
+[.case]_If you source your documentation in separate product repos_, you still need a _main docs repo_.
+In this case, the objective is to construct a directory structure as recommended above at build-time, presumably from locally cached sources.
+
+Some teams opt to treat product repos as Git submodules or subtrees in relation to the main docs repo.
+Another option is to maintain a cache of cloned repos in a directory ignored by the main docs repo's Git configuration -- something like `.subjects-cache`.
+
+In either of these cases, at build-time, just copy the relevant files from those subrepos or cached repos into an ephemeral (also Git-ignored) _build directory_.
+Be sure to include that build directory in your Jekyll configuration as `source:`.
+
+An alternative to subrepos or ephemerally cached clones, some teams opt to maintain copies of the product docs source in a file server, such as a CDN (content-delivery network).
+These files are pulled in over VPN at build-time and similarly cached between builds.
+
+One way or another, the task at hand is to get the AsciiDoc, image, and other files from those product repos into your main docs repo in order to build the docs.
+
+Each source should be a single root-level directory, probably called `docs/` or `docs/topics` in the product repo, and written as something like `_build/frontend-app/` in the main docs repo.
+This directory must at the very least include AsciiDoc (`.adoc`) files.
+It can also include relevant subcirectories like `images/`, `snippets/`, etc.
+
+It is highly recommended that each product team also maintain a data file for the repo -- something like `docs/topics/_dataset.yml` or `docs/topics/_manifest.yml`.
+This file can also sit in the ephemeral subject-based (product) directory.
+Or each such file can be moved to the Jekyll data directory (probably `_data/`), renamed to make it distinct (for instance, `_data/frontend-app.yml`, `_data/backend-db.yml/`).
+Now there would be data accessible at scopes like `site.data.frontend-app` and `site.data.backend-db`.
+
+== Multi-revision Management
+
+Another major type of subject divergence AsciiDocsy is designed to handle is sequential versioning, technically known as [.term]*revisioning*.
+
+More on this topic coming in v0.2.0.

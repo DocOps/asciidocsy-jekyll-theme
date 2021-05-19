@@ -1,0 +1,79 @@
+:page-permalink: /docs/theme/toolchain
+= AsciiDocsy Toolchain
+include::{path_to_readme}[tags="globals"]
+
+Like any theme, AsciiDocsy can be modified to accommodate an assortment of components.
+In fact, AsciiDocsy mainly _is_ an assortment of components.
+Here are the ones I have chosen, after building numerous Jekyll/AsciiDoc sites across more than five years.
+
+[NOTE]
+Neither AcsiiDocsy nor its author have any financial stake in these tooling choices.
+They are all free and open-source of freemium and OS-friendly.
+They can all be replaced by competent alternatives, but these are my sincere favorites.
+
+== Asciidoctor and Jekyll-AsciiDoc
+
+If you're working in AsciiDoc, which is _the_ choice for serious technical documentation projects (including books), you're working with Asciidoctor.
+link:https://www.asciidoctor.org[Asciidoctor] has a terrific, growing community.
+The organization provides all kinds of converters and related tools for numerous environments, and Ascsiidoctor maintains the link:https://github.com/asciidoctor/jekyll-asciidoc[jekyll-asciidoc] plugin as a top-notch Ruby gem.
+
+== Bootstrap
+
+Every good website has an HTML/CSS/JS framework, and like millions of others, for AsciiDocsy that framework is Twitter's link:https://getbootstrap.com[Bootstrap library].
+Sure, some components wind up looking commonplace, but the convenience and consistency of Bootstrap makes it easy to resist -- especially because it's so easy to modify, extend, and disguise.
+
+At this time, AsciiDocsy uses link:https://getbootstrap.com/docs/4.3/getting-started/introduction/[Bootstrap version 4.3], but we will probably upgrade to link:https://getbootstrap.com/docs/5.0/getting-started/introduction/[version 5] before long.
+
+== Highlight.js
+
+For code-block syntax hiding, there are several options.
+Asciidoctor does a good job of laying out the link:https://docs.asciidoctor.org/asciidoctor/latest/syntax-highlighting/[four highlighters] it comes ready to handle.
+
+AsciiDocsy enables both Rouge and Highlight.js.
+Highlight.js is not available for PDFs, so Rouge is a better fit there.
+
+Highlight.js is the choice for the AsciiDocsy site itself largely because Hjs provides syntax highlighting for AsciiDoc source itself, and Rouge as of yet does not.
+
+== Navgoco Menu
+
+I have tried a lot of collapsing/multi-tiered menu components, but I always come back to link:https://github.com/tefra/navgoco[Navgoco].
+It is simple and applies elegantly to a conventional HTML structure (normal unordered lists).
+It collapses and nests, if you want it to, and it's easy to style.
+
+I would not mind extending this menu system a bit, but I need more concrete direction.
+Something to discuss in the link:{theme_source_www}/issues[Issues], perhaps?
+
+== Bootstrap TOC
+
+There are several ways to implement scrollspy-capable tables of contents, but this is my new favorite.
+The nested levels make it perfect for long documents, where other such TOCs often force you to scroll the TOC itself.
+I just love this little component.
+
+== Netlify CI/CD/Hosting
+
+link:https://www.netlify.com[Netlify] makes continuous integration and deployment a relative breeze.
+It's free to tinker with, and even for modestly sized production sites.
+They also accommodate enterprise-scale needs.
+
+Niche turnkey CI/CD platforms (in this case, for publishing) have great potential to save hundreds and hundreds of IT/DevOps hours every year.
+Others prefer to handle this aspect in-house, if they have the resources.
+
+== Algolia Search
+
+link:https://www.algolia.com[Algolia] provides the cloud platform that the AsciiDocsy indexes to and queries from.
+It also provides a widget framework for building great search apps.
+
+Unlike hosting, this is almost certainly a nut no organization wants to crack in-house, as search algorithms are proprietary.
+You are going to pay for good search -- my clients get good results and a good value from Algolia.
+
+I believe all of the clients I have put on Algolia have kept it as their needs have grown.
+
+.Goodbye Lunr Search
+****
+Although I have never used it in production, I have always been rather fond of Lunr, the JavaScript-only search engine that comes set up by default on most Jekyll and other SSG themes.
+It's a work of wonder, but alas, good search is not a client-side production, and Lunr has some bugs that are nearly inherent, and therefore unsolvable, to my understanding.
+
+I decided to rip it out of the Docsy Jekyll code I started out with.
+It's probably sufficient for blog searches, but I cannot fathom a serious product documentation site using it.
+If people would strongly prefer Lunr, I will add it back in as an option so search works out of the box.
+****

@@ -1,0 +1,5 @@
+footer:
+  title: DocOps Labs
+  tagline: Your HQ for documentation tooling and workflows.
+  madewith: Sourced in AsciiDoc and YAML. Generated with Jekyll, Asciidoctor, and AsciiDocsy.
+  copyright: (C) 2021 Copyright Codewriting LLC & upstream authors
