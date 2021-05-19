@@ -1,9 +1,13 @@
-{% if site.feedback %}<style>
+<!-- feedback form {% comment %}
+Generates feedback form.
+{% endcomment %} -->
+{% include hook.liquid template="feedback_html" spot="file" %}
+{% unless hook_replace_tpl %}
+{% if site.features.actions.feedback-form %}
+{% assign fform = site.features.actions.feedback-form %}
+<style>
   .feedback--answer {
     display: inline-block;
-  }
-  .feedback--answer-no {
-    margin-left: 1em;
   }
   .feedback--response {
     display: none;
@@ -13,24 +17,23 @@
     display: block;
   }
 </style>
-<h5 class="feedback--title">Feedback</h5>
-<p class="feedback--question">Was this page helpful?</p>
-<button class="feedback--answer feedback--answer-yes">Yes</button>
-<button class="feedback--answer feedback--answer-no">No</button>
-<p class="feedback--response feedback--response-yes">
-  Glad to hear it! Please <a href="{{ site.repo }}/issues/new">tell us how we can improve</a>.
-</p>
-<p class="feedback--response feedback--response-no">
-  Sorry to hear that. Please <a href="{{ site.repo  }}/issues/new">tell us how we can improve</a>.
-</p>
+<div class="h5 feedback--title">{{ fform.show.name }}</div>
+<p class="feedback--question">{{ fform.show.text }}</p>
+<form name="feedback" method="POST" data-netlify="true">
+{% for opt in fform.send.opts %}
+  <button type="button" class="btn btn-sm btn-{{opt.color | default:'secondary'}} feedback--answer feedback--answer-{{ opt.slug }}">{{ opt.text }}</button>
+{% endfor %}
+</form>
+<div class="feedback--response feedback--response-{{ opt.slug }}"></div>
 <script>
-  const yesButton = document.querySelector('.feedback--answer-yes');
-  const noButton = document.querySelector('.feedback--answer-no');
-  const yesResponse = document.querySelector('.feedback--response-yes');
-  const noResponse = document.querySelector('.feedback--response-no');
+  {% for opt in fform.send.opts %}
+  const {{opt.slug}}Button = document.querySelector('.feedback--answer-{{opt.slug}}');
+  const {{opt.slug}}Response = document.querySelector('.feedback--response-{{opt.slug}}');
+  {% endfor %}
   const disableButtons = () => {
-    yesButton.disabled = true;
-    noButton.disabled = true;
+    {% for opt in fform.send.opts %}
+    {{opt.slug}}Button.disabled = true;
+    {% endfor %}
   };
   const sendFeedback = (value) => {
     if (typeof ga !== 'function') return;
@@ -44,15 +47,13 @@
     };
     ga(args.command, args.hitType, args.category, args.action, args.label, args.value);
   };
-  yesButton.addEventListener('click', () => {
-    yesResponse.classList.add('feedback--response__visible');
+  {% for opt in fform.send.opts %}
+  {{opt.slug}}Button.addEventListener('click', () => {
+    {{opt.slug}}Response.classList.add('feedback--response__visible');
     disableButtons();
     sendFeedback(1);
   });
-  noButton.addEventListener('click', () => {
-    noResponse.classList.add('feedback--response__visible');
-    disableButtons();
-    sendFeedback(0);
-  });
-</script>{% endif %}<br/>
-
+  {% endfor %}
+</script>
+{% endif %}
+{% endunless %}

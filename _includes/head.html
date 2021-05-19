@@ -1,26 +1,40 @@
+{% include hook.liquid template="head_html" spot="file" %}
+{% unless hook_replace_tpl %}
 <head>
 <meta charset="utf-8">
-<!-- Copyright 2019-2021 Vanessa Sochat-->
-
+<!-- Some HTML templates copyright 2019-2021 Vanessa Sochat | Apache 2.0 License -->
+<!-- Adapted and re-released as AsciiDocsy under Apache 2.0 and MIT licenses
+ in 2021 by Codewriting LLC -->
+ {% assign page_url = site.deploy_url | append: page.url %}
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Jekyll+Asciidoctor" />
+{% if page.search-index %}
+  {% assign search_index = "index" %}
+{% else %}
+  {% assign search_index = "noindex" %}
+{% endif %}
+<meta name="robots" content="{{ search_index }}, follow">
+<link rel="canonical" href="{{ page.canonical | default: page_url }}" />
+<link rel="shortcut icon" href="{{ site.theme_dir }}/images/favicons/favicon.ico" >
+<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/favicon-32x32.png" sizes="32x32">
+<!--
+<link rel="apple-touch-icon" href="{{ site.theme_dir }}/images/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/android-96x196.png" sizes="96x196">
+<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/android-192x192.png" sizes="192x192">
+-->
 
-<META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+<title>
+  {% if page.title %}
+    {{ page.title }} |
+  {% endif %}
+  {{ site.title }}
+</title>
 
-<link rel="alternate" type="application/rss&#43;xml" href="/docs/index.xml">
-
-<link rel="shortcut icon" href="{{ site.baseurl }}/assets/favicons/favicon.ico" >
-<link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/favicons/apple-touch-icon-180x180.png" sizes="180x180">
-<link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/favicons/favicon-16x16.png" sizes="16x16">
-<link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/favicons/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/favicons/android-36x36.png" sizes="36x36">
-<link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/favicons/android-48x48.png" sizes="48x48">
-<link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/favicons/android-72x72.png" sizes="72x72">
-<link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/favicons/android-96x196.png" sizes="96x196">
-<link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/favicons/android-144x144.png" sizes="144x144">
-<link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/favicons/android-192x192.png"sizes="192x192">
-
-<title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
 <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
 <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
 <meta property="og:type" content="website" />
@@ -30,14 +44,32 @@
 <meta itemprop="name" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
 <meta itemprop="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}"/>
-<meta name="twitter:description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}"/>
+{% include hook.liquid template="head_html" spot="css_head" %}
+<link rel="stylesheet" href="{{ site.theme_dir }}/css/bootstrap-4.3.css"/>
+<link rel="stylesheet" href="{{ site.theme_dir }}/css/bootstrap-toc.css"/>
+<link rel="stylesheet" href="{{ site.theme_dir }}/css/jquery.navgoco.css"/>
+<link rel="stylesheet" href="{{ site.theme_dir }}/css/palette.css"/>
+<link rel="stylesheet" href="{{ site.theme_dir }}/css/asciidoctor.css"/>
+<link rel="stylesheet" href="{{ site.theme_dir }}/css/font-awesome.css"/>
+<link rel="stylesheet" href="{{ site.theme_dir }}/css/skins/foundation.css" id="skin-style"/>
+<link rel="stylesheet" href="{{ site.theme_dir }}/css/syntax/hljs/a11y-light.css" id="syntax-style"/>
+{% if site.source-highlighter == "highlight.js" %}
+<link rel="stylesheet" href="{{ site.theme_dir }}/css/highlight.pack.css"/>
+{% endif %}
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css" integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8=" crossorigin="anonymous"/>
+<link rel="stylesheet" href="{{ site.theme_dir }}/css/asciidocsy.css"/>
+<link rel="stylesheet" href="{{ site.theme_dir }}/css/custom.css"/>
+{% include hook.liquid template="head_html" spot="css_tail" %}
 
-<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
-<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/palette.css">
-<script
-  src="{{ site.baseurl }}/assets/js/jquery-3.3.1/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+{% assign empty_array = "" | split: "," %}
+{% assign page_scripts = page.scripts | default: layout.scripts %}
+{% assign all_scripts = site.scripts %}
+{% include scripts.html spot="head" %}
+<script>
+// invoke highligher.js
+hljs.highlightAll();
+</script>
+{% include hook.liquid template="head_html" spot="tail" %}
 </head>
+{% endunless %}

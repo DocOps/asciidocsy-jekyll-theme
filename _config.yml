@@ -1,96 +1,603 @@
-# Welcome to Jekyll!
+# Welcome to AsciiDocsy!
 #
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing these this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
+# This is a "default" Jekyll config file for this theme, but it is probably
+# not what you want to use in production.
+# Be sure to check out the README, which contextualizes this project.
+# See also https://jekyllrb.com/docs/configuration/default/ for more
+#  configuration options.
+# NOTE: AsciiDocsy makes much heavier than typical use of the `site.` and
+#  `data.` scopes in order to minimize the need to modify templates.
+# NOTE: Where you see the likes of `tag::some-text[]` and `end::some-text[]`
+#  in this file, these are AsciiDoc flags marking places to extract for
+#  sourcing the docs for this theme itself.
 
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
+title: AsciiDocsy
+tagline: An AsciiDoc-ready Jekyll theme for technical documentation
+deploy_url: https://asciidocsy.netlify.app
+company_name: DocOps Labs
 
-title: Docsy Jekyll
-email: your-email@domain.com
-author: Dinosaur Avocado
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+# SITEWIDE JEKYLL SETTINGS
+baseurl: "" # Leave blank if your site will deploy at the root of a domain
+            #  such as http://docs.yourcompany.com/
+# The following paths are all relative to the project base
+source: .
+destination: _site
+layouts_dir: _layouts
+includes_dir: _includes
 
-# DO NOT CHANGE THE LINE OF THIS FILE without editing .circleci/circle_urls.sh
-baseurl: "/docsy-jekyll" # the subpath of your site, e.g. /blog
+# Global AsciiDocsy settings
+theme_dir: "" # <1> path to asset directories (css/ images/ js/ etc)
+data_dir: _docs/_data
+source_git: git@github.com:DocOps/asciidocsy.git # git@-formatted address
+source_www: https://github.com/DocOps/asciidocsy
+source_icon: fa fa-github
+source_trunk_branch: main # path from repo home url to projet root
+images_path: /images
 
-# This is mostly for testing
-url: "https://vsoch.github.io" # the base hostname & protocol for your site
+# tag::asciidoctor[]
+asciidoc: {}
+asciidoctor:
+  ext: adoc
+  safe: 0
+  base_dir: :docdir
+  attributes:
+    imagesdir: /images
+    icons: font
+    source-highlighter: highlight.js
+    ### paths from topic/ to root files
+    path_to_jekyll_config: ../../_config.yml
+    path_to_readme: ../../README.adoc
+    path_to_data_dir: ../_data
+    example-capition: ''
+# end::asciidoctor[]
 
-# Social (First three Required)
-repo: "https://github.com/vsoch/docsy-jekyll"
-github_user: "vsoch"
-github_repo: "docsy-jekyll"
-github_branch: "master"
+# tag::algolia[]
+algolia:
+  application_id: 'SELDDHION6'
+  index_name: asciidocsy
+  search_only_api_key: 'b9112b0485d58729c3e7c7b64291cbd9'
+  extensions_to_index: [adoc]
+# end::algolia[]
+# NOTE: search field and page configuration handled under FEATURES
 
-# Optional
-twitter: vsoch
-linkedin: vsochat
-dockerhub: vanessa
+liquid:
+  error_mode: warn
+  strict_filters: false
+  strict_variables: false
 
-# Should there be feedback buttons at the bottom of pages?
-feedback: true
-
-# Link to a privacy policy in footer, uncomment and define if wanted
-# privacy: https://domain.com/privacy
-
-# google-analytics: UA-XXXXXXXXXX
-# Image and (square) dimension for logo (don't start with /)
-# If commented, will use material hat theme
-# logo: "assets/img/logo/SRCC-square-red.png"
-logo_pixels: 34
-color: "#30638e"
-# color: "#8c1515" # primary color for header, buttons
-
-# Build settings
-markdown: kramdown
-
-# If you add tags to pages, define this variable to link them to some external search
-# If you want to link to tags locally on the site, leave this commented out
-# tag_search_endpoint: https://ask.cyberinfrastructure.org/search?q=
-tag_color: primary # danger, success, warning, primary, info, secondary
-
-accentColor: red # purple, green, etc.
-themeColor: red # purple, green, blue, orange, purple, grey
-fixedNav: 'true' # true or false
-
-permalink: /:year/:title/
-markdown: kramdown
-exclude: [_site, CHANGELOG.md, LICENSE, README.md, vendor]
-
-# Collections
-collections:
-  docs:
-    output: true
-    permalink: /:collection/:path
-
-# Defaults
+# Default PAGE scopes for content sourced in certain paths
 defaults:
   - scope:
-      path: "_docs"
-      type: "docs"
+      path: ""
+    values:
+      search-index: false
+      style-changers: false
+  - scope:
+      path: pages/
     values:
       layout: page
-  -
-    scope:
-      path: ""
-      type: "pages"
+      kind: page
+      sidebar-left: true
+      sidebar-right: true
+  - scope:
+      path: _docs/topics/
     values:
-      layout: "page"
-  -
-    scope:
-      path: "posts"
-      type: "posts"
-    values:
-      layout: "post"
+      layout: topic
+      kind: topic
+      sidebar-left: true
+      sidebar-right: true
+      search-index: true
+      anchors: true
+      style-changers: true
+      toc: [sidebar]
+
+# Paths to render with Jekyll that would not be rendered by default
+include:
+  - _docs
+  - _docs/_data/terms-dict.json
+  - _docs/theme-api.asciidoc
+
+# Paths to skip that would normally be rendered
+exclude:
+  - .data # the root data/ dir is for data ABOUT AsciiDocsy
+  - "**/README.adoc" # if we want content from READMEs, we include:: it
+  - COPYRIGHT
+  - LICENSE
+
+# FEATURES
+#
+# This is AsciiDocsy's novel way of putting powerful feature configuration
+#  in a convenient spot.
+# What follows is just a data structure -- it is not a language.
+# All functionality is coded into Liquid templates.
+#
+# TO DISABLE any feature or block of features, delete it or comment it out.
+features:
+  navigation:
+    anchor-links:
+      $doc:
+        name: Anchor Links
+        desc: Adds self-referential links to all headers of the listed types.
+      show:
+        list: h2,h3,h4,h5 # make empty to disable anchor links
+    subject-menu:
+      from: site.data.manifest
+      opts:
+        show_type_icons: true
+    toc:
+      $doc:
+        name: TOC
+        desc: Shows the table of contents
+      show:
+        text: In this topic…
+        spot: "#sidebar-right"
+        opts:
+          header_level_depth: "h3"
+    breadcrumbs:
+      # crumb paths are further defined in data/manifest.yml
+      show:
+        home: AsciiDocsy
+        opts:
+          delim: ">"
+  alerts:
+    gdpr-message:
+      # NOT YET IMPLEMENTED
+      # see features.actions.gdpr-alert for more settings
+      name: Cookies & Privacy
+      show:
+        line: Select cookies to accept.
+        text: | # AsciiDoc formatting allowed
+          This website stores cookies on your computer.
+          These cookies keep track of how you prefer to interact with our website and customize your browsing experience. *We and our vendors do _not_ track you elsewhere on the Internet.* To find out more, see our link:/privacy[Privacy Policy].
+        icon: fa fa-exclamation-circle
+        form: banner
+        when: load
+    call-to-action:
+      # NOT YET IMPLEMENTED
+      show:
+        text: |
+          Don't leave the site without signing up for a demo or at least getting on our mailing list!
+        icon: fa fa-hand-o
+        form: modal
+        when: exit
+  actions:
+    search-site:
+      $doc:
+        name: Search the site
+        desc: Enables users to search all pages in the site, including non-topics
+      show:
+        text: Search the site…
+        spot: "#nav-site"
+        opts:
+          index: asciidocsy
+    search-subject:
+      show:
+        text: Search the docs…
+        icon: fa fa-search
+        spot: "#sidebar-left" # where this should appear (alt: leftside nav)
+        opts:
+          index: asciidocsy
+    versioning:
+      togglers:
+        user-os: # arbitrary toggler name
+          show:
+            spot: '#sidebar-right'
+          swap:
+            opts:
+              - text: Windows
+                slug: os-win
+                icon: fa fa-windows
+              - text: Linux/Unix
+                slug: os-nix
+                icon: fa fa-linux
+              - text: MacOS
+                slug: os-mac
+                icon: fa fa-apple
+      switchers:
+        # NOT YET IMPLEMENTED; slated for 0.2.0
+        revision: # named switcher for sequential product versioning
+          show:
+            text: Product Version
+            icon: fa fa-code-branch
+            spot: leftside nav
+          swap:
+            # instead of an `opts` property, here we'll name a data object
+            data: page.product.versions
+      tabbers: # for "tabbed" source blocks, tables, etc
+        # NOT YET IMPLEMENTED; slated for 0.2.0
+        data-format: # arbitrary tabber name
+          swap:
+            opts:
+              - text: YAML Data
+                slug: data-yaml
+              - text: JSON Data
+                slug: data-json
+              - text: XML
+                slug: data-xml
+    topic: # order these objects as you wish them to appear
+      peel: # display print-friendly version
+        text: Print-friendly
+        icon: fa fa-newspaper-o
+        func: ""
+        # role: auth0 # explicitly sets role limit
+      edit:
+        text: Edit this topic
+        icon: fa fa-pencil-square
+        # role: auth0 # explicitly sets role limit
+        # fork: # overrides default forking policy
+      data:
+        text: Edit topic datasource
+        icon: fa fa-database
+        # role: auth0
+        # fork: # overrides default forking policy
+      make:
+        text: Create a (sub)topic
+        icon: fa fa-file-text-o
+        # role: auth0
+        # fork: # overrides default forking policy
+    page:
+      edit:
+        text: Edit this page
+        href:
+        icon: fa fa-pencil
+        # role: auth0
+        # fork: # overrides default forking policy
+      data:
+        text: Edit page datasource
+        icon: fa fa-database
+        # role: auth0
+        # fork: # overrides default forking policy
+      make:
+        text: Suggest a new page
+        icon: fa fa-file-text-o
+        # role: auth0
+        # fork: # overrides default forking policy
+    docs-issue:
+      make:
+        text: Create a documentation issue
+        icon: fa fa-ticket
+        href:
+        # role: auth0
+        # fork: # overrides default forking policy
+    project-issue:
+      make:
+        text: Create a project issue
+        icon: fa fa-ticket
+        href:
+        # role: auth0
+    page-skin: # you probably want to remove this, cool as it is
+      swap:
+        text: Re-skin this theme
+        icon: fa fa-paintbrush
+        href: '#javascript.skinner'
+        # list: [] # if different from default styles.skins.list above
+        # role: auth0
+    feedback-form:
+      show:
+        name: Feedback, please.
+        text: Did you find this page helpful?
+        icon: fa fa-clipboard
+      send:
+        opts:
+          - slug: 'yes'
+            text: 'Yes'
+            echo: |
+              That's great! Do let us know if you have more to say.
+            icon: fa fa-trophy
+          - slug: 'no'
+            text: 'No'
+            echo: |
+              We are sorry to hear that.
+
+              More text
+            icon: frown-o
+          - slug: some
+            text: Partly
+            echo: |
+              Okay, thanks for your honesty.
+
+              More text
+            icon: fa fa-line-chart
+    gdpr-alert:
+    # NOT YET IMPLEMENTED
+      sign:
+        text: I accept.
+        icon: fa fa-thumbs-up
+      pick:
+        text: Customize cookies.
+        icon: fa fa-edit
+        opts:
+          # Cookie types
+          - name: Essential
+            slug: essential
+            desc: These are cookies that are essential for the website to work correctly.
+          - name: Site Preferences
+            slug: preferences
+            desc: These are cookies that are related to your site preferences, e.g. remembering your username, site colours, etc.
+          - name: Analytics
+            slug: analytics
+            desc: Cookies related to site visits, browser types, etc.
+          - name: Marketing
+            slug: marketing
+            desc: Cookies related to marketing, e.g. newsletters, social media, etc
+      deny:
+        # the user action is to make the message go away and eliminate cookies
+        icon: fa fa-thumbs-down
+
+# ELEMENTS
+header:
+  show:
+    logo:
+      source: /images/logo.png
+      width: 50px
+footer:
+  show:
+    logo:
+      source: /images/docops-labs-logo.png
+      width: 150px
+    opts:
+      first-col-class: offset-2 # how far to offset the link columns
+
+
+# SEMANTICS
+semantics:
+  role:
+    term:
+      show:
+        icon: fa fa-info-circle
+        spot: "#sidebar-right"
+
+# SERVICES
+services:
+  analytics:
+    google:
+# tag::algolia[]
+  search:
+    algolia:
+      application_id: 'SELDDHION6'
+      index_name: asciidocsy
+      search_only_api_key: 'b9112b0485d58729c3e7c7b64291cbd9'
+      extensions_to_index: [adoc]
+# end::algolia[]
+
+social:
+  show:
+    spot: footer
+    sites:
+      - slug: twitter
+        name: Twitter
+        href: https://twitter.com/_codewriting
+        icon: fa fa-twitter
+      - slug: slack
+        name: Slack
+        href: https://writethedocs.slack.com
+        icon: fa fa-slack
+      - slug: github
+        name: GitHub
+        href: https://github.com/DocOps
+        icon: fa fa-github
+      - slug: youtube
+        name: YouTube
+        href: https://www.youtube.com/channel/UCr019846MitZUEhc6apDdcQ
+        icon: fa fa-youtube
+
+# SCRIPTS
+scripts:
+  head:
+    - slug: jquery
+      href: /js/jquery-3.3.1.min.js
+    - slug: popper
+      href: https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js
+      meta:
+        integrity: sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49
+    - slug: bootstrap
+      href: https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js
+    - slug: jquery-cookie
+      href: /js/jquery.cookie.js
+    - slug: algolia-instantsearch
+      href: https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js
+      meta:
+        integrity: sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=
+    - slug: autocomplete
+      href: https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js
+    - slug: algoliasearch-3
+      href: https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js
+    - slug: anchors
+      href: /js/anchor.min.js
+    - slug: navgoco
+      href: /js/jquery.navgoco.js
+    - slug: bootstrap-toc
+      href: /js/bootstrap-toc.js
+    - slug: highlight-js
+      href: /js/highlight.pack.js
+  tail:
+    - slug: asciidocsy
+      href: /js/main.js
+
+# SITE POLICIES
+policies:
+  gdpr:
+    # NOT YET IMPLEMENTED
+    # This feature will enable users to
+    $doc:
+      name: GDPR policies
+      desc: Groups cookies by use to let users select which cookies to permit.
+    types:
+      - slug: essential
+        desc: Just the cookie to remember these preferences.
+        cookies: [cookieControlPrefs]
+      - slug: preferences
+        desc: Cookies to recall style and version choices made in the app.
+        cookies: [syntax-style,skin-style,switcher_user-os]
+      - slug: analytics
+        desc: Uses cookies to anonymously report how you use the site so we can improve the experience.
+        cookies: [google-analytics]
+      - slug: commercial
+        desc: We don't use this kind of cookie anywhere on our site.
+        cookies: []
+  authorizations:
+    # NOT YET IMPLEMENTED
+    # Arbitrary tiers for referencing in other settings.
+    # Authorization is ordered from lowest (first) to highest.
+    # This object demonstrates only FEATURE-level permissions for page links.
+    # Restricting access to whole pages/paths based on authorizations is
+    #  not yet planned.
+    - code: auth0
+      text: all site visitors
+      policies:
+        fork: togo
+    - code: auth1
+      text: logged-in site visitors
+      keys:
+        - cookie: employees
+        - cookie: contractors
+        - token:  staff
+      policies:
+        fork: stay
+    - code: auth2
+      text: site admins only
+      keys:
+        - cookie: 'admins'
+      policies:
+        fork: stay
+    # NOTE: with a static site, we are not so much protecting the source
+    #  (our Git workflow does that); we are just restricting what visitors
+    #  see on the page.
+  defaults:
+    # auth: auth0 # who sees interactive features on the site?
+                # must be one of the codes listed in policies.authorizations
+                # can override individually below
+    fork: upto  # can users fork the repo to contribute?
+                #   none = no forking or branching
+                #   stay = branch only
+                #   togo = fork only
+                #   upto = fork or branch, user's choice
+                #   auth = set under policies.authorizations
+
+
+# THEME STYLE/DESIGN SETTINGS
+# tag::styles[]
+styles:
+  logo:
+    width: 50px
+  color:
+    theme: "#30638e"
+  skin: # EITHER a String (base filename of skin in css/skins/; e.g., `colony`);
+        # OR a hash of `list:` (Array) and `pick:` (String).
+    list: # all skins available to the theme
+      - colony
+      - foundation
+      - foundation-lime
+      - foundation-potion
+      - github
+      - golo
+      - iconic
+      - maker
+      - readthedocs
+      - riak
+      - rocket-panda
+      - rubygems
+    pick: foundation
+  syntax: # EITHER a String (base filename of syntax style in css/syntax/hljs;
+          #  e.g., `a11y-dark`);
+          # OR a hash of `list:` (Array) and `pick:` (String).
+    pick: a11y-light
+    list:
+      - a11y-dark
+      - a11y-light
+      - agate
+      - androidstudio
+      - an-old-hope
+      - arduino-light
+      - arta
+      - ascetic
+      - atelier-cave-dark
+      - atelier-cave-light
+      - atelier-dune-dark
+      - atelier-dune-light
+      - atelier-estuary-dark
+      - atelier-estuary-light
+      - atelier-forest-dark
+      - atelier-forest-light
+      - atelier-heath-dark
+      - atelier-heath-light
+      - atelier-lakeside-dark
+      - atelier-lakeside-light
+      - atelier-plateau-dark
+      - atelier-plateau-light
+      - atelier-savanna-dark
+      - atelier-savanna-light
+      - atelier-seaside-dark
+      - atelier-seaside-light
+      - atelier-sulphurpool-dark
+      - atelier-sulphurpool-light
+      - atom-one-dark
+      - atom-one-dark-reasonable
+      - atom-one-light
+      - brown-paper
+      - codepen-embed
+      - color-brewer
+      - darcula
+      - dark
+      - default
+      - docco
+      - dracula
+      - far
+      - foundation
+      - github
+      - github-gist
+      - gml
+      - googlecode
+      - gradient-dark
+      - gradient-light
+      - grayscale
+      - gruvbox-dark
+      - gruvbox-light
+      - hopscotch
+      - hybrid
+      - idea
+      - ir-black
+      - isbl-editor-dark
+      - isbl-editor-light
+      - kimbie.dark
+      - kimbie.light
+      - lightfair
+      - lioshi
+      - magula
+      - mono-blue
+      - monokai
+      - monokai-sublime
+      - night-owl
+      - nnfx
+      - nnfx-dark
+      - nord
+      - obsidian
+      - ocean
+      - paraiso-dark
+      - paraiso-light
+      - pojoaque
+      - purebasic
+      - qtcreator_dark
+      - qtcreator_light
+      - railscasts
+      - rainbow
+      - routeros
+      - school-book
+      - shades-of-purple
+      - solarized-dark
+      - solarized-light
+      - srcery
+      - stackoverflow-dark
+      - stackoverflow-light
+      - sunburst
+      - tomorrow
+      - tomorrow-night-blue
+      - tomorrow-night-bright
+      - tomorrow-night
+      - tomorrow-night-eighties
+      - vs2015
+      - vs
+      - xcode
+      - xt256
+      - zenburn
+# end::styles[]

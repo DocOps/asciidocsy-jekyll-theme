@@ -1,9 +1,11 @@
-{% if site.google-analytics %}<script async src='https://www.google-analytics.com/analytics.js'></script>
+{% if site.services.analytics.google %}
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', '{{ site.google-analytics }}', 'auto');
+	ga('create', '{{ site.services.analytics.google }}', 'auto');
 	ga('send', 'pageview');
 }
-</script>{% endif %}
+</script>
+{% endif %}

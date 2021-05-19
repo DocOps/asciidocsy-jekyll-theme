@@ -1,37 +1,62 @@
-<footer class="bg-dark py-5 row d-print-none">
-  <div class="container-fluid mx-sm-5">
+{% include hook.liquid template="footer_html" spot="file" %}
+{% unless hook_replace_tpl %}
+{% assign footer_config = site.footer %}
+{% assign footer_nav    = site.data.navigation.footer %}
+{% assign footer_str    = site.data.theme.strings.footer %}
+{% comment %}var alt_links set by hook{% endcomment %}
+{% include hook.liquid template="footer_html" spot="head" %}
+<footer><!-- COMPANY REF/NAV -->
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-6 col-sm-4 text-xs-center order-sm-2">
-        
-<ul class="list-inline mb-0">  
-  {% if site.twitter %}
-  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="" aria-label="Twitter" data-original-title="Twitter">
-    <a class="text-white" target="_blank" href="https://twitter.com/{{ site.twitter }}">
-      <i class="fab fa-twitter"></i>
-    </a>
-  </li>{% endif %}
-  {% if site.linkedin %}
-  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="" aria-label="LinkedIn" data-original-title="LinkedIn">
-    <a class="text-white" target="_blank" href="https://linkedin.com/in/{{ site.linkedin }}">
-      <i class="fab fa-linkedin"></i>
-    </a>
-  </li>{% endif %}
-</ul>
-</div>
-<div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
-<ul class="list-inline mb-0">  
-  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="" aria-label="GitHub" data-original-title="GitHub">
-    <a class="text-white" target="_blank" href="{{ site.repo }}">
-      <i class="fab fa-github"></i>
-    </a>
-  </li>
-</ul>
-</div>
-<div class="col-12 col-sm-4 text-center py-2 order-sm-2">
-  <small class="text-white">© 2019 {{ site.author }} All Rights Reserved</small>
-  {% if site.privacy %}<small class="ml-1"><a href="{{ site.privacy }}" target="_blank">Privacy Policy</a></small>{% endif %}
-  <p class="mt-2"><a href="/about/">About Docsy</a></p>	
+      <div class="col-md-4">
+  {% if footer_config.show.logo %}
+        <span class="company-logo">
+          <img src="{{ site.footer.show.logo.source }}" class="logo" width="{{ site.footer.show.logo.width | default: '100px' }}">
+        </span>
+  {% endif %}
+  {% if footer_str.title %}
+        <div class="footer-title h4">{{ footer_str.title }}</div>
+  {% endif %}
+  {% if footer_str.tagline %}
+        <div class="footer-title h5">{{ footer_str.tagline }}</div>
+  {% endif %}
+  {% if site.social.show.spot == "footer" %}
+        {% include social-links.html list-class="list-inline" %}
+  {% endif %}
       </div>
+{% for col in footer_nav.columns %}
+  {% assign col_class = "" %}
+  {% if forloop.index == 1 %}
+    {% assign col_offset = 5 | minus: forloop.length %}
+    {% assign col_class = "offset-" | append: col_offset %}
+  {% endif %}
+  <div class="col-md-2 {{ col_class }}">
+    <ul class="list-unstyled">
+      <li class="footer-heading h5">{{ col.text }}</li>
+  {% for link in col.kids %}
+    {% assign link_ref = alt_links | where: "app",link.text | first %}
+      <li><a href="{{ link_ref.url | default: link.href | default: '#' }}" data-toggle="tooltip" title="{{ link_ref.use | default: link.text }}">{{ link.text }}</a></li>
+  {% endfor %}
+    </ul>
+  </div>
+{% endfor %}
+  </div>
+  {% if footer_str.copyright or footer_str.madewith %}
+  <div class="row justify-content-md-center">
+    <div class="footer-strings col-md-8 text-center">
+    {% if footer_str.copyright %}
+      <div class="copyright">
+        <p>{{ footer_str.copyright | asciidocifyxme }}</p>
+      </div>
+    {% endif %}
+    {% if footer_str.madewith %}
+      <div class="madewith">
+        <p>{{ footer_str.madewith | asciidocifyxme }}</p>
+      </div>
+    {% endif %}
     </div>
   </div>
+  {% endif %}
+  {% include hook.liquid template="footer_html" spot="tail" %}
 </footer>
+{% endunless %}

@@ -1,58 +1,84 @@
+---
+footer: true
+scripts:
+  - jquery
+  - jquery-cookie
+  - bootstrap
+  - popper
+  - anchors
+  - navgoco
+  - bootstrap-toc
+  - highlight-js
+  - algolia-instantsearch
+  - autocomplete
+  - algoliasearch-3
+  - asciidocsy
+---
 <!DOCTYPE html>
 <html lang="en" class="no-js">
   <!-- Copyright 2019-2021 Vanessa Sochat-->
-  {% include head.html %}
+{% include hook.liquid template="default_html" spot="pre_head" %}
+{% include head.html %}
+{% include hook.liquid template="default_html" spot="post_head" %}
+{% if site.services.analytics.google %}
   {% include google-analytics.html %}
-  <body class="td-section">
-    {% include header.html %}
-    <div class="container-fluid td-outer">
-      <div class="td-main">
-        <div class="row flex-xl-nowrap">
-          <div class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
-          {% include sidebar.html %}
+{% endif %}
+<body data-spy="scroll" data-target="#toc-side">
+  {% include hook.liquid template="default_html" spot="pre_header" %}
+  {% include header.html %}
+  {% include hook.liquid template="default_html" spot="post_header" %}
+  <div class="container-fluid td-outer {{ page.layout }}">
+    <div class="td-main">
+      <div class="row flex-xl-nowrap">
+{% if layout.sidebar-left %}
+        <div id="sidebar-left" class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none"><!-- SUBJECT/PRODUCT REF/NAV -->
+           <div class="sticky-top sticky-offset">
+  {% if site.features.actions.search-subject.show.spot == "#sidebar-left" %}
+             {% include search-form.html search="search-subject" %}
+  {% endif %}
+  {% if site.features.actions.versioning.switchers.revision.show.spot == "#nav-subject" %}
+             {% include versioner.html %}
+  {% endif %}
+             {% include nav-subject-menu.html manifest=site.data.manifest %}
           </div>
-          <div class="d-none d-xl-block col-xl-2 td-toc d-print-none">
-              <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-                  {% include editable.html %}
-              </div>
-              <nav id="TableOfContents"><ul>
-              <li><ul id="TOC">
-                <!-- Links will be appended here-->
-              </ul></li>
-              </ul></nav>
+        </div><!-- /#sidebar-left -->
+{% endif %}
+        <main class="{{ layout.main-class | default: 'col-12 col-md-9 col-xl-8 pl-md-5' }}" role="main">
+          <div class="td-content">
+            {{ content }}
+{% if site.features.actions.feedback-form.show %}
+            {% include feedback.html %}
+{% endif %}
           </div>
-          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
-            <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
-	      <ol class="breadcrumb spb-1">
-              {% assign crumbs = page.url | append: "/"  | replace: '//', '/' | split: '/' %}
-              {% for crumb in crumbs offset: 1 %}{% if crumb != "index" %}{% if forloop.last %}
-                <li class="breadcrumb-item active" aria-current="page">
-	          <a href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a>
-                </li>{% else %}
-                {% if page.url != "/docs/" %}<li class="breadcrumb-item">
-                  <a href="{{ site.url }}{{ site.baseurl }}{% assign crumb_limit = forloop.index | plus: 1 %}{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/' }}{% endfor %}">{% if crumb == "docs" %}Documentation{% else %}{{ crumb | replace:'-',' ' | remove:'.html' | capitalize }}{% endif %}</a>
-                </li>{% endif %}{% endif %}
-                {% endif %}{% endfor %}
-	      </ol>
-           </nav>
-           <div class="td-content">
-	      {{ content }}	
-              {% if section.links %}<div class="section-index">
-               <hr class="panel-line">{% for child in section.links %}
-                 <div class="entry">
-                    <h5>
-                        <a href="{% if child.url %}{{ site.baseurl }}{{ child.url }}{% else %}{{ child.external_url }}{% endif %}">{{ child.title }}</a>
-                    </h5>
-                    <p>{{ child.description }}</p>
-                 </div>{% endfor %}
-              </div>{% endif %}
-              {% include feedback.html %}
-           </div>
-          </main>
-        </div>
-      </div>
-      {% include footer.html %}
-    </div>
-    {% include scripts.html %}
-  </body>
+        </main>
+{% if layout.sidebar-right %}
+        <div id="sidebar-right" class="d-none d-xl-block col-xl-2 td-toc d-print-none"><!-- TOPIC/PAGE REF/NAV -->
+          <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+            {% include page-links.html %}
+          </div>
+  {% if page.togglers %}
+          <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+            {% include togglers.html spot="#sidebar-right" %}
+          </div>
+  {% endif %}
+  {% if layout.toc == "sidebar" and site.features.navigation.toc.show.spot == "#sidebar-right" %}
+          <nav id="toc-side" data-spy="affix" data-toggle="toc"></nav>
+  {% endif %}
+  {% if page.style-changers %}
+          {% include style-changer.html kind="skin" %}
+          {% include style-changer.html kind="syntax" %}
+  {% endif %}
+  {% if site.semantics.role.term.show.spot == "#sidebar-right" %}
+          <nav id="terms-listing"></nav>
+  {% endif %}
+        </div><!-- /#sidebar-right -->
+{% endif %}
+      </div><!-- /.row.flex-xl-nowrap -->
+    </div><!-- /.td-main -->
+{% if layout.footer %}
+    {% include footer.html %}
+{% endif %}
+  </div><!-- /.container-fluid.td-outer -->
+  {% include tail.html %}
+</body>
 </html>
