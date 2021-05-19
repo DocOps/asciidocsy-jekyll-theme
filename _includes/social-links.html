@@ -1,0 +1,13 @@
+{% include hook.liquid template="social-links_html" spot="file" %}
+{% unless hook_replace_tpl %}
+{% assign list-class = include.list-type | default: "list" %}
+<ul class="social-links {{ list-class }} mb-0">
+  {% for link in site.social.show.sites %}
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="" aria-label="{{ link.name }}" data-original-title="{{ link.name }}">
+    <a class="text-white" target="_blank" href="{{ link.href }}">
+      <i class="icon {{ link.icon }}"></i>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endunless %}

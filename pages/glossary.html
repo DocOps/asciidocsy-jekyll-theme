@@ -1,0 +1,17 @@
+---
+permalink: /glossary
+layout: page
+title: Glossary
+data-source: _docs/_data/terms.yml
+---
+<dl class="row">
+  {% for t in site.data.terms %}
+  <a name="{{ t.slug }}" id="{{ t.slug }}"></a>
+  <h2 id="{{ t.slug }}" style="display: none;">{{ t.term }}</h2>
+  <dt class="col-sm-3">
+    {{ t.term }}
+    <a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#{{ t.slug }}" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a>
+  </dt>
+  <dd class="col-sm-9">{{ t.desc }}</dd>
+  {% endfor %}
+</dl>

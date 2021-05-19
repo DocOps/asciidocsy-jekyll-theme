@@ -1,0 +1,37 @@
+{% include hook.liquid template="theme-api-object_asciidoc" spot="file" %}
+{% unless hook_replace_tpl %}
+{%- comment -%}
+////
+Generates a reference table for documenting an API object.
+////
+{%- endcomment %}
+{% assign obj = include.obj[1] %}
+{% assign name_inferred = include.obj[0] | replace:"-"," " | capitalize  %}
+[cols="1,3",role="api-ref"]
+|===
+2+| [.big]*{{ obj['$doc']['name'] | default: name_inferred }}*{% if obj['$doc'] %}{% if obj['$doc']['desc'] %} +
+{{ obj['$doc']['desc'] }}
+  {% endif %}
+
+  {% if obj['$doc']['tips'] %}
+s|TIPS:
+a|
+    {% for tip in obj['$doc']['tips'] %}
+* {{ tip }}
+    {% endfor %}
+  {% endif %}
+{% endif %}
+{% for prop in obj %}
+  {% unless prop[0] == "$doc" %}
+    {% assign prop_name = prop[0] %}
+s| block: `{{ prop_name }}`
+    {% if prop[1] %}
+a|
+
+    {% else %}
+m| {{ prop[1] }}
+    {% endif %}
+  {% endunless %}
+{% endfor %}
+|===
+{% endunless %}

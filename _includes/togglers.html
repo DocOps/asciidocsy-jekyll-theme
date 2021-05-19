@@ -1,0 +1,21 @@
+{% include hook.liquid template="togglers_html" spot="file" %}
+{% unless hook_replace_tpl %}
+<!-- {% comment %}
+Generates toggle buttons.
+{% endcomment %} -->
+{% for tog in page.togglers %}
+  {% if site.features.actions.versioning.togglers[tog]['show']['spot'] == include.spot %}
+    {% assign toggle = site.features.actions.versioning.togglers[tog] %}
+<div class="btn-group btn-group-toggle toggle-switcher" name="{{ tog }}" data-toggle="buttons">
+    {% assign active = "active" %}
+    {% for opt in toggle.swap.opts %}
+  <label class="btn btn-secondary btn-sm {{active}}">
+    <input type="radio" name="{{ tog }}" id="{{ opt.slug }}" value="{{ opt.slug }}" autocomplete="off">
+    {{ opt.text }}
+  </label>
+      {% assign active = "" %}
+    {% endfor %}
+</div>
+  {% endif %}
+{% endfor %}
+{% endunless %}

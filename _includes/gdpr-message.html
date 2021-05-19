@@ -1,0 +1,41 @@
+{% assign alert = site.features.alerts.gdpr-message %}
+{% assign actions = site.features.actions.gdpr-alert %}
+<script>
+$.gdprcookie.init({
+  cookieTypes: [
+    {% for type in actions.pick.opts  %}
+    {
+      type: "{{ type.name }}",
+      value: "{{ type.slug }}",
+      description: "{{ type.desc }}"
+    }{% unless forloop.index == actions.picks.opts.size %},{% endunless %}
+    {% endfor %}
+  ],
+  title: "{{ alert.name }}",
+  subtitle: "{{ alert.show.line }}",
+  message: "{{ alert.show.text }}",
+  delay: 2000, // delay in milliseconds
+  expires: 30, // expiration <a href="https://www.jqueryscript.net/time-clock/">date</a>
+  cookieName: "cookieControlPrefs",
+  acceptReload: false,
+  acceptBtnLabel: "{{ action.sign.text }}",
+  advancedBtnLabel: "{{ action.pick.text }}",
+  customShowMessage: undefined,
+  customHideMessage: undefined,
+  customShowChecks: undefined
+});
+
+$.gdprcookie.display()
+
+$(document.body)
+.on("gdpr:show", function() {
+    console.log("Cookie dialog is shown");
+})
+.on("gdpr:accept", function() {
+    var preferences = $.gdprcookie.preference();
+    console.log("Preferences saved:", preferences);
+})
+.on("gdpr:advanced", function() {
+    console.log("Advanced button was pressed");
+});
+</script>

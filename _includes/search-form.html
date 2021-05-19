@@ -1,0 +1,108 @@
+{% include hook.liquid template="search-form_html" spot="file" %}
+{% unless hook_replace_tpl %}
+{% assign search-name = include.search %}
+{% assign searchname = include.search | replace:"-","" %}
+{% assign search = site.features.actions[search-name] %}
+<script>
+var hrefChanged = false;
+</script>
+<span class="algolia-autocomplete">
+  <input id="{{ search-name }}" type="search" class="aa-input-search aa-hint" autocomplete="off" readonly="" aria-hidden="true" spellcheck="false" tabindex="-1"/>
+  <input type="search" id="aa-{{ search-name }}-input" class="aa-input-search aa-input" placeholder="{{ search.show.text | default: 'Search for keywords…' }}" name="search" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="both" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"/>
+  <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Open Sans&quot;, Arial, &quot;sans serif&quot;; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"/>
+  </pre>
+  <span class="aa-dropdown-menu" role="listbox" id="algolia-autocomplete-listbox-0"/>
+    <div class="aa-dataset-1"></div>
+  </span>
+</span>
+<!-- Initialize autocomplete menu -->
+<script>
+$( "#aa-{{ search-name }}-input" ).keydown(function(e) {
+  e = e || window.event;
+  if (!hrefChanged && (e.keyCode || e.which) == 13) {
+    // Enter key pressed
+    window.location.href = "/docs/search.html?q=" + $( "#aa-{{ search-name }}-input" ).val().replace(' ', '+');
+  }
+});
+
+var client = algoliasearch('{{ site.services.search.algolia.application_id }}', '{{ site.services.search.algolia.search_only_api_key }}');
+var index = client.initIndex('{{ site.features.actions.search-subject.show.opts.index }}');
+// Initialize autocomplete on search input (ID selector must match).
+autocomplete('#aa-{{ search-name }}-input',
+{ hint: true, autoselect: false }, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5, typoTolerance: 'false', advancedSyntax: 'true'}),
+    // Value to be displayed in input control after user's suggestion selection.
+    displayKey: function(suggestion) {
+      var titleValue;
+      if (suggestion.title) {
+        titleValue = suggestion.title;
+      } else {
+        var idx = suggestion.slug.lastIndexOf("_");
+        titleValue = suggestion.slug.substring(idx + 1).replace(/-/g, " ");
+        titleValue = titleValue.charAt(0).toUpperCase() + titleValue.slice(1);
+      }
+
+      return titleValue;
+    },
+    // Hash of templates used when rendering dataset.
+    templates: {
+      empty: function(suggestion) {
+        // Add the see more results option when no suggestion is found...
+        // just in case the user prefers to search in the main search page.
+        var hrefValue = "search.html?q=" + document.getElementById('aa-{{ search-name }}-input').value.replace(' ', '+');
+        return '<div class="aa-suggestion" role="option"><a id="show-more-link" class="suggestion-link" href="' + hrefValue + '">See more results...</a></div>';
+      },
+      footer: function(suggestion) {
+        // If no result is returned, don't add the show more results option
+        // cause it is added in the empty callback.
+        if (suggestion.isEmpty){
+          return;
+        }
+        var hrefValue = "search.html?q=" + document.getElementById('aa-{{ search-name }}-input').value.replace(' ', '+');
+        return '<div class="aa-suggestion" role="option"><a id="show-more-link" class="suggestion-link" href="' + hrefValue + '">See more results...</a></div>';
+      },
+      // 'suggestion' templating function used to render a single suggestion.
+      suggestion: function(suggestion) {
+        // Only preview the first 200 characters of the page.
+        var contentValue = "";
+        if (suggestion._highlightResult.content) {
+          contentValue = suggestion._highlightResult.content.value
+          if (suggestion._highlightResult.content.value.length > 200) {
+            contentValue = suggestion._highlightResult.content.value.slice(0, 200) + '...'
+          }
+        }
+
+        // Add a title based on the link to the pages that don't have
+        // a title. The title will get the link's last underscore and
+        // then get the following words... usually that is the name of the page.
+        var titleValue;
+        if (suggestion.title) {
+          titleValue = suggestion.title;
+        } else {
+          var idx = suggestion.slug.lastIndexOf("_");
+          titleValue = suggestion.slug.substring(idx + 1).replace(/-/g, " ");
+          titleValue = titleValue.charAt(0).toUpperCase() + titleValue.slice(1);
+        }
+
+        // Define target link.
+        var linkValue = window.location.href.substring(0, window.location.href.indexOf('{{site.base_url}}') - 1) + suggestion.url;
+
+        return '<a class="suggestion-link" href="' + linkValue + '"><span>' + titleValue + '</span><span>' +
+          contentValue + '</span></a>';
+      }
+    }
+}).on('autocomplete:selected', function(event, suggestion, dataset) {
+  if (event._args.length > 0) {
+    var linkValue;
+    if (suggestion) {
+      linkValue = window.location.href.substring(0, window.location.href.indexOf('{{site.base_url}}') - 1) + suggestion.url;
+    } else {
+      // Show more results.
+      linkValue = "search.html?q=" + document.getElementById('aa-{{ search-name }}-input').value.replace(' ', '+');
+    }
+    window.location.href = linkValue;
+    hrefChanged = true;
+  }
+});
+</script>
+{% endunless %}

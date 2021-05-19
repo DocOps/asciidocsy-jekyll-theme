@@ -1,0 +1,26 @@
+{% comment %}
+Inserts the data-designated template into calling template at `spot`...
+ REPLACES WHOLE template (if spot == 'file' & calling template is conditional)
+{% endcomment %}
+{% assign hook_replace_tpl = false %}
+{% assign spot = include.spot | default: 'file' %}
+{% assign hook = site.data.theme.extend.hooks.templates[include.template][spot] %}
+{% if hook %}
+  {% if spot == "file" %}
+    {% assign tpl_ext = include.template | split: "_" | last %}
+    {% case tpl_ext %}
+      {% when "html","htm" %}
+        {% assign cmt_start = "<!-- " %}
+        {% assign cmt_end = " -->" %}
+      {% when "yaml","yml" %}
+        {% assign cmt_start = "# " %}
+        {% assign cmt_end = "" %}
+      {% when "asciidoc","adoc","ad" %}
+        {% assign cmt_start = "// " %}
+        {% assign cmt_end = "" %}
+    {% endcase %}
+    {% assign hook_replace_tpl = true %}
+{{ cmt_start }}template replaced by hook ({{hook.template}}){{ cmt_end }}
+  {% endif %}
+{% include {{ hook.template }} %}
+{% endif %}

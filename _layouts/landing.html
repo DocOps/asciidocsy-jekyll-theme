@@ -1,0 +1,28 @@
+---
+footer: false
+kind: page-landing
+sidebar-left: false
+sidebar-right: false
+main-class: landing
+scripts:
+  - jquery
+  - jquery-cookie
+  - bootstrap
+  - popper
+---
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <!-- Copyright 2019-2021 Vanessa Sochat-->
+{% include head.html %}
+{% if site.services.analytics.google %}
+  {% include google-analytics.html %}
+{% endif %}
+<body>
+  {% include header.html %}
+  <div class="container-fluid td-outer landing">
+    {{ content }}
+    {% include footer.html %}
+  </div>
+  {% include tail.html %}
+</body>
+</html>

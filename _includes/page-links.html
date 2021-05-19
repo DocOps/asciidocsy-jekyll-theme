@@ -1,0 +1,42 @@
+{% include hook.liquid template="page-links_html" spot="file" %}
+{% unless hook_replace_tpl %}
+<!-- {% comment %}
+Generates links for page-related functions.
+{% endcomment %} -->
+{% if site.features.actions[page.kind] %}
+<ul id="page-interactions" class="nav flex-column">
+  {% for feature in site.features.actions[page.kind] %}
+    {% assign feat = feature[0] %}
+    {% assign ftr = feature[1] %}
+    {% unless feat == "data" and page.data-source == nil %}
+  <li class="nav-item {% if ftr.role %}role-{{ ftr.role }}-plus{% endif %} nav-item-{{ feat }}">
+    <a href="" class="nav-link"><i class="icon {{ ftr.icon }} fa-fw"></i> {{ ftr.text }}</a>
+  </li>
+      {% assign git_actions = "make,edit,data" | split: "," %}
+  <script>
+      {% if git_actions contains feat %}
+   // TODO: This will get moved into distinct function
+   // with apologies for the bad JS...
+    var feat  = '{{ feat }}';
+    if (feat == 'edit') {
+      var url = "{{ site.source_www }}/edit/{{ site.source_trunk_branch | default: 'main' }}/{{ page.path }}";
+    } else if (feat == 'make') {
+      var url = "{{ site.source_www }}/new/{{ site.source_trunk_branch | default: 'main' }}";
+    } else if (feat == 'data') {
+      var url = "{{ site.source_www }}/edit/{{ site.source_trunk_branch | default: 'main' }}/{{ page.data-source }}";
+    };
+    $('.nav-item-{{ feat }} .nav-link').each(function() {
+      $(this).attr('href', url);
+    });
+      {% elsif feat == "peel" %}
+    $('.nav-item-peel .nav-link').click(function() {
+      $('#sidebar-left').toggleClass('hide')
+      $('footer').toggleClass('hide')
+    });
+      {% endif %}
+  </script>
+    {% endunless %}
+  {% endfor %}
+</ul>
+{% endif %}
+{% endunless %}

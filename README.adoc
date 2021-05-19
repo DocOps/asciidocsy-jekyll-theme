@@ -1,0 +1,295 @@
+= AsciiDocsy
+// tag::globals[]
+:experimental:
+:forked_source_www: https://vsoch.github.io
+:theme_demo_www: https://asciidocsy.netlify.app
+:theme_docs_www: https://asciidocsy.netlify.app/docs
+:theme_repo_www: https://github.com/DocOps/asciidocsy
+:theme_repo_git: git@github.com:DocOps/asciidocsy.git
+// end::globals[]
+ifndef::env-github[:icons: font]
+ifdef::env-github[]
+:imagesdir: images
+:status:
+:caution-caption: :fire:
+:important-caption: :exclamation:
+:note-caption: :paperclip:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+endif::[]
+// tag::overview[]
+// tag::opener[]
+AsciiDocsy is an Asciidoctor-ready *Jekyll theme for technical documentation*, adaptable to pretty much any Jekyll application.
+// end::opener[]
+
+This is a major fork of the awesome link:https://github.com/vsoch/docsy-jekyll[Docsy Jekyll port] done by link:{forked_source_www}[VanessaSaurus], itself a fork of Google's link://www.docsy.dev[Docsy theme for Hugo].
+The last commit from the Docsy Jekyll version was retained for convenient diffing and just to maintain full credit.
+
+== Purpose
+// tag::purpose[]
+AsciiDocsy is designed by a technical documentation specialist who builds bespoke AsciiDoc platforms for world-class enterprises.
+
+[.case]*_On the front end_*, AsciiDocsy [.buz]_delivers_.
+Designed to meet the technical documentation deployment needs of full-scale, multi-product software companies, AsciiDocsy remains fully aware that all such enterprises start small and still need world-class docs.
+
+[.case]*_On the back end_*, AsciiDocsy [.buz]_unifies_.
+The codebase brings together developers and technical writers, allowing the latter to achieve momentous feats on behalf of -- and with occasional help from -- the developers whose work they document.
+// end::purpose[]
+
+== Changes so Far
+
+* [add] AsciiDoc integration
+** jekyll-asciidoc plugin & configs
+** Asciidoctor styles and skins
+* [add] Algolia search integration
+** default search results page
+** instantsearch
+** multi-index ready
+** site search & subject search in separate fields
+* [add] Highlight.js syntax highlighting w/ syntax styles
+* [add] "`Toggler`" feature to show/hide page elements by role
+* [add] inline AsciiDoc semantics
+** custom styling for terms with semantic roles
+** popovers for known glossary terms (try it!)
+** "`terms on this page`" listing (JS)
+* [add] new docs for AsciiDocsy
+* [add] example writing/templating style guides
+* [add] rudimentary AsciiDoc-based "`landing page`" layout
+* [refactor] flatten assets path into root
+* [refactor] data structure for configuration of features, services, etc
+* [add] scrollspy page TOC
+* [remove] example and stub files
+* [remove] Lunr.js (for now)
+* [remove] docs for Docsy Jekyll
+* [remove] unnecessary templates (such as `alerts.html`, `doc.html`)
+* [change] default Git branch to `main`
+* [change] tab indents to spaces
+* [add] enable explicit breadcrumb rewrites
+
+== Revision 1.0 Targets
+
+* [add] tabbed panel content changer
+** tabs show/hide one or more _overlayed_ blocks of content
+** sourced entirely in standard AsciiDoc, rendered w/ JS)
+** configurable under `site.features`
+* [add] version handler templates (Liquid/HTML/CSS/JS)
+** dropdown-style version selector
+** "`this topic for another product`" links to sibling subjects
+* [add] full-featured, YAML-driven landing-page layout & components
+* [refactor] CSS to Sass
+* [improve] Vendor-code integration:
+** SCSS files (Asciidoctor, Bootstrap, Font-Awesome, Highlight.js, et al)
+** JS (JQuery, Bootsrap, components)
+** Native extensions (Asciidoctor, Jekyll, Liquid)
+** new syntax highlighter options
+* [add] Reveal.js slideshows
+* [add] PDF rendering
+* [add] Configurable search with new options
+** ElasticSearch support via https://github.com/omc/searchyll[Searchyll]
+** Put Lunr.js back in
+* [add] option to build data-driven left navs from frontmatter
+* [add] Strings management with Liquid-parsed strings sourced as YAML
+* [add] Custom admonition blocks including several AsciiDocsy templates
+* [add] DITA-like semantic handling of topic types (task, concept, reference)
+** specialized layouts by topic type
+** suggested pages based on sibling topics of other types
+* [add] GDPR notice
+** banner or modal
+** user selects permitted cookie types
+** feature actually suppresses unpermitted cookies
+* [add] call to action (c2a) modal
+* [add] glossary of key terms
+* [add] search results page w/ 3rd optional instantsearch field
+* [add] policy-based content toggles for user roles
+* [add] JS-based subject nav sourcing generated post-build
+* [improve] feedback form with follow-up query
+* [improve] collapsible/accordion left nav
+* [refactor] as Ruby gem/Jekyll plugin
+* [add] sufficient unit and integration tests
+* [improve] and finalize dependency/upstream license handling
+
+// end::overview[]
+
+== Usage
+
+Out of the box, this theme is ready for a somewhat plainly structured Jekyll application, with AsciiDoc support and tons of additional features.
+
+AsciiDocsy has hooks and features specifically designed to take advantage of such applications when built using the LiquiDoc Ops framework, but it should be handy for any Jekyll site, AsciiDoc-based or not.
+
+[CAUTION]
+If you intend to use AsciiDocsy for *Markdown* in addition to or rather than AsciiDoc content source, at this time you will need to undo some of the configuration changes made for this demo repo.
+Between your existing configuration file and link:{forked_source_www}[VanessaSaurus's Docsy Jekyll theme source and docs], you should be able to adapt this codebase to render `.md` files of your flavor.
+
+Documentation for this theme can be found at link:{theme_docs_www}[].
+
+Alternatively, <<build-the-docs,build your own locally>>.
+
+== Setup
+
+=== Quickstart
+
+Assuming you have a <<dependencies,proper Ruby runtime>> environment installed, all you need to do is install dependencies and run the Jekyll command.
+
+==== Requirements
+// tag::requirements-ruby[]
+Other than a Ruby runtime environment, this codebase installs all dependencies using Bundler.
+
+[TIP]
+Check for a current Ruby version using `ruby -v`.
+
+*If you do not have Ruby installed*, use link:https://jekyllrb.com/docs/installation/#guides[Jekyll's installation instructions].
+
+[.os-win]
+[TIP]
+*Windows 10 users* are strongly encouraged to link:https://docs.microsoft.com/en-us/windows/wsl/install-win10[use this guide to running Jekyll on Linux via WSL].
+
+[NOTE]
+All else being equal, we recommend you install the latest stable release, so Ruby 2.7.x or 3.0.x (where `x` is the latest patch version).
+Jekyll 4.0.0 and the jekyll-asciidoc plugin both require Ruby 2.4.0 or later.
+
+[.os-mac.os-nix]
+MacOS and Linux users are encouraged to install and manage Ruby using link:https://github.com/rbenv/rbenv[rbenv].
+
+// end::requirements-ruby[]
+
+[[build-the-docs]]
+==== Build the Docs
+// tag::quickstart-build[]
+With a Ruby environment in place, these steps should generate the website sourced in the AsciiDocsy theme repository.
+
+. Clone (or download and inflate) this repo.
++
+.Clone
+ git clone git@github.com:DocOps/asciidocsy.git
++
+.Download & inflate
+--
+image::github-repo-download_screenshot.png[GitHub repository download button]
+--
+
+. Install Ruby dependencies.
++
+ bundle install
++
+If Bundler is not installed, [.cmd]`gem install bundler`, then repeat [.cmd]`bundle install`.
++
+[TIP]
+Use [.cmd]`git clone git@github.com:DocOps/asciidocsy.git my-asciidocsy-project` to name the containing directory something other than `asciidocsy`.
+Or clone normally and freely rename the directory at any time.
+
+. Change to the new directory.
++
+.Example
+ cd my-asciidocsy-project
+
+. Generate and serve the demo site.
++
+ bundle exec jekyll s
+
+You should now be able to view the site at `http://localhost:4000` in any local browser.
+
+You will find the generated files at `_site/`.
+// end::quickstart-build[]
+
+=== "`Bootstrap`" this Theme
+
+Assuming you don't just want to build a site that promotes and documents the AsciiDocsy theme itself (I got this), your goal must be to apply AsciiDocsy to your own documentation set.
+
+Cool.
+The first step is to review the entries in `_config.yml` and translate them to your own application.
+
+[IMPORTANT]
+The site at `localhost:4000` will regenerate incrementally whenever you change pretty much any file in the repo.
+A key exception is `_config.yml`.
+To get site settings and `site`-scoped variables to reflect in a build, use kbd:[Ctrl+T] to stop the server, then re-run `bundle exec jekyll s`.
+
+AsciiDocsy is designed to be modified mostly through YAML configuration and datafile settings.
+See link:{theme_docs_www}/theme/config[Configuring AsciiDocsy] in the theme docs for more.
+
+=== LiquiDoc Ops Integration (More Coming Soon)
+
+This theme is meant to go be embedded in the [.path]`theme/` path of a LiquiDoc Ops application (probably as [.path]`theme/asciidocsy/`).
+Repoint any Jekyll configuration settings from `theme/[<theme-name>/]` to this new path.
+
+=== Deploying an AsciiDocsy Jekyll Site
+
+The build operation generates static HTML files and other artifacts that can be deployed to any static-site server.
+Most docs-as-code toolchains incorporate "`continuous integration`" and "`continuous deployment`" (CI/CD), integrating the docs build into review workflows and the timely release of the production ("`live`") site.
+
+==== Automation with Netlify
+
+My preferred out-of-box deployment with full production hosting as well as staging capabilities is definitely Netlify.
+You can sign in with your GitHub/GitLab authorization and have site up in under a minute.
+
+. Create a Netlify account.
+. Add a site.
+. Select your repo.
+. The build command ([.cmd]`bundle exec jekyll build`) and target path ([.path]`_site/`) should already be filled out.
+
+You can trigger builds through the Netlify UI or by simply merging a commit to the `main` (or other default) branch.
+
+[NOTE]
+If you set up CI/CD on another such platform, please contribute the instructions here.
+I have no affiliation with or allegiance to Netlify or GitHub.
+
+==== DIY DocOps
+
+If you or your DevOps/IT department have ideas for static-site hosting and integration into an existing CI/CD platform, this task should be fairly straightforward.
+
+===== Build Operation
+
+You defintely want to:
+
+. Require Ruby 2.4+.
+. Run [.cmd]`bundle install`.
+. Run [.cmd]`bundle exec jekyll build`.
+. Copy files from the destination dir (`_site/` by default) to your staging or production server.
+
+===== Continuous Integration
+
+You will probably also want to:
+
+* Establish build triggers for:
+** merge/pull requests (staging deploy)
+** merges to the main branch (production deploy)
+* Establish tests, perhaps starting with:
+** link:https://github.com/gjtorikian/html-proofer[HTMLProofer] for link and HTML checking
+** link:https://github.com/errata-ai/vale[Vale] for conetnt/style linting
+
+===== Deployment
+
+The site is configured to be served at a domain or subdomain root, such as `www.yourdocumentationwebsite.com` or `docs.yourcompan.io`.
+If you serve them at a path beneath such a URL, like `www.yourcompany.com/docs`, add that path to your `destination:` setting in `_config.yml` and copy from that path to your webserver.
+
+== Contributing
+
+AsciiDocsy is open for contributions.
+I plan for it to be a primary project with regular, ongoing maintenance, as I expect to use it for multiple clients over the next 5-15 years.
+
+I will work up contributor guidelines and PR templates well before v1.0.
+Please standby.
+
+For now feel free to create an issue or or pull request in the meantime!
+
+== Licensing
+
+All sources of copyrighted material incorporated into this theme are duly licensed and attributed, falling under MIT or Apache 2.0 permissive licenses.
+Most cases of third-party source code showing up in this codebase will be transitioned by release 1.0 vendor code as dependencies to be hosted elsewhere.
+
+An *exception* to individually attributed code snippets is the *Docsy Jekyll* theme by link:https://vsoch.github.io[*VanessaSaurus*].
+I left a copyright notice in the templates for now, but will happily negotiate attribution while this project is in pre-release status.
+Much of the code in the `_includes/` and `_layouts/` directories remains from the original.
+
+[NOTE]
+While this project is not an active fork of Docsy Jekyll, it was forked at commit # link:{theme_repo_www}/tree/b5f32a12c6358b18d716755b6605ef9ed0bb2526[b5f32a1], if you want to run a diff.
+
+The remainder of the code is released under *both MIT and Apache 2.0 licenses*.
+Basically, if you fork this codebase, know that it comes without warranty, and please leave a trail back to those whose work you're building on if you release something that contains our code.
+
+The other *exception* is Navgoco, the jQuery menu generator, which is licensed under the BSD-3-clause license.
+The Navgoco project has been dormant for years, so we will swap this navigation out for something equivalent.
+
+See the `.data/dependencies.yml` file in this repository for a listing of third-party code.
+
+All other dependencies are Ruby gems.
+See `Gemfile.lock` for all versions of all Bundler-managed dependencies.

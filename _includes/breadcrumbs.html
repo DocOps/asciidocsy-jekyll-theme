@@ -1,0 +1,23 @@
+<!-- {% comment %}
+Generates a "breadcrumb trail" of parent categories.
+Defined by:
+  `breadcrumbs` object of `site.data.manifest.breadcrumbs`
+  `breadcrumbs` object in the Jekyll configuration path
+{% endcomment %} -->
+{% include hook.liquid template="breadcrumbs_html" spot="file" %}
+{% unless hook_replace_tpl %}
+{% assign crumbs = page.url | remove:'/index.html' | split: '/' %}
+{% assign delim = site.features.navigation.breadcrumbs.show.opts.delim | default: "/" %}
+<div id="breadcrumbs">
+<a href="/">{{ site.features.navigation.breadcrumbs.show.home | default: "Home" }}</a>
+{% for crumb in crumbs offset: 1 %}
+  {% if forloop.last %}
+    {{delim}} {{ page.title }}
+  {% else %}
+    {% assign crumb_default = crumb | replace:'-',' ' | remove:'.html' | capitalize %}
+    {% assign crumb_qry = site.data.manifest.breadcrumbs | where: "slug",crumb %}
+    {{delim}} <a href="{% assign crumb_limit = forloop.index | plus: 1 %}{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/' }}{% endfor %}">{{ crumb_qry[0]['text'] | default: crumb_default }}</a>
+  {% endif %}
+{% endfor %}
+</div>
+{% endunless %}
