@@ -25,6 +25,8 @@ AsciiDocsy is an Asciidoctor-ready *Jekyll theme for technical documentation*, a
 This is a major fork of the awesome link:https://github.com/vsoch/docsy-jekyll[Docsy Jekyll port] done by link:{forked_source_www}[VanessaSaurus], itself a fork of Google's link://www.docsy.dev[Docsy theme for Hugo].
 The last commit from the Docsy Jekyll version was retained for convenient diffing and just to maintain full credit.
 
+image::asciidocsy-screenshot.png[title='Screenshot of AsciiDocsy theme']
+
 == Purpose
 // tag::purpose[]
 AsciiDocsy is designed by a technical documentation specialist who builds bespoke AsciiDoc platforms for world-class enterprises.
