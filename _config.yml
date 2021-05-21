@@ -39,15 +39,16 @@ asciidoc: {}
 asciidoctor:
   ext: adoc
   safe: 0
-  base_dir: :docdir
+  base_dir: .
   attributes:
     imagesdir: /images
     icons: font
     source-highlighter: highlight.js
     ### paths from topic/ to root files
-    path_to_jekyll_config: ../../_config.yml
-    path_to_readme: ../../README.adoc
-    path_to_data_dir: ../_data
+    topics_path: _docs/topics
+    path_to_jekyll_config: _config.yml
+    path_to_readme: README.adoc
+    path_to_data_dir: _docs/_data
     example-capition: ''
 # end::asciidoctor[]
 

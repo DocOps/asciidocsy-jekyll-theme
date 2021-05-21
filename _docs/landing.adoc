@@ -1,10 +1,10 @@
 :page-permalink: /
 :page-layout: landing
-include::../README.adoc[tags=globals]
+include::README.adoc[tags=globals]
 = Welcome to AsciiDocsy
 
 [.text-xl-center]
-include::../README.adoc[tags=opener]
+include::README.adoc[tags=opener]
 
 [WARNING.jumbotron-fluid.text-xl-center]
 ====
@@ -39,7 +39,7 @@ If you are looking for a full-featured theme for a Jekyll application with conte
 [discrete]
 === AsciiDocsy's Purpose
 
-include::../README.adoc[tags=purpose]
+include::README.adoc[tags=purpose]
 --
 
 [.jumbotron.jumbotron-fluid.text-center.bg-primary.text-light.shadow.p-3.mb-5]
