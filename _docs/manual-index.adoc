@@ -6,16 +6,3 @@
 :topics_path: topics
 
 :leveloffset: +1
-include::{topics_path}/theme_intro.adoc[]
-
-include::{topics_path}/theme_install_t.adoc[]
-
-include::{topics_path}/theme_frontend-overview.adoc[]
-
-include::{topics_path}/theme_configure_r.adoc[]
-
-include::{topics_path}/theme_configure-search_r.adoc[leveloffset=+1]
-
-// include::{topics_path}/theme_install.adoc[]
-//
-// include::{topics_path}/theme_devops.adoc[]
