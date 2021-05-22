@@ -108,6 +108,32 @@ strong.tip:before {
   font-weight: 900;
 }
 
+@media screen and (min-width: 768px) {
+    .dlist.grid dl {
+        display:grid;
+        grid-auto-columns: 1fr;
+        grid-auto-flow: row;
+        grid-gap: .25rem 1rem;
+    }
+
+    .dlist.grid dt {
+        grid-row: 1;
+        font-style: normal;
+        padding-right: 0;
+        word-wrap: normal;
+    }
+
+    .dlist.grid dd {
+        margin: 0;
+        font-size: .8rem;
+        font-size: calc(14/var(--rem-base)*1rem)
+    }
+}
+
+.dlist.grid dt {
+
+}
+
 #preamble > .sectionbody > [class="paragraph"]:first-of-type p {
   font-size: 1em !important;
 }
