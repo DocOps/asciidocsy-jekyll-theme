@@ -1,0 +1,4 @@
+{% for prop in include.sub %}
+[horizontal]
+{{ prop[0] }}:: `{{ prop[1] }}`
+{% endfor %}
