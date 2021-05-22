@@ -1,6 +1,6 @@
 :page-permalink: /docs/theme/config/semantics
 :page-tags: semantics,inline-semantics
-= Configuring Inline Semantics in AsciiDocsy
+= Configuring Inline Semantics
 
 AsciiDocsy enables robust use of inline semantics, as documented in the link:/docs/style/asciidoc/semantics[Inline Semantics Style Guide].
 

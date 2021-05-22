@@ -1,0 +1,33 @@
+:page-permalink: /docs/theme/config/switchers
+:page-switcher: user-os
+= Configure Content Switchers
+
+Content switchers are a means of showing and hiding specific content on a page.
+The content being switched can come in groups (where switching one _on_ turns others _off_), or a switcher can perform a single show/hide toggle of a group of content.
+
+== Example Switcher
+
+The next line is rendered differently depending on which button is selected in the page's *switcher to the right*.
+
+[.os-win]
+--
+This content is for Windows Only.
+--
+
+[.os-nix]
+--
+This content is for Linux Only.
+--
+
+[.os-mac]
+--
+This content is for MacOS Only.
+--
+
+Switching can even happen inline, with a term like [.os-win]*Microsoft* [.os-mac]*Apple* [.os-nix]*open source*.
+
+== Use Cases
+
+Aside from enabling users to choose their platform, as with operating systems in the above example, switchers can be used for for [.term]*patch-revision handling*.
+
+== Toggle Configuration

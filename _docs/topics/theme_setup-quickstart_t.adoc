@@ -1,0 +1,9 @@
+:page-permalink: /docs/theme/setup/quickstart
+:page-togglers: user-os
+include::README.adoc[tags=globals]
+:page-canonical: {theme_repo_www}/
+= Quickstart Demo
+
+To see AsciiDocsy and Jekyll in action, try building the demo site.
+
+include::{path_to_readme}[tags=quickstart-build]

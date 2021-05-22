@@ -1,0 +1,9 @@
+:page-permalink: /docs/theme/setup
+:page-togglers: user-os
+= AsciiDocsy Setup
+
+These topics topic will guide you through the nitty-gritty of setting up AsciiDocsy with Jekyll -- either integrating it into your existing Jekyll site or starting from scratch.
+
+[.case]*_If you are already at home with Jekyll and Asciidoctor_*, try the <<quickstart#,Quickstart guide>> or go straight to the <<bootstrap#,Boostrapping guide>>.
+
+[.case]*_If you are new to Jekyll or Asciidoctor_*, get familiar with the <<environment#,environment and related tools for this project>> before <<quickstart#,installing and building>> for the first time.

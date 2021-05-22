@@ -2,7 +2,10 @@
 :dl_table_head: cols="1s,3",grid=none,frame=none
 :page-tags: semantics,inline-semantics
 :example-caption!:
+:experimental: ''
 = Inline Semantics in AsciiDoc(sy)
+
+kbd:[Ctrl+T]
 
 AsciiDoc offers semantic tagging of words and phrases.
 Called "`inline semantics,`" this syntax enables stylized representation of text depending on its _role_.
@@ -178,6 +181,19 @@ Use with or without visual wrapping charactes (such as `< >` or `${ }`).
 m| Use the format +++[.code]+++`base.<file_ext>`, where +++[.tok]+++`<file_ext>` is the filename followed by an underscore and the file extension.+++
 | Renders
 | Use the format [.code]`base.<file_ext>`, where [.tok]`<file_ext>` is the filename followed by an underscore and the file extension.
+|===
+
+`.tip`::
+For highlighting a bit of text as sound advice.
++
+[{dl_table_head}]
+|===
+| Quotes
+|  asterisk
+| Example
+| `+++When you find yourself stuck in Vi's exit menu, [.tip]*keep trying kbd:[&uArr;Shift+:] and random keys* until you escape.+++`
+| Renders
+| When you find yourself stuck in Vi's exit menu, [.tip]*keep trying kbd:[Shift+:] and random keys* until you escape.
 |===
 
 ////
