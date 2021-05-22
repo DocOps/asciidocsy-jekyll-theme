@@ -1,0 +1,47 @@
+:page-permalink: /docs/theme/config/search
+= Indexing and Searching Content
+
+Any search system requires a way to index and query the content in the site.
+There are several options for serious search solutions, many of which we intend to build into AsciiDocsy for easy configuration "`out of the box`".
+
+== Search Utilities
+
+Each solution below comes equipped with an indexing component and a query form/results feature.
+
+=== Cloud-based Search
+
+Cloud-search providers host indexes of your content and provide a RESTful API for queries.
+
+Algolia is a provider of freemium cloud-based search.
+It is highly affordable for small docsets, but at larger scales it might get pricey to index numerous versions amounting to thousands of pages.
+The company maintains its own Jekyll plugin, which AsciiDocsy incorporates.
+Learn to <</docs/theme/config/search/algolia/#,integrate your AsciiDocsy site with Algolia>>
+
+Algolia's main competition seems to be link:https://swiftype.com[Swiftype from Elastic].
+Many documentarians swear by Swiftype, and its pricing may work better at certain scales.
+
+The only self-hostable option in this field is link:https://www.elastic.co/downloads/elasticsearch[ElasticSearch's main offering], which can be integrated using a link:https://github.com/omc/searchyll[Jekyll plugin called Searchyll].
+
+=== Client-based Search
+
+An option popular with lightweight Jekyll sites is link:https://jekyllcodex.org/without-plugin/search-lunr/[Lunr.js] (or link:http://elasticlunr.com[ElasticLunr.js]), a front-end-only solution that puts the whole index into the client package.
+Lunr.js is as ingenious as it is clunky, and it is a common solution for simple docs sites or internal-only docs.
+
+One or more of these JS-only solutions will make it into AsciiDocsy by 1.0.
+
+== Search Strategy
+
+Searchable content is organized by index.
+Generally, one index equals one subject to be searched.
+Whether using cloud- or client-based search, organizing your indexes will be key.
+
+One strategy is to build a separate site for each batch of content to be indexed.
+So if you have 3 products with 3 supported revisions each, you probably want to have 10 indices: 1 index for each revision of each product, and a tenth for pages or general site search.
+
+How you then choose to organize the search functionality comes down to user experience (UX).
+You can use one field that searches the current revision of the current project _and_ all site pages.
+Alternatively, you can separate search into non-subject page search and subject-topic searches.
+
+[TIP]
+For cloud-search on a tight budget, if revision-level indices are too expensive to maintain, you can feed all versions' search fields query an index based on the latest content.
+But assuming significant variance among supported products, a client-based solution might be your best hope for getting results that don't frustrate the user.

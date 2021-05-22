@@ -1,0 +1,23 @@
+:page-permalink: /docs/theme/config/search/algolia
+= Algolia Search Integration
+
+A cloud account with Algolia is required to implement Algolia as a cloud-search provider.
+
+[WARNING]
+By default, AsciiDocsy's own Algolia application is configured in the repo.
+You will be able to generate local content packages for it, or query its live indices, but you will not be able to write (push) to the cloud indices.
+
+The link:https://www.algolia.com/users/sign_up[Algolia signup] is free.
+You only start paying when you use certain thresholds of index space or query bandwidth.
+
+AsciiDocsy's implementation of Algolia's Jekyll plugin (link:https://github.com/algolia/jekyll-algolia[source]) (link:https://community.algolia.com/jekyll-algolia/getting-started.html[docs]) and instantsearch form (link:https://community.algolia.com/instantsearch.js/documentation/[docs]).
+
+The `site.algolia` object (by default defined in `_config.yml`, but you could move it to an auxiliary config file and <</docs/theme/advanced#,call multiple configs>>).
+
+.Algolia object in default configuration file
+[source,yaml]
+----
+  services:
+    search:
+include::{path_to_jekyll_config}[tags=algolia]
+----

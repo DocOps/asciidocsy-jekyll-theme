@@ -1,0 +1,62 @@
+:page-permalink: /docs/theme/setup/environment
+:page-togglers: user-os
+= Setting Up a Writing/Development Environment
+
+A proper Jekyll/AsciiDocsy environment has a few prerequisites.
+
+The entire toolchain is Ruby-based, so once you have the right version of <<ruby>>, it is pretty easy to get up and running.
+
+The rest of what you'll need to have a great experience with AsciiDocsy is a <<terminal,terminal emulator>> and a <<code-editor,code editor>>.
+
+[[ruby]]
+== Ruby
+
+include::{path_to_readme}[tags=requirements-ruby]
+
+[[terminal]]
+== Terminal & Shell
+
+[.os-win]
+--
+*Windows* users still need a terminal to pass commands to the WSL shell.
+Try link:https://docs.microsoft.com/en-us/windows/wsl/install-win10#install-windows-terminal-optional[Windows Terminal], as recommended in the WSL2 setup article.
+--
+
+[.os-mac]
+For *MacOS* users who do not already have a preferred terminal, link:https://iterm2.com[iTerm2] is a common favorite.
+
+[.os-nix]
+If you are using a *Linux desktop*, I will assume you have a preferred terminal, and that it is KDE's link:https://konsole.kde.org[Konsole].
+
+=== Zsh
+
+On *all platforms*, I strongly recommend anyone new to the commandline/shell operations immediately [.tip]*install Zsh as default shell*.
+Apple made Zsh the default shell for MacOS back in link:https://www.theverge.com/2019/6/4/18651872/apple-macos-catalina-zsh-bash-shell-replacement-features[2019] due to ease of use.
+
+Zsh is basically a superset of Bash, so you can still use Bash scripting and all Bash commands, but Zsh makes it so much more intuitive and assisted.
+
+There are lots of resources to enhance the experience, including the awesome link:https://ohmyz.sh[addons package OhMyZsh]!
+Use their link:https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH[Zsh install guide] to make sure you've got the best setup.
+
+[[code-editor]]
+== Code Editor
+
+Users perform most editing of AsciiDoc and YAML source files using software called a _plaintext editor_, a _code editor_, or an _integrated development environment_ (IDE).
+The distinctions are not very important, as long as they integrate with AsciiDoc and YAML.
+
+If you already have a preference, that's the editor for you.
+If you are unsure, here is a brief guide to the top contenders.
+
+VS Code::
+By far the most popular code editor today, https://code.visualstudio.com/Download[VSC]'s renowned https://github.com/asciidoctor/asciidoctor-vscode[AsciiDoc support] is maintained by the Asciidoctor community.
+Extend native YAML support with https://github.com/redhat-developer/vscode-yaml[RedHat's extension].
+
+Atom::
+Maintained by GitHub, https://atom.io/[Atom] was for years the main choice for AsciiDoc writers.
+You will want to add at least the asciidoc-language and asciidoc-preview packages.
+
+InelliJ IDEA::
+More and more people swear by this https://www.jetbrains.com/idea/download/#section=linux[freemium application] and its https://plugins.jetbrains.com/plugin/7391-asciidoc[AsciiDoc plugin] as the ultimate writing combo.
+Extend https://plugins.jetbrains.com/plugin/7792-yaml-ansible-support[YAML support].
+
+The Asciidoctor project maintains a decent https://asciidoctor.org/docs/editing-asciidoc-with-live-preview/#using-a-modern-text-editoride[list of "`text editors`" with AsciIDoc support] of some kind.

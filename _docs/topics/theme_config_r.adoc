@@ -1,0 +1,32 @@
+:page-permalink: /docs/theme/config
+= Configuring AsciiDocsy
+
+AsciiDocsy is intended to be customizable entirely through YAML data files as well as CSS and JS.
+The idea here is that you can maintain files like [.path]`css/custom.css` and [.path]`js/custom.js` to supplement or override any settings in the core style and script files, or else you can even disable these prior settings, all without editing the core templates that make up the theme.
+
+In reality, AsciiDocsy is a ways off from this goal.
+A [.path]`data/strings.yml` file has been introduced, but still most strings have yet to be migrated there.
+This means if you don't like the wording of something, for the time being you'd have to use brutal JS/CSS to manipulate content post-build to stay out of the HTML templates, or else you'd have to edit those templates, hence diverging from the critical files of this theme.
+
+Nevertheless, the seeds of fully data-based customization of the theme have been planted, so let us take a look at what is available so far.
+
+== Site-scoped Configuration
+
+The main Jekyll configuration file (by default, [.path]`_config.yml`) is the source of most theme-affecting settings at this time.
+
+The <</docs/theme/config/api-reference#,Config API reference>> is generated from this file mostly as an (unfinished) example.
+The data objects in `_config.yml` are mostly documented inline with comments or a [.code]`$docs:` property.
+
+AsciiDocsy will introduce a method for providing sources outside of the `site` scope for these same objects.
+
+== Data-scoped Configuration
+
+Jekyll ingests any YAML (or JSON) files found in the declared data directory and carries them as self-named objects available in all layout and include files.
+The data directory is declared in the configuration, and any subdirectories it contains will be scoped as `site.data.<subdir>`, where [.tok]`<subdir>` is the folder name.
+
+Key data-scoped objects include `terms` and `navigation`.
+The former establishes the glossary and inline-semantic popovers for text designated `.term`.
+The navigation object determines both the heade and the footer menus.
+
+The `theme/strings.yml` file establishes strings found in the layouts and other templates.
+It is not visible inside your AsciiDoc content files or he pages they render.

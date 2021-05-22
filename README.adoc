@@ -130,7 +130,7 @@ Alternatively, <<build-the-docs,build your own locally>>.
 
 === Quickstart
 
-Assuming you have a <<dependencies,proper Ruby runtime>> environment installed, all you need to do is install dependencies and run the Jekyll command.
+Assuming you have a <<requirements,proper Ruby runtime>> environment installed, all you need to do is install dependencies and run the Jekyll command.
 
 ==== Requirements
 // tag::requirements-ruby[]
@@ -145,12 +145,13 @@ Check for a current Ruby version using `ruby -v`.
 [TIP]
 *Windows 10 users* are strongly encouraged to link:https://docs.microsoft.com/en-us/windows/wsl/install-win10[use this guide to running Jekyll on Linux via WSL].
 
+[.os-mac.os-nix]
+[TIP]
+MacOS and Linux users are encouraged to install and manage Ruby using link:https://github.com/rbenv/rbenv[rbenv].
+
 [NOTE]
 All else being equal, we recommend you install the latest stable release, so Ruby 2.7.x or 3.0.x (where `x` is the latest patch version).
 Jekyll 4.0.0 and the jekyll-asciidoc plugin both require Ruby 2.4.0 or later.
-
-[.os-mac.os-nix]
-MacOS and Linux users are encouraged to install and manage Ruby using link:https://github.com/rbenv/rbenv[rbenv].
 
 // end::requirements-ruby[]
 
@@ -168,16 +169,16 @@ With a Ruby environment in place, these steps should generate the website source
 --
 image::github-repo-download_screenshot.png[GitHub repository download button]
 --
++
+[TIP]
+Use [.cmd]`git clone git@github.com:DocOps/asciidocsy.git my-asciidocsy-project` to name the containing directory something other than `asciidocsy`.
+Or clone normally and freely rename the directory at any time.
 
 . Install Ruby dependencies.
 +
  bundle install
 +
 If Bundler is not installed, [.cmd]`gem install bundler`, then repeat [.cmd]`bundle install`.
-+
-[TIP]
-Use [.cmd]`git clone git@github.com:DocOps/asciidocsy.git my-asciidocsy-project` to name the containing directory something other than `asciidocsy`.
-Or clone normally and freely rename the directory at any time.
 
 . Change to the new directory.
 +
@@ -186,82 +187,15 @@ Or clone normally and freely rename the directory at any time.
 
 . Generate and serve the demo site.
 +
- bundle exec jekyll s
+ bundle exec jekyll serve
 
 You should now be able to view the site at `http://localhost:4000` in any local browser.
 
 You will find the generated files at `_site/`.
 // end::quickstart-build[]
 
-=== "`Bootstrap`" this Theme
-
-Assuming you don't just want to build a site that promotes and documents the AsciiDocsy theme itself (I got this), your goal must be to apply AsciiDocsy to your own documentation set.
-
-Cool.
-The first step is to review the entries in `_config.yml` and translate them to your own application.
-
-[IMPORTANT]
-The site at `localhost:4000` will regenerate incrementally whenever you change pretty much any file in the repo.
-A key exception is `_config.yml`.
-To get site settings and `site`-scoped variables to reflect in a build, use kbd:[Ctrl+C] to stop the server, then re-run `bundle exec jekyll s`.
-
-AsciiDocsy is designed to be modified mostly through YAML configuration and datafile settings.
-See link:{theme_docs_www}/theme/config[Configuring AsciiDocsy] in the theme docs for more.
-
-=== LiquiDoc Ops Integration (More Coming Soon)
-
-This theme is meant to go be embedded in the [.path]`theme/` path of a LiquiDoc Ops application (probably as [.path]`theme/asciidocsy/`).
-Repoint any Jekyll configuration settings from `theme/[<theme-name>/]` to this new path.
-
-=== Deploying an AsciiDocsy Jekyll Site
-
-The build operation generates static HTML files and other artifacts that can be deployed to any static-site server.
-Most docs-as-code toolchains incorporate "`continuous integration`" and "`continuous deployment`" (CI/CD), integrating the docs build into review workflows and the timely release of the production ("`live`") site.
-
-==== Automation with Netlify
-
-My preferred out-of-box deployment with full production hosting as well as staging capabilities is definitely Netlify.
-You can sign in with your GitHub/GitLab authorization and have site up in under a minute.
-
-. Create a Netlify account.
-. Add a site.
-. Select your repo.
-. The build command ([.cmd]`bundle exec jekyll build`) and target path ([.path]`_site/`) should already be filled out.
-
-You can trigger builds through the Netlify UI or by simply merging a commit to the `main` (or other default) branch.
-
-[NOTE]
-If you set up CI/CD on another such platform, please contribute the instructions here.
-I have no affiliation with or allegiance to Netlify or GitHub.
-
-==== DIY DocOps
-
-If you or your DevOps/IT department have ideas for static-site hosting and integration into an existing CI/CD platform, this task should be fairly straightforward.
-
-===== Build Operation
-
-You defintely want to:
-
-. Require Ruby 2.4+.
-. Run [.cmd]`bundle install`.
-. Run [.cmd]`bundle exec jekyll build`.
-. Copy files from the destination dir (`_site/` by default) to your staging or production server.
-
-===== Continuous Integration
-
-You will probably also want to:
-
-* Establish build triggers for:
-** merge/pull requests (staging deploy)
-** merges to the main branch (production deploy)
-* Establish tests, perhaps starting with:
-** link:https://github.com/gjtorikian/html-proofer[HTMLProofer] for link and HTML checking
-** link:https://github.com/errata-ai/vale[Vale] for conetnt/style linting
-
-===== Deployment
-
-The site is configured to be served at a domain or subdomain root, such as `www.yourdocumentationwebsite.com` or `docs.yourcompan.io`.
-If you serve them at a path beneath such a URL, like `www.yourcompany.com/docs`, add that path to your `destination:` setting in `_config.yml` and copy from that path to your webserver.
+[TIP]
+Learn more about applying AsciiDocsy to your use case in the link:{theme_docs_www}[Bootstrapping guide].
 
 == Contributing
 
@@ -271,7 +205,7 @@ I plan for it to be a primary project with regular, ongoing maintenance, as I ex
 I will work up contributor guidelines and PR templates well before v1.0.
 Please standby.
 
-For now feel free to create an issue or or pull request in the meantime!
+Feel free to create an issue or or pull request in the meantime!
 
 == Licensing
 
