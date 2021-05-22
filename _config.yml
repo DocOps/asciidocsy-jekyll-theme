@@ -122,24 +122,28 @@ features:
       show:
         list: h2,h3,h4,h5 # make empty to disable anchor links
     subject-menu:
-      from: site.data.manifest
+      $doc:
+        desc: Determines the source and display of the _subject_ navigation menu.
       opts:
-        show_type_icons: true
+        show_type_icons: false
     toc:
       $doc:
         name: TOC
-        desc: Shows the table of contents
+        desc: Shows and sets the depth of the table of contents.
       show:
         text: In this topic…
         spot: "#sidebar-right"
         opts:
           header_level_depth: "h3"
     breadcrumbs:
-      # crumb paths are further defined in data/manifest.yml
+      $doc:
+        desc: Displays and designs the breadcrumb trail.
+        tips:
+          - Crumb paths are further defined in data/manifest.yml.
       show:
-        home: AsciiDocsy
+        home: Home
         opts:
-          delim: ">"
+          delim: ">" # defaults to "/"
   alerts:
     gdpr-message:
       # NOT YET IMPLEMENTED

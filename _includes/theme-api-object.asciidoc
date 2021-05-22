@@ -27,7 +27,8 @@ a|
 s| block: `{{ prop_name }}`
     {% if prop[1] %}
 a|
-
+{% assign prop_obj = prop[1] %}
+{% include theme-api-object-sub.asciidoc sub=prop_obj %}
     {% else %}
 m| {{ prop[1] }}
     {% endif %}
