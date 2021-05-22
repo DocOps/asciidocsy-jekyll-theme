@@ -78,6 +78,7 @@ body {
 
 .case {
   font-weight: bold;
+  font-style: normal;
 }
 
 .case:after {
