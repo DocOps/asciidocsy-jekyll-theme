@@ -52,16 +52,8 @@ asciidoctor:
     path_to_readme: README.adoc
     path_to_data_dir: _docs/_data
     example-capition: ''
+    experimental:
 # end::asciidoctor[]
-
-# tag::algolia[]
-algolia:
-  application_id: 'SELDDHION6'
-  index_name: asciidocsy
-  search_only_api_key: 'b9112b0485d58729c3e7c7b64291cbd9'
-  extensions_to_index: [adoc]
-# end::algolia[]
-# NOTE: search field and page configuration handled under FEATURES
 
 liquid:
   error_mode: warn
@@ -356,9 +348,9 @@ semantics:
 services:
   analytics:
     google:
-# tag::algolia[]
   search:
     algolia:
+# tag::algolia[]
       application_id: 'SELDDHION6'
       index_name: asciidocsy
       search_only_api_key: 'b9112b0485d58729c3e7c7b64291cbd9'
