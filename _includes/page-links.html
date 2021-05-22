@@ -12,7 +12,7 @@ Generates links for page-related functions.
   <li class="nav-item {% if ftr.role %}role-{{ ftr.role }}-plus{% endif %} nav-item-{{ feat }}">
     <a href="" class="nav-link"><i class="icon {{ ftr.icon }} fa-fw"></i> {{ ftr.text }}</a>
   </li>
-      {% assign git_actions = "make,edit,data" | split: "," %}
+      {% assign git_actions = "make,edit,data,open-docs,open-subj" | split: "," %}
   <script>
       {% if git_actions contains feat %}
    // TODO: This will get moved into distinct function
@@ -24,6 +24,10 @@ Generates links for page-related functions.
       var url = "{{ site.source_www }}/new/{{ site.source_trunk_branch | default: 'main' }}";
     } else if (feat == 'data') {
       var url = "{{ site.source_www }}/edit/{{ site.source_trunk_branch | default: 'main' }}/{{ page.data-source }}";
+    } else if (feat == 'open-subj') {
+      var url = "{{ site.subject_tickets_www }}{{ site.features.actions[page.kind].open-subj.path }}";
+    } else if (feat == 'open-docs') {
+      var url = "{{ site.docs_tickets_www }}{{ site.features.actions[page.kind].open-docs.path }}";
     };
     $('.nav-item-{{ feat }} .nav-link').each(function() {
       $(this).attr('href', url);

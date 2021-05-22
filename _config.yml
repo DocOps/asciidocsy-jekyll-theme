@@ -33,6 +33,8 @@ source_www: https://github.com/DocOps/asciidocsy
 source_icon: fa fa-github
 source_trunk_branch: main # path from repo home url to projet root
 images_path: /images
+subject_tickets_www: https://github.com/DocOps/asciidocsy/issues
+docs_tickets_www: https://github.com/DocOps/asciidocsy/issues
 
 # tag::asciidoctor[]
 asciidoc: {}
@@ -240,6 +242,17 @@ features:
         icon: fa fa-file-text-o
         # role: auth0
         # fork: # overrides default forking policy
+      open-docs:
+        text: Open a docs ticket
+        icon: fa fa-ticket
+        path: /new?labels=documentation # path to append to the tickets_www URL
+        # role: auth0
+        # fork: # overrides default forking policy
+      open-subj:
+        text: Open a product ticket
+        icon: fa fa-tag
+        path: /new # path to append to the tickets_www URL
+        # role: auth0
     page:
       edit:
         text: Edit this page
@@ -257,19 +270,6 @@ features:
         icon: fa fa-file-text-o
         # role: auth0
         # fork: # overrides default forking policy
-    docs-issue:
-      make:
-        text: Create a documentation issue
-        icon: fa fa-ticket
-        href:
-        # role: auth0
-        # fork: # overrides default forking policy
-    project-issue:
-      make:
-        text: Create a project issue
-        icon: fa fa-ticket
-        href:
-        # role: auth0
     page-skin: # you probably want to remove this, cool as it is
       swap:
         text: Re-skin this theme
