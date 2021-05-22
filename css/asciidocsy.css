@@ -91,6 +91,23 @@ body {
   font-weight: 900;
 }
 
+.tip {
+  font-weight: bold;
+  font-style: normal;
+}
+
+span.tip:before,
+em.tip:before,
+strong.tip:before {
+  font-family: "FontAwesome";
+  font-style: normal;
+  content: "\f0eb";
+  display: inline-block;
+  padding: 0 .2em 0 0;
+  vertical-align: middle;
+  font-weight: 900;
+}
+
 #preamble > .sectionbody > [class="paragraph"]:first-of-type p {
   font-size: 1em !important;
 }
