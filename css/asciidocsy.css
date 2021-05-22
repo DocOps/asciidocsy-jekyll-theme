@@ -442,7 +442,12 @@ main h2 {
 main h3 {
   font-size: 1.4em;
 }
-
+main h4 {
+  font-size: 1.15em;
+}
+main h5 {
+  font-size: 1.1em;
+}
 /* Bootstrap elements */
 
 label.btn.btn-secondary.btn-sm.active {
