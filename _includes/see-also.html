@@ -1,11 +1,13 @@
 {% include hook.liquid template="see-also_html" spot="file" %}
 {% unless hook_replace_tpl %}
+{% assign see-also_title = site.data.strings.see-also.title | default: "Related Topics" %}
 {% assign related = "" | split: "," %}
 {% for tag in page.tags %}
   {% assign related = related | concat: site.pages | where_exp: "p","p.tags contains tag" | where_exp: "p","p.url != page.url" %}
 {% endfor %}
+{% include hook.liquid template="see-also_html" spot="mid" %}
 {% if related.size > 0 %}
-<h5>See these other topics</h5>
+<h5>{{ see-also_title | default: "See Also" }}</h5>
 <ul>
   {% for topic in related %}
   <li><a href="{{ topic.url }}">{{ topic.title }}</a></li>
