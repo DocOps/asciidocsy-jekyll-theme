@@ -4,7 +4,7 @@
 #  the [.term] inline-semantic tag
 - term: AsciiDoc
   slug: asciidoc
-  desc: A programmatic markup language for structuring and formatting all kinds of technical writing for conversion to various rich-text and other formats.
+  desc: A programmatic markup language for structuring _and_ formatting all kinds of technical writing for conversion to various rich-text and other formats.
   xref:
   href:
   also: [markup,markdown]
