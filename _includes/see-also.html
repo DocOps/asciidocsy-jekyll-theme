@@ -2,13 +2,13 @@
 {% unless hook_replace_tpl %}
 {% assign related = "" | split: "," %}
 {% for tag in page.tags %}
-  {% assign related = related | concat: site.pages | where_exp: "p","p.tags contains page.tag" | where: "type","topic" %}
+  {% assign related = related | concat: site.pages | where_exp: "p","p.tags contains tag" | where_exp: "p","p.url != page.url" %}
 {% endfor %}
-{% if related %}
+{% if related.size > 0 %}
 <h5>See these other topics</h5>
 <ul>
   {% for topic in related %}
-  <li>{{ topic.title }}
+  <li><a href="{{ topic.url }}">{{ topic.title }}</a></li>
   {% endfor %}
 </ul>
 {% endif %}
