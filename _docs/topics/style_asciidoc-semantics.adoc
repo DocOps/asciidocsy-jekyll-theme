@@ -5,8 +5,6 @@
 :experimental: ''
 = Inline Semantics in AsciiDoc(sy)
 
-kbd:[Ctrl+T]
-
 AsciiDoc offers semantic tagging of words and phrases.
 Called "`inline semantics,`" this syntax enables stylized representation of text depending on its _role_.
 
