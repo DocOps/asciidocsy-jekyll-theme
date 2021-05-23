@@ -59,4 +59,7 @@ InelliJ IDEA::
 More and more people swear by this https://www.jetbrains.com/idea/download/#section=linux[freemium application] and its https://plugins.jetbrains.com/plugin/7391-asciidoc[AsciiDoc plugin] as the ultimate writing combo.
 Extend https://plugins.jetbrains.com/plugin/7792-yaml-ansible-support[YAML support].
 
+AsciiDocFX::
+This AsciiDoc-focused editor gets better all the time, and its YAML handling is on par with the others. Installers work great for every platform, even if I find Java a little clunky (same would go for IntelliJ). Give link:https://asciidocfx.com[AsciIDocFX] a try.
+
 The Asciidoctor project maintains a decent https://asciidoctor.org/docs/editing-asciidoc-with-live-preview/#using-a-modern-text-editoride[list of "`text editors`" with AsciIDoc support] of some kind.

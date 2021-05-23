@@ -6,7 +6,7 @@ This is by design.
 
 There may be some cases when a unique format or layout is called for in documentation, but they are few and far between.
 Users want predictability.
-They want "`intuitive`" layouts where everything is predictable.
+They want "`intuitive`" layouts where everything is where they expect.
 
 In that spirit, AsciiDocsy's layout is conventional.
 There are four navigation areas surrounding the content of each page.
@@ -17,7 +17,7 @@ Let's examine these navigation areas more closely.
 
 == Site Menus and Navigation
 
-Typically used for sitewide pages or key external links, the `#topnav` menu can accommodate pretty hefty nesting, if needed.
+Typically used for sitewide pages or key external links, the `#topnav` menu can accommodate a layer of nesting, if needed.
 
 === Subject Navigation (Left)
 
