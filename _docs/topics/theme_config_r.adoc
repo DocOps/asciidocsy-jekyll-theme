@@ -8,7 +8,7 @@ In reality, AsciiDocsy is a ways off from this goal.
 A [.path]`data/strings.yml` file has been introduced, but still most strings have yet to be migrated there.
 This means if you don't like the wording of something, for the time being you'd have to use brutal JS/CSS to manipulate content post-build to stay out of the HTML templates, or else you'd have to edit those templates, hence diverging from the critical files of this theme.
 
-Nevertheless, the seeds of fully data-based customization of the theme have been planted, so let us take a look at what is available so far.
+Nevertheless, the seeds of fully YAML-based customization of the theme have been planted, so let us take a look at what is available so far.
 
 == Site-scoped Configuration
 
@@ -25,8 +25,8 @@ Jekyll ingests any YAML (or JSON) files found in the declared data directory and
 The data directory is declared in the configuration, and any subdirectories it contains will be scoped as `site.data.<subdir>`, where [.tok]`<subdir>` is the folder name.
 
 Key data-scoped objects include `terms` and `navigation`.
-The former establishes the glossary and inline-semantic popovers for text designated `.term`.
-The navigation object determines both the heade and the footer menus.
+The former establishes the glossary and inline-semantic popovers for text designated with the `.term` role.
+The navigation object determines both the header and the footer menus.
 
 The `theme/strings.yml` file establishes strings found in the layouts and other templates.
-It is not visible inside your AsciiDoc content files or he pages they render.
+It is not visible inside your AsciiDoc content files or the pages they render.
