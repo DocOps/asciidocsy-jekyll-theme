@@ -407,6 +407,8 @@ scripts:
       href: /js/bootstrap-toc.js
     - slug: highlight-js
       href: /js/highlight.pack.js
+    - slug: asciidoctor
+      href: /js/asciidoctor.min.js
   tail:
     - slug: asciidocsy
       href: /js/main.js

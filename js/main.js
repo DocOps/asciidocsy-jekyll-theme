@@ -66,6 +66,7 @@ $( document ).ready(function() {
     Scan content for terms and insert data- attrs for
      popovers
     **/
+    const asciidoctor = Asciidoctor();
     $('.term').each(function() {
       var classes = $(this).attr('class').split(' ');
       if (classes.length > 1) {
@@ -80,7 +81,7 @@ $( document ).ready(function() {
         $(this).append('<i class="icon ' + icon + ' fa-rotate-20">');
         $(this).attr('data-toggle', 'popover');
         $(this).attr('data-title', theTerm['term']);
-        $(this).attr('data-content', theTerm['desc']);
+        $(this).attr('data-content', asciidoctor.convert(theTerm['desc'], {doctype: 'inline'}));
         $(this).hover(
           function() {
             $(this).children('i').addClass('fa-spin')
@@ -103,7 +104,8 @@ $( document ).ready(function() {
       placement : 'top',
       container : 'body',
       trigger   : 'hover',
-      delay     : { "show": 300, "hide": 200 }
+      delay     : { "show": 300, "hide": 200 },
+      html      : true
   });
   $('[data-toggle="tooltip"]').tooltip({
       placement : 'right',
