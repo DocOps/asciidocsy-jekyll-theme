@@ -1,6 +1,7 @@
 = AsciiDocsy
 // tag::globals[]
 :experimental:
+:imagesdir: images
 :forked_source_www: https://vsoch.github.io
 :theme_demo_www: https://asciidocsy.netlify.app
 :theme_docs_www: https://asciidocsy.netlify.app/docs
@@ -9,7 +10,6 @@
 // end::globals[]
 ifndef::env-github[:icons: font]
 ifdef::env-github[]
-:imagesdir: images
 :status:
 :caution-caption: :fire:
 :important-caption: :exclamation:
@@ -38,7 +38,9 @@ Designed to meet the technical documentation deployment needs of full-scale, mul
 The codebase brings together developers and technical writers, allowing the latter to achieve momentous feats on behalf of -- and with occasional help from -- the developers whose work they document.
 // end::purpose[]
 
-== Changes so Far
+== Pre-1.0 History and Roadmap
+
+=== Changes so Far
 
 * [add] AsciiDoc integration
 ** jekyll-asciidoc plugin & configs
@@ -68,29 +70,24 @@ The codebase brings together developers and technical writers, allowing the latt
 * [change] tab indents to spaces
 * [add] enable explicit breadcrumb rewrites
 
-== Revision 1.0 Targets
+=== Revision 1.0 Targets
 
-* [add] tabbed panel content changer
+* [add] tabbed panel content changer (https://github.com/DocOps/asciidocsy/issues/9[#9])
 ** tabs show/hide one or more _overlayed_ blocks of content
 ** sourced entirely in standard AsciiDoc, rendered w/ JS)
 ** configurable under `site.features`
-* [add] version handler templates (Liquid/HTML/CSS/JS)
+* [add] version handler templates (Liquid/HTML/CSS/JS) (https://github.com/DocOps/asciidocsy/issues/10[#10])
 ** dropdown-style version selector
 ** "`this topic for another product`" links to sibling subjects
-* [add] full-featured, YAML-driven landing-page layout & components
-* [refactor] CSS to Sass
-* [improve] Vendor-code integration:
+* [add] full-featured, YAML-driven landing-page layout & components (https://github.com/DocOps/asciidocsy/issues/5[#5])
+* [refactor] CSS to Sass (https://github.com/DocOps/asciidocsy/issues/24[#24])
+* [improve] Vendor-code integration: (https://github.com/DocOps/asciidocsy/issues/32[#32])
 ** SCSS files (Asciidoctor, Bootstrap, Font-Awesome, Highlight.js, et al)
 ** JS (JQuery, Bootsrap, components)
 ** Native extensions (Asciidoctor, Jekyll, Liquid)
 ** new syntax highlighter options
-* [add] Reveal.js slideshows
-* [add] PDF rendering
-* [add] Configurable search with new options
-** ElasticSearch support via https://github.com/omc/searchyll[Searchyll]
-** Put Lunr.js back in
-* [add] option to build data-driven left navs from frontmatter
-* [add] Strings management with Liquid-parsed strings sourced as YAML
+* [add] Strings management _with Liquid- and Asciidoctor-parsed strings_ sourced as YAML
+* [add] Lunr.js back in as a backup/secondary search (https://github.com/DocOps/asciidocsy/issues/8[#8])
 * [add] Custom admonition blocks including several AsciiDocsy templates
 * [add] DITA-like semantic handling of topic types (task, concept, reference)
 ** specialized layouts by topic type
@@ -99,16 +96,25 @@ The codebase brings together developers and technical writers, allowing the latt
 ** banner or modal
 ** user selects permitted cookie types
 ** feature actually suppresses unpermitted cookies
+* [add] a dark theme option (user-controlled if you wish) (https://github.com/DocOps/asciidocsy/issues/35[#35])
 * [add] call to action (c2a) modal
-* [add] glossary of key terms
 * [add] search results page w/ 3rd optional instantsearch field
-* [add] policy-based content toggles for user roles
-* [add] JS-based subject nav sourcing generated post-build
 * [improve] feedback form with follow-up query
 * [improve] collapsible/accordion left nav
-* [refactor] as Ruby gem/Jekyll plugin
+* [refactor] as Ruby gem/Jekyll plugin (https://github.com/DocOps/asciidocsy/issues/31[#31])
 * [add] sufficient unit and integration tests
 * [improve] and finalize dependency/upstream license handling
+
+==== 1.0 Stretch Goals
+
+* [add] Reveal.js slideshows
+* [add] PDF rendering
+* [add] Configurable search with new options
+** ElasticSearch support via https://github.com/omc/searchyll[Searchyll]
+** ElasticLunr.js?
+* [add] option to build data-driven left navs from frontmatter
+* [add] JS-based subject nav sourcing generated post-build
+* [add] policy-based content toggles for user roles
 
 // end::overview[]
 
@@ -205,7 +211,7 @@ I plan for it to be a primary project with regular, ongoing maintenance, as I ex
 I will work up contributor guidelines and PR templates well before v1.0.
 Please standby.
 
-Feel free to create an issue or or pull request in the meantime!
+Please don't hesitate to create an issue or or pull request in the meantime!
 
 == Licensing
 
