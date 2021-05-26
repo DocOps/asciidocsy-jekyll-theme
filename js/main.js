@@ -60,7 +60,7 @@ $( document ).ready(function() {
   // instantiate the Bootstrap JS
   if ($('.term').length) { // nothing happens if there are no terms on the page
     const termsDict = {{ site.data.terms | jsonify }}
-    const icon      = '{{ site.semantics.inline.role.term.show.icon }}'
+    const icon      = '{{ site.semantics.inline.role.term.show.icon.text }}'
     var termsList   = []
     /**
     Scan content for terms and insert data- attrs for
@@ -78,10 +78,16 @@ $( document ).ready(function() {
         if (!termsList.find(t => t.slug == theTerm.slug)) {
           termsList.push(theTerm);
         };
-        $(this).append('<i class="icon ' + icon + ' fa-rotate-20">');
+{% if site.semantics.inline.role.term.show.icon %}
+  {% if site.semantics.inline.role.term.show.icon.tilt %}
+    {% assign rotate = "fa-rotate-" | append: site.semantics.inline.role.term.show.icon.tilt %}
+  {% endif %}
+        $(this).append('<i class="icon ' + icon + ' {{rotate}}">');
+{% endif %}
         $(this).attr('data-toggle', 'popover');
         $(this).attr('data-title', theTerm['term']);
         $(this).attr('data-content', asciidoctor.convert(theTerm['desc'], {doctype: 'inline'}));
+{% if site.semantics.inline.role.term.show.icon.spin %}
         $(this).hover(
           function() {
             $(this).children('i').addClass('fa-spin')
@@ -89,6 +95,7 @@ $( document ).ready(function() {
           function() {
             $(this).children('i').removeClass('fa-spin')
           });
+{% endif %}
       } else {
         $(this).attr('data-error', 'No term entry found');
       };
