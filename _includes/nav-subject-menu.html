@@ -2,7 +2,7 @@
 {% unless hook_replace_tpl %}
 <!-- {% comment %}
 Generates #sidebar-left navigation for subject/product
-{% endcomment %} -->
+{% endcomment %} NAVGOCO menu component -->
 <ul id="subject-menu" class="nav flex-column">
   {% for item in include.manifest['menu'] %}
 		{% include path-active.liquid href=item.href  kids=item.kids %}
@@ -15,7 +15,7 @@ Generates #sidebar-left navigation for subject/product
       <ul>
       {% for topic in item.kids %}
 			  {% include path-active.liquid href=topic.href kids=topic.kids %}
-        <li class="nav-item {{open}} {{parent}} {{active}}">
+        <li class="nav-item tier-2 {{open}} {{parent}} {{active}}">
           <a href="{{ topic.href }}" class="nav-link {{active}} {{open}}">
 						{{ topic.text }}
 					</a>
@@ -23,13 +23,13 @@ Generates #sidebar-left navigation for subject/product
           <ul>
             {% for subtopic in topic.kids %}
 						  {% include path-active.liquid href=subtopic.href kids=subtopic.kids %}
-            <li class="nav-item {{open}} {{parent}} {{active}}">
+            <li class="nav-item tier-3 {{open}} {{parent}} {{active}}">
               <a href="{{ subtopic.href }}" class="nav-link {{active}}">{{ subtopic.text }}</a>
               {% if subtopic.kids %}
                 <ul>
                   {% for sst in subtopic.kids %}
                     {% include path-active.liquid href=sst.href kids=sst.kids %}
-                  <li class="nav-item {{open}} {{parent}} {{active}}">
+                  <li class="nav-item tier-4 {{open}} {{parent}} {{active}}">
                     <a href="{{ sst.href }}" class="nav-link {{active}}">{{ sst.text }}</a>
                   </li>
                   {% endfor %}

@@ -199,6 +199,10 @@ ul.list-unstyled {
   font-size: 0.9em;
 }
 
+#subject-menu .nav-item.tier-1 > a {
+  font-weight: 900;
+}
+
 #subject-menu .nav-item a:hover {
   color: #fff;
 }
