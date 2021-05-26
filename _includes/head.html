@@ -14,7 +14,8 @@
   {% assign search_index = "noindex" %}
 {% endif %}
 <meta name="robots" content="{{ search_index }}, follow">
-<link rel="canonical" href="{{ page.canonical | default: page_url }}" />
+{% assign canonical_def = site.canonical_url | append: page.url %}
+<link rel="canonical" href="{{ page.canonical | default: canonical_def }}" />
 <link rel="shortcut icon" href="{{ site.theme_dir }}/images/favicons/favicon.ico" >
 <link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/favicon-16x16.png" sizes="16x16">
 <link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/favicon-32x32.png" sizes="32x32">
