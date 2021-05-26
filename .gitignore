@@ -5,3 +5,4 @@ Gemfile.lock
 .jekyll-cache
 .jekyll-metadata
 vendor
+_algolia_api_key

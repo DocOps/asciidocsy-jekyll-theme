@@ -12,7 +12,9 @@ You only start paying when you use certain thresholds of index space or query ba
 
 AsciiDocsy's implementation of Algolia's Jekyll plugin (link:https://github.com/algolia/jekyll-algolia[source]) (link:https://community.algolia.com/jekyll-algolia/getting-started.html[docs]) and instantsearch form (link:https://community.algolia.com/instantsearch.js/documentation/[docs]).
 
-The `site.algolia` object (by default defined in `_config.yml`, but you could move it to an auxiliary config file and <</docs/theme/advanced#,call multiple configs>>).
+== Search Settings
+
+The `site.services.algolia` object, by default defined in `_config.yml`.
 
 .Algolia object in default configuration file
 [source,yaml]
@@ -21,3 +23,58 @@ The `site.algolia` object (by default defined in `_config.yml`, but you could mo
     search:
 include::{path_to_jekyll_config}[tags=algolia]
 ----
+
+Additionally, each search form on your site needs some more data.
+By default the search forms draw this info from objects inside `site.features.actions`, such as `search-site` and `search-subject`.
+These objects need properties for `show.spot` and `meta.index`.
+
+[source,yaml]
+----
+  actions:
+    search-site:
+include::{path_to_jekyll_config}[tags=search-site-core]
+----
+
+[WARNING]
+These settings are only used for _searching_.
+
+[[index-settings]]
+== Index Settings
+
+In order to _index_ your site's content, you will need an auxilliary configuration file with the `algolia` object at the root.
+This configuration file can be called instead of or in addition to the main Jekyll config.
+
+._docs/_data/configs/search-index-pages.yml
+[source,yaml]
+----
+include::_docs/_data/configs/search-index-pages.yml[]
+----
+
+The search is performed by running a `jekyll algolia` operation with your private API key added.
+
+=== ENV Variable
+
+One option is to add your key explicitly to the commandline as an environment variable.
+
+.Example commandline ENV variable option
+ ALGOLIA_API_KEY=01d664977165dbf4cded12199738fabf bundle exec jekyll algolia --config _config.yml,_data/configs/jekyll-search-x.yml
+
+=== Stashed File
+
+Alternatively, stash the key as in a file called `_algolia_api_key` (no file extension).
+
+.Entire contents of file `_algolia_option_key`
+ 01d664977165dbf4cded12199738fabf
+
+[IMPORTANT]
+Be sure to add this file to your [.path]`.gitignore` file.
+
+In this case, you may run simply:name: value
+
+.Example commandline with no ENV variable
+ bundle exec jekyll algolia --config _config.yml,_data/configs/jekyll-search-x.yml`
+
+[TIP]
+To test your indexing process without pushing to Algolia, add [.cmd]`--dry-run` (or simply [.cmd]`-n`)
+
+For full configuration options, refer to the link:https://community.algolia.com/jekyll-algolia/options.html[Jekyll community documentation].
