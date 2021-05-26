@@ -11,7 +11,7 @@ body {
   font-weight: normal;
 }
 
-.fa-rotate-20 {
+.fa-rotate-15 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
   -webkit-transform: rotate(15deg);
   -ms-transform: rotate(15deg);
@@ -208,8 +208,13 @@ ul.list-unstyled {
   background-color: {{ site.styles.color.theme }};
 }
 
-#subject-menu li.nav-item.proud {
-  background-color: #99999930
+#subject-menu li.nav-item.proud-ancestor {
+  background-color: #99999940;
+  border-left: 2px solid {{ site.styles.color.theme }};
+}
+
+#subject-menu li.nav-item.open.active.parent {
+  background-color:  #99999960;
 }
 
 .toggle-switcher {
