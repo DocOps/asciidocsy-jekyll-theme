@@ -5,35 +5,31 @@ Generates #sidebar-left navigation for subject/product
 {% endcomment %} -->
 <ul id="subject-menu" class="nav flex-column">
   {% for item in include.manifest['menu'] %}
-		{% include path-active.liquid href=item.href %}
-    <li class="nav-item open card tier-1 {{parent}}">
+		{% include path-active.liquid href=item.href  kids=item.kids %}
+    <li class="nav-item open card tier-1 {{parent}} {{active}}">
     {% if item.href %}<a href="{{ item.href }}" class="{{active}} {{open}}">{% endif %}
     {{ item.text }}
     {% if item.href %}</a>{% endif %}
-    {% if item.icon or (item.type and site.features.navigation[menuname]['opts']['show_type_icons']) %}
-      {% assign topic_type = site.data.manifest.topic-types | where: "slug",item.type %}
-      <i class="icon {{ item.icon | topic_type.icon }}"></i>
-    {% endif %}
 		<!-- tag::sample-nesting[] -->
     {% if item.kids %}
       <ul>
       {% for topic in item.kids %}
-			  {% include path-active.liquid href=topic.href %}
-        <li class="nav-item {{open}} {{parent}}">
+			  {% include path-active.liquid href=topic.href kids=topic.kids %}
+        <li class="nav-item {{open}} {{parent}} {{active}}">
           <a href="{{ topic.href }}" class="nav-link {{active}} {{open}}">
 						{{ topic.text }}
 					</a>
           {% if topic.kids %}
           <ul>
             {% for subtopic in topic.kids %}
-						  {% include path-active.liquid href=subtopic.href %}
-            <li>
+						  {% include path-active.liquid href=subtopic.href kids=subtopic.kids %}
+            <li class="nav-item {{open}} {{parent}} {{active}}">
               <a href="{{ subtopic.href }}" class="nav-link {{active}}">{{ subtopic.text }}</a>
               {% if subtopic.kids %}
                 <ul>
                   {% for sst in subtopic.kids %}
-                    {% include path-active.liquid href=sst.href %}
-                  <li>
+                    {% include path-active.liquid href=sst.href kids=sst.kids %}
+                  <li class="nav-item {{open}} {{parent}} {{active}}">
                     <a href="{{ sst.href }}" class="nav-link {{active}}">{{ sst.text }}</a>
                   </li>
                   {% endfor %}
