@@ -134,6 +134,10 @@ strong.tip:before {
 
 }
 
+ul.list-unstyled {
+  margin-left: 0;
+}
+
 #preamble > .sectionbody > [class="paragraph"]:first-of-type p {
   font-size: 1em !important;
 }
@@ -491,6 +495,13 @@ main h4 {
 main h5 {
   font-size: 1.1em;
 }
+
+.topic-footer .jumbotron {
+  margin-left: 5px;
+  margin-right: 5px;
+  color: #403f4c;
+}
+
 /* Bootstrap elements */
 
 label.btn.btn-secondary.btn-sm.active {

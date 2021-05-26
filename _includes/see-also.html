@@ -7,11 +7,14 @@
 {% endfor %}
 {% include hook.liquid template="see-also_html" spot="mid" %}
 {% if related.size > 0 %}
-<h5>{{ see-also_title | default: "See Also" }}</h5>
-<ul>
+<div class="jumbotron col-4-sm">
+  <i class="icon fa fa-caret-square-o-down fa-4x float-right" style="margin-top: .5em;"></i>
+  <div class="h5">{{ see-also_title }}</div>
+  <ul class="card-text mb-auto list-unstyled">
   {% for topic in related %}
-  <li><a href="{{ topic.url }}">{{ topic.title }}</a></li>
+    <li><a href="{{ topic.url }}">{{ topic.title }}</a></li>
   {% endfor %}
-</ul>
+  </ul>
+</div>
 {% endif %}
 {% endunless %}
