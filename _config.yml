@@ -167,18 +167,20 @@ features:
       $doc:
         name: Search the site
         desc: Enables users to search all pages in the site, including non-topics
+# tag::search-site-core[]
       show:
-        text: Search the site…
+        text: Search non-docs PAGES…
         spot: "#nav-site"
-        opts:
-          index: asciidocsy
+      meta:
+        index: asciidocsy-pages
+# end::search-site-core[]
     search-subject:
       show:
-        text: Search the docs…
+        text: Search subject TOPICS…
         icon: fa fa-search
         spot: "#sidebar-left" # where this should appear (alt: leftside nav)
-        opts:
-          index: asciidocsy
+      meta:
+        index: asciidocsy-topics
     versioning:
       togglers:
         user-os: # arbitrary toggler name
@@ -360,9 +362,7 @@ services:
     algolia:
 # tag::algolia[]
       application_id: 'SELDDHION6'
-      index_name: asciidocsy
       search_only_api_key: 'b9112b0485d58729c3e7c7b64291cbd9'
-      extensions_to_index: [adoc]
 # end::algolia[]
 
 social:

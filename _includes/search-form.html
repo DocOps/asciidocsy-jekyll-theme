@@ -3,6 +3,7 @@
 {% assign search-name = include.search %}
 {% assign searchname = include.search | replace:"-","" %}
 {% assign search = site.features.actions[search-name] %}
+{% include hook.liquid template="search-form_html" spot="head" %}
 <script>
 var hrefChanged = false;
 </script>
@@ -26,7 +27,7 @@ $( "#aa-{{ search-name }}-input" ).keydown(function(e) {
 });
 
 var client = algoliasearch('{{ site.services.search.algolia.application_id }}', '{{ site.services.search.algolia.search_only_api_key }}');
-var index = client.initIndex('{{ site.features.actions.search-subject.show.opts.index }}');
+var index = client.initIndex('{{ site.features.actions[search-name].meta.index }}');
 // Initialize autocomplete on search input (ID selector must match).
 autocomplete('#aa-{{ search-name }}-input',
 { hint: true, autoselect: false }, {
@@ -49,7 +50,7 @@ autocomplete('#aa-{{ search-name }}-input',
       empty: function(suggestion) {
         // Add the see more results option when no suggestion is found...
         // just in case the user prefers to search in the main search page.
-        var hrefValue = "search.html?q=" + document.getElementById('aa-{{ search-name }}-input').value.replace(' ', '+');
+        var hrefValue = "/search?q=" + document.getElementById('aa-{{ search-name }}-input').value.replace(' ', '+');
         return '<div class="aa-suggestion" role="option"><a id="show-more-link" class="suggestion-link" href="' + hrefValue + '">See more results...</a></div>';
       },
       footer: function(suggestion) {
@@ -58,7 +59,7 @@ autocomplete('#aa-{{ search-name }}-input',
         if (suggestion.isEmpty){
           return;
         }
-        var hrefValue = "search.html?q=" + document.getElementById('aa-{{ search-name }}-input').value.replace(' ', '+');
+        var hrefValue = "/search?q=" + document.getElementById('aa-{{ search-name }}-input').value.replace(' ', '+');
         return '<div class="aa-suggestion" role="option"><a id="show-more-link" class="suggestion-link" href="' + hrefValue + '">See more results...</a></div>';
       },
       // 'suggestion' templating function used to render a single suggestion.

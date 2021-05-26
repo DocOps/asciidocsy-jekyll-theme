@@ -203,6 +203,34 @@ You will find the generated files at `_site/`.
 [TIP]
 Learn more about applying AsciiDocsy to your use case in the link:{theme_docs_www}[Bootstrapping guide].
 
+== Production Environment Details
+
+The demo/docs site included in this repository generates a site at {theme_demo_www}.
+This site is deployed
+
+=== Deploying
+
+The site automatically generates and deploys each time a commit is merged to the `main` branch.
+
+=== Search Indexing
+
+The search indexing procedure is manual at this time, though we will move it to a GitHub Action before long.
+
+There are two indexes: `asciidocsy-pages` and `asciidocsy-topics`.
+Each has its own custom configuration in `_docs/_data/configs/`.
+
+You must have the Admin-only private key to write files to the Algolia index.
+See link:{theme_demo_www}/docs/theme/config/search/algolia#index-settings[Algolia Search Config: Index Settings] for specifics.
+
+The indices must be processed separately.
+Here are the commands:
+
+.Site search
+ bundle exec jekyll algolia --config _config.yml,_docs/_data/configs/search-index-pages.yml
+
+.Subject search
+ bundle exec jekyll algolia --config _config.yml,_docs/_data/configs/search-index-topics.yml
+
 == Contributing
 
 AsciiDocsy is open for contributions.
