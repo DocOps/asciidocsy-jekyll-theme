@@ -27,6 +27,15 @@ If you are looking for a full-featured theme to dress a Jekyll application with 
 <button type="button" class="btn btn-primary">Clone on GitHub</button>
 </a>
 ++++
+
+OR
+[subs=attributes]
+++++
+<a href="https://app.netlify.com/start/deploy?repository={theme_repo_www}">
+<button type="button" class="btn btn-primary">Deploy to Netlify</button>
+</a>
+++++
+[Deploy to Netlify]
 --
 
 [.jumbotron.jumbotron-fluid.text-center.bg-secondary.text-light.shadow.p-3.mb-5]
