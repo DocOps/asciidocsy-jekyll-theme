@@ -13,7 +13,10 @@
 
 title: AsciiDocsy
 tagline: An AsciiDoc-ready Jekyll theme for technical documentation
-deploy_url: https://asciidocsy.netlify.app
+deploy_url: https://asciidocsy.netlify.app # your site's URL
+canonical_url: https://asciidocsy.netlify.app # URL of original content
+# DO NOT CHANGE the canonical URL if you deploy a copy the AsciiDocsy site
+# DO change it if you replace all the content or start from scratch
 company_name: DocOps Labs
 
 # SITEWIDE JEKYLL SETTINGS
@@ -264,10 +267,11 @@ features:
         # fork: # overrides default forking policy
     page-skin: # you probably want to remove this, cool as it is
       swap:
-        text: Re-skin this theme
-        icon: fa fa-paintbrush
-        href: '#javascript.skinner'
-        # list: [] # if different from default styles.skins.list above
+        # list: [] # if different from default site.styles.skins.list
+        # role: auth0
+    syntax-style: # you probably want to remove this, cool as it is
+      swap:
+        # list: [] # if different from default site.styles.syntax.list
         # role: auth0
     feedback-form:
       show:
@@ -338,11 +342,12 @@ footer:
 
 # SEMANTICS
 semantics:
-  role:
-    term:
-      show:
-        icon: fa fa-info-circle
-        spot: "#sidebar-right"
+  inline:
+    role:
+      term:
+        show:
+          icon: fa fa-info-circle
+          spot: "#sidebar-right"
 
 # SERVICES
 services:

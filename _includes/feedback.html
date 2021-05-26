@@ -17,13 +17,16 @@ Generates feedback form.
     display: block;
   }
 </style>
-<div class="h5 feedback--title">{{ fform.show.name }}</div>
+<div class="jumbotron col-sm-4">
+<i class="icon {{ fform.show.icon }} fa-4x float-right" style="margin-top: .5em;"></i>
+<div class="h5">{{ fform.show.name }}</div>
 <p class="feedback--question">{{ fform.show.text }}</p>
 <form name="feedback" method="POST" data-netlify="true">
 {% for opt in fform.send.opts %}
   <button type="button" class="btn btn-sm btn-{{opt.color | default:'secondary'}} feedback--answer feedback--answer-{{ opt.slug }}">{{ opt.text }}</button>
 {% endfor %}
 </form>
+</div>
 <div class="feedback--response feedback--response-{{ opt.slug }}"></div>
 <script>
   {% for opt in fform.send.opts %}

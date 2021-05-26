@@ -93,7 +93,7 @@ $( document ).ready(function() {
         $(this).attr('data-error', 'No term entry found');
       };
     });
-    var termsListHTML = '<div class="h6 nav-title">Terms in this topic:</div><ul class="page-terms-list nav-list">'
+    var termsListHTML = '<div class="h5 nav-title terms-nav">Terms in this topic:</div><ul class="page-terms-list nav-list">'
     termsList.forEach(function(item){
       termsListHTML += '<li class="list-item nav-item"><a href="/glossary/#' + item.slug + '">' + item.term + '</li>'
       });
