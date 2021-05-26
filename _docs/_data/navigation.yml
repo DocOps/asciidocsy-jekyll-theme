@@ -31,7 +31,7 @@ footer:
         - text: README
           href: /readme
         - text: Source
-          href: https://github.com/DocOps/asciidocsy
+          href: https://github.com/DocOps/asciidocsy-jekyll-theme
     - text: Resources
       kids:
         - text: Codewriting

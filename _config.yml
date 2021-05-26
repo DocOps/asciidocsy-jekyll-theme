@@ -31,13 +31,13 @@ includes_dir: _includes
 # Global AsciiDocsy settings
 theme_dir: "" # <1> path to asset directories (css/ images/ js/ etc)
 data_dir: _docs/_data
-source_git: git@github.com:DocOps/asciidocsy.git # git@-formatted address
-source_www: https://github.com/DocOps/asciidocsy
+source_git: git@github.com:DocOps/asciidocsy-jekyll-theme.git # git@-formatted address
+source_www: https://github.com/DocOps/asciidocsy-jekyll-theme
 source_icon: fa fa-github
 source_trunk_branch: main # path from repo home url to projet root
 images_path: /images
-subject_tickets_www: https://github.com/DocOps/asciidocsy/issues
-docs_tickets_www: https://github.com/DocOps/asciidocsy/issues
+subject_tickets_www: https://github.com/DocOps/asciidocsy-jekyll-theme/issues
+docs_tickets_www: https://github.com/DocOps/asciidocsy-jekyll-theme/issues
 
 # tag::asciidoctor[]
 asciidoc: {}

@@ -5,8 +5,9 @@
 :forked_source_www: https://vsoch.github.io
 :theme_demo_www: https://asciidocsy.netlify.app
 :theme_docs_www: https://asciidocsy.netlify.app/docs
-:theme_repo_www: https://github.com/DocOps/asciidocsy
-:theme_repo_git: git@github.com:DocOps/asciidocsy.git
+:theme_repo_www: https://github.com/DocOps/asciidocsy-jekyll-theme
+:theme_repo_git: git@github.com:DocOps/asciidocsy-jekyll-theme.git
+:project_issues_path: https://github.com/DocOps/asciidocsy-jekyll-theme/issues
 // end::globals[]
 ifndef::env-github[:icons: font]
 ifdef::env-github[]
@@ -75,22 +76,22 @@ The codebase brings together developers and technical writers, allowing the latt
 
 === Revision 1.0 Targets
 
-* [add] tabbed panel content changer (https://github.com/DocOps/asciidocsy/issues/9[#9])
+* [add] tabbed panel content changer (link:{project_issues_path}/9[#9])
 ** tabs show/hide one or more _overlayed_ blocks of content
 ** sourced entirely in standard AsciiDoc, rendered w/ JS)
 ** configurable under `site.features`
-* [add] version handler templates (Liquid/HTML/CSS/JS) (https://github.com/DocOps/asciidocsy/issues/10[#10])
+* [add] version handler templates (Liquid/HTML/CSS/JS) (/10[#10])
 ** dropdown-style version selector
 ** "`this topic for another product`" links to sibling subjects
-* [add] full-featured, YAML-driven landing-page layout & components (https://github.com/DocOps/asciidocsy/issues/5[#5])
-* [refactor] CSS to Sass (https://github.com/DocOps/asciidocsy/issues/24[#24])
-* [improve] Vendor-code integration: (https://github.com/DocOps/asciidocsy/issues/32[#32])
+* [add] full-featured, YAML-driven landing-page layout & components (link:{project_issues_path}/5[#5])
+* [refactor] CSS to Sass (link:{project_issues_path}/24[#24])
+* [improve] Vendor-code integration: (link:{project_issues_path}/32[#32])
 ** SCSS files (Asciidoctor, Bootstrap, Font-Awesome, Highlight.js, et al)
 ** JS (JQuery, Bootsrap, components)
 ** Native extensions (Asciidoctor, Jekyll, Liquid)
 ** new syntax highlighter options
 * [add] Strings management _with Liquid- and Asciidoctor-parsed strings_ sourced as YAML
-* [add] Lunr.js back in as a backup/secondary search (https://github.com/DocOps/asciidocsy/issues/8[#8])
+* [add] Lunr.js back in as a backup/secondary search (link:{project_issues_path}/8[#8])
 * [add] Custom admonition blocks including several AsciiDocsy templates
 * [add] DITA-like semantic handling of topic types (task, concept, reference)
 ** specialized layouts by topic type
@@ -99,11 +100,11 @@ The codebase brings together developers and technical writers, allowing the latt
 ** banner or modal
 ** user selects permitted cookie types
 ** feature actually suppresses unpermitted cookies
-* [add] a dark theme option (user-controlled if you wish) (https://github.com/DocOps/asciidocsy/issues/35[#35])
+* [add] a dark theme option (user-controlled if you wish) (link:{project_issues_path}/35[#35])
 * [add] call to action (c2a) modal
 * [add] search results page w/ 3rd optional instantsearch field
 * [improve] feedback form with follow-up query
-* [refactor] as Ruby gem/Jekyll plugin (https://github.com/DocOps/asciidocsy/issues/31[#31])
+* [refactor] as Ruby gem/Jekyll plugin (link:{project_issues_path}/31[#31])
 * [add] sufficient unit and integration tests
 * [improve] and finalize dependency/upstream license handling
 
@@ -171,7 +172,8 @@ With a Ruby environment in place, these steps should generate the website source
 . Clone (or download and inflate) this repo.
 +
 .Clone
- git clone git@github.com:DocOps/asciidocsy.git
+[subs=+attributes]
+ git clone {theme_repo_git}
 +
 .Download & inflate
 --
@@ -179,7 +181,7 @@ image::github-repo-download_screenshot.png[GitHub repository download button]
 --
 +
 [TIP]
-Use [.cmd]`git clone git@github.com:DocOps/asciidocsy.git my-asciidocsy-project` to name the containing directory something other than `asciidocsy`.
+Use [.cmd]`git clone {theme_repo_git} my-asciidocsy-project` to name the containing directory something other than `asciidocsy`.
 Or clone normally and freely rename the directory at any time.
 
 . Install Ruby dependencies.
