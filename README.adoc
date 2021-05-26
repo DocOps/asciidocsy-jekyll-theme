@@ -25,6 +25,9 @@ AsciiDocsy is an Asciidoctor-ready *Jekyll theme for technical documentation*, a
 This is a major fork of the awesome link:https://github.com/vsoch/docsy-jekyll[Docsy Jekyll port] done by link:{forked_source_www}[VanessaSaurus], itself a fork of Google's link://www.docsy.dev[Docsy theme for Hugo].
 The last commit from the Docsy Jekyll version was retained for convenient diffing and just to maintain full credit.
 
+[horizontal]
+Now serving:: `v0.1.1` (2021-05-26)
+
 image::asciidocsy-screenshot.png[title='Screenshot of AsciiDocsy theme']
 
 == Purpose
@@ -100,7 +103,6 @@ The codebase brings together developers and technical writers, allowing the latt
 * [add] call to action (c2a) modal
 * [add] search results page w/ 3rd optional instantsearch field
 * [improve] feedback form with follow-up query
-* [improve] collapsible/accordion left nav
 * [refactor] as Ruby gem/Jekyll plugin (https://github.com/DocOps/asciidocsy/issues/31[#31])
 * [add] sufficient unit and integration tests
 * [improve] and finalize dependency/upstream license handling

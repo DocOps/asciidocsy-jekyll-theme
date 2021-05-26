@@ -1,0 +1,23 @@
+# SUPPORTED product revisions for ASCIIDOCSY
+# LATEST TO OLDEST
+revisions:
+  - code: 0.1.0 # unique revision ID
+    date: 2021-05-19 # release date
+    work: # NOT YET DELINEATED
+      # FULL SCHEMA
+      # All properties are optional except as noted
+      # - slug: # change ID (required for permalinks; else optional)
+      #   tick: # ID for the issue ticket
+      #   hash: # Commit hash (7+ chars)
+      #   type: # fix|new|imp
+      #   summ: # summary in present tense simple (this or `note` required)
+      #   note: >  # a fuller description of the change (this or `summ` required)
+      #   link: # Issue or PR/MR URL
+      #   show: # hide this item from notes if false; defaults to true
+      # Each of the following is only required if segmenting by that variety.
+      #   role: # changes faces: adm|dev|usr
+      #   cats: [] # category slugs for showing in sections of the release notes
+      #   tags: [] # tag slugs
+    patches:
+      - code: 0.1.1
+        date: 2021-05-26
