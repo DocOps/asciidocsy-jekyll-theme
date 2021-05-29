@@ -1,0 +1,16 @@
+{% assign changer = include.changer %}
+<script type="text/javascript">
+/**
+CHANGER
+**/
+$(function(){
+  $('select#{{  }}').on('change', function () {
+    var url = $(this).val();
+    if (url) {
+      window.location = url;
+      $.cookie('version', $(this).val());
+    }
+    return false;
+  });
+});
+</script>

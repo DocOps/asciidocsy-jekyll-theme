@@ -122,22 +122,6 @@ $( document ).ready(function() {
   });
 
   /**
-  * controls the
-  * version-switcher
-  * drop-down **/
-  // NOT YET IMPLEMENTED
-  $(function(){
-    $('select#versions').on('change', function () {
-      var url = $(this).val();
-      if (url) {
-        window.location = url;
-        $.cookie('version', $(this).val());
-      }
-      return false;
-    });
-  });
-
-  /**
   Prepare content for toggling
   **/
   // check for cookie and override default
