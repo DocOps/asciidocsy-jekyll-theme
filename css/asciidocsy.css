@@ -225,6 +225,10 @@ ul.list-unstyled {
   margin-bottom: 10px;
 }
 
+.tabber-tabset .nav-tabs li.nav-item {
+  margin-bottom: -8px;
+}
+
 .sticky-top.sticky-offset {
     top: 90px;
 }

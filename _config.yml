@@ -182,7 +182,7 @@ features:
       meta:
         index: asciidocsy-topics
     versioning:
-      togglers:
+      toggles:
         user-os: # arbitrary toggler name
           show:
             spot: '#sidebar-right'
@@ -197,7 +197,7 @@ features:
               - text: MacOS
                 slug: os-mac
                 icon: fa fa-apple
-      switchers:
+      selectors:
         # NOT YET IMPLEMENTED; slated for 0.2.0
         revision: # named switcher for sequential product versioning
           show:
@@ -207,7 +207,7 @@ features:
           swap:
             # instead of an `opts` property, here we'll name a data object
             data: page.product.versions
-      tabbers: # for "tabbed" source blocks, tables, etc
+      tabsets: # for "tabbed" source blocks, tables, etc
         # NOT YET IMPLEMENTED; slated for 0.2.0
         data-format: # arbitrary tabber name
           swap:
@@ -417,6 +417,8 @@ scripts:
       href: /js/highlight.pack.js
     - slug: asciidoctor
       href: /js/asciidoctor.min.js
+    - slug: tabber
+      href: /js/tabber.js
   tail:
     - slug: asciidocsy
       href: /js/main.js
