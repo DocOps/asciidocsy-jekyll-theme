@@ -1,0 +1,39 @@
+:page-permalink: /docs/theme/config/versioning
+:tab-table-options: frame=none,cols=1a,caption=''
+= Configure Version Handlers
+
+Version handlers are front-end features that enable site users to see only the content that applies to their product version, role, use case, or environment.
+You can use version handlers however you want, but we present here some guidance for choosing among the options.
+
+Further topics detail the configuration of each handler type.
+Handlers are broken down by duty, not by form.
+Some handlers can take multiple forms, but they perform distinct actions on the selected jQuery `change()` event.
+
+== Tabbing Block Content in Place
+
+Most common with code listings and log samples, if you need to alternate versions of content inside a fixed block without forcing the user to scroll, your solution is a [.term]*tabset*.
+
+Tabsets can be established within the page using conventional AsciiDoc syntax.
+
+Any tab that is repeated throughout a page or the rest of the site will default to the selected tab until changed by the user.
+
+== Token Swapping
+
+In some cases, one simple string needs to be altered in numerous parts of a page, but it makes no sense to generate a whole version of the docs just to display this alternate content.
+[.term]*Swaps* change the value of a tokenized element throughout the page.
+
+This feature is most commonly used to alter patch-revision numbers in product-download paths and installation instructions.
+
+Swaps can be user triggered by a radio button set or a selectbox.
+
+== Toggling Classes (Show/Hide)
+
+If inline content or various parts of an entire page need to be customized for user experience, apply classes ("`roles`" in AsciiDoc parlance) to the content.
+Toggles can establish checkbox-like or radio-button-like elements that enable users to show/hide content elements by class.
+
+== Changing URLs or Header Files
+
+When you need to go big, a [.term]*changer* is your tool.
+At this time, changers can target the URL or any element in the DOM.
+
+The AsciiDocsy skin selectors are examples of changers that target CSS link refs in the header.

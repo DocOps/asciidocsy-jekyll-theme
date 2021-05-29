@@ -1,0 +1,20 @@
+:page-permalink: /docs/theme/config/versioning/selectors
+:page-togglers: user-os
+= Configure Content Toggles
+
+Some of the content on this page will be hideable when rendered in the Jekyll site.
+
+[.os-win]
+--
+This content is for Windows Only.
+--
+
+[.os-nix]
+--
+This content is for Linux Only.
+--
+
+[.os-mac]
+--
+This content is for MacOS Only.
+--

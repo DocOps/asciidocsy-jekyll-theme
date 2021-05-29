@@ -1,0 +1,47 @@
+:page-permalink: /docs/theme/config/versioning/tabsets
+:tab-table-options: frame=none,cols=1a,caption=''
+= Configure Content Tabbers
+
+[.tabber-tabset.tabs-data-format]
+--
+[.tabber-item.tab-data-yaml,{tab-table-options}]
+|===
+|
+[source,YAML]
+----
+some: yaml-data
+goes: here
+----
+|===
+
+[.tabber-item.tab-data-json,{tab-table-options},title='JSONx']
+|===
+|
+[source,JSON]
+----
+{
+  "some": "yaml-data",
+  "goes": "here"
+}
+----
+|===
+--
+
+[.tabber-tabset.tabs-data-format]
+--
+[.tabber-item.tab-data-yaml]
+[source,YAML]
+----
+some: yaml-data
+goes: here
+----
+
+[.tabber-item.tab-data-json,{tab-table-options},title='JSONx']
+[source,JSON]
+----
+{
+  "some": "yaml-data",
+  "goes": "here"
+}
+----
+--
