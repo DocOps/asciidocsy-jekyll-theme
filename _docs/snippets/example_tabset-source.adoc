@@ -1,0 +1,60 @@
+// tag::raw[]
+[.tabber-tabset.tabs-data-format-tabber]
+--
+[source,yaml,role="tabber-pane pane-data-yaml"]
+----
+include::./example_tabset-source_data.yml[]
+----
+[source,json,role="tabber-pane pane-data-json"]
+----
+include::./example_tabset-source_data.json[]
+----
+--
+// end::raw[]
+// tag::marked[]
+[.tabber-tabset.tabs-data-format-tabber] // <1>
+--
+[source,yaml,role="tabber-pane pane-data-yaml"] // <2>
+----
+\include::./example_tabset-source_data.yml[]
+----
+[source,json,role="tabber-pane pane-data-json"] // <3>
+----
+\include::./example_tabset-source_data.json[]
+----
+--
+// end::marked[]
+// tag::xml-raw[]
+[.tabber-tabset.tabs-data-format-tabber]
+--
+[source,yaml,role="tabber-pane pane-data-yaml",title="YAML Data *"]
+----
+include::./example_tabset-source_data.yml[]
+----
+[source,json,role="tabber-pane pane-data-json"]
+----
+include::./example_tabset-source_data.json[]
+----
+[source,xml,role="tabber-pane pane-data-xml",title="XML Data **"]
+----
+include::./example_tabset-source_data.xml[]
+----
+--
+// end::xml-raw[]
+// tag::xml-marked[]
+[.tabber-tabset.tabs-data-format-tabber]
+--
+[source,yaml,role="tabber-pane pane-data-yaml",title="YAML Data *"] // <1>
+----
+\include::./example_tabset-source_data.yml[] // <2>
+----
+[source,json,role="tabber-pane pane-data-json"]
+----
+\include::./example_tabset-source_data.json[]
+----
+[source,xml,role="tabber-pane pane-data-xml",title="XML Data **"]
+----
+\include::./example_tabset-source_data.xml[]
+----
+--
+// end::xml-marked[]

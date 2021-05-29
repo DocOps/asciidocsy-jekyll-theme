@@ -1,0 +1,27 @@
+:page-permalink: /docs/theme/config/versioning/toggles
+:page-version-handlers: +user-os-toggle
+= Class Toggles
+
+include::{path_to_snippets}/handlers-table.adoc[tags="table-head,table-row-toggles,table-tail"]
+
+Some of the content on this page will be hideable when rendered in the Jekyll site.
+
+[.os-win]
+--
+This content is for Windows Only.
+--
+
+[.os-nix]
+--
+This content is for Linux Only.
+--
+
+[.os-mac]
+--
+This content is for MacOS Only.
+--
+
+[.os-mac.os-nix]
+--
+This content is for Unix-like operating systems.
+--

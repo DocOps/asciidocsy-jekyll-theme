@@ -1,0 +1,230 @@
+{% comment %}
+Generates the HTML form and the jQuery scripts for:
+  - token [swap]s
+  - class [toggle]s
+  - DOM [amend]ers
+Expects:
+  include.verb: String (swap|toggle|amend)
+  include.form: String (select|buttons)
+  include.opts: Array of Scalars or {slug:<slug>,text:<text>}
+  include.func: String (amenders only); name of predefined function OR .js file
+Optional:
+  include.id: String (becomes form_id)
+  include.pick: String; the slug of the default option
+  include.slug: Token name for dictionary-free swaps
+  include.targ: String; the ID of the target element to amend
+  include.href: Liquid; For URL-based changers, non-variable portion of URL
+  include.args: Object; a way to pass an object to your function template
+  include.icon: String; FontAwesome reference
+{% endcomment %}
+{% assign handler = handler | default: 0 | plus: 1 %}
+{% assign verb = include.verb %}
+{% assign form = include.form | default: "select" %}
+{% assign pick = include.pick | default: "" %}
+{% capture id_def %}handler-{{handler}}-{{form}}{% endcapture %}
+{% assign form_id = include.id | default: id_def %}
+{% assign func = include.func %}
+{% assign href = include.href %}
+{% assign targ = include.targ %}
+<!-- handler: {{ handler }} ({{ form_id }}) -->
+{% case form %}
+
+  {% when "select" %}
+    {% assign selected = "" %}
+<div class="form-group">
+  {% if include.text %}
+    <label for="{{form_id}}">
+      {{ include.text }}
+      {% if include.icon %}
+        <i class="icon {{ include.icon }}"></i>
+      {% endif %}
+    </label>
+  {% endif %}
+  <select class="form-control" id="{{form_id}}">
+  {% for item in include.opts %}
+    {% assign selected = "" %}
+    {% if item['text'] %}
+      {% assign text = item['text'] %}
+      {% assign value = item['slug'] %}
+    {% else %}
+      {% assign text = item %}
+      {% assign value = item %}
+    {% endif %}
+    {% if include.opt_tpl %}
+      {% assign value = include.opt_tpl | liquify %}
+    {% endif %}
+    <option value="{{ value }}">{{ text }}</option>
+  {% endfor %}
+  </select>
+</div>
+
+  {% when "buttons" %}
+<div class="btn-group btn-group-toggle {{verb}}-handler" id="{{form_id}}" name="{{form_id}}" data-toggle="buttons">
+  {% for item in include.opts %}
+    {% if item['text'] %}
+      {% assign text = item['text'] %}
+      {% assign value = item['slug'] %}
+    {% else %}
+      {% assign text = item %}
+      {% assign value = item %}
+    {% endif %}
+  <label class="btn btn-secondary btn-sm" for="{{value}}">
+    <input type="radio" name="{{form_id}}" id="{{value}}" value="{{ value }}">
+    {{ text }}
+  </label>
+  {% endfor %}
+</div>
+{% endcase %}
+
+<script type="text/javascript">
+{% unless handlers_init %}
+  {% assign handlers_init = true %}
+const urlParams = new URLSearchParams(window.location.search);
+{% endunless %}
+{% if verb == "amend" %}
+/**
+DOM AMENDER
+**/
+$(function(){
+  $('select#{{ form_id }}').on('change', function () {
+  {% if include.file %}
+    {% assign args = include.args %}
+    {% include {{include.file}} args=args %}
+  {% else %}
+    {% case include.func %}
+
+    {% when "change-url" %}
+      /**
+      URL-CHANGER
+      **/
+      var target = $(this).val();
+      window.location = target;
+      $.cookie('{{ form_id }}', target);
+      return false;
+
+    {% when "change-href" %}
+      /**
+      STYLE CHANGER
+      **/
+      var newStyleSheet = {% if href -%}
+        {{ href | liquify }}
+      {%- else -%}
+        $(this).val()
+      {% endif %}
+      $('{{ targ }}').attr("href", newStyleSheet)
+      $.cookie('{{ form_id }}', $(this).val());
+    {% endcase %}
+  {% endif %}
+  });
+});
+{% elsif verb == "toggle" %}
+/**
+CLASS TOGGLER
+**/
+{% elsif verb == "swap" %}
+/**
+TOKEN SWAPPER
+**/
+  {% assign slates = false %}
+  {% unless slate_dict_init %}
+    {% assign slate_dict_init = true %}
+let slateDict = {}
+  {% endunless %}
+  {% if include.opts[0]['slug'] %}
+    {% assign slates = true %}
+  {% endif %}
+  {% for opt in include.opts %}
+    {% if slates %}
+slateDict['{{ opt['slug'] }}'] = {
+      {% assign tokens = "" | split:"," %}
+      {%- for def in include.dict %}
+        {%- assign tok = def[0] %}
+        {%- if opt['dict'][tok] %}
+          {%- assign val = opt['dict'][tok] %}
+        {%- else %}
+          {%- assign val = def[1] %}
+        {%- endif %}
+        "{{ tok }}":"{{ val }}",
+      {%- endfor %}
+      {%- for def in opt['dict'] %}
+        {%- assign tok = def[0] %}
+        {%- unless include.dict[tok] %}
+        "{{ tok }}":"{{ def[1] }}",
+        {%- endunless %}
+      {%- endfor %}
+}
+    {% endif %}
+  {% endfor %}
+  {% if form == "select" %}
+$('#{{ form_id }}').on('change', function() {
+  {% elsif form == "buttons" %}
+$('#{{ form_id }}.swap-handler input').focus(function () {
+  {%- else %}// attach the swap to a toggle
+$('{{ form }}.swap-handler input').focus(function () {
+  {% endif %}
+  var val = $(this).val();
+  if (typeof slateDict[val] !== 'undefined') {
+    for ( let tok in slateDict[val] ) {
+      let token = "<$tok." + tok + ">"
+      let swap = '<span class="tok ' + tok + '">' + slateDict[val][tok] + '</span>'
+      let text = $(this).text();
+      $('main :not(script,.nosub,.nosub code)').contents().filter(function() {
+        return this.nodeType === 3;
+      }).replaceWith(function() {
+        return this.nodeValue.replace(token,swap);
+      });
+      $('.tok.' + tok).html(slateDict[val][tok]);
+    };
+  } else { // found no slateDict for this option
+    let token = "<$tok.{{ include.slug }}>";
+    let swap = '<span class="tok {{ include.slug }}">' + val + '</span>';
+    $('main :not(script,.nosub,.nosub code)').contents().filter(function() {
+      return this.nodeType === 3;
+    }).replaceWith(function() {
+      return this.nodeValue.replace(token,swap);
+    });
+    $('.tok.{{ include.slug }}').html(val);
+  };
+  $.cookie('{{ form_id }}', val);
+});
+{% endif %}
+{% unless verb == "toggle"
+  or verb == "tab"
+  or (verb == "swap"\
+    and form != "buttons"
+    and form != "select")
+%}
+/**
+Set value on page load
+Priority order:
+  1. URL query string parameter
+  2. cookie parameter
+  3. default value from `pick:` property
+  4. first option listed
+**/
+$( document ).ready(function() {
+  var nochoice = false;
+  if ( urlParams.has('{{ form_id }}') ) {
+    var val = urlParams.get('{{ form_id}}')
+  } else if ( $.cookie('{{ form_id }}') ) {
+    var val = ($.cookie('{{ form_id }}'))
+  } else if ( '{{ pick }}' != '' ) {
+    var val = "{{ pick }}"
+  } else {
+    nochoice = true;
+  }
+  {% if form == "select" %}
+    if (nochoice) { var val = $('#{{ form_id }} option:first-child').val() }
+    $('#{{ form_id }}').val(val).change();
+  {% elsif form == "buttons" %}
+    if (nochoice) {
+      var val = $('#{{ form_id }} label:first-child input').val()
+    }
+    $('input[name="{{ form_id }}"][value="' + val + '"]').click()
+  {% elsif form == "none" %}
+    // force action without controls
+  {% endif %}
+  $.cookie('{{ form_id }}', val);
+});
+{% endunless %}
+</script>

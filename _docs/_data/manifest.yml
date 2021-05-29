@@ -25,8 +25,17 @@ menu:
           kids:
             - text: Algolia Search
               href: /docs/theme/config/search/algolia
-        - text: Configure Togglers
-          href: /docs/theme/config/togglers
+        - text: Version Handlers
+          href: /docs/theme/config/versioning
+          kids:
+            - text: Pane Tabs
+              href: /docs/theme/config/versioning/tabsets
+            - text: Class Toggles
+              href: /docs/theme/config/versioning/toggles
+            - text: Token Swaps
+              href: /docs/theme/config/versioning/swaps
+            - text: DOM Amenders
+              href: /docs/theme/config/versioning/amenders
         - text: Customize Semantics
           href: /docs/theme/config/semantics
     - text: Extend the Theme

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  <row>
+    <app>Asciidoctor</app>
+    <use>THE AsciiDoc markup converter</use>
+    <url>https://www.asciidoctor.org</url>
+    <git>https://github.com/asciidoctor/asciidoctor</git>
+    <vrsn>2.0</vrsn>
+  </row>
+  <row>
+    <app>Jekyll</app>
+    <use>world-class static-site generator (SSG)</use>
+    <url>https://jekyllrb.com</url>
+    <git>https://github.com/jekyll/jekyll</git>
+    <vrsn>4.0</vrsn>
+  </row>
+</root>

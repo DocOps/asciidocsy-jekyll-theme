@@ -30,6 +30,7 @@ includes_dir: _includes
 
 # Global AsciiDocsy settings
 theme_dir: "" # <1> path to asset directories (css/ images/ js/ etc)
+assets_url: ""
 data_dir: _docs/_data
 source_git: git@github.com:DocOps/asciidocsy-jekyll-theme.git # git@-formatted address
 source_www: https://github.com/DocOps/asciidocsy-jekyll-theme
@@ -54,6 +55,7 @@ asciidoctor:
     path_to_jekyll_config: _config.yml
     path_to_readme: README.adoc
     path_to_data_dir: _docs/_data
+    path_to_snippets: _docs/snippets
     example-capition: ''
     experimental:
 # end::asciidoctor[]
@@ -86,7 +88,6 @@ defaults:
       sidebar-right: true
       search-index: true
       anchors: true
-      style-changers: true
       toc: [sidebar]
 
 # Paths to render with Jekyll that would not be rendered by default
@@ -101,6 +102,7 @@ exclude:
   - "**/README.adoc" # if we want content from READMEs, we include:: it
   - COPYRIGHT
   - LICENSE
+  - _docs/snippets
 
 # FEATURES
 #
@@ -182,42 +184,140 @@ features:
       meta:
         index: asciidocsy-topics
     versioning:
-      togglers:
-        user-os: # arbitrary toggler name
-          show:
-            spot: '#sidebar-right'
-          swap:
-            opts:
-              - text: Windows
-                slug: os-win
-                icon: fa fa-windows
-              - text: Linux/Unix
-                slug: os-nix
-                icon: fa fa-linux
-              - text: MacOS
-                slug: os-mac
-                icon: fa fa-apple
-      switchers:
-        # NOT YET IMPLEMENTED; slated for 0.2.0
-        revision: # named switcher for sequential product versioning
-          show:
-            text: Product Version
-            icon: fa fa-code-branch
-            spot: leftside nav
-          swap:
-            # instead of an `opts` property, here we'll name a data object
-            data: page.product.versions
-      tabbers: # for "tabbed" source blocks, tables, etc
-        # NOT YET IMPLEMENTED; slated for 0.2.0
-        data-format: # arbitrary tabber name
-          swap:
-            opts:
-              - text: YAML Data
-                slug: data-yaml
-              - text: JSON Data
-                slug: data-json
-              - text: XML
-                slug: data-xml
+      defaults:
+        topic:
+          list: [theme-skin-amend,syntax-skin-amend]
+        page:
+          list: [theme-skin-amend,syntax-skin-amend]
+      user-os-toggle: # arbitrary toggler name
+        verb: toggle
+        # form is inferred (buttons)
+        spot: '#sidebar-right .sidebar-mid'
+        swap:
+          pick: os-mac
+          opts:
+            - text: Windows
+              slug: os-win
+              icon: fa fa-windows
+            - text: Linux/Unix
+              slug: os-nix
+              icon: fa fa-linux
+            - text: MacOS
+              slug: os-mac
+              icon: fa fa-apple
+      patch-swap-0_2:
+# tag::sample-swap-patch[]
+        verb: swap
+        form: select
+        spot: "#sidebar-right .sidebar-end"
+        swap:
+          pick: 0.2.0
+          slug: vrsn # <1>
+          opts: ['0.2.0','0.2.1','0.2.2'] # <2>
+# end::sample-swap-patch[]
+      patch-swap-0_2-btns:
+        verb: swap
+        form: buttons
+        spot: "#sidebar-right .sidebar-end"
+        swap:
+          pick: 0.2.0
+          slug: vrsn # <1>
+          opts: ['0.2.0','0.2.1','0.2.2','0.2.3'] # <2>
+# THESE ARE JOKE DEMO VALUES
+      spoof-tokens-swap:
+# tag::sample-swap-spoof[]
+        verb: swap
+        form: select
+        spot: "#sidebar-right .sidebar-end"
+        swap:
+          pick: foss
+          dict: # <1>
+            company: DocOps.org
+            company_url: https://www.docopslab.org
+            theme: AsciiDocsy
+          opts: # <2>
+            - text: FOSS
+              slug: foss
+              dict:
+                slogan: Free docs for everyone!
+            - text: Freemium
+              slug: freemium
+              dict: # <3>
+                theme: AsciiDocsy Premium
+                company_url: https://www.docopslab.com
+                slogan: Free docs until you're a big deal (then chip in).
+            - text: SellOut
+              slug: sellout
+              dict: # <3>
+                theme: ACMEDocsy
+                company: AsciiDocs4Sale.com
+                company_url: https://asciidocs4sale.com
+                slogan: No free docs.
+# end::sample-swap-spoof[]
+# tag::sample-swap-piggyback[]
+      user-os-swap:
+        verb: swap
+        form: "#user-os-toggle"
+        spot: "#sidebar-right .sidebar-end"
+        swap:
+          opts:
+            - slug: os-mac
+              dict:
+                your_os: Your operaing system is very classy.
+                you: You appreciate good design and are willing to pay for it.
+            - slug: os-nix
+              dict:
+                your_os: Your operating system is very... rugged.
+                you: You like the illusion that you take charge of your devices.
+            - slug: os-win
+              dict:
+                your_os: Your operating system is practical.
+                you: You don't overthink things.
+# end::sample-swap-piggyback[]
+# / END JOKE DEMO VALUES
+      theme-skin-amend:
+        verb: amend
+        form: select
+        spot: "#sidebar-right .sidebar-end"
+        show:
+          text: Theme skin
+          icon: fa fa-paint-brush
+        swap:
+          data: site.data.theme.skin-styles
+          pick: foundation
+          # opts: >-
+          #   {{site.assets_url}}/css/skins/{{value}}.css
+        func:
+          name: change-href
+          targ: "#theme-skin"
+          href: >- # defaults to $(this).val(); allows Liquid
+            '{{site.assets_url}}/css/skins/' + $(this).val() + '.css'
+
+      syntax-skin-amend:
+        verb: amend
+        form: select
+        spot: "#sidebar-right .sidebar-end"
+        show:
+          text: Code highlight skin
+          icon: fa fa-code
+        swap:
+          data: site.data.theme.syntax-styles
+          pick: a11y-light
+        func:
+          name: change-href
+          targ: "#syntax-skin"
+          href: >-
+            '{{site.assets_url}}/css/syntax/hljs/' + $(this).val() + '.css'
+
+      data-format-tabber: # arbitrary tabset name
+        verb: tab
+        swap:
+          pick: data-json
+          opts:
+            - text: YAML Data
+              slug: data-yaml
+            - text: JSON Data
+              slug: data-json
     topic: # order these objects as you wish them to appear
       peel: # display print-friendly version
         text: Print-friendly
@@ -417,9 +517,15 @@ scripts:
       href: /js/highlight.pack.js
     - slug: asciidoctor
       href: /js/asciidoctor.min.js
+    - slug: asciidocsy-tabber
+      href: /js/tabber.js
+    - slug: asciidocsy-toggler
+      href: /js/toggler.js
+    - slug: asciidocsy-semantics
+      href: /js/semantics.js
   tail:
-    - slug: asciidocsy
-      href: /js/main.js
+    - slug: asciidocsy-tail
+      href: /js/tail.js
 
 # SITE POLICIES
 policies:
@@ -489,122 +595,4 @@ styles:
     width: 50px
   color:
     theme: "#30638e"
-  skin: # EITHER a String (base filename of skin in css/skins/; e.g., `colony`);
-        # OR a hash of `list:` (Array) and `pick:` (String).
-    list: # all skins available to the theme
-      - colony
-      - foundation
-      - foundation-lime
-      - foundation-potion
-      - github
-      - golo
-      - iconic
-      - maker
-      - readthedocs
-      - riak
-      - rocket-panda
-      - rubygems
-    pick: foundation
-  syntax: # EITHER a String (base filename of syntax style in css/syntax/hljs;
-          #  e.g., `a11y-dark`);
-          # OR a hash of `list:` (Array) and `pick:` (String).
-    pick: a11y-light
-    list:
-      - a11y-dark
-      - a11y-light
-      - agate
-      - androidstudio
-      - an-old-hope
-      - arduino-light
-      - arta
-      - ascetic
-      - atelier-cave-dark
-      - atelier-cave-light
-      - atelier-dune-dark
-      - atelier-dune-light
-      - atelier-estuary-dark
-      - atelier-estuary-light
-      - atelier-forest-dark
-      - atelier-forest-light
-      - atelier-heath-dark
-      - atelier-heath-light
-      - atelier-lakeside-dark
-      - atelier-lakeside-light
-      - atelier-plateau-dark
-      - atelier-plateau-light
-      - atelier-savanna-dark
-      - atelier-savanna-light
-      - atelier-seaside-dark
-      - atelier-seaside-light
-      - atelier-sulphurpool-dark
-      - atelier-sulphurpool-light
-      - atom-one-dark
-      - atom-one-dark-reasonable
-      - atom-one-light
-      - brown-paper
-      - codepen-embed
-      - color-brewer
-      - darcula
-      - dark
-      - default
-      - docco
-      - dracula
-      - far
-      - foundation
-      - github
-      - github-gist
-      - gml
-      - googlecode
-      - gradient-dark
-      - gradient-light
-      - grayscale
-      - gruvbox-dark
-      - gruvbox-light
-      - hopscotch
-      - hybrid
-      - idea
-      - ir-black
-      - isbl-editor-dark
-      - isbl-editor-light
-      - kimbie.dark
-      - kimbie.light
-      - lightfair
-      - lioshi
-      - magula
-      - mono-blue
-      - monokai
-      - monokai-sublime
-      - night-owl
-      - nnfx
-      - nnfx-dark
-      - nord
-      - obsidian
-      - ocean
-      - paraiso-dark
-      - paraiso-light
-      - pojoaque
-      - purebasic
-      - qtcreator_dark
-      - qtcreator_light
-      - railscasts
-      - rainbow
-      - routeros
-      - school-book
-      - shades-of-purple
-      - solarized-dark
-      - solarized-light
-      - srcery
-      - stackoverflow-dark
-      - stackoverflow-light
-      - sunburst
-      - tomorrow
-      - tomorrow-night-blue
-      - tomorrow-night-bright
-      - tomorrow-night
-      - tomorrow-night-eighties
-      - vs2015
-      - vs
-      - xcode
-      - xt256
-      - zenburn
 # end::styles[]

@@ -1,0 +1,40 @@
+// tag::table-head[]
+[cols="1a,2,2,4,3a",options="header"]
+|===
+| verb
+| target
+| forms
+| description
+| sources
+// end::table-head[]
+// tag::table-row-amenders[]
+s| <</docs/theme/config/versioning/amenders#,amend>>
+| URL/head elements
+| select icon:caret-square-o-down[], buttons icon:dot-circle-o[]
+| Change a string in a DOM element or add your own function.
+| `version-handler.html`, your custom JS
+// end::table-row-amenders[]
+// tag::table-row-swaps[]
+s| <</docs/theme/config/versioning/swaps#,swap>>
+| tokens in the text
+| select icon:caret-square-o-down[], buttons icon:dot-circle-o[]
+| Change the expression of a token already rendered in HTML.
+| `version-handler.html`
+// end::table-row-swaps[]
+// tag::table-row-toggles[]
+s| <</docs/theme/config/versioning/toggles#,toggle>>
+| element classes in the text
+| buttons icon:dot-circle-o[]/icon:check-square-o[] (radio or checkbox)
+| Show/hide elements of classes.
+| `version-handler.html`, `js/main.js`
+// end::table-row-toggles[]
+// tag::table-row-tabsets[]
+s| <</docs/theme/config/versioning/tabsets#,tab>>
+| a block element in place
+| tabs icon:folder-open-o[]
+| Determine which block in tabset to show in pane.
+| `js/tabber.js`
+// end::table-row-tabsets[]
+// tag::table-tail[]
+|===
+// end::table-tail[]

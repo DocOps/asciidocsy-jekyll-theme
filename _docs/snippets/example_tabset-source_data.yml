@@ -1,0 +1,10 @@
+- app: Asciidoctor
+  use: THE AsciiDoc markup converter
+  url: https://www.asciidoctor.org
+  git: https://github.com/asciidoctor/asciidoctor
+  vrsn: '2.0'
+- app: Jekyll
+  use: world-class static-site generator (SSG)
+  url: https://jekyllrb.com
+  git: https://github.com/jekyll/jekyll
+  vrsn: '4.0'
