@@ -1,0 +1,27 @@
+{% comment %}
+Assembles version-handler features in various spot-specific clusters
+{% endcomment %}
+{% include hook.liquid template="versioning-controls_html" spot="file" %}
+{% unless hook_replace_tpl %}
+{% assign features = site.features.actions.versioning %}
+{% for feat in features %}
+  {% if feat[1]['spot'] == include.spot %}
+    {% assign verb = feat[1]['verb'] %}
+    {% assign pick = feat[1]['swap']['pick'] %}
+    {% assign opts = feat[1]['swap']['opts'] %}
+    {% assign form = feat[1]['form'] %}
+    {% assign func = feat[1]['func'] %}
+    {% if verb == toggle %}
+      {% assign form = "buttons" %}
+    {% endif %}
+    {% assign form_id = feat[0] %}
+    {% include version-handler.html
+      id=form_id
+      verb=verb
+      form=form
+      opts=opts
+      pick=pick
+      func=func %}
+  {% endif %}
+{% endfor %}
+{% endunless %}

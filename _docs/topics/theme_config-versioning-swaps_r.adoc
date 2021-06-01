@@ -1,0 +1,2 @@
+:page-permalink: /docs/theme/config/versioning/swaps
+= Configure Content Token Swaps

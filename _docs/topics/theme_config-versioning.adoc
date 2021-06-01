@@ -7,33 +7,66 @@ You can use version handlers however you want, but we present here some guidance
 
 Further topics detail the configuration of each handler type.
 Handlers are broken down by duty, not by form.
-Some handlers can take multiple forms, but they perform distinct actions on the selected jQuery `change()` event.
+Some handlers can take multiple forms -- that is, the HTML form elements they use to present and select options.
+The handler types perform distinct actions on the selected jQuery `change()` (or similar) event.
+
+[NOTE]
+You do not need to know JavaScript or jQuery to implement.
+AsciiDocsy pre-customizes and extends Bootstrap features to provide configuration-based adaption to your use case.
+
+The rest of this topic is to help you choose between the various types of version handlers.
 
 == Tabbing Block Content in Place
 
-Most common with code listings and log samples, if you need to alternate versions of content inside a fixed block without forcing the user to scroll, your solution is a [.term]*tabset*.
+Most common with code listings and log samples, [.case]*_if you need to alternate versions of content inside a fixed block_* without forcing the user to scroll, your solution is a [.term]*tabset*.
 
-Tabsets can be established within the page using conventional AsciiDoc syntax.
+Tabsets use the *tabber.html* include, which uses JavaScript to glean combinations of selector *tabs* and content *panes* from the HTML rendered by conventional AsciiDoc syntax.
 
-Any tab that is repeated throughout a page or the rest of the site will default to the selected tab until changed by the user.
+Any tabset or tab/pane class that is repeated throughout a page (or the rest of the site if user's cookies are enabled) will default to the selected tab until changed by the user.
 
-== Token Swapping
+Tabsets are defined purely in conventional AsciiDoc.
+There is no need to register them in a data file, and they do not require an additional Asciidoctor backend.
 
-In some cases, one simple string needs to be altered in numerous parts of a page, but it makes no sense to generate a whole version of the docs just to display this alternate content.
-[.term]*Swaps* change the value of a tokenized element throughout the page.
+== Swapping Tokens in Place
 
-This feature is most commonly used to alter patch-revision numbers in product-download paths and installation instructions.
+In some cases, [.case]*_one simple string needs to be altered in numerous parts of a page_*, but it makes no sense to generate a whole version of the docs just to display this alternate content.
+*Swaps* change the value of tokenized content throughout the page.
+
+This feature is most commonly used to alter patch-revision numbers, such as in product-download paths and installation instructions.
 
 Swaps can be user triggered by a radio button set or a selectbox.
 
-== Toggling Classes (Show/Hide)
+=== Swapping Token Sets
+
+[.case]*_If you have more than one string to swap when you version changes_*, use token sets.
+This feature is invaluable to the process of "white labeling" a docset.
+Replace key terms related to your or a customer's company, brand, or specific implementation of your product.
+
+Token sets are defined in data files and swappable using buttons or selectboxes.
+
+== Toggling to Show or Hide Classes
+
+Sometimes you need a combination of tabsets and swaps, [.case]*_alternating and muting larger swaths or blocks of text throughout a page_*.
+A *toggle*
 
 If inline content or various parts of an entire page need to be customized for user experience, apply classes ("`roles`" in AsciiDoc parlance) to the content.
-Toggles can establish checkbox-like or radio-button-like elements that enable users to show/hide content elements by class.
 
-== Changing URLs or Header Files
+Toggles are centrally defined in the Jekyll config, but you choose which pages they appear on.
 
-When you need to go big, a [.term]*changer* is your tool.
-At this time, changers can target the URL or any element in the DOM.
+They can establish multi-select (checkbox-like) form elements or radio-button-like elements, both enabling users to show/hide content elements by class.
+
+== Amending URLs, Head Links, Anything in the DOM
+
+When you need to go big, *version-dommer.html* is your tool.
+At this time, Dommers can *_target the browser's location (URL) or any element in the current page's HTML5 DOM_*.
+
+They can form selectbox or radio-button-like elements.
+They are like an open-ended token swapper, targetting any discrete aspect of an HTML element that you can latch onto with jQuery.
 
 The AsciiDocsy skin selectors are examples of changers that target CSS link refs in the header.
+Any system that changes URLs between docsets (substantial versioning) would use this to bump locations to a parallel revision directory.
+
+[[handlers-review]]
+== Version Handlers Review
+
+include::_docs/snippets/handlers-table.adoc[]

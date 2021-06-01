@@ -30,6 +30,7 @@ includes_dir: _includes
 
 # Global AsciiDocsy settings
 theme_dir: "" # <1> path to asset directories (css/ images/ js/ etc)
+assets_url: ""
 data_dir: _docs/_data
 source_git: git@github.com:DocOps/asciidocsy-jekyll-theme.git # git@-formatted address
 source_www: https://github.com/DocOps/asciidocsy-jekyll-theme
@@ -54,6 +55,7 @@ asciidoctor:
     path_to_jekyll_config: _config.yml
     path_to_readme: README.adoc
     path_to_data_dir: _docs/_data
+    path_to_snippets: _docs/snippets
     example-capition: ''
     experimental:
 # end::asciidoctor[]
@@ -182,42 +184,55 @@ features:
       meta:
         index: asciidocsy-topics
     versioning:
-      toggles:
-        user-os: # arbitrary toggler name
-          show:
-            spot: '#sidebar-right'
-          swap:
-            opts:
-              - text: Windows
-                slug: os-win
-                icon: fa fa-windows
-              - text: Linux/Unix
-                slug: os-nix
-                icon: fa fa-linux
-              - text: MacOS
-                slug: os-mac
-                icon: fa fa-apple
-      selectors:
-        # NOT YET IMPLEMENTED; slated for 0.2.0
-        revision: # named switcher for sequential product versioning
-          show:
-            text: Product Version
-            icon: fa fa-code-branch
-            spot: leftside nav
-          swap:
-            # instead of an `opts` property, here we'll name a data object
-            data: page.product.versions
-      tabsets: # for "tabbed" source blocks, tables, etc
-        # NOT YET IMPLEMENTED; slated for 0.2.0
-        data-format: # arbitrary tabber name
-          swap:
-            opts:
-              - text: YAML Data
-                slug: data-yaml
-              - text: JSON Data
-                slug: data-json
-              - text: XML
-                slug: data-xml
+      user-os: # arbitrary toggler name
+        verb: toggle
+        # form is inferred (buttons)
+        spot: '#sidebar-right .sidebar-mid'
+        swap:
+          opts:
+            - text: Windows
+              slug: os-win
+              icon: fa fa-windows
+            - text: Linux/Unix
+              slug: os-nix
+              icon: fa fa-linux
+            - text: MacOS
+              slug: os-mac
+              icon: fa fa-apple
+      # revision:
+      #   verb: amend
+      #   form: select
+      #   show:
+      #     text: Product Version
+      #     icon: fa fa-code-branch
+      #     spot: leftside nav
+      #   swap:
+      #     # instead of an `opts` property, here we'll name a data object
+      #     data: page.product.versions
+      #     html: # a valid line of jQuery to execute onChange()
+      theme-skin:
+        verb: amend
+        form: select
+        spot: "#sidebar-right .sidebar-mid"
+        show:
+          text: Change theme skin
+          icon: fa-paintbrush
+        form:
+          type: select
+        swap:
+          data: site.styles.skins.list
+        func: change-style
+        targ: "#skin-style"
+      data-format: # arbitrary tabset name
+        verb: tab
+        swap:
+          opts:
+            - text: YAML Data
+              slug: data-yaml
+            - text: JSON Data
+              slug: data-json
+            - text: XML
+              slug: data-xml
     topic: # order these objects as you wish them to appear
       peel: # display print-friendly version
         text: Print-friendly

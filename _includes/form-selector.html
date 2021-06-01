@@ -1,0 +1,62 @@
+{% comment %}
+Generates either a selectbox or a radio-button-like set of btn-grp toggles.
+Expects:
+  type: String (select|buttons)
+  opts: Array of Scalars or {slug:slug,text:text}
+Optional:
+  id: String
+
+{% endcomment %}
+{% include hook.liquid template="selector_html" spot="file" %}
+{% unless hook_replace_tpl %}
+{% increment selector %}
+{% assign form_id = include.id | default: 'selector-' | amend: selector %}
+{% assign type = include.type | default: "select" %}
+{% assign pick = include.pick | default: "" %}
+{% case type %}
+
+  {% when "select" %}
+    {% assign selected = "" %}
+<div class="form-group">
+  <label for="{{form_id}}">{{ include.label | default: 'Choose one' }}</label>
+  <select class="form-control" id="{{form_id}}">
+{% for item in include.opts %}
+  {% if item['text'] %}
+    {% assign text = item['text'] %}
+    {% assign value = item['slug'] %}
+  {% else %}
+    {% assign text = item %}
+    {% assign value = item %}
+  {% endif %}
+  {% if value == pick %}
+    {% assign selected = "selected" %}
+    <option value="{{value}}" id="{{value}}" {{selected}}>{{ text }}</option>
+{% endfor %}
+  </select>
+</div>
+
+  {% when "buttons" %}
+<div class="btn-group btn-group-toggle toggle-switcher" id="{{form_id}}" name="{{form_id}}" data-toggle="buttons">
+  {% if include.label %}
+    <label for="{{form_id}}">{{ include.label }}</label>
+  {% endif %}
+  {% assign active = "" %}
+  {% for item in include.opts %}
+    {% if item['text'] %}
+      {% assign text = item['text'] %}
+      {% assign value = item['slug'] %}
+    {% else %}
+      {% assign text = item %}
+      {% assign value = item %}
+    {% endif %}
+    {% if value == pick %}
+      {% assign active = "active" %}
+  <label class="btn btn-secondary btn-sm {{active}}">
+    <input type="radio" name="{{value}}" id="{{value}}" value="{{ opt.slug }}">
+    {{ text }}
+  </label>
+  {% endfor %}
+</div>
+
+{% endcase %}
+{% endunless %}

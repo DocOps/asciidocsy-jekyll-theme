@@ -13,8 +13,8 @@ scripts:
   - autocomplete
   - algoliasearch-3
   - asciidoctor
-  - asciidocsy
   - tabber
+  - asciidocsy
 ---
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -34,54 +34,50 @@ scripts:
       <div class="row flex-xl-nowrap">
 {% if layout.sidebar-left %}
         <div id="sidebar-left" class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none"><!-- SUBJECT/PRODUCT REF/NAV -->
-           <div class="sticky-top sticky-offset">
+          <div class="sticky-top sticky-offset">
+            <div class="sidebar-top">
+            {% include versioning-controls.html
+              spot="#sidebar-left .sidebar-top" %}
   {% if site.features.actions.search-subject.show.spot == "#sidebar-left" %}
              {% include search-form.html search="search-subject" %}
   {% endif %}
-  {% if site.features.actions.versioning.switchers.revision.show.spot == "#nav-subject" %}
-             {% include versioner.html %}
-  {% endif %}
-             {% include nav-subject-menu.html manifest=site.data.manifest %}
-          </div>
+            </div>
+            <div class="sidebar-mid">
+            {% include versioning-controls.html
+              spot="#sidebar-left .sidebar-mid" %}
+              {% include nav-subject-menu.html manifest=site.data.manifest %}
+            </div>
+            <div class="sidebar-end">
+              {% include versioning-controls.html
+                spot="#sidebar-left .sidebar-end" %}
+            </div>
+          </div><!-- /.sticky-top -->
         </div><!-- /#sidebar-left -->
 {% endif %}
-        <main class="{{ layout.main-class | default: 'col-12 col-md-9 col-xl-8 pl-md-5' }}" role="main">
+        <main id="main" class="{{ layout.main-class | default: 'col-12 col-md-9 col-xl-8 pl-md-5' }}" role="main">
           <div class="td-content">
             {{ content }}
           </div>
-{% if page.layout == "topic" %}
-          <div class="row flex topic-footer">
-            {% include see-also.html %}
-  {% if site.features.actions.feedback-form.show %}
-            {% include feedback.html %}
-  {% endif %}
-          </div>
-{% endif %}
         </main>
 {% if layout.sidebar-right %}
         <div id="sidebar-right" class="d-none d-xl-block col-xl-2 td-toc d-print-none"><!-- TOPIC/PAGE REF/NAV -->
-          <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-            {% include page-links.html %}
+          <div class=".sidebar-top">
+            {% include versioning-controls.html spot="#sidebar-right .sidebar-top" %}
+            <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+              {% include page-links.html %}
+            </div>
           </div>
-  {% if page.togglers %}
-          <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-            {% include togglers.html spot="#sidebar-right" %}
-          </div>
-  {% endif %}
+          <div class=".sidebar-mid">
+            {% include versioning-controls.html spot="#sidebar-right .sidebar-mid" %}
   {% if layout.toc == "sidebar" and site.features.navigation.toc.show.spot == "#sidebar-right" %}
-          <nav id="toc-side" data-spy="affix" data-toggle="toc"></nav>
+            <nav id="toc-side" data-spy="affix" data-toggle="toc"></nav>
   {% endif %}
-  {% if page.style-changers %}
-    {% if site.features.actions.page-skin %}
-          {% include style-changer.html kind="skin" %}
-    {% endif %}
-    {% if site.features.actions.syntax-style %}
-          {% include style-changer.html kind="syntax" %}
-    {% endif %}
-  {% endif %}
-  {% if site.semantics.role.term.show.spot == "#sidebar-right" %}
+          </div>
+          <div class="sidebar-end">
+            {% include versioning-controls.html spot="#sidebar-right .sidebar-end" %}
+    {% if site.semantics.role.term.show.spot == "#sidebar-right" %}
           <nav id="terms-listing"></nav>
-  {% endif %}
+    {% endif %}
         </div><!-- /#sidebar-right -->
 {% endif %}
       </div><!-- /.row.flex-xl-nowrap -->

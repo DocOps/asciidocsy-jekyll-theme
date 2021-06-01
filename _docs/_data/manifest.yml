@@ -28,12 +28,14 @@ menu:
         - text: Version Handling
           href: /docs/theme/config/versioning
           kids:
-            - text: Selectors
-              href: /docs/theme/config/versioning/selectors
-            - text: Tabsets
+            - text: Show/Hide Pane Tabsets
               href: /docs/theme/config/versioning/tabsets
-            - text: Toggles
+            - text: Content Toggles
               href: /docs/theme/config/versioning/toggles
+            - text: Token Swaps
+              href: /docs/theme/config/versioning/swaps
+            - text: DOM Amenders
+              href: /docs/theme/config/versioning/amenders
         - text: Customize Semantics
           href: /docs/theme/config/semantics
     - text: Extend the Theme

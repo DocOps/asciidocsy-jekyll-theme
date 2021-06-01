@@ -1,6 +1,8 @@
 :page-permalink: /docs/theme/config/versioning/toggles
-:page-togglers: user-os
+:page-toggles: user-os
 = Configure Content Toggles
+
+include::{path_to_snippets}/handlers-table.adoc[tags="table-head,table-row-toggles,table-tail"]
 
 Some of the content on this page will be hideable when rendered in the Jekyll site.
 

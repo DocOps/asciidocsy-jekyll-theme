@@ -1,0 +1,127 @@
+{% comment %}
+Generates the HTML form and the jQuery scripts for:
+  - token [swap]s
+  - class [toggle]s
+  - DOM [amend]ers
+Expects:
+  include.verb: String (swap|toggle|amend)
+  include.form: String (select|buttons)
+  include.opts: Array of Scalars or {slug:<slug>,text:<text>}
+  include.func: String (amenders only); name of predefined function OR .js file
+Optional:
+  include.id: String
+  include.pick: String; the slug of the default option
+  include.targ: String; the ID of the target element to amend
+  include.path: For URL-based changers
+{% endcomment %}
+{% assign handler = handler | default: 0 | plus: 1 %}
+{% assign verb = include.verb %}
+{% assign form = include.form | default: "select" %}
+{% assign pick = include.pick | default: "" %}
+{% capture id_def %}handler-{{handler}}-{{form}}{% endcapture %}
+{% assign form_id = include.id | default: id_def %}
+{% case form %}
+
+  {% when "select" %}
+    {% assign selected = "" %}
+<div class="form-group">
+  {% if include.label %}
+  <label for="{{form_id}}">{{ include.label }}</label>
+  {% endif %}
+  <select class="form-control" id="{{form_id}}">
+  {% for item in include.opts %}
+    {% if item['text'] %}
+      {% assign text = item['text'] %}
+      {% assign value = item['slug'] %}
+    {% else %}
+      {% assign text = item %}
+      {% assign value = item %}
+    {% endif %}
+    {% if value == pick %}
+      {% assign selected = "selected" %}
+    {% endif %}
+    <option value="{{value}}" id="{{value}}" {{selected}}>{{ text }}</option>
+  {% endfor %}
+  </select>
+</div>
+
+  {% when "buttons" %}
+<div class="btn-group btn-group-toggle {{verb}}-handler" id="{{form_id}}" name="{{form_id}}" data-toggle="buttons">
+  {% if include.label %}
+    <label for="{{form_id}}">{{ include.label }}</label>
+  {% endif %}
+  {% assign active = "" %}
+  {% for item in include.opts %}
+    {% if item['text'] %}
+      {% assign text = item['text'] %}
+      {% assign value = item['slug'] %}
+    {% else %}
+      {% assign text = item %}
+      {% assign value = item %}
+    {% endif %}
+    {% if value == pick %}
+      {% assign active = "active" %}
+    {% endif %}
+  <label class="btn btn-secondary btn-sm {{active}}">
+    <input type="radio" name="{{value}}" id="{{value}}" value="{{ value }}">
+    {{ text }}
+  </label>
+  {% endfor %}
+</div>
+{% endcase %}
+
+<script type="text/javascript">
+{% if verb == "amend" %}
+/**
+DOM AMENDER
+**/
+$(function(){
+  $('select#{{ form_id }}').on('change', function () {
+    if (!$.cookie('{{ form_id }}')) {
+      $.cookie('{{ form_id }}', '{{ pick }}');
+    }
+    {% case include.func %}
+
+    {% when "change-url" %}
+    /**
+    URL-CHANGER
+    **/
+      var $target = $(this).val();
+      window.location = $target;
+      $.cookie('{{ form_id }}', $target);
+      return false;
+
+    {% when "change-style" %}
+      {% assign path = include.path | append: "/", replace: "//"."/" %}
+      /**
+      STYLE CHANGER
+      **/
+      if ($.cookie('{{ form_id }}')) {
+        var style    = $.cookie('{{ form_id }}')
+        var ref = '{{ assets_url }}/css/{{ path }}' + style + '.css'
+        $('#{{ include.targ }}').attr("href", ref);
+        $('select#{{ form_id }}').val(style).change();
+      };
+      $('select#{{ form_id }}').on('change', function () {
+        var newStyle = '{{assets_url}}/css/{{path}}' + $(this).val() + '.css'
+        $('#{{ include.targ }}').attr("href", newStyle)
+        $.cookie('{{ form_id }}', $(this).val());
+      });
+
+    {% else %}
+      {% include {{ include.func }} %}
+    {% endcase %}
+  });
+});
+{% elsif verb == "toggle" %}
+/**
+CLASS TOGGLER
+
+**/
+{% elsif verb == "swap" %}
+/**
+TOKEN SWAPPER
+
+**/
+{% endif %}
+</script>

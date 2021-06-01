@@ -1,55 +1,55 @@
 ---
 layout: null
 ---
-(function($) {
-    'use strict';
-
-    function bottomPos(element) {
-        return element.offset().top + element.outerHeight();
-    }
-    $(function() {
-        var promo = $(".js-td-cover");
-        if (!promo.length) {
-            return
-        }
-        var promoOffset = bottomPos(promo);
-        var navbarOffset = $('.js-navbar-scroll').offset().top;
-        var threshold = Math.ceil($('.js-navbar-scroll').outerHeight());
-        if ((promoOffset - navbarOffset) < threshold) {
-            $('.js-navbar-scroll').addClass('navbar-bg-onscroll');
-        }
-        $(window).on('scroll', function() {
-            var navtop = $('.js-navbar-scroll').offset().top - $(window).scrollTop();
-            var promoOffset = bottomPos($('.js-td-cover'));
-            var navbarOffset = $('.js-navbar-scroll').offset().top;
-            if ((promoOffset - navbarOffset) < threshold) {
-                $('.js-navbar-scroll').addClass('navbar-bg-onscroll');
-            } else {
-                $('.js-navbar-scroll').removeClass('navbar-bg-onscroll');
-                $('.js-navbar-scroll').addClass('navbar-bg-onscroll--fade');
-            }
-        });
-    });
-}(jQuery));
-(function($) {
-    'use strict';
-    var Search = {
-        init: function() {
-            $(document).ready(function() {
-                $(document).on('keypress', '.td-search-input', function(e) {
-                    if (e.keyCode !== 13) {
-                        return
-                    }
-                    var query = $(this).val();
-                    var searchPage = "{{ site.url }}{{ site.baseurl }}/search/?q=" + query;
-                    document.location = searchPage;
-                    return false;
-                });
-            });
-        },
-    };
-    Search.init();
-}(jQuery));
+// (function($) {
+//     'use strict';
+//
+//     function bottomPos(element) {
+//         return element.offset().top + element.outerHeight();
+//     }
+//     $(function() {
+//         var promo = $(".js-td-cover");
+//         if (!promo.length) {
+//             return
+//         }
+//         var promoOffset = bottomPos(promo);
+//         var navbarOffset = $('.js-navbar-scroll').offset().top;
+//         var threshold = Math.ceil($('.js-navbar-scroll').outerHeight());
+//         if ((promoOffset - navbarOffset) < threshold) {
+//             $('.js-navbar-scroll').addClass('navbar-bg-onscroll');
+//         }
+//         $(window).on('scroll', function() {
+//             var navtop = $('.js-navbar-scroll').offset().top - $(window).scrollTop();
+//             var promoOffset = bottomPos($('.js-td-cover'));
+//             var navbarOffset = $('.js-navbar-scroll').offset().top;
+//             if ((promoOffset - navbarOffset) < threshold) {
+//                 $('.js-navbar-scroll').addClass('navbar-bg-onscroll');
+//             } else {
+//                 $('.js-navbar-scroll').removeClass('navbar-bg-onscroll');
+//                 $('.js-navbar-scroll').addClass('navbar-bg-onscroll--fade');
+//             }
+//         });
+//     });
+// }(jQuery));
+// (function($) {
+//     'use strict';
+//     var Search = {
+//         init: function() {
+//             $(document).ready(function() {
+//                 $(document).on('keypress', '.td-search-input', function(e) {
+//                     if (e.keyCode !== 13) {
+//                         return
+//                     }
+//                     var query = $(this).val();
+//                     var searchPage = "{{ site.url }}{{ site.baseurl }}/search/?q=" + query;
+//                     document.location = searchPage;
+//                     return false;
+//                 });
+//             });
+//         },
+//     };
+//     Search.init();
+// }(jQuery));
 
 $( document ).ready(function() {
 
@@ -125,7 +125,7 @@ $( document ).ready(function() {
   Prepare content for toggling
   **/
   // check for cookie and override default
-  $('.toggle-switcher').each(function () {
+  $('.toggle-handler').each(function () {
     if ($.cookie('switcher_' + $(this).attr('name'))) {
       var cookieVal = $.cookie('switcher_' + $(this).attr('name'));
       $(this).children('label').each(function () {
@@ -136,22 +136,22 @@ $( document ).ready(function() {
   });
   var togglesList = [];
   // hide all elements with a switcher-managed class
-  $('.toggle-switcher input').each(function () {
+  $('.toggle-handler input').each(function () {
     var theClass = $("." + $(this).val());
-    if ($(theClass).length) { togglesList.push($(this).closest('.toggle-switcher').attr('name')) }
+    if ($(theClass).length) { togglesList.push($(this).closest('.toggle-handler').attr('name')) }
     $(theClass).hide();
   });
   // hide switchers with no classes found
-  $('.toggle-switcher').hide();
+  $('.toggle-handler').hide();
   function uniq(value, index, self) {
     return self.indexOf(value) === index;
   }
   uToggles = togglesList.filter(uniq)
   for ( i in uToggles ) {
-    $("div.toggle-switcher[name=" + uToggles[i] + "]").show();
+    $("div.toggle-handler[name=" + uToggles[i] + "]").show();
   };
   // show elements with the active class
-  var activeElem = $('.toggle-switcher label.active input').val();
+  var activeElem = $('.toggle-handler label.active input').val();
   $("." + activeElem).show();
 
   // navgoco menu invocation and settings
@@ -214,9 +214,9 @@ $( document ).ready(function() {
 
   // Enable toggling of content with switchers
   $(function(){
-    $('.toggle-switcher input').focus(function () {
+    $('.toggle-handler input').focus(function () {
       // plant a cookie
-      var switcherName = $(this).closest('div.toggle-switcher').attr('name');
+      var switcherName = $(this).closest('div.toggle-handler').attr('name');
       $.cookie('switcher_' + switcherName, $(this).val());
       location.reload();
     });
