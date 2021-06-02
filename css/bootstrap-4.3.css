@@ -13200,7 +13200,7 @@ html body .md-typeset .headerlink {
         max-width: 100%;
         height: 2.5rem;
         margin-top: .25rem;
-        overflow: hidden;
+        overflow: visible;
         font-size: .875rem
     }
     .td-navbar .td-navbar-nav-scroll .nav-link {
