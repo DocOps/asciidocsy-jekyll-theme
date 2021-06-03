@@ -206,7 +206,7 @@ You will find the generated files at `_site/`.
 // end::quickstart-build[]
 
 [TIP]
-Learn more about applying AsciiDocsy to your use case in the link:{theme_docs_bootstrapping_www}[Bootstrapping guide].
+Learn more about applying AsciiDocsy to your use case in the link:{theme_docs-bootstrapping_www}[Bootstrapping guide].
 
 == Production Environment Details
 
