@@ -5,7 +5,7 @@
 :forked_source_www: https://vsoch.github.io
 :theme_demo_www: https://asciidocsy.netlify.app
 :theme_docs_www: https://asciidocsy.netlify.app/docs
-:theme_docs_bootstrapping_www: https://asciidocsy.netlify.app/docs/theme/setup/bootstrap
+:theme_docs-bootstrapping_www: {theme_docs_www}/theme/setup/bootstrap
 :theme_repo_www: https://github.com/DocOps/asciidocsy-jekyll-theme
 :theme_repo_git: git@github.com:DocOps/asciidocsy-jekyll-theme.git
 :project_issues_path: https://github.com/DocOps/asciidocsy-jekyll-theme/issues
