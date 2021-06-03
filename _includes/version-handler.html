@@ -20,6 +20,7 @@ Optional:
 {% assign pick = include.pick | default: "" %}
 {% capture id_def %}handler-{{handler}}-{{form}}{% endcapture %}
 {% assign form_id = include.id | default: id_def %}
+<!-- handler: {{ handler }} ({{ form_id }}) -->
 {% case form %}
 
   {% when "select" %}
@@ -30,6 +31,7 @@ Optional:
   {% endif %}
   <select class="form-control" id="{{form_id}}">
   {% for item in include.opts %}
+    {% assign selected = "" %}
     {% if item['text'] %}
       {% assign text = item['text'] %}
       {% assign value = item['slug'] %}
@@ -63,7 +65,7 @@ Optional:
       {% assign active = "active" %}
     {% endif %}
   <label class="btn btn-secondary btn-sm {{active}}">
-    <input type="radio" name="{{value}}" id="{{value}}" value="{{ value }}">
+    <input type="radio" name="{{form_id}}" id="{{value}}" value="{{ value }}">
     {{ text }}
   </label>
   {% endfor %}
@@ -92,7 +94,7 @@ $(function(){
       return false;
 
     {% when "change-style" %}
-      {% assign path = include.path | append: "/", replace: "//"."/" %}
+      {% assign path = include.path | append: "/" | replace: "//"."/" %}
       /**
       STYLE CHANGER
       **/
@@ -116,12 +118,73 @@ $(function(){
 {% elsif verb == "toggle" %}
 /**
 CLASS TOGGLER
-
 **/
+
 {% elsif verb == "swap" %}
 /**
 TOKEN SWAPPER
-
 **/
+  {% assign slates = false %}
+  {% unless slate_dict_init %}
+    {% assign slate_dict_init = true %}
+let slateDict = {}
+  {% endunless %}
+  {% if include.opts[0]['slug'] %}
+    {% assign slates = true %}
+  {% endif %}
+  {% for opt in include.opts %}
+    {% if slates %}
+slateDict['{{ opt['slug'] }}'] = {
+      {% assign tokens = "" | split:"," %}
+      {%- for def in include.dict %}
+        {%- assign tok = def[0] %}
+        {%- if opt['dict'][tok] %}
+          {%- assign val = opt['dict'][tok] %}
+        {%- else %}
+          {%- assign val = def[1] %}
+        {%- endif %}
+        "{{ tok }}":"{{ val }}",
+      {%- endfor %}
+      {%- for def in opt['dict'] %}
+        {%- assign tok = def[0] %}
+        {%- unless include.dict[tok] %}
+        "{{ tok }}":"{{ def[1] }}",
+        {%- endunless %}
+      {%- endfor %}
+}
+    {% endif %}
+  {% endfor %}
+  {% if form == "select" %}
+$('#{{ form_id }}').on('change', function() {
+  {% elsif form == "buttons" %}
+$('#{{ form_id }}.toggle-handler input').focus(function () {
+  {%- else %}// attach the swap to a toggle
+$('{{ form }}.toggle-handler input').focus(function () {
+  {% endif %}
+  var val = $(this).val();
+  if (typeof slateDict[val] !== 'undefined') {
+    console.log(val)
+    for ( let tok in slateDict[val] ) {
+      let token = "<$tok." + tok + ">"
+      let swap = '<span class="tok ' + tok + '">' + slateDict[val][tok] + '</span>'
+      let text = $(this).text();
+      $('main :not(script)').contents().filter(function() {
+        return this.nodeType === 3;
+      }).replaceWith(function() {
+        return this.nodeValue.replace(token,swap);
+      });
+      $('.tok.' + tok).html(slateDict[val][tok]);
+    };
+  } else {
+    let token = "<$tok.{{ include.slug }}>";
+    let swap = '<span class="tok {{ include.slug }}">' + val + '</span>';
+    $('main :not(script,.nosub)').contents().filter(function() {
+      return this.nodeType === 3;
+    }).replaceWith(function() {
+      return this.nodeValue.replace(token,swap);
+    });
+    $('.tok.{{ include.slug }}').html(val);
+  };
+});
 {% endif %}
 </script>

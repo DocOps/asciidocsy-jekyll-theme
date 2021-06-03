@@ -5,21 +5,35 @@ Assembles version-handler features in various spot-specific clusters
 {% unless hook_replace_tpl %}
 {% assign features = site.features.actions.versioning %}
 {% for feat in features %}
+  {% assign opts = "" | split: "," %}
   {% if feat[1]['spot'] == include.spot %}
-    {% assign verb = feat[1]['verb'] %}
-    {% assign pick = feat[1]['swap']['pick'] %}
-    {% assign opts = feat[1]['swap']['opts'] %}
-    {% assign form = feat[1]['form'] %}
-    {% assign func = feat[1]['func'] %}
-    {% if verb == toggle %}
+    {% assign ctrl_name = feat[0] %}
+    {% assign ctrl = feat[1] %}
+    {% assign verb = ctrl['verb'] %}
+    {% assign pick = ctrl['swap']['pick'] %}
+    {% assign dict = ctrl['swap']['dict'] %}
+    {% assign form = ctrl['form'] %}
+    {% if ctrl['swap']['data'] %}
+      {% assign data_str = ctrl['swap']['data'] %}
+      {% include string-to-object.liquid string=data_str %}
+      {% assign opts = opts | concat: data_obj %}
+    {% endif %}
+    {% if ctrl['swap']['opts'] %}
+      {% assign opts = opts | concat: ctrl['swap']['opts']  %}
+    {% endif %}
+    {% assign slug = ctrl['swap']['slug'] %}
+    {% assign func = ctrl['func'] %}
+    {% if verb == "toggle" %}
       {% assign form = "buttons" %}
     {% endif %}
-    {% assign form_id = feat[0] %}
+    {% assign form_id = ctrl_name %}
     {% include version-handler.html
       id=form_id
       verb=verb
       form=form
       opts=opts
+      slug=slug
+      dict=dict
       pick=pick
       func=func %}
   {% endif %}

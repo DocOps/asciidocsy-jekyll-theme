@@ -57,7 +57,6 @@ $( document ).ready(function() {
   * controls the
   * term-popover effect
   **/
-  // instantiate the Bootstrap JS
   if ($('.term').length) { // nothing happens if there are no terms on the page
     const termsDict = {{ site.data.terms | jsonify }}
     const icon      = '{{ site.semantics.inline.role.term.show.icon.text }}'
@@ -126,8 +125,8 @@ $( document ).ready(function() {
   **/
   // check for cookie and override default
   $('.toggle-handler').each(function () {
-    if ($.cookie('switcher_' + $(this).attr('name'))) {
-      var cookieVal = $.cookie('switcher_' + $(this).attr('name'));
+    if ($.cookie('toggle_' + $(this).attr('name'))) {
+      var cookieVal = $.cookie('toggle_' + $(this).attr('name'));
       $(this).children('label').each(function () {
         $(this).removeClass('active');
       });
@@ -138,7 +137,9 @@ $( document ).ready(function() {
   // hide all elements with a switcher-managed class
   $('.toggle-handler input').each(function () {
     var theClass = $("." + $(this).val());
-    if ($(theClass).length) { togglesList.push($(this).closest('.toggle-handler').attr('name')) }
+    if ($(theClass).length) {
+      togglesList.push($(this).closest('.toggle-handler').attr('name'))
+    }
     $(theClass).hide();
   });
   // hide switchers with no classes found
@@ -154,6 +155,19 @@ $( document ).ready(function() {
   var activeElem = $('.toggle-handler label.active input').val();
   $("." + activeElem).show();
 
+  $(function(){
+    $('.toggle-handler input').focus(function () {
+      // plant a cookie
+      var switcherName = $(this).closest('div.toggle-handler').attr('name');
+      var theClass = $("." + $(this).val());
+      $(this).parent().parent().children().children("input").each( function() {
+        $("." + $(this).val()).hide();
+      });
+      $(theClass).show();
+      $.cookie('toggle_' + switcherName, $(this).val());
+    });
+  });
+
   // navgoco menu invocation and settings
   $('#subject-menu').navgoco({
       accordion: false,
@@ -168,58 +182,6 @@ $( document ).ready(function() {
         duration: 400,
         easing: 'swing'
       }
-  });
-
-  /**
-  * controls the
-  * skin-changer
-  * drop-down **/
-  $(function(){
-    if (!$.cookie('skin-style')) {
-      $.cookie('skin-style', '{{ site.styles.skin.pick }}');
-    }
-    if ($.cookie('skin-style')) {
-      var skinStyle = $.cookie('skin-style')
-      var skinRef   = '{{ site.theme_dir }}/css/skins/' + skinStyle + '.css'
-      $('#skin-style').attr("href", skinRef);
-      $('select#skin-changer').val(skinStyle).change();
-    };
-    $('select#skin-changer').on('change', function () {
-      var newSkin = '{{ site.theme_dir }}/css/skins/' + $(this).val() + '.css'
-      $('#skin-style').attr("href", newSkin)
-      $.cookie('skin-style', $(this).val());
-    });
-  });
-
-  /**
-  * controls the
-  * syntax-style-changer
-  * drop-down **/
-  $(function(){
-    if (!$.cookie('syntax-style')) {
-      $.cookie('syntax-style', 'a11y-light');
-    }
-    if ($.cookie('syntax-style')) {
-      var syntaxStyle = $.cookie('syntax-style')
-      var syntaxRef   = '/css/syntax/hljs/' + syntaxStyle + '.css'
-      $('#syntax-style').attr("href", syntaxRef);
-      $('select#syntax-changer').val(syntaxStyle).change();
-    };
-    $('select#syntax-changer').on('change', function () {
-      var newSyntax = '/css/syntax/hljs/' + $(this).val() + '.css'
-      $('#syntax-style').attr("href", newSyntax)
-      $.cookie('syntax-style', $(this).val());
-    });
-  });
-
-  // Enable toggling of content with switchers
-  $(function(){
-    $('.toggle-handler input').focus(function () {
-      // plant a cookie
-      var switcherName = $(this).closest('div.toggle-handler').attr('name');
-      $.cookie('switcher_' + switcherName, $(this).val());
-      location.reload();
-    });
   });
 
 });

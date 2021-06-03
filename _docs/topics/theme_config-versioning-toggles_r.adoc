@@ -20,3 +20,8 @@ This content is for Linux Only.
 --
 This content is for MacOS Only.
 --
+
+[.os-mac.os-nix]
+--
+This content is for Unix-like operating systems.
+--

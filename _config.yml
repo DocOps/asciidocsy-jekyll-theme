@@ -199,6 +199,68 @@ features:
             - text: MacOS
               slug: os-mac
               icon: fa fa-apple
+# THESE ARE JOKE DEMO VALUES
+      spoof-tokens:
+# tag::sample-swap[]
+        verb: swap # <1>
+        form: select
+        spot: "#sidebar-right .sidebar-end"
+        swap:
+          dict: # <2>
+            company: DocOps.org
+            company_url: https://www.docopslab.org
+            theme: AsciiDocsy
+          opts: # <3>
+            - text: FOSS
+              slug: foss
+              dict:
+                slogan: Free docs for everyone!
+            - text: Freemium
+              slug: freemium
+              dict: # <4>
+                theme: AsciiDocsy Premium
+                company_url: https://www.docopslab.com
+                slogan: Free docs until you're a big deal (then chip in).
+            - text: SellOut
+              slug: sellout
+              dict: # <4>
+                theme: ACMEDocsy
+                company: AsciiDocs4Sale.com
+                company_url: https://asciidocs4sale.com
+                slogan: No free docs.
+# end::sample-swap[]
+# tag::sample-swap-piggyback[]
+      user-os-swap:
+        verb: swap
+        form: "#user-os"
+        spot: "#sidebar-right .sidebar-end"
+        swap:
+          opts:
+            - slug: os-mac
+              dict:
+                your_os: Your operaing system is very classy.
+                you: You appreciate good design and are willing to pay for it.
+            - slug: os-nix
+              dict:
+                your_os: Your operating system is very... rugged.
+                you: You like to take charge of your devices.
+            - slug: os-win
+              dict:
+                your_os: Your operating system is practical.
+                you: You don't overthink things.
+# end::sample-swap-piggyback[]
+# / END JOKE DEMO VALUES
+      patch-swap-0_2:
+        verb: swap
+        form: select
+        spot: "#sidebar-right .sidebar-end"
+        swap:
+          slug: vrsn # basis for token: <$tok.vrsn>
+          opts:
+            - 0.2.0
+            - 0.2.1
+            - 0.2.2
+
       # revision:
       #   verb: amend
       #   form: select
@@ -213,14 +275,14 @@ features:
       theme-skin:
         verb: amend
         form: select
-        spot: "#sidebar-right .sidebar-mid"
+        spot: "#sidebar-right .sidebar-end"
         show:
           text: Change theme skin
           icon: fa-paintbrush
-        form:
-          type: select
+        form: select
         swap:
-          data: site.styles.skins.list
+          data: site.data.theme.skins
+          pick: foundation
         func: change-style
         targ: "#skin-style"
       data-format: # arbitrary tabset name
@@ -508,20 +570,7 @@ styles:
     theme: "#30638e"
   skin: # EITHER a String (base filename of skin in css/skins/; e.g., `colony`);
         # OR a hash of `list:` (Array) and `pick:` (String).
-    list: # all skins available to the theme
-      - colony
-      - foundation
-      - foundation-lime
-      - foundation-potion
-      - github
-      - golo
-      - iconic
-      - maker
-      - readthedocs
-      - riak
-      - rocket-panda
-      - rubygems
-    pick: foundation
+
   syntax: # EITHER a String (base filename of syntax style in css/syntax/hljs;
           #  e.g., `a11y-dark`);
           # OR a hash of `list:` (Array) and `pick:` (String).
