@@ -59,6 +59,7 @@ body {
   border-top-width: 0;
   border-bottom-width: 0;
   border-radius: 20px;
+  white-space: nowrap;
 }
 
 .cli,code.cmd {
@@ -67,6 +68,7 @@ body {
   background-color: #333 !important;
   padding: 0 6px !important;
   border-radius: 0px !important;
+  white-space: nowrap;
 }
 
 .code {
@@ -76,6 +78,12 @@ body {
   background-color: #99999950 !important;
   padding: 2px 2px 0 0 !important;
   border-radius: 0px !important;
+  white-space: nowrap;
+}
+
+.param {
+  font-weight: bold !important;
+  white-space: nowrap;
 }
 
 .cite {
@@ -88,6 +96,7 @@ body {
   font-weight: normal;
   background-color: #99999970 !important;
   padding: 0 6px !important;
+  white-space: nowrap;
 }
 
 .case {
