@@ -30,7 +30,7 @@ The following content is applicable to only one or two operating systems at a ti
 include::{path_to_snippets}/example_toggles.adoc[tags=user-os]
 ====
 
-The markup behind that content is easy to distinguish and edit.
+The markup behind that content can be readily distinguished and edited.
 
 .AsciiDoc source for above example
 [source,asciidoc,subs=none]
