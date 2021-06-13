@@ -15,7 +15,7 @@ Once a user makes a selection (or has been directed to a specific URL), the swap
 == Swap Configuration
 
 Like other handlers, swaps are defined in the `versioning` data object.
-Name a swap object whatever you wish, and then give it the property `verb: swap`.
+Name a swap object whatever you wish, and then give it the property [.param]`verb: swap`.
 
 A swap can be triggered by a `select` dropdown or radio `buttons`.
 
@@ -36,7 +36,7 @@ This option uses AsciiDoc's inline semantics to wrap text in a `.tok` class with
 For example, `+++[.tok.token_name]#Default Text#+++` declares that we want to offer a token for swapping, and it is named `token_name` and has an inline default set as `Default Text`.
 
 hard token::
-As an alternative that is easy to store in an AsciiDoc attribute (see <<store in an AsciiDoc attribut>> below), use a token formatted like so: `<$tok.token_name>`.
+As an alternative that is easy to store in an AsciiDoc attribute (see <<attribute-tokens>> below), use a token formatted like so: `<$tok.token_name>`.
 Replace `token_name` with the slug value for your token.
 There is no option for default text at this time.
 
