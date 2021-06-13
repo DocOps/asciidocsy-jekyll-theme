@@ -158,9 +158,9 @@ slateDict['{{ opt['slug'] }}'] = {
   {% if form == "select" %}
 $('#{{ form_id }}').on('change', function() {
   {% elsif form == "buttons" %}
-$('#{{ form_id }}.swap-handler input').focus(function () {
+$('#{{ form_id }} input').focus(function () {
   {%- else %}// attach the swap to a toggle
-$('{{ form }}.swap-handler input').focus(function () {
+$('{{ form }} input').focus(function () {
   {% endif %}
   var val = $(this).val();
   if (typeof slateDict[val] !== 'undefined') {
