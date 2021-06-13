@@ -4,17 +4,17 @@
 = Version Handlers
 
 Version handlers are front-end features that enable site users to see only the content that applies to their product version, role, use case, environment, preference, or other condition.
-You can use version handlers however you want, but we present here some guidance for choosing among the options to suit your use case.
+You can use version handlers however you want, but we present here some guidance for choosing among the options to suit your application.
 Further topics detail the configuration of each handler type.
 
 Handlers are named for their duty, not the form their controllers take.
-The handler types perform distinct actions on the selected JavaScript `ready`, `change`, `focus`, or similar event.
+The handler types perform distinct actions on the selected jQuery JavaScript `ready`, `change`, `focus`, or similar event.
 
 [NOTE]
 You do not need to know JavaScript or jQuery to implement handlers.
 AsciiDocsy pre-customizes and extends Bootstrap features to provide configuration-based adaptation to your use case.
 
-The rest of this topic provides an overview of attributes and functions common across handlers and to help you choose between the various types of version handlers as well as .
+The rest of this topic provides an overview of attributes and functions common across version handlers as well as a guide for choosing between the various handler types.
 
 == Version Handler Verbs
 
@@ -24,9 +24,9 @@ These labels are imperfect, but they allow us to distinguish _function_ from _fo
 
 === _Tab_ Block Content in Place
 
-Most common with code listings and log samples, [.case]*_if you need to alternate versions of content inside a fixed block_* without forcing the user to scroll, your solution is *tabbing*.
+Most common with code listings and log samples, [.case]*_if you need to alternate versions of content inside a fixed block_* without forcing the user to scroll, your optimal solution is *tabbing*.
 
-These handlers JavaScript to glean combinations of selector *tabs* and content *panes* from the HTML rendered from conventional AsciiDoc syntax.
+These handlers use JavaScript to glean combinations of selector *tabs* and content *panes* out of the HTML rendered from conventional AsciiDoc syntax.
 
 [[data-formats-listing]]
 .Tabbed panes sourced entirely as AsciiDoc
@@ -36,15 +36,12 @@ include::{path_to_snippets}/example_tabset-source.adoc[tags=raw]
 
 Any tabset or tab/pane class that is repeated throughout a page (and the rest of the site if cookies are enabled) will pre-select the last-chosen tab until altered by the user.
 
-Tabsets are defined purely in conventional AsciiDoc.
-There is no need to register them in a data file, though some options are available for doing so.
-
 <</docs/theme/config/versioning/tabsets#,Learn more about pane tabs>>.
 
 === _Toggle_ Classes
 
-Sometimes you need a combination of tabsets and swaps, [.case]*_alternating and muting larger swaths or blocks of text throughout a page_*.
-A *toggle* lets you show one class while hiding the rest of the classes in a group.
+Sometimes you need a combination of tabsets and swaps, [.case]*_alternating and muting larger blocks or shorter strings of text throughout a page_*.
+A *toggle* lets you show elements of one class while hiding the rest of the classes in a group.
 
 .Give it a try!
 ====
@@ -59,9 +56,7 @@ Unix-like?:: [.os-win]#False# [.os-mac.os-nix]#True#
 
 If inline content or various parts of an entire page need to be customized for user experience, apply classes ("`roles`" in AsciiDoc parlance) to the content.
 
-Toggles are centrally defined in the Jekyll config, but you choose which pages they appear on.
-
-They can establish multi-select (checkbox-like) form elements or radio-button-like elements, both enabling users to show/hide content elements by class.
+Toggles are centrally defined in the Jekyll config, but you choose which pages the controllers appear on.
 
 <</docs/theme/config/versioning/toggles#,Dive deeper into toggles.>>
 
@@ -71,14 +66,14 @@ In some cases, [.case]*_one simple string needs to be altered in numerous parts 
 A *swap* changes the value of tokenized content throughout the page.
 
 This feature is most commonly used to alter patch-revision numbers, such as in product-download paths and installation instructions.
-Drop something like `+++[.tok.vrsn]*0.2.0*+++` into your page, and watch the version change as you switch between versions using the buttons to the right, below the TOC: [.tok.vrsn]*0.2.0*.
+Drop something like `+++[.tok.vrsn]*0.2.0*+++` into your page, and watch the version change as you switch between versions using the buttons to the right, below the table of contents: [.tok.vrsn]*0.2.0*.
 
 Swaps can be user triggered by a radio button set or a selectbox.
 
 ==== Swap Token Slates
 
 [.case]*_If you have more than one string to swap when a version changes_*, use token slates.
-This feature could be invaluable to the process of "`white labeling`" a docset.
+This capability could be invaluable to the process of "`white labeling`" a docset.
 Replace key terms related to your or a customer's company, brand, or specific implementation of your product.
 
 Token sets are defined in data files and can be swapped using buttons or selectboxes.
@@ -90,8 +85,7 @@ Token sets are defined in data files and can be swapped using buttons or selectb
 When you need to go big, *version-dommer.html* is your tool.
 At this time, Dommers can *_target the browser's location (URL) or any element in the current page's HTML5 DOM_*.
 
-They can form selectbox or radio-button-like elements.
-They are like an open-ended token swapper, targeting any discrete aspect of an HTML element that you can latch onto with jQuery.
+Taking the form of a selectbox or buttons, amenders are like an open-ended token swapper, targeting any discrete aspect of an HTML element that you can latch onto with jQuery.
 
 The AsciiDocsy skin selectors are examples of changers that target CSS link refs in the header.
 If you have not yet played with the theme skin changers that are in the right-hand sidebar throughout this site, select an alternative theme skin and review this same page.
@@ -108,7 +102,7 @@ A DOM amender toggle could also be used to switch between the light and dark the
 
 All version handlers respect the same cascade hierarchy for establishing active options.
 
-All handlers plant a cookie on the visiting browser so their choice is recalled for subsequent URLs during the session or until they clear their cookies.
+Every handler plants a cookie on the visiting browser so their choice is recalled for subsequent URLs during the session or until they clear their cookies.
 This cookie becomes the effective, overriding default until another choice is actively made by the user (or a until link sends them to a URL that alters the choice).
 
 In their configuration, every handler gets a *`pick:` parameter* to set the base system default.
@@ -128,7 +122,7 @@ Any time a *user selects* (or a URL determines) an option, that option becomes a
 
 [WARNING]
 If you use `form: none`, no controller will appear to enable users to change versions from within the page, and only a URL change will make or alter a version choice.
-Tempting as this capability may seem, NOTE that it is _not_ a secure way to hide information from end users.
+Tempting as this capability may seem, *NOTE* that it is _not_ a secure way to hide information from end users.
 The code decrypted by their browser will contain all of the alternate options they are not seeing on the front end.
 
 [NOTE]

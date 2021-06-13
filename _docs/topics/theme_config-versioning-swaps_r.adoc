@@ -7,7 +7,7 @@
 :page-version-handlers: +user-os-toggle,+spoof-tokens-swap,+patch-swap-0_2,+user-os-swap
 = Token Swaps
 
-Token swaps enable you to place variables in your AsciiDoc or other page elements that can be altered either by an act of the user or a URL query string.
+Token swaps enable you to place what I call "`front-end variables`" in your AsciiDoc or other page elements that can be altered either by an act of the user or a URL query string.
 Use this method to reduce the number of builds you perform just to alter small bits of text.
 
 Once a user makes a selection (or has been directed to a specific URL), the swaps remain in play for the duration of their session.
@@ -17,7 +17,7 @@ Once a user makes a selection (or has been directed to a specific URL), the swap
 Like other handlers, swaps are defined in the `versioning` data object.
 Name a swap object whatever you wish, and then give it the property `verb: swap`.
 
-A swap can be triggered by a `selectbox` dropdown or radio `buttons`.
+A swap can be triggered by a `select` dropdown or radio `buttons`.
 
 Swaps can have a `dict:` property that establishes default tokens.
 They must have an `swap.opts:` property that defines the "`slates`" of tokens.
@@ -106,6 +106,9 @@ The <$tok.theme> theme, brought to you by <$tok.company> (link:<$tok.company_url
 
 The company slogan is <$tok.slogan>.
 ----
+
+[NOTE.limit]
+Limitation: As you can see in the above example, token swaps inside HTML element attributes (such as `href` here) are not yet working.
 
 .Renders
 ====

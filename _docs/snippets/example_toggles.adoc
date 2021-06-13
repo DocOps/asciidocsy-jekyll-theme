@@ -3,6 +3,8 @@
 --
 This site works great on Windows 10, and probably on Windows 7, and likely even on Windows XP.
 Windows often requires extra/special instructions for developer-oriented stuff.
+
+Windows users are encouraged to explore WSL2 for access to a true Unix-like system right inside their main OS.
 --
 
 [.os-nix]

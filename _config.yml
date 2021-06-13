@@ -193,6 +193,9 @@ features:
         verb: toggle
         # form is inferred (buttons)
         spot: '#sidebar-right .sidebar-mid'
+        show:
+          text: "Your operating system:"
+          icon: fa fa-laptop
         swap:
           pick: os-mac
           opts:
@@ -210,6 +213,9 @@ features:
         verb: swap
         form: select
         spot: "#sidebar-right .sidebar-end"
+        show:
+          text: "Choose your patch version:"
+          icon: fa fa-wrench
         swap:
           pick: 0.2.0
           slug: vrsn # <1>
@@ -229,6 +235,9 @@ features:
         verb: swap
         form: select
         spot: "#sidebar-right .sidebar-end"
+        show:
+          text: "AsciiDocsy Edition:"
+          icon: fa fa-font
         swap:
           pick: foss
           dict: # <1>
@@ -280,7 +289,7 @@ features:
         form: select
         spot: "#sidebar-right .sidebar-end"
         show:
-          text: Theme skin
+          text: "Theme skin:"
           icon: fa fa-paint-brush
         swap:
           data: site.data.theme.skin-styles
@@ -298,7 +307,7 @@ features:
         form: select
         spot: "#sidebar-right .sidebar-end"
         show:
-          text: Code highlight skin
+          text: "Code highlight skin:"
           icon: fa fa-code
         swap:
           data: site.data.theme.syntax-styles

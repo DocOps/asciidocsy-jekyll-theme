@@ -24,7 +24,7 @@ s| <</docs/theme/config/versioning/swaps#,swap>>
 // tag::table-row-toggles[]
 s| <</docs/theme/config/versioning/toggles#,toggle>>
 | element classes in the text
-| buttons icon:dot-circle-o[]/icon:check-square-o[] (radio or checkbox)
+| buttons icon:dot-circle-o[]
 | Show/hide elements of classes.
 | `version-handler.html`, `js/main.js`
 // end::table-row-toggles[]

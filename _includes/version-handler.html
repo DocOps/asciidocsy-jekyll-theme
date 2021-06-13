@@ -34,10 +34,10 @@ Optional:
 <div class="form-group">
   {% if include.text %}
     <label for="{{form_id}}">
+    {% if include.icon %}
+      <i class="icon {{ include.icon }}"></i>
+    {% endif %}
       {{ include.text }}
-      {% if include.icon %}
-        <i class="icon {{ include.icon }}"></i>
-      {% endif %}
     </label>
   {% endif %}
   <select class="form-control" id="{{form_id}}">
@@ -113,6 +113,10 @@ $(function(){
       {% endif %}
       $('{{ targ }}').attr("href", newStyleSheet)
       $.cookie('{{ form_id }}', $(this).val());
+
+    {% else %}
+      {% include {{include.file}} %}
+
     {% endcase %}
   {% endif %}
   });
