@@ -301,7 +301,7 @@ features:
           targ: "#theme-skin"
           href: >- # defaults to $(this).val(); allows Liquid
             '{{site.assets_url}}/css/skins/' + $(this).val() + '.css'
-
+# tag::syntax-skin-amend[]
       syntax-skin-amend:
         verb: amend
         form: select
@@ -314,9 +314,10 @@ features:
           pick: a11y-light
         func:
           name: change-href
-          targ: "#syntax-skin"
-          href: >-
+          targ: "#syntax-skin" # <1>
+          href: >- # <2>
             '{{site.assets_url}}/css/syntax/hljs/' + $(this).val() + '.css'
+# end::syntax-skin-amend[]
 
       data-format-tabber: # arbitrary tabset name
         verb: tab

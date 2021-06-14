@@ -2,6 +2,12 @@
 # Replace this dataset with your own to take advantage of:
 #  1. automatic glossary generated at /glossary
 #  2. the [.term] inline-semantics functionality
+
+- term: Array
+  slug: array
+  desc: A serialized (enumerable) data onbject type that hosts lists of scalar or enumerable objects. Sometimes capitalized along with other data object types.
+  cats: [data-types]
+
 - term: AsciiDoc
   slug: asciidoc
   desc: A programmatic markup language for structuring _and_ formatting all kinds of technical writing for conversion to various rich-text and other formats.
@@ -10,6 +16,7 @@
   refs:
     - text:
       href:
+
 
 - term: flat files
   slug: flat-files
@@ -21,12 +28,6 @@
   desc: Stylized text or inserted icons meant to tag specific content with a purpose or kind.
   xref: docs/style/asciidoc/semantics
 
-- term: markup
-  slug: markup
-  desc: |
-    Plaintext syntax intended to designate text with formatting, semantic, or functional intent, to be parsed into rich-text or other more-complex output.
-  also: [lightweight]
-
 - term: lightweight markup
   slug: markup-lightweight
   desc:  Tag-free plaintext syntax formats like AsciiDoc, Markdown, reStructuredText, lwDITA, and most Wiki markups; often an abstraction of an XML-tagged format (DocBook, HTML, DITA).
@@ -36,11 +37,21 @@
   slug: markdown
   desc: A lightweight markup that shorthands a limited number of non-semantic HTML elements, which many find to be adequate for technical documentation.
 
+- term: markup
+  slug: markup
+  desc: |
+    Plaintext syntax intended to designate text with formatting, semantic, or functional intent, to be parsed into rich-text or other more-complex output.
+  also: [lightweight]
+
 - term: open block (AsciiDoc)
   slug: open-block-asciidoc
   desc: A non-semantic container element that can be assigned block options and contain other block elements (except other open blocks).
   refs:
     - href: https://docs.asciidoctor.org/asciidoc/latest/blocks/open-blocks/
+
+- term: scalar
+  slug: scalar
+  desc: A simple, non-enumerable data type such as String, Number, or Boolean.
 
 - term: inclusion
   slug: inclusion
