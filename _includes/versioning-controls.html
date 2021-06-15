@@ -1,0 +1,91 @@
+{% comment %}
+Assembles version-handler features in various spot-specific clusters
+{% endcomment %}
+{% include hook.liquid template="versioning-controls_html" spot="file" %}
+{% unless hook_replace_tpl %}
+{% assign all_handlers = site.features.actions.versioning %}
+{% unless show_handlers %}
+  {% assign default_handlers = all_handlers.defaults[layout.kind]['list'] %}
+  {% assign page_handlers = page.version-handlers | split:"," %}
+  {% for hdlr in page_handlers %}
+    {% assign hdlr_split = hdlr | split:"" %}
+    {% if hdlr_split[0] != "-" and hdlr_split[0] != "+" %}
+      {% assign explicit = true %}
+      {% assign show_handlers = page_handlers %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+  {% unless explicit %}
+    {% assign show_handlers = "" | split:"," %}
+    {% for hdlr in default_handlers %}
+      {% capture minusHdlr %}-{{ hdlr }}{% endcapture %}
+      {% unless page_handlers contains minusHdlr %}
+        {% assign show_handlers = show_handlers | push: hdlr %}
+      {% endunless %}
+    {% endfor %}
+    {% for hdlr in page_handlers %}
+      {% assign hdlr_split = hdlr | split:"" %}
+      {% if hdlr_split[0] == "+" %}
+        {% assign _hdlr = hdlr | replace: "+","" %}
+        {% assign show_handlers = show_handlers | push: _hdlr %}
+      {% endif %}
+    {% endfor %}
+  {% endunless %}
+{% endunless %}
+{% for hdl in show_handlers %}
+  {% assign ctrl = all_handlers[hdl] %}
+  {% if ctrl['spot'] == include.spot %}
+    {% assign ctrl_name = hdl %}
+    {% assign verb = ctrl['verb'] %}
+    {% assign pick = ctrl['swap']['pick'] %}
+    {% assign dict = ctrl['swap']['dict'] %}
+    {% assign form = ctrl['form'] %}
+    {% if ctrl['swap']['data'] %}
+      {% assign opts = "" | split: "," %}
+      {% assign data_str = ctrl['swap']['data'] %}
+      {% include string-eval.liquid string=data_str %}
+      {% assign opts = data_obj %}
+      {% assign opt_tpl = ctrl['swap']['opts'] %}
+    {% else %}
+      {% assign opts = ctrl['swap']['opts'] %}
+    {% endif %}
+    {% assign slug = ctrl['swap']['slug'] %}
+    {% if ctrl['func'] %}
+      {% assign func = ctrl['func'] %}
+      {% if ctrl['func']['name'] or ctrl['func']['file'] %}
+        {% assign func = ctrl['func']['name'] %}
+        {% assign file = ctrl['func']['file'] %}
+        {% assign href = ctrl['func']['href'] %}
+        {% assign targ = ctrl['func']['targ'] %}
+        {% assign args = ctrl['func']['args'] %}
+      {% endif %}
+    {% endif %}
+    {% assign func = ctrl['func']['name'] %}
+    {% assign path = ctrl['func']['href'] %}
+    {% assign targ = ctrl['func']['targ'] %}
+    {% if verb == "toggle" %}
+      {% assign form = "buttons" %}
+    {% endif %}
+    {% assign form_id = ctrl_name %}
+    {% assign text = ctrl['show']['text'] %}
+    {% assign icon  = ctrl['show']['icon'] %}
+    {% include version-handler.html
+      id=form_id
+      verb=verb
+      form=form
+      opts=opts
+      slug=slug
+      dict=dict
+      pick=pick
+      text=text
+      icon=icon
+      func=func
+      file=file
+      targ=targ
+      href=href
+      args=args
+      opt_tpl=opt_tpl
+       %}
+  {% endif %}
+{% endfor %}
+{% endunless %}

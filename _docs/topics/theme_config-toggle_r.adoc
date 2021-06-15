@@ -1,4 +1,4 @@
-:page-permalink: /docs/theme/config/togglers
+:page-permalink: /docs/theme/config/toggles
 :page-togglers: user-os
 = Configure Content Toggles
 

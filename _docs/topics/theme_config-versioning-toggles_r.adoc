@@ -1,0 +1,42 @@
+:page-permalink: /docs/theme/config/versioning/toggles
+:page-version-handlers: +user-os-toggle,-theme-skin-amend,-syntax-skin-amend
+= Class Toggles
+
+include::{path_to_snippets}/handlers-table.adoc[tags="table-head,table-row-toggles,table-tail"]
+
+This handler enables switching the show/hide states of elements assigned certain classes.
+A classic use case showing different content in the same page depending on the user's operating system.
+
+With AsciiDocsy class toggles, this choice follows the user throughout the site.
+You can essentially embed multiple user experiences right into the same pages of your site, assuming the divergence is not too drastic.
+
+== Implementation
+
+Class toggles must be registered in the `versioning:` data object.
+Create a new block with an arbitrary name, optionally including `-toggle` to help keep track.
+Add a required block called `swap:`, under which options can be derived from a `data:` file or from an explicit `opts:` list.
+
+The rest of the implementation process involves adding classes to blocks or segments of text.
+Use inline role syntax to designate a chunk of text as belonging to one or another class.
+
+To toggle an entire section, add a class to the heading and group the rest in an [.term.open-block-asciidoc]*open block*, then assign a class to it.
+
+== Example
+
+The following content is applicable to only one or two operating systems at a time.
+
+.Example content (paragraph blocks) bearing registered classes
+====
+include::{path_to_snippets}/example_toggles.adoc[tags=user-os]
+====
+
+The markup behind that content can be readily distinguished and edited.
+
+.AsciiDoc source for above example
+[source,asciidoc,subs=none]
+----
+include::{path_to_snippets}/example_toggles.adoc[tags=user-os]
+----
+
+Class toggling can be performed on inline text elements, as well, but if you plan to do this heavily, you may find it handier to use token swaps in most such cases.
+To expand the power/precision of your toggles, consider adding a swap slate and then <</docs/theme/config/versioning/swaps#toggle-piggy-backing,piggybacking that swap onto your toggle>>.

@@ -1,117 +1,111 @@
 ---
 layout: null
 ---
-// Constants.
-const tabsDict = {{ site.features.actions.versioning.tabbers | jsonify }}
-
-// Variables.
-var selectingTabs = false;
+/**
+ * Convert the div blocks configured with 'tabber-' classes into Bootstrap
+ * tab/pane structures so they can be treated as Bootstrap tab controls.
+ *
+ * See:
+   * https://getbootstrap.com/docs/4.3/components/navs/#javascript-behavior
+   * https://www.w3schools.com/bootstrap/bootstrap_tabs_pills.asp
+ */
+/**
+Liquid generate JSON object of version handlers block
+**/
+{% assign handlers = site.features.actions.versioning %}
+const tabSets = {
+  {% for ts in handlers %}
+    {% if ts[1].verb == "tab" %}
+    "{{ts[0]}}": {{ ts[1] | jsonify }}
+    {% endif %}
+  {% endfor %}
+}
 
 /**
- * Process a tab click and activate all the tabs related to the clicked one.
- */
-function tabClicked(tabLink) {
-    if (selectingTabs)
-      return;
-
-    selectingTabs = true;
-
-    // Get all the tab links.
-    var tabsLinks= document.querySelectorAll('.nav-tabs a');
-    // Get all the tab items.
-    var tabs = document.querySelectorAll('.tab-item');
-    // Get the class of the tabs to be shown.
-    var tabsClass = tabLink.className.replace('link-', '');
-
-    // Activate all the tab links.
-    for(i = 0; i < tabsLinks.length; i++) {
-      var newTabLink = tabsLinks[i];
-      var tabParent = newTabLink.parentNode;
-      if (tabLink.className == newTabLink.className
-        && tabParent.className.indexOf("active") === -1)
-        tabParent.className += " active";
-      else if (tabLink.className != newTabLink.className)
-        tabParent.className = tabParent.className.replace(/\bactive\b/g, "");
-    }
-
-    // Activate all the tabs.
-    for(i = 0; i < tabs.length; i++) {
-      var newTab = tabs[i];
-      if (tabLink.hash.indexOf(newTab.name) !== -1) {
-        newTab.className += " in";
-        newTab.className += " active";
-      } else {
-        newTab.className = newTab.className.replace(/\bin\b/g, "");
-        newTab.className = newTab.className.replace(/\bactive\b/g, "");
-      }
-    }
-    selectingTabs = false;
+Custom jQuery functions
+**/
+// Get the name of a tabset, tab, or pane based on this current element class
+jQuery.fn.getNameByClass = function() {
+  var classes = this.attr("class").split(" ");
+  for (let i = 0; i < classes.length; ++i) {
+    if (classes[i] !== null) {
+      var nameClass = classes[i]
+       .match(/^((tabs|pane|item|link)\-)([a-z_\-0-9]+$)/)
+      if (nameClass != null) {
+        return classes[i].replace(nameClass[0],nameClass[3]);
+        break;
+      };
+    };
+  };
 };
 
 /**
- * Convert the div blocks configured with 'tabber-panel' class into Bootstrap
- * tabs structures so they are displayed as tab controls.
- *
- * For more info: https://www.w3schools.com/bootstrap/bootstrap_tabs_pills.asp
- */
-$(function() {
-  // Get all the tabbed blocks of the page.
-  $(".tabber-panel").each(function() {
-    var classes = $(this).attr("class").split(" ");
-    classes.forEach(function callback(value, index) {
-      tabberName = value.match(/^tabs-([a-z_\-]+)/)
-      console.log(tabberName)
-    });
-    // Get the content div of each tabbed block.
-    $(this).children("td.openblock > .content").each(function() {
-
-      // Set the proper class to the content so it is processed as a tabs container.
-      $(this).className += " tabber-content";
-
-      // Create the tabs panel control.
-      var tabTitles = document.createElement('ul');
-      tabTitles.className += " nav";
-      tabTitles.className += " nav-tabs";
-      // Process all the tabs for the tabber panel.
-      var tabDivs = tabContent.getElementsByClassName("tabber-item");
-      for (j = tabDivs.length - 1; j >= 0; j--) {
-        // Update style of each tab content div.
-        var tabDiv = tabDivs[j];
-        tabDiv.className += " tab-pane";
-        tabDiv.className += " fade";
-        if (j == tabDivs.length - 1) {
-            tabDiv.className += " in";
-            tabDiv.className += " active";
+Document ready
+**/
+$( document ).ready(function() {
+  // Get all the tabbed blocks of the page
+  $(".tabber-tabset").each(function() {
+    $(this).addClass("container")
+    var tabberName = $(this).getNameByClass()
+    var tabSet = tabSets[tabberName]['swap']['opts'];
+    $(this).prepend('<ul class="nav nav-tabs list-' + tabberName + '" role="tablist"></ul>')
+    // Get each tabbed pane
+    $(this).find('.tabber-pane').each(function() {
+      var tabName = $(this).getNameByClass()
+      var tabLabel = tabName.replace("-"," ")
+      $(this).wrap('<div class="tab-pane pane-' + tabName + ' fade" role="tabpanel"></div>')
+      if (tabSet !== null) {
+        // use a match from the tabSet to affix labevar tabLabel = ;
+        tabEntry = tabSet.find(opt => {
+          return opt.slug == tabName
+        });
+        if (typeof tabEntry !== "undefined" && tabEntry['text'] !== null) {
+          tabLabel = tabEntry['text']
         }
-
-        // Get the name of the tab.
-        var tabClassName = tabDiv.className.split(" ")[2];
-        var tabName = tabsDict[tabClassName];
-        if (tabName == null)
-            tabName = tabClassName.split('_').join(' ');
-
-        // Create the corresponding tab control for the tab content.
-        var tabTitle = document.createElement('li');
-        if (j == tabDivs.length - 1)
-            tabTitle.className += " active";
-        // Create the link for the tab control.
-        var tabLink = document.createElement('a');
-        tabLink.className = "link-" + tabClassName;
-        tabLink.href = "#" + tabClassName;
-        tabDiv.name = tabClassName;
-        tabLink.onclick = function () { tabClicked(this); };
-        var tabText = document.createTextNode(tabName);
-        tabLink.appendChild(tabText);
-
-        // Add the link to the tab control.
-        tabTitle.appendChild(tabLink);
-
-        // Add the tab control to the tabs panel.
-        tabTitles.appendChild(tabTitle);
       };
-
-      // Insert the tabs panel control above the tab content div.
-      //tabbedElements[i].insertBefore(tabTitles, tabContent);
+      // use the caption IF there is one
+      $(this).find('.title').each(function() {
+        tabLabel = $(this).html();
+        $(this).remove()
+      });
+      $(this).parent().parent('.content')
+      .addClass("tab-content").siblings('.nav.nav-tabs')
+      .append('<li class="nav-item item-' + tabName + '"><a href=".pane-' + tabName + '" class="nav-link link-' + tabName + '" data-toggle="tab" role="tab" aria-selected="false">' + tabLabel + '</a></li>')
     });
+    // establish defaults
+    var pick = tabSets[tabberName]['swap']['pick'];
+    var nochoice = false;
+    if ( urlParams.has(tabberName) ) {
+      var val = urlParams.get(tabberName)
+    } else if ( $.cookie(tabberName) ) {
+      var val = $.cookie(tabberName)
+    } else if ( typeof tabSets[tabberName]['swap']['pick'] !== 'undefined' ) {
+      var val = tabSets[tabberName]['swap']['pick']
+    }
+    // fallback selection in case default/chosen is not a tab/pane in this tabber
+    $('.tabber-tabset .nav-item:first-child .nav-link').each( function() {
+      $(this).tab('show')
+      $('.pane-' + $(this).getNameByClass() ).each( function() {
+        $(this).addClass("active show").siblings().removeClass("active show")
+      });
+    });
+    // now load the defaults that do exist
+    $('.item-' + val + ' .link-' + val).each( function() {
+      $(this).tab('show')
+    });
+    $('.pane-' + val ).each( function() {
+      $(this).addClass("active show").siblings().removeClass("active show")
+    });
+    $.cookie(tabberName, val)
   });
+  // additional actions on any tab click event
+  $('.tabber-tabset a[data-toggle="tab"]').on('click', function () {
+    var href = $(this).attr("href")
+    $('.tabber-tabset a[href="' + href + '"]').not($(this)).tab('show')
+    $(href).addClass("active show").siblings().removeClass("active show")
+    $.cookie(
+      $(this).parent().parent().parent().getNameByClass()
+      ,$(this).getNameByClass()
+    )
+  })
 });

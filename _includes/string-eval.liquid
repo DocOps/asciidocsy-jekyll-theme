@@ -1,0 +1,26 @@
+{% comment %}
+Evaluates a string and returns the valid data object the string is pointing to.
+Used when all we have is a dot-delimited data object route like site.data.theme
+ instead of the object itself.
+{% endcomment %}
+{%- assign data_obj = "" | split: "," %}
+{%- assign route = include.string | split: "." %}
+{%- assign tier1 = route[1] %}
+{%- assign tier2 = route[2] %}
+{%- assign tier3 = route[3] %}
+{%- assign tier4 = route[4] %}
+{%- assign tier5 = route[5] %}
+{%- assign tier6 = route[6] %}
+{%- if tier6 %}
+  {%- assign data_obj = site[tier1][tier2][tier3][tier4][tier5][tier6] %}
+{%- elsif tier5 %}
+  {%- assign data_obj = site[tier1][tier2][tier3][tier4][tier5] %}
+{%- elsif tier4 %}
+  {%- assign data_obj = site[tier1][tier2][tier3][tier4] %}
+{%- elsif tier3 %}
+  {%- assign data_obj = site[tier1][tier2][tier3] %}
+{%- elsif tier2 %}
+  {%- assign data_obj = site[tier1][tier2] %}
+{%- elsif tier1 %}
+  {%- assign data_obj = site[tier1] %}
+{%- endif %}

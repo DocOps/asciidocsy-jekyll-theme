@@ -1,0 +1,193 @@
+:page-permalink: /docs/theme/config/versioning/swaps
+:theme: <$tok.theme>
+:company: <$tok.company>
+:company_url: <$tok.company_url>
+:product_vrsn: 1.2.1
+:vrsn: <$tok.vrsn>
+:page-version-handlers: +user-os-toggle,+spoof-tokens-swap,+patch-swap-0_2,+user-os-swap
+= Token Swaps
+
+Token swaps enable you to place what I call "`front-end variables`" in your AsciiDoc or other page elements that can be altered either by an act of the user or a URL query string.
+Use this method to reduce the number of builds you perform just to alter small bits of text.
+
+Once a user makes a selection (or has been directed to a specific URL), the swaps remain in play for the duration of their session.
+
+== Swap Configuration
+
+Like other handlers, swaps are defined in the `versioning` data object.
+Name a swap object whatever you wish, and then give it the property [.param]`verb: swap`.
+
+A swap can be triggered by a `select` dropdown or radio `buttons`.
+
+Swaps can have a `dict:` property that establishes default tokens.
+They must have an `swap.opts:` property that defines the "`slates`" of tokens.
+These slates are what is being chosen during a swap.
+
+[IMPORTANT]
+Even though tokens are broken down to separate dicts and slates, _tokens must be unique across all dictionaries_.
+At expression time, swaps alter the value of _every_ token bearing that slug.
+
+== Token Expression
+
+To express a token inside AsciiDoc text, use one of the following methods.
+
+inline role::
+This option uses AsciiDoc's inline semantics to wrap text in a `.tok` class with a secondary class matching the slug of the token.
+For example, `+++[.tok.token_name]#Default Text#+++` declares that we want to offer a token for swapping, and it is named `token_name` and has an inline default set as `Default Text`.
+
+hard token::
+As an alternative that is easy to store in an AsciiDoc attribute (see <<attribute-tokens>> below), use a token formatted like so: `<$tok.token_name>`.
+Replace `token_name` with the slug value for your token.
+There is no option for default text at this time.
+
+== Examples
+
+It's probably best to start showing you some swaps.
+
+=== Patch Version Switcher
+
+We will start with a simple example, and likely the most common implementation: a patch-version switcher.
+If the only thing that changes in your docs between patch versions is the patch version itself, use this trick to let users choose the precise product version they are using or installing without changing pages (and without duplicate builds).
+
+On the right-hand sidebar, there is a selectbox labeled [.gui]*Select your patch version:*.
+
+Watch what happens to this text (*<$tok.vrsn>*) when you change the patch version, sourced as [.code.nosub]`<$tok.vrsn>`.
+
+And here is another version ([.tok.vrsn]*0.2.0*) sourced differently ([.code.nosub]`+++[.tok.vrsn]*0.2.0*+++`).
+
+This set of swaps is registered as a version handler.
+
+[source,yaml]
+----
+features:
+  actions:
+    versioning:
+      ...
+      patch-swap-0_2:
+include::{path_to_jekyll_config}[tags="sample-swap-patch"]
+----
+
+In this example, the swap pivots on a single token and a single set of values.
+
+<1> The `slug:` property names the token.
+<2> The `opts:` property in this case is a simple array of scalars.
+
+=== Token Slates
+
+A swap handler will alter every instance of a token on a page at once, but if you want a handler to swap (every instance of) multiple different tokens, you'll need some dictionaries.
+
+Let's say I wanted to distribute two more editions of AsciiDocsy: "`freemium`" platform and a commercial version, in addition to the free and open-source version.
+Obviously these docs would be largely identical to the free version, but they might have some different contents.
+
+First we need to define tokens for swapping.
+Let's go with `theme`, `company`, and `company_url`, which will have different values given different slates (listed under the `opts:` property).
+
+.Defining a swap dictionary
+[source,yaml]
+----
+features:
+  actions:
+    versioning:
+      ...
+      theme-name-tokens:
+include::{path_to_jekyll_config}[tags="sample-swap-spoof"]
+----
+
+The top-level `dict:` [.out]#2# object defines the default dictionary.
+Thereafter, slates (items in `opts:` [.out]#3#) can override the defaults as needed using a nested `dict:` [.out]#4# (x2) property of their own.
+
+Here we see the first slate (`foss`) simply uses the default dictionary while each of the next two define overrides.
+
+Now that our tokens are defined, we can start placing them inside our AsciiDoc content.
+
+[source,asciidoc,subs=none,role=nosub]
+----
+The <$tok.theme> theme, brought to you by <$tok.company> (link:<$tok.company_url>[website]), is really awesome.
+
+The company slogan is <$tok.slogan>.
+----
+
+[NOTE.limit]
+Limitation: As you can see in the above example, token swaps inside HTML element attributes (such as `href` here) are not yet working.
+
+.Renders
+====
+The <$tok.theme> theme, brought to you by <$tok.company> (link:<$tok.company_url>[website]), is really awesome.
+
+The company slogan is <$tok.slogan>.
+====
+
+[[attribute-tokens]]
+=== Storing Tokens as AsciiDoc Attributes
+
+Placing AsciiDocsy swap tokens directly in AsciiDoc syntax does not carry over to non-AsciiDocsy output.
+For this and other reasons, the preferred way to handle swap tokens is by defining them with AsciiDoc attributes.
+
+Provide different values to all your  way you can override the token syntax with an explicit value anytime you wish at build-time.
+
+This method easier to manage and looks nicer on the page, as well.
+
+:theme_slug: AsciiDocsy
+:company_slug: DocOps.Lab
+:theme: AsciiDocsy
+:company: DocOps.Lab
+
+.Example: hard tokens stored as attributes
+[source,asciidoc,subs=none,role=nosub]
+----
+The [.tok.theme]#{theme}# theme, brought to you by [.tok.company]#{company}# (link:{company_url}[[website]), is really awesome.
+----
+
+.Renders
+====
+The {theme} theme, brought to you by {company} (link:{company_url}[website]), is really awesome.
+====
+
+Without storing your tokens as attributes, you are stuck with those tokens in alternative formats that lack frontend manipulation via JavaScript, such as PDF.
+
+== Toggle Piggy-backing
+
+If a swap and a toggle have the same set of options, the swap can piggy-back on the toggle.
+This means the toggle will now perform two actions:
+
+. It will _show_ any content bearing the "`role`" class defined for the toggle (while hiding content bearing toggled-off classes).
+. It will also swap any tokens for values assigned to the slate that goes with that role/slug.
+
+Let's look at an example.
+
+[source,yaml]
+----
+features:
+  actions:
+    versioning:
+      ...
+include::{path_to_jekyll_config}[tags="sample-swap-piggyback"]
+----
+
+.See the swap in action
+====
+Use the OS selector in the right-hand sidebar to swap slates.
+
+your OS::
+[.os-mac]#MacOS# [.os-nix]#Linux/Unix# [.os-win]#Windows#
+
+
+something about your technology::
+<$tok.your_os>
+
+something about you::
+<$tok.you>
+====
+
+.Swap source
+[source,asciidoc,role=nosub]
+----
+your OS::
+[.os-mac]#MacOS# [.os-nix]#Linux/Unix# [.os-win]#Windows#
+
+something about your technology::
+<$tok.your_os>
+
+something about you::
+<$tok.you>
+----
