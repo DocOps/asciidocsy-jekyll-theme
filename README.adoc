@@ -55,6 +55,14 @@ The codebase brings together developers and technical writers, allowing the latt
 ** instantsearch
 ** multi-index ready
 ** site search & subject search in separate fields
+* [add] tabbed panel content changer
+** tabs show/hide one or more _overlayed_ blocks of content
+** sourced entirely in standard AsciiDoc, rendered w/ JS)
+** configurable under `site.features`
+* [add] entire versioning suite
+** toggles to show/hide text/blocks w/ certain classes
+** token swaps to change front-end variables on/after page load
+** HTML DOM amender for altering HEAD elements
 * [add] Highlight.js syntax highlighting w/ syntax styles
 * [add] "`Toggler`" feature to show/hide page elements by role
 * [add] inline AsciiDoc semantics
@@ -77,13 +85,6 @@ The codebase brings together developers and technical writers, allowing the latt
 
 === Revision 1.0 Targets
 
-* [add] tabbed panel content changer (link:{project_issues_path}/9[#9])
-** tabs show/hide one or more _overlayed_ blocks of content
-** sourced entirely in standard AsciiDoc, rendered w/ JS)
-** configurable under `site.features`
-* [add] version handler templates (Liquid/HTML/CSS/JS) (/10[#10])
-** dropdown-style version selector
-** "`this topic for another product`" links to sibling subjects
 * [add] full-featured, YAML-driven landing-page layout & components (link:{project_issues_path}/5[#5])
 * [refactor] CSS to Sass (link:{project_issues_path}/24[#24])
 * [improve] Vendor-code integration: (link:{project_issues_path}/32[#32])
@@ -245,6 +246,17 @@ I will work up contributor guidelines and PR templates well before v1.0.
 Please standby.
 
 Please don't hesitate to create an issue or or pull request in the meantime!
+
+=== Contribution Notes
+
+Since I've received a couple of small pull requests from folks, I should probably track my conventions and process here to minimize frustration.
+
+Right now I am developing on trunk branches just so I can keep releases straight.
+I will find a better way to do this, but for now it's `trunk-0.2.0`, `trunk-0.3.0`.
+These branch off `main`, and PRs can be merged to the `trunk-` branches, unless they are patches, which can be merged to `main` and then rebased to `trunk-`.
+
+Since this is complicated and potentially disruptive, most patches will await a minor release.
+Therefore, they can be branched from and merged to `trunk-`.
 
 == Licensing
 
