@@ -1,0 +1,50 @@
+:page-permalink: /docs/theme/config/versioning/tabsets
+= Pane Tabs
+
+include::{path_to_snippets}/handlers-table.adoc[tags="table-head,table-row-tabsets,table-tail"]
+
+The act of using local *tabs* to swap between "`overlapping`" *panes* of content blocks is called "`tabbing panes.`"
+
+include::{path_to_snippets}/example_tabset-source.adoc[tags=raw]
+
+== Example
+
+Take another look at our example tabset.
+
+include::{path_to_snippets}/example_tabset-source.adoc[tags=raw]
+
+Now, to examine the source.
+You may be surprised to see it is just conventional AsciiDoc.
+
+.Source for above tabset
+[source,asciidoc,subs=-quotes]
+--------
+include::{path_to_snippets}/example_tabset-source.adoc[tags=marked]
+--------
+
+<1> The whole handler must be wrapped in an [.term.open-block-asciidoc]*AsciiDoc open block* with the `tabber-tabset` role (class) assigned.
+An optional second class names the tabset and _can_ match the name for an optional configuration entry in the version-handlers registry.
+
+<2> Inside the open block, we can place any (untested) number of content panes, which can take the form of nearly any block element, such as code listings, example blocks, or tables.
+They need only be assigned the `tabber-pane` role (class) and a class that matches `pane-<option-slug>`.
+In the case that you have registered an `opts` block in the optional config for this tabset, the `<option-slug>` must match the slug for the registered option to make use of its metadata.
++
+[NOTE]
+Due to a limitation in AsciiDoc, the outer open block cannot include another open block -- there is no syntax for it as of Asciidoctor 2.
+To create a truly transparent content block, try including a table with no borders.
+The `+++{tab-table-options}+++` attribute is set to: `{tab-table-options}`.
+
+<3> The second tab's definition in this case includes an explicit `title` argument, which overrides the `text` label assigned in the registry.
+
+=== Customizations
+
+include::{path_to_snippets}/example_tabset-source.adoc[tags=xml-raw]
+
+Now, to examine the source.
+You may be surprised to see it is just conventional AsciiDoc.
+
+.Source for above tabset
+[source,asciidoc]
+--------
+include::{path_to_snippets}/example_tabset-source.adoc[tags=xml-marked]
+--------

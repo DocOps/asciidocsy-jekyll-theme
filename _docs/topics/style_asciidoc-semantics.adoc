@@ -167,7 +167,7 @@ m| [.case]pass:[_If you chose Implementation Strategy A_], you should establish 
 [.case]_If you chose Implementation Strategy B_, use the guide below to get set up.
 |===
 
-`.tok`::
+`.sub`::
 For literal substitution tokens embedded in code or command examples.
 Use with or without visual wrapping charactes (such as `< >` or `${ }`).
 +
@@ -176,9 +176,9 @@ Use with or without visual wrapping charactes (such as `< >` or `${ }`).
 | Quotes
 |  backtick
 | Example
-m| Use the format +++[.code]+++`base.<file_ext>`, where +++[.tok]+++`<file_ext>` is the filename followed by an underscore and the file extension.+++
+m| Use the format +++[.code]+++`base.<file_ext>`, where +++[.sub]+++`<file_ext>` is the filename followed by an underscore and the file extension.+++
 | Renders
-| Use the format [.code]`base.<file_ext>`, where [.tok]`<file_ext>` is the filename followed by an underscore and the file extension.
+| Use the format [.code]`base.<file_ext>`, where [.sub]`<file_ext>` is the filename followed by an underscore and the file extension.
 |===
 
 `.tip`::

@@ -1,0 +1,25 @@
+// tag::user-os[]
+[.os-win]
+--
+This site works great on Windows 10, and probably on Windows 7, and likely even on Windows XP.
+Windows often requires extra/special instructions for developer-oriented stuff.
+
+Windows users are encouraged to explore WSL2 for access to a true Unix-like system right inside their main OS.
+--
+
+[.os-nix]
+--
+This site was built on a Linux desktop, and it probably looks great on FreeBSD.
+I personally want Mac and Windows users to know that, but other stuff might be noise to non-Linux users, so why rub their noses in it?
+--
+
+[.os-mac]
+--
+MacOS always makes AsciiDocsy look terrific.
+--
+
+[.os-mac.os-nix]
+--
+The author of AsciiDocsy strongly prefers Unix-like systems, but they would never want Windows users to see such a statement.
+--
+// end::user-os[]
