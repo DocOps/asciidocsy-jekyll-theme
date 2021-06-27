@@ -17,7 +17,6 @@
     - text:
       href:
 
-
 - term: flat files
   slug: flat-files
   desc: Files containing only ASCII or UTF-8 text.

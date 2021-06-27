@@ -1,0 +1,39 @@
+# Defines references to JavaScript resources
+head:
+  - slug: jquery
+    href: /js/jquery-3.3.1.min.js
+  - slug: popper
+    href: https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js
+    meta:
+      integrity: sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49
+  - slug: bootstrap
+    href: https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js
+  - slug: jquery-cookie
+    href: /js/jquery.cookie.js
+  - slug: algolia-instantsearch
+    href: https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js
+    meta:
+      integrity: sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=
+  - slug: autocomplete
+    href: https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js
+  - slug: algoliasearch-3
+    href: https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js
+  - slug: anchors
+    href: /js/anchor.min.js
+  - slug: navgoco
+    href: /js/jquery.navgoco.js
+  - slug: bootstrap-toc
+    href: /js/bootstrap-toc.js
+  - slug: highlight-js
+    href: /js/highlight.pack.js
+  - slug: asciidoctor
+    href: /js/asciidoctor.min.js
+  - slug: asciidocsy-tabber
+    href: /js/tabber.js
+  - slug: asciidocsy-toggler
+    href: /js/toggler.js
+  - slug: asciidocsy-semantics
+    href: /js/semantics.js
+tail:
+  - slug: asciidocsy-tail
+    href: /js/tail.js

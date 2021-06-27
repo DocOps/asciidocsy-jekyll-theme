@@ -1,0 +1,16 @@
+# Defines key layout or content blocks
+header:
+  show:
+    logo:
+      source: /images/logo.png
+      width: 50px
+footer:
+  show:
+    logo:
+      source: /images/docops-labs-logo.png
+      width: 150px
+    opts:
+      first-col-class: offset-2 # how far to offset the link columns
+social:
+  show:
+    spot: footer

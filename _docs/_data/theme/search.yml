@@ -1,0 +1,19 @@
+# Defines search fields/results
+site:
+  $doc:
+    name: Search the site
+    desc: Enables users to search all pages in the site, including non-topics
+# tag::search-site-core[]
+  show:
+    text: Search non-docs PAGES…
+    spot: "#nav-site"
+  meta:
+    index: asciidocsy-pages
+# end::search-site-core[]
+subject:
+  show:
+    text: Search subject TOPICS…
+    icon: fa fa-search
+    spot: "#sidebar-left" # where this should appear (alt: leftside nav)
+  meta:
+    index: asciidocsy-topics

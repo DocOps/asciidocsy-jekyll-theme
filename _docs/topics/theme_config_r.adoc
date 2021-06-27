@@ -1,32 +1,77 @@
 :page-permalink: /docs/theme/config
-= Configuring AsciiDocsy
+= Site/Theme Configuration
 
-AsciiDocsy is intended to be customizable entirely through YAML data files as well as CSS and JS.
-The idea here is that you can maintain files like [.path]`css/custom.css` and [.path]`js/custom.js` to supplement or override any settings in the core style and script files, or else you can even disable these prior settings, all without editing the core templates that make up the theme.
+AsciiDocs employs YAML-based configuration for both the back-end (Jekyll build, Asciidoctor conversion, etc) and the front-end, populating CSS and JavaScript with data stored in people-friendlier [.term.flat-file]*flat files*.
 
-In reality, AsciiDocsy is a ways off from this goal.
-A [.path]`data/strings.yml` file has been introduced, but still most strings have yet to be migrated there.
-This means if you don't like the wording of something, for the time being you'd have to use brutal JS/CSS to manipulate content post-build to stay out of the HTML templates, or else you'd have to edit those templates, hence diverging from the critical files of this theme.
+== Configuration Scopes
 
-Nevertheless, the seeds of fully YAML-based customization of the theme have been planted, so let us take a look at what is available so far.
+AsciiDocsy makes distinct use of the two global [.term.variable-scope]*variable scopes* provided by Jekyll: `site` and `site.data`.
+Other than the `site.data` object itself, `site`-scoped variables are sourced in Jekyll configuration files.
+
+[NOTE]
+All YAML-sourced data ingested into a Jekyll build is formatted as objects -- be it a single parameter with a scalar value or an Array or Struct.
+Objects in Jekyll and Liquid are mapped to a dot-delimited reference format, and AsciiDocsy uses only this format to refer to data objects.
+
+The `site.data` scope, or just `data`, is sourced in the Jekyll data directory.
+This is conventionally `_data/`, but for the AsciiDocsy docs themselves, it is `_docs/_data/`.
+The location is established by the `data_dir:` setting in the `site` configuration.
+
+All objects in both the `site` and `site.data` scopes are available anywhere Jekyll parses Liquid-formatted templates.
+However, their references (full variable names) are determined differently.
+Because Jekyll provides flexibility regarding how and where precisely to source objects for both scopes, AsciiDocsy documentation uses only the dot-delimited references and never explicit filesystem paths to the source of a data object being discussed.
+
+Data objects that get ingested into the `site` scope from any file bear a dot-delimited reference that respects a hierarchy starting with `site.` and then following the object's lineage without respect for the name of the source file it was derived from.
+All YAML files consumed as part of the configuration are flattened to the `site` scope.
+
+If you have a primary config file `_config.yml` in the project root and a secondary config file at `configs/secondary.yml`, then an object immediately inside either file can be expressed as `site.<object>`, where `<object>` is instead the literal name of the object being expressed.
+
+Files in the `data` scope, on the contrary, begin with `site.data.` and continue on with (1) the path to the YAML file, (2) the name of the YAML file, and then (3) the lineage to the object inside that file.
+So a data object called `myobject` inside a file called `myfile.yml` in the folder `_data/myfolder/` would be `site.data.myfolder.myfile.myobject`.
+
+Now that we have an overview of how we _reference_ globally scoped variables, let's look at the kinds of data we deliver to each scope.
 
 == Site-scoped Configuration
 
-The main Jekyll configuration file (by default, [.path]`_config.yml`) is the source of most theme-affecting settings at this time.
+The `site` scope is used for configuring the Jekyll application itself and Jekyll plugins delivered as Ruby gems -- _other than the AsciiDocsy theme_ itself.
+The site scope can additionally contain miscellaneous non-plugin definitions, so long as the matter being defined does not pertain mainly to the theme or your content.
 
-The <</docs/theme/config/api-reference#,Config API reference>> is generated from this file mostly as an (unfinished) example.
-The data objects in `_config.yml` are mostly documented inline with comments or a [.code]`$docs:` property.
+The main Jekyll configuration file (by default, [.path]`_config.yml`) is the prime source for defining the configuration of Jekyll and Jekyll plugins (such as Algolia and Asciidoctor).
 
-AsciiDocsy will introduce a method for providing sources outside of the `site` scope for these same objects.
+Additional Jekyll/plugin configuration data is stored in a subdirectory of the data directory (e.g., `_docs/_data/configs/`), for optionally appending to Jekyll commands.
+
+[TIP]
+To designate specific configuration files other than a single file at `_config.yml`, use the `--config file1.yml,file2.yml` option flag on the commandline.
+
+In particular, AsciiDocsy convention maintains a file at `_data/configs/services.yml` which contains an object, `services:`, that contains child objects like `analytics` and `search`.
+This is for configuring plugins used to index content or distribute analytics to an external provider.
+
+While Algolia is an official plugin, your Google Analytics JavaScript might not have any back-end component at all.
+But since site analytics tracking feature have nothing to do with the site theme or the site content, it is a `site`-scoped configuration.
+Whereas the list fo JavaScript files used by AsciiDocsy is situated in the `site.data.theme` scope, as it is highly theme-specific.
+
+As you will see, the great bulk of configuration options and other AsciiDocsy goodies are defined in the `data` scope.
+
+=== Site-Scoped Config Reference
 
 == Data-scoped Configuration
 
-Jekyll ingests any YAML (or JSON) files found in the declared data directory and carries them as self-named objects available in all layout and include files.
-The data directory is declared in the configuration, and any subdirectories it contains will be scoped as `site.data.<subdir>`, where [.tok]`<subdir>` is the folder name.
-
-Key data-scoped objects include `terms` and `navigation`.
+Key `data`-scoped objects include `terms` and `navs`.
 The former establishes the glossary and inline-semantic popovers for text designated with the `.term` role.
 The navigation object determines both the header and the footer menus.
 
-The `theme/strings.yml` file establishes strings found in the layouts and other templates.
-It is not visible inside your AsciiDoc content files or the pages they render.
+The dot-delimited reference system allows you to choose the arrangement of your Jekyll application's data files.
+While AsciiDocsy expects variables to be at a certain address, the folders, files, and objects contained in those files are up to you to order.
+
+For example, the AsciiDocsy docs application uses the path `_docs/_data/theme/versioning.yml` as the home for the `site.theme.versioning` object.
+This object contains two immediate child objects: `defaults` and `handlers`, with the latter object containing a whole list of child objects like `user-os-swap` and `theme-skin-amend`.
+
+These objects will always be referenced using the same dot notation, such as  `site.data.theme.versioning.handlers.user-os-swap`.
+The data object itself could, however, be on either of these paths:
+
+* `_data/theme/versioning/handlers.yml`
+* `_data/theme/versioning/handlers/user-os-swap.yml`
+
+By author preference, the `versioning.yml` file in AsciiDocsy's case is pretty big, but breaking there is not much savings in splitting at the next tier (`defaults` and `handlers`), and one file per version handler seems excessive.
+Your preferences may vary.
+
+=== Data-Scoped Config Reference

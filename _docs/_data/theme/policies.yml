@@ -1,0 +1,59 @@
+# Defines policies regarding privacy, content display, access, etc
+cookies: # cookie policies will go here
+gdpr:
+  # NOT YET IMPLEMENTED
+  # This feature will enable users to
+  $doc:
+    name: GDPR policies
+    desc: Groups cookies by use to let users select which cookies to permit.
+  types:
+    - slug: essential
+      desc: Just the cookie to remember these preferences.
+      cookies: [cookieControlPrefs]
+    - slug: preferences
+      desc: Cookies to recall style and version choices made in the app.
+      cookies: [syntax-style,skin-style,switcher_user-os]
+    - slug: analytics
+      desc: Uses cookies to anonymously report how you use the site so we can improve the experience.
+      cookies: [google-analytics]
+    - slug: commercial
+      desc: We don't use this kind of cookie anywhere on our site.
+      cookies: []
+authorizations:
+  # NOT YET IMPLEMENTED
+  # Arbitrary tiers for referencing in other settings.
+  # Authorization is ordered from lowest (first) to highest.
+  # This object demonstrates only FEATURE-level permissions for page links.
+  # Restricting access to whole pages/paths based on authorizations is
+  #  not yet planned.
+  - code: auth0
+    text: all site visitors
+    policies:
+      fork: togo
+  - code: auth1
+    text: logged-in site visitors
+    keys:
+      - cookie: employees
+      - cookie: contractors
+      - token:  staff
+    policies:
+      fork: stay
+  - code: auth2
+    text: site admins only
+    keys:
+      - cookie: 'admins'
+    policies:
+      fork: stay
+  # NOTE: with a static site, we are not so much protecting the source
+  #  (our Git workflow does that); we are just restricting what visitors
+  #  see on the page.
+defaults:
+  # auth: auth0 # who sees interactive features on the site?
+              # must be one of the codes listed in policies.authorizations
+              # can override individually below
+  fork: upto  # can users fork the repo to contribute?
+              #   none = no forking or branching
+              #   stay = branch only
+              #   togo = fork only
+              #   upto = fork or branch, user's choice
+              #   auth = set under policies.authorizations

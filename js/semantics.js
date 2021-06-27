@@ -8,7 +8,7 @@ $( document ).ready(function() {
   **/
   if ($('.term').length) { // nothing happens if there are no terms on the page
     const termsDict = {{ site.data.terms | jsonify }}
-    const icon      = '{{ site.semantics.inline.role.term.show.icon.text }}'
+    const icon      = '{{ site.data.theme.semantics.inline.role.term.show.icon.text }}'
     var termsList   = []
     /**
     Scan content for terms and insert data- attrs for
@@ -26,16 +26,16 @@ $( document ).ready(function() {
         if (!termsList.find(t => t.slug == theTerm.slug)) {
           termsList.push(theTerm);
         };
-  {% if site.semantics.inline.role.term.show.icon %}
-  {% if site.semantics.inline.role.term.show.icon.tilt %}
-    {% assign rotate = "fa-rotate-" | append: site.semantics.inline.role.term.show.icon.tilt %}
-  {% endif %}
+  {% if site.data.theme.semantics.inline.role.term.show.icon %}
+    {% if site.data.theme.semantics.inline.role.term.show.icon.tilt %}
+      {% assign rotate = "fa-rotate-" | append: site.data.theme.semantics.inline.role.term.show.icon.tilt %}
+    {% endif %}
         $(this).append('<i class="icon ' + icon + ' {{rotate}}">');
   {% endif %}
         $(this).attr('data-toggle', 'popover');
         $(this).attr('data-title', theTerm['term']);
         $(this).attr('data-content', asciidoctor.convert(theTerm['desc'], {doctype: 'inline'}));
-  {% if site.semantics.inline.role.term.show.icon.spin %}
+  {% if site.data.theme.semantics.inline.role.term.show.icon.spin %}
         $(this).hover(
           function() {
             $(this).children('i').addClass('fa-spin')

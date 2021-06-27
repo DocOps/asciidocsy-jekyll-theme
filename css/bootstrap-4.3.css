@@ -21,7 +21,7 @@ layout: null
     --white: #fff;
     --gray: #888;
     --gray-dark: #333;
-    --primary: {{ site.styles.color.theme }};
+    --primary: {{ site.data.theme.styles.color.theme-primary }};
     --secondary: #D95040;
     --success: #3772FF;
     --info: #C0E0DE;
@@ -2898,13 +2898,13 @@ fieldset:disabled a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: {{ site.styles.color.theme }};
+    background-color: {{ site.data.theme.styles.color.theme-primary }};
 }
 
 .btn-primary:hover {
     color: #fff;
-    background-color: {{ site.styles.color.theme }};
-    border-color: {{ site.styles.color.theme }};
+    background-color: {{ site.data.theme.styles.color.theme-primary }};
+    border-color: {{ site.data.theme.styles.color.theme-primary }};
 }
 
 .btn-primary:focus,
@@ -2916,8 +2916,8 @@ fieldset:disabled a.btn {
 .btn-primary.disabled,
 .btn-primary:disabled {
     color: #fff;
-    background-color: {{ site.styles.color.theme }};
-    border-color: {{ site.styles.color.theme }}
+    background-color: {{ site.data.theme.styles.color.theme-primary }};
+    border-color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .btn-primary:not(:disabled):not(.disabled):active,
@@ -2943,8 +2943,8 @@ fieldset:disabled a.btn {
 
 .btn-secondary:hover {
     color: #fff;
-    background-color: {{ site.styles.color.theme }};
-    border-color: {{ site.styles.color.theme }};
+    background-color: {{ site.data.theme.styles.color.theme-primary }};
+    border-color: {{ site.data.theme.styles.color.theme-primary }};
 }
 
 .btn-secondary:focus,
@@ -2984,8 +2984,8 @@ fieldset:disabled a.btn {
 
 .btn-success:hover {
     color: #fff;
-    background-color: {{ site.styles.color.theme }};
-    border-color: {{ site.styles.color.theme }};
+    background-color: {{ site.data.theme.styles.color.theme-primary }};
+    border-color: {{ site.data.theme.styles.color.theme-primary }};
 }
 
 .btn-success:focus,
@@ -3024,8 +3024,8 @@ fieldset:disabled a.btn {
 
 .btn-info:hover {
     color: #fff;
-    background-color: {{ site.styles.color.theme }};
-    border-color: {{ site.styles.color.theme }};
+    background-color: {{ site.data.theme.styles.color.theme-primary }};
+    border-color: {{ site.data.theme.styles.color.theme-primary }};
 }
 
 .btn-info:focus,
@@ -3064,8 +3064,8 @@ fieldset:disabled a.btn {
 
 .btn-warning:hover {
     color: #fff;
-    background-color: {{ site.styles.color.theme }};
-    border-color: {{ site.styles.color.theme }};
+    background-color: {{ site.data.theme.styles.color.theme-primary }};
+    border-color: {{ site.data.theme.styles.color.theme-primary }};
 }
 
 .btn-warning:focus,
@@ -3104,8 +3104,8 @@ fieldset:disabled a.btn {
 
 .btn-danger:hover {
     color: #fff;
-    background-color: {{ site.styles.color.theme }};
-    border-color: {{ site.styles.color.theme }};
+    background-color: {{ site.data.theme.styles.color.theme-primary }};
+    border-color: {{ site.data.theme.styles.color.theme-primary }};
 }
 
 .btn-danger:focus,
@@ -3236,16 +3236,16 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-primary {
-    color: {{ site.styles.color.theme }};
+    color: {{ site.data.theme.styles.color.theme-primary }};
     background-color: transparent;
     background-image: none;
-    border-color: {{ site.styles.color.theme }}
+    border-color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .btn-outline-primary:hover {
     color: #fff;
-    background-color: {{ site.styles.color.theme }};
-    border-color: {{ site.styles.color.theme }}
+    background-color: {{ site.data.theme.styles.color.theme-primary }};
+    border-color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .btn-outline-primary:focus,
@@ -3256,7 +3256,7 @@ fieldset:disabled a.btn {
 
 .btn-outline-primary.disabled,
 .btn-outline-primary:disabled {
-    color: {{ site.styles.color.theme }};
+    color: {{ site.data.theme.styles.color.theme-primary }};
     background-color: transparent
 }
 
@@ -3264,8 +3264,8 @@ fieldset:disabled a.btn {
 .btn-outline-primary:not(:disabled):not(.disabled).active,
 .show>.btn-outline-primary.dropdown-toggle {
     color: #fff;
-    background-color: {{ site.styles.color.theme }};
-    border-color: {{ site.styles.color.theme }}
+    background-color: {{ site.data.theme.styles.color.theme-primary }};
+    border-color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
@@ -3839,10 +3839,10 @@ input[type=button].btn-block {
 .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background: {{ site.styles.color.theme }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.styles.color.theme }})) repeat-x;
-    background: {{ site.styles.color.theme }} -webkit-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
-    background: {{ site.styles.color.theme }} -o-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
-    background: {{ site.styles.color.theme }} linear-gradient(180deg, #4f7a9f, {{ site.styles.color.theme }}) repeat-x
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.data.theme.styles.color.theme-primary }})) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} -o-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} linear-gradient(180deg, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x
 }
 
 .dropdown-item.disabled,
@@ -4254,10 +4254,10 @@ input[type=button].btn-block {
 
 .custom-control-input:checked~.custom-control-label::before {
     color: #fff;
-    background: {{ site.styles.color.theme }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.styles.color.theme }})) repeat-x;
-    background: {{ site.styles.color.theme }} -webkit-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
-    background: {{ site.styles.color.theme }} -o-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
-    background: {{ site.styles.color.theme }} linear-gradient(180deg, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.data.theme.styles.color.theme-primary }})) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} -o-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} linear-gradient(180deg, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
     -webkit-box-shadow: none;
     box-shadow: none
 }
@@ -4324,10 +4324,10 @@ input[type=button].btn-block {
 }
 
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-    background: {{ site.styles.color.theme }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.styles.color.theme }})) repeat-x;
-    background: {{ site.styles.color.theme }} -webkit-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
-    background: {{ site.styles.color.theme }} -o-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
-    background: {{ site.styles.color.theme }} linear-gradient(180deg, #4f7a9f, {{ site.styles.color.theme }}) repeat-x
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.data.theme.styles.color.theme-primary }})) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} -o-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} linear-gradient(180deg, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x
 }
 
 .custom-checkbox .custom-control-input:checked~.custom-control-label::after {
@@ -4335,10 +4335,10 @@ input[type=button].btn-block {
 }
 
 .custom-checkbox .custom-control-input:indeterminate~.custom-control-label::before {
-    background: {{ site.styles.color.theme }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.styles.color.theme }})) repeat-x;
-    background: {{ site.styles.color.theme }} -webkit-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
-    background: {{ site.styles.color.theme }} -o-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
-    background: {{ site.styles.color.theme }} linear-gradient(180deg, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.data.theme.styles.color.theme-primary }})) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} -o-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} linear-gradient(180deg, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
     -webkit-box-shadow: none;
     box-shadow: none
 }
@@ -4360,10 +4360,10 @@ input[type=button].btn-block {
 }
 
 .custom-radio .custom-control-input:checked~.custom-control-label::before {
-    background: {{ site.styles.color.theme }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.styles.color.theme }})) repeat-x;
-    background: {{ site.styles.color.theme }} -webkit-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
-    background: {{ site.styles.color.theme }} -o-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
-    background: {{ site.styles.color.theme }} linear-gradient(180deg, #4f7a9f, {{ site.styles.color.theme }}) repeat-x
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.data.theme.styles.color.theme-primary }})) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} -o-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} linear-gradient(180deg, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x
 }
 
 .custom-radio .custom-control-input:checked~.custom-control-label::after {
@@ -4548,9 +4548,9 @@ input[type=button].btn-block {
     width: 1rem;
     height: 1rem;
     margin-top: -.25rem;
-    background: {{ site.styles.color.theme }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.styles.color.theme }})) repeat-x;
-    background: {{ site.styles.color.theme }} -webkit-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
-    background: {{ site.styles.color.theme }} linear-gradient(180deg, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.data.theme.styles.color.theme-primary }})) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} linear-gradient(180deg, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
     border: 0;
     border-radius: 1rem;
     -webkit-box-shadow: 0 .1rem .25rem rgba(0, 0, 0, .1);
@@ -4593,7 +4593,7 @@ input[type=button].btn-block {
 .custom-range::-moz-range-thumb {
     width: 1rem;
     height: 1rem;
-    background: {{ site.styles.color.theme }} linear-gradient(180deg, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} linear-gradient(180deg, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
     border: 0;
     border-radius: 1rem;
     box-shadow: 0 .1rem .25rem rgba(0, 0, 0, .1);
@@ -4635,7 +4635,7 @@ input[type=button].btn-block {
     margin-top: 0;
     margin-right: .2rem;
     margin-left: .2rem;
-    background: {{ site.styles.color.theme }} linear-gradient(180deg, #4f7a9f, {{ site.styles.color.theme }}) repeat-x;
+    background: {{ site.data.theme.styles.color.theme-primary }} linear-gradient(180deg, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x;
     border: 0;
     border-radius: 1rem;
     box-shadow: 0 .1rem .25rem rgba(0, 0, 0, .1);
@@ -4702,7 +4702,7 @@ input[type=button].btn-block {
 }
 
 header nav img.logo {
-  width: {{ site.styles.logo.width }};
+  width: {{ site.data.theme.styles.logo.width }};
 }
 
 .nav {
@@ -4785,7 +4785,7 @@ header nav img.logo {
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
-    background-color: {{ site.styles.color.theme }}
+    background-color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 #nav-site .nav-link.active {
@@ -5761,7 +5761,7 @@ header nav img.logo {
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: {{ site.styles.color.theme }};
+    background-color: {{ site.data.theme.styles.color.theme-primary }};
     border-color: #2a567b
 }
 
@@ -5836,7 +5836,7 @@ header nav img.logo {
 
 .badge-primary {
     color: #fff;
-    background-color: {{ site.styles.color.theme }}
+    background-color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .badge-primary[href]:hover,
@@ -6171,7 +6171,7 @@ header nav img.logo {
     color: #fff;
     text-align: center;
     white-space: nowrap;
-    background-color: {{ site.styles.color.theme }};
+    background-color: {{ site.data.theme.styles.color.theme-primary }};
     -webkit-transition: width .6s ease;
     -o-transition: width .6s ease;
     transition: width .6s ease
@@ -6284,8 +6284,8 @@ header nav img.logo {
 .list-group-item.active {
     z-index: 2;
     color: #fff;
-    background-color: {{ site.styles.color.theme }};
-    border-color: {{ site.styles.color.theme }}
+    background-color: {{ site.data.theme.styles.color.theme-primary }};
+    border-color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .list-group-flush .list-group-item {
@@ -7316,7 +7316,7 @@ button.close {
 }
 
 .bg-primary {
-    background-color: {{ site.styles.color.theme }}!important
+    background-color: {{ site.data.theme.styles.color.theme-primary }}!important
 }
 
 a.bg-primary:hover,
@@ -7404,10 +7404,10 @@ button.bg-dark:focus {
 }
 
 .bg-gradient-primary {
-    background: {{ site.styles.color.theme }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.styles.color.theme }})) repeat-x!important;
-    background: {{ site.styles.color.theme }} -webkit-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x!important;
-    background: {{ site.styles.color.theme }} -o-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x!important;
-    background: {{ site.styles.color.theme }} linear-gradient(180deg, #4f7a9f, {{ site.styles.color.theme }}) repeat-x!important
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.data.theme.styles.color.theme-primary }})) repeat-x!important;
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x!important;
+    background: {{ site.data.theme.styles.color.theme-primary }} -o-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x!important;
+    background: {{ site.data.theme.styles.color.theme-primary }} linear-gradient(180deg, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x!important
 }
 
 .bg-gradient-secondary {
@@ -7508,7 +7508,7 @@ button.bg-dark:focus {
 }
 
 .border-primary {
-    border-color: {{ site.styles.color.theme }}!important
+    border-color: {{ site.data.theme.styles.color.theme-primary }}!important
 }
 
 .border-secondary {
@@ -10460,7 +10460,7 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-    color: {{ site.styles.color.theme }}!important
+    color: {{ site.data.theme.styles.color.theme-primary }}!important
 }
 
 a.text-primary:hover,
@@ -10954,7 +10954,7 @@ a.text-dark:focus {
 
 .-bg-primary {
     color: #fff;
-    background-color: {{ site.styles.color.theme }}
+    background-color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .-bg-primary p>a {
@@ -10967,7 +10967,7 @@ a.text-dark:focus {
 }
 
 .-text-primary {
-    color: {{ site.styles.color.theme }}
+    color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .-bg-secondary {
@@ -11278,7 +11278,7 @@ a.text-dark:focus {
 
 .-bg-1 {
     color: #fff;
-    background-color: {{ site.styles.color.theme }}
+    background-color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .-bg-1 p>a {
@@ -11291,7 +11291,7 @@ a.text-dark:focus {
 }
 
 .-text-1 {
-    color: {{ site.styles.color.theme }}
+    color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .-bg-2 {
@@ -11440,7 +11440,7 @@ a.text-dark:focus {
 
 .-bg-10 {
     color: #fff;
-    background-color: {{ site.styles.color.theme }}
+    background-color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .-bg-10 p>a {
@@ -11453,7 +11453,7 @@ a.text-dark:focus {
 }
 
 .-text-10 {
-    color: {{ site.styles.color.theme }}
+    color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .-bg-11 {
@@ -11597,7 +11597,7 @@ a.text-dark:focus {
 
 .td-box--1 {
     color: #fff;
-    background-color: {{ site.styles.color.theme }}
+    background-color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .td-box--1 .td-arrow-down::before {
@@ -11606,7 +11606,7 @@ a.text-dark:focus {
     bottom: -25px;
     border-style: solid;
     border-width: 25px 30px 0;
-    border-color: {{ site.styles.color.theme }} transparent transparent transparent;
+    border-color: {{ site.data.theme.styles.color.theme-primary }} transparent transparent transparent;
     z-index: 3;
     position: absolute;
     content: ""
@@ -11622,10 +11622,10 @@ a.text-dark:focus {
 }
 
 .td-box--11.td-box--gradient {
-    background: {{ site.styles.color.theme }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.styles.color.theme }})) repeat-x!important;
-    background: {{ site.styles.color.theme }} -webkit-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x!important;
-    background: {{ site.styles.color.theme }} -o-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x!important;
-    background: {{ site.styles.color.theme }} linear-gradient(180deg, #4f7a9f, {{ site.styles.color.theme }}) repeat-x!important
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.data.theme.styles.color.theme-primary }})) repeat-x!important;
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x!important;
+    background: {{ site.data.theme.styles.color.theme-primary }} -o-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x!important;
+    background: {{ site.data.theme.styles.color.theme-primary }} linear-gradient(180deg, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x!important
 }
 
 .td-box--2 {
@@ -11894,7 +11894,7 @@ a.text-dark:focus {
 
 .td-box--10 {
     color: #fff;
-    background-color: {{ site.styles.color.theme }}
+    background-color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .td-box--10 .td-arrow-down::before {
@@ -11903,7 +11903,7 @@ a.text-dark:focus {
     bottom: -25px;
     border-style: solid;
     border-width: 25px 30px 0;
-    border-color: {{ site.styles.color.theme }} transparent transparent transparent;
+    border-color: {{ site.data.theme.styles.color.theme-primary }} transparent transparent transparent;
     z-index: 3;
     position: absolute;
     content: ""
@@ -11919,10 +11919,10 @@ a.text-dark:focus {
 }
 
 .td-box--110.td-box--gradient {
-    background: {{ site.styles.color.theme }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.styles.color.theme }})) repeat-x!important;
-    background: {{ site.styles.color.theme }} -webkit-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x!important;
-    background: {{ site.styles.color.theme }} -o-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x!important;
-    background: {{ site.styles.color.theme }} linear-gradient(180deg, #4f7a9f, {{ site.styles.color.theme }}) repeat-x!important
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.data.theme.styles.color.theme-primary }})) repeat-x!important;
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x!important;
+    background: {{ site.data.theme.styles.color.theme-primary }} -o-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x!important;
+    background: {{ site.data.theme.styles.color.theme-primary }} linear-gradient(180deg, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x!important
 }
 
 .td-box--11 {
@@ -12455,7 +12455,7 @@ a.text-dark:focus {
 
 .td-box--primary {
     color: #fff;
-    background-color: {{ site.styles.color.theme }}
+    background-color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .td-box--primary .td-arrow-down::before {
@@ -12464,7 +12464,7 @@ a.text-dark:focus {
     bottom: -25px;
     border-style: solid;
     border-width: 25px 30px 0;
-    border-color: {{ site.styles.color.theme }} transparent transparent transparent;
+    border-color: {{ site.data.theme.styles.color.theme-primary }} transparent transparent transparent;
     z-index: 3;
     position: absolute;
     content: ""
@@ -12480,10 +12480,10 @@ a.text-dark:focus {
 }
 
 .td-box--1primary.td-box--gradient {
-    background: {{ site.styles.color.theme }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.styles.color.theme }})) repeat-x!important;
-    background: {{ site.styles.color.theme }} -webkit-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x!important;
-    background: {{ site.styles.color.theme }} -o-linear-gradient(top, #4f7a9f, {{ site.styles.color.theme }}) repeat-x!important;
-    background: {{ site.styles.color.theme }} linear-gradient(180deg, #4f7a9f, {{ site.styles.color.theme }}) repeat-x!important
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-gradient(linear, left top, left bottom, from(#4f7a9f), to({{ site.data.theme.styles.color.theme-primary }})) repeat-x!important;
+    background: {{ site.data.theme.styles.color.theme-primary }} -webkit-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x!important;
+    background: {{ site.data.theme.styles.color.theme-primary }} -o-linear-gradient(top, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x!important;
+    background: {{ site.data.theme.styles.color.theme-primary }} linear-gradient(180deg, #4f7a9f, {{ site.data.theme.styles.color.theme-primary }}) repeat-x!important
 }
 
 .td-box--secondary {
@@ -13071,7 +13071,7 @@ a.text-dark:focus {
 }
 
 .td-navbar-cover {
-    background: {{ site.styles.color.theme }}
+    background: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 @media(min-width:768px) {
@@ -13088,12 +13088,12 @@ a.text-dark:focus {
 }
 
 .navbar-bg-onscroll {
-    background: {{ site.styles.color.theme }}!important;
+    background: {{ site.data.theme.styles.color.theme-primary }}!important;
     opacity: inherit
 }
 
 .td-navbar {
-    background: {{ site.styles.color.theme }};
+    background: {{ site.data.theme.styles.color.theme-primary }};
     min-height: 4rem;
     margin: 0;
     z-index: 32
@@ -13438,12 +13438,12 @@ html body .md-typeset .headerlink {
 
 .alert-primary {
     border-style: solid;
-    border-color: {{ site.styles.color.theme }};
+    border-color: {{ site.data.theme.styles.color.theme-primary }};
     border-width: 0 0 0 4px
 }
 
 .alert-primary .alert-heading {
-    color: {{ site.styles.color.theme }}
+    color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .alert-secondary {
@@ -13558,7 +13558,7 @@ html body .md-typeset .headerlink {
     padding: 0 0 0 1rem;
     margin-bottom: 1rem;
     color: #888;
-    border-left: 6px solid {{ site.styles.color.theme }}
+    border-left: 6px solid {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .td-content>ul li,
@@ -13712,7 +13712,7 @@ html body .md-typeset .headerlink {
 
 .pageinfo-primary {
     border-style: solid;
-    border-color: {{ site.styles.color.theme }}
+    border-color: {{ site.data.theme.styles.color.theme-primary }}
 }
 
 .pageinfo-secondary {

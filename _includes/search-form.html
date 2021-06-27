@@ -2,7 +2,7 @@
 {% unless hook_replace_tpl %}
 {% assign search-name = include.search %}
 {% assign searchname = include.search | replace:"-","" %}
-{% assign search = site.features.actions[search-name] %}
+{% assign search = site.data.theme.search[searchname] %}
 {% include hook.liquid template="search-form_html" spot="head" %}
 <script>
 var hrefChanged = false;
@@ -26,8 +26,8 @@ $( "#aa-{{ search-name }}-input" ).keydown(function(e) {
   }
 });
 
-var client = algoliasearch('{{ site.services.search.algolia.application_id }}', '{{ site.services.search.algolia.search_only_api_key }}');
-var index = client.initIndex('{{ site.features.actions[search-name].meta.index }}');
+var client = algoliasearch('{{ site.data.theme.services.search.algolia.application_id }}', '{{ site.data.theme.services.search.algolia.search_only_api_key }}');
+var index = client.initIndex('{{ site.data.theme.search[search-name].meta.index }}');
 // Initialize autocomplete on search input (ID selector must match).
 autocomplete('#aa-{{ search-name }}-input',
 { hint: true, autoselect: false }, {

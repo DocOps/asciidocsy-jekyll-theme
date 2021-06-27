@@ -21,18 +21,18 @@ The `site.services.algolia` object, by default defined in `_config.yml`.
 ----
   services:
     search:
-include::{path_to_jekyll_config}[tags=algolia]
+include::_docs/_data/configs/services.yml[tags=algolia]
 ----
 
 Additionally, each search form on your site needs some more data.
-By default the search forms draw this info from objects inside `site.features.actions`, such as `search-site` and `search-subject`.
+By default the search forms draw this info from objects inside `site.data.theme.search`, such as `search-site` and `search-subject`.
 These objects need properties for `show.spot` and `meta.index`.
 
 [source,yaml]
 ----
   actions:
     search-site:
-include::{path_to_jekyll_config}[tags=search-site-core]
+include::_docs/_data/theme/search.yml[tags=search-site-core]
 ----
 
 [WARNING]

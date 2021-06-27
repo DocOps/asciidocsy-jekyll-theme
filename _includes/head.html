@@ -65,7 +65,7 @@
 
 {% assign empty_array = "" | split: "," %}
 {% assign page_scripts = page.scripts | default: layout.scripts %}
-{% assign all_scripts = site.scripts %}
+{% assign all_scripts = site.data.theme.scripts %}
 {% include scripts.html spot="head" %}
 <script>
 // invoke highligher.js

@@ -1,0 +1,52 @@
+# Defines forms
+feedback-form:
+  show:
+    name: Feedback, please.
+    text: Did you find this page helpful?
+    icon: fa fa-clipboard
+  send:
+    opts:
+      - slug: 'yes'
+        text: 'Yes'
+        echo: |
+          That's great! Do let us know if you have more to say.
+        icon: fa fa-trophy
+      - slug: 'no'
+        text: 'No'
+        echo: |
+          We are sorry to hear that.
+
+          More text
+        icon: frown-o
+      - slug: some
+        text: Partly
+        echo: |
+          Okay, thanks for your honesty.
+
+          More text
+        icon: fa fa-line-chart
+gdpr-alert:
+# NOT YET IMPLEMENTED
+  sign:
+    text: I accept.
+    icon: fa fa-thumbs-up
+  pick:
+    text: Customize cookies.
+    icon: fa fa-edit
+    opts:
+      # Cookie types
+      - name: Essential
+        slug: essential
+        desc: These are cookies that are essential for the website to work correctly.
+      - name: Site Preferences
+        slug: preferences
+        desc: These are cookies that are related to your site preferences, e.g. remembering your username, site colours, etc.
+      - name: Analytics
+        slug: analytics
+        desc: Cookies related to site visits, browser types, etc.
+      - name: Marketing
+        slug: marketing
+        desc: Cookies related to marketing, e.g. newsletters, social media, etc
+  deny:
+    # the user action is to make the message go away and eliminate cookies
+    icon: fa fa-thumbs-down

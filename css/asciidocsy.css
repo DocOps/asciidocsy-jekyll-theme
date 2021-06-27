@@ -55,7 +55,7 @@ body {
   color: #333;
   display: inline-block;
   padding: 0 5px;
-  border: 3px solid {{ site.styles.color.theme }};
+  border: 3px solid {{ site.data.theme.styles.color.theme-primary }};
   border-top-width: 0;
   border-bottom-width: 0;
   border-radius: 20px;
@@ -74,7 +74,7 @@ body {
 .code {
   font-weight: bold !important;
   font-size: .8em !important;
-  border-left: 4px solid {{ site.styles.color.theme }}80;
+  border-left: 4px solid {{ site.data.theme.styles.color.theme-primary }}80;
   background-color: #99999950 !important;
   padding: 2px 2px 0 0 !important;
   border-radius: 0px !important;
@@ -237,12 +237,12 @@ ul.list-unstyled {
 
 #subject-menu .nav-item a.active {
   color: #fff;
-  background-color: {{ site.styles.color.theme }};
+  background-color: {{ site.data.theme.styles.color.theme-primary }};
 }
 
 #subject-menu li.nav-item.proud-ancestor {
   background-color: #99999940;
-  border-left: 2px solid {{ site.styles.color.theme }};
+  border-left: 2px solid {{ site.data.theme.styles.color.theme-primary }};
 }
 
 #subject-menu li.nav-item.open.active.parent {
@@ -536,7 +536,7 @@ main.landing .jumbotron-fluid {
 }
 
 main h1, main h2, main h3, main h4, main h5, main h6 {
-  color: {{ site.styles.color.theme }};
+  color: {{ site.data.theme.styles.color.theme-primary }};
 }
 
 main h2 {
@@ -561,7 +561,7 @@ main h5 {
 /* Bootstrap elements */
 
 label.btn.btn-secondary.btn-sm.active {
-  background-color: {{ site.styles.color.theme }};
+  background-color: {{ site.data.theme.styles.color.theme-primary }};
   border-color: #888;
 }
 

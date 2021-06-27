@@ -3,9 +3,9 @@
 <!-- {% comment %}
 Generates links for page-related functions.
 {% endcomment %} -->
-{% if site.features.actions[page.kind] %}
+{% if site.data.theme.page-actions[page.kind] %}
 <ul id="page-interactions" class="nav flex-column">
-  {% for feature in site.features.actions[page.kind] %}
+  {% for feature in site.data.theme.page-actions[page.kind] %}
     {% assign feat = feature[0] %}
     {% assign ftr = feature[1] %}
     {% unless feat == "data" and page.data-source == nil %}
@@ -25,9 +25,9 @@ Generates links for page-related functions.
     } else if (feat == 'data') {
       var url = "{{ site.source_www }}/edit/{{ site.source_trunk_branch | default: 'main' }}/{{ page.data-source }}";
     } else if (feat == 'open-subj') {
-      var url = "{{ site.subject_tickets_www }}{{ site.features.actions[page.kind].open-subj.path }}";
+      var url = "{{ site.subject_tickets_www }}{{ site.data.theme.page-actions[page.kind].open-subj.path }}";
     } else if (feat == 'open-docs') {
-      var url = "{{ site.docs_tickets_www }}{{ site.features.actions[page.kind].open-docs.path }}";
+      var url = "{{ site.docs_tickets_www }}{{ site.data.theme.page-actions[page.kind].open-docs.path }}";
     };
     $('.nav-item-{{ feat }} .nav-link').each(function() {
       $(this).attr('href', url);

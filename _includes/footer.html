@@ -1,7 +1,7 @@
 {% include hook.liquid template="footer_html" spot="file" %}
 {% unless hook_replace_tpl %}
-{% assign footer_config = site.footer %}
-{% assign footer_nav    = site.data.navigation.footer %}
+{% assign footer_config = site.data.theme.blocks.footer %}
+{% assign footer_nav    = site.data.navs.footer %}
 {% assign footer_str    = site.data.theme.strings.footer %}
 {% comment %}var alt_links set by hook{% endcomment %}
 {% include hook.liquid template="footer_html" spot="head" %}
@@ -11,7 +11,7 @@
       <div class="col-md-4">
   {% if footer_config.show.logo %}
         <span class="company-logo">
-          <img src="{{ site.footer.show.logo.source }}" class="logo" width="{{ site.footer.show.logo.width | default: '100px' }}">
+          <img src="{{ site.data.theme.blocks.footer.show.logo.source }}" class="logo" width="{{ site.data.theme.blocks.footer.show.logo.width | default: '100px' }}">
         </span>
   {% endif %}
   {% if footer_str.title %}
@@ -20,7 +20,7 @@
   {% if footer_str.tagline %}
         <div class="footer-title h5">{{ footer_str.tagline }}</div>
   {% endif %}
-  {% if site.social.show.spot == "footer" %}
+  {% if site.data.theme.blocks.social.show.spot == "footer" %}
         {% include social-links.html list-class="list-inline" %}
   {% endif %}
       </div>

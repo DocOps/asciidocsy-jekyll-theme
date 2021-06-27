@@ -40,8 +40,8 @@ scripts:
             <div class="sidebar-top">
             {% include versioning-controls.html
               spot="#sidebar-left .sidebar-top" %}
-  {% if site.features.actions.search-subject.show.spot == "#sidebar-left" %}
-             {% include search-form.html search="search-subject" %}
+  {% if site.data.theme.search.subject.show.spot == "#sidebar-left" %}
+             {% include search-form.html search="subject" %}
   {% endif %}
             </div>
             <div class="sidebar-mid">
@@ -71,13 +71,13 @@ scripts:
           </div>
           <div class=".sidebar-mid">
             {% include versioning-controls.html spot="#sidebar-right .sidebar-mid" %}
-  {% if layout.toc == "sidebar" and site.features.navigation.toc.show.spot == "#sidebar-right" %}
+  {% if layout.toc == "sidebar" and site.data.theme.navigation.toc.show.spot == "#sidebar-right" %}
             <nav id="toc-side" data-spy="affix" data-toggle="toc"></nav>
   {% endif %}
           </div>
           <div class="sidebar-end">
             {% include versioning-controls.html spot="#sidebar-right .sidebar-end" %}
-    {% if site.semantics.role.term.show.spot == "#sidebar-right" %}
+    {% if site.data.theme.semantics.role.term.show.spot == "#sidebar-right" %}
           <nav id="terms-listing"></nav>
     {% endif %}
         </div><!-- /#sidebar-right -->

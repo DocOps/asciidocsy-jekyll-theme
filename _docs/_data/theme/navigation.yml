@@ -1,0 +1,32 @@
+# Defines navigation elements in the theme
+anchor-links:
+  $doc:
+    name: Anchor Links
+    desc: Adds self-referential links to all headers of the listed types.
+  show:
+    list: h2,h3,h4,h5 # make empty to disable anchor links
+subject-menu:
+  $doc:
+    name: Subject Menu
+    desc: Determines the source and display of the _subject_ navigation menu.
+  opts:
+    show_type_icons: false
+toc:
+  $doc:
+    name: Table of Contents
+    desc: Shows and sets the depth of the table of contents for a topic/page.
+  show:
+    text: In this topic…
+    spot: "#sidebar-right"
+    opts:
+      header_level_depth: "h3"
+breadcrumbs:
+  $doc:
+    name: Page Breadcrumbs
+    desc: Displays and designs the breadcrumb trail.
+    tips:
+      - Crumb paths are further defined in data/manifest.yml.
+  show:
+    home: Home
+    opts:
+      delim: ">" # defaults to "/"

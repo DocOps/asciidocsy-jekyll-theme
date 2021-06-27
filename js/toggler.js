@@ -4,7 +4,7 @@
 Prepares content for toggling and executes toggle functionality
 **/
 $( document ).ready(function() {
-  {% assign handlers = site.features.actions.versioning %}
+  {% assign handlers = site.data.theme.versioning.handlers %}
   const toggleSets = {
     {%- for ts in handlers %}
       {%- if ts[1].verb == "toggle" %}

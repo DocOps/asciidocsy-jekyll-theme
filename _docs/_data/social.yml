@@ -1,0 +1,17 @@
+apps:
+  - slug: twitter
+    name: Twitter
+    href: https://twitter.com/_codewriting
+    icon: fa fa-twitter
+  - slug: slack
+    name: Slack
+    href: https://writethedocs.slack.com
+    icon: fa fa-slack
+  - slug: github
+    name: GitHub
+    href: https://github.com/DocOps
+    icon: fa fa-github
+  - slug: youtube
+    name: YouTube
+    href: https://www.youtube.com/channel/UCr019846MitZUEhc6apDdcQ
+    icon: fa fa-youtube

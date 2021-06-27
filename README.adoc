@@ -1,5 +1,8 @@
 = AsciiDocsy
 // tag::globals[]
+:prod_vrsn_this: 0.1.1
+:prod_date_this: 2021-05-26
+:prod_vrsn_next: 0.2.0
 :experimental:
 :imagesdir: images
 :forked_source_www: https://vsoch.github.io
@@ -28,7 +31,7 @@ This is a major fork of the awesome link:https://github.com/vsoch/docsy-jekyll[D
 The last commit from the Docsy Jekyll version was retained for convenient diffing and just to maintain full credit.
 
 [horizontal]
-Now serving:: `v0.1.1` (2021-05-26)
+Now serving:: `v{prod_vrsn_this}` ({prod_date_this})
 
 image::asciidocsy-screenshot.png[title='Screenshot of AsciiDocsy theme']
 
@@ -55,12 +58,9 @@ The codebase brings together developers and technical writers, allowing the latt
 ** instantsearch
 ** multi-index ready
 ** site search & subject search in separate fields
-* [add] tabbed panel content changer
-** tabs show/hide one or more _overlayed_ blocks of content
-** sourced entirely in standard AsciiDoc, rendered w/ JS)
-** configurable under `site.features`
 * [add] entire versioning suite
-** toggles to show/hide text/blocks w/ certain classes
+** tabbed panes for switching content in place
+** toggles to show/hide all text/blocks w/ certain classes
 ** token swaps to change front-end variables on/after page load
 ** HTML DOM amender for altering HEAD elements
 * [add] Highlight.js syntax highlighting w/ syntax styles
@@ -137,13 +137,11 @@ Documentation for this theme can be found at link:{theme_docs_www}[].
 
 Alternatively, <<build-the-docs,build your own locally>>.
 
-== Setup
-
-=== Quickstart
+== Quickstart
 
 Assuming you have a <<requirements,proper Ruby runtime>> environment installed, all you need to do is install dependencies and run the Jekyll command.
 
-==== Requirements
+=== Requirements
 // tag::requirements-ruby[]
 Other than a Ruby runtime environment, this codebase installs all dependencies using Bundler.
 
@@ -167,7 +165,7 @@ Jekyll 4.0.0 and the jekyll-asciidoc plugin both require Ruby 2.4.0 or later.
 // end::requirements-ruby[]
 
 [[build-the-docs]]
-==== Build the Docs
+=== Build the Docs
 // tag::quickstart-build[]
 With a Ruby environment in place, these steps should generate the website sourced in the AsciiDocsy theme repository.
 
@@ -252,11 +250,12 @@ Please don't hesitate to create an issue or or pull request in the meantime!
 Since I've received a couple of small pull requests from folks, I should probably track my conventions and process here to minimize frustration.
 
 Right now I am developing on trunk branches just so I can keep releases straight.
-I will find a better way to do this, but for now it's `trunk-0.2.0`, `trunk-0.3.0`.
+I will find a better way to do this, but for now I am trunking for each upcoming minor release.
+So it's `trunk-0.2.0`, `trunk-0.3.0`, etc.
 These branch off `main`, and PRs can be merged to the `trunk-` branches, unless they are patches, which can be merged to `main` and then rebased to `trunk-`.
 
 Since this is complicated and potentially disruptive, most patches will await a minor release.
-Therefore, they can be branched from and merged to `trunk-`.
+Therefore, they can be branched from and merged to the current `trunk-` branch.
 
 == Licensing
 
