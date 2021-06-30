@@ -23,8 +23,8 @@ $(document).ready(function() {
 
 <script>
   const search = instantsearch({
-    appId: '{{ site.data.configs.services.search.algolia.application_id }}',
-    apiKey: '{{ site.data.configs.services.search.algolia.search_only_api_key }}',
+    appId: '{{ site.services.search.algolia.application_id }}',
+    apiKey: '{{ site.services.search.algolia.search_only_api_key }}',
     indexName: '{{ site.data.theme.search.subject.meta.index }}',
     searchParameters: {
       hitsPerPage: 10,

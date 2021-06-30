@@ -1,4 +1,8 @@
-# Defines references to JavaScript resources
+$doc:
+  desc: Defines references to JavaScript resources.
+  args:
+    head: {type: Array,desc: "JavaScript files to include in the `head` element."}
+    tail: {type: Array,desc: "JavaScript files to include in the `tail` div."}
 head:
   - slug: jquery
     href: /js/jquery-3.3.1.min.js

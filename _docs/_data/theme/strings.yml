@@ -1,8 +1,13 @@
-# Theme strings organized by container block/element
+$doc:
+  desc: |
+    Theme strings organized by container block/element.
+    Documentation in source file only.
 footer:
+  $doc: {desc: Strings for the footer of the document.}
   title: DocOps Labs
   tagline: Your HQ for documentation tooling and workflows.
   madewith: Sourced in AsciiDoc and YAML. Generated with Jekyll, Asciidoctor, and AsciiDocsy.
   copyright: (C) 2021 Copyright Codewriting LLC & upstream authors
 see-also:
+  $doc: {desc: Strings for the see-also segment}
   title: See Also

@@ -4,6 +4,10 @@ defaults:
   page:
     list: [theme-skin-amend,syntax-skin-amend]
 handlers:
+  $doc:
+    desc: |
+      Defines version handlers.
+      Documentation available in xref:/docs/theme/config/versioning#[Config > Version Handlers].
   user-os-toggle: # arbitrary toggler name
     verb: toggle
     # form is inferred (buttons)

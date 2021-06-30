@@ -1,8 +1,15 @@
 # Defines search fields/results
+$doc:
+  desc: Defines the fields/results for search forms
 site:
   $doc:
     name: Search the site
     desc: Enables users to search all pages in the site, including non-topics
+    args:
+      show_text: Label for site search
+      show_icon: Icon for site-search label
+      show_spot: Location of site search
+      show_meta_index: Which remote index this form searches
 # tag::search-site-core[]
   show:
     text: Search non-docs PAGES…
@@ -11,6 +18,13 @@ site:
     index: asciidocsy-pages
 # end::search-site-core[]
 subject:
+  $doc:
+    name: Search current subject
+    desc: Enables users to search all topics in a subject
+    args:
+      show_text: Label for subject search
+      show_icon: Icon for subject-search label
+      show_spot: Location of subject search
   show:
     text: Search subject TOPICS…
     icon: fa fa-search

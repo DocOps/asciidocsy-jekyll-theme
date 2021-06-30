@@ -1,9 +1,8 @@
-services:
-  analytics:
-    google:
-  search:
-    algolia:
+analytics:
+  google:
+search:
+  algolia:
 # tag::algolia[]
-      application_id: 'SELDDHION6'
-      search_only_api_key: 'b9112b0485d58729c3e7c7b64291cbd9'
+    application_id: 'SELDDHION6'
+    search_only_api_key: 'b9112b0485d58729c3e7c7b64291cbd9'
 # end::algolia[]

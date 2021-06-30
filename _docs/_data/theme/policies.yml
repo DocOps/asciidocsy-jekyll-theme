@@ -1,23 +1,32 @@
-# Defines policies regarding privacy, content display, access, etc
+$doc:
+  desc: Defines policies regarding privacy, content display, access, etc.
 cookies: # cookie policies will go here
 gdpr:
   # NOT YET IMPLEMENTED
   # This feature will enable users to
   $doc:
-    name: GDPR policies
+    name: GDPR Policies
     desc: Groups cookies by use to let users select which cookies to permit.
+    args:
+      types:
+        desc: |
+          The categories of cookies users can toggle on/off.
+
+          `slug`:: Slug for the category.
+          `text`:: User-facing descriptor for the category.
+          `cookies`:: Array of cookie names in the category.
   types:
     - slug: essential
-      desc: Just the cookie to remember these preferences.
+      text: Just the cookie to remember these preferences.
       cookies: [cookieControlPrefs]
     - slug: preferences
-      desc: Cookies to recall style and version choices made in the app.
+      text: Cookies to recall style and version choices made in the app.
       cookies: [syntax-style,skin-style,switcher_user-os]
     - slug: analytics
-      desc: Uses cookies to anonymously report how you use the site so we can improve the experience.
+      text: Uses cookies to anonymously report how you use the site so we can improve the experience.
       cookies: [google-analytics]
     - slug: commercial
-      desc: We don't use this kind of cookie anywhere on our site.
+      text: We don't use this kind of cookie anywhere on our site.
       cookies: []
 authorizations:
   # NOT YET IMPLEMENTED

@@ -5,6 +5,10 @@ body {
   font-size: 16px;
 }
 
+a,a:hover {
+  color: {{ site.data.theme.styles.color.theme-primary }};
+}
+
 /* inline semantics */
 .term i.icon {
   margin-left: 2px;
@@ -567,12 +571,13 @@ label.btn.btn-secondary.btn-sm.active {
 
 /* API reference styles */
 
-table.api-ref td.tableblock code {
-  font-weight: normal;
+.container.topic-reference {
+  margin: 0;
+  padding: 0;
 }
 
-table.api-ref td.tableblock strong code {
-  font-weight: bold;
+.api-object-properties {
+  margin-left: 20px;
 }
 
 /* FEEDBACK FORM */
@@ -612,4 +617,20 @@ footer .social-links {
 
 .footer-strings {
   margin-top: 50px;
+}
+
+/* ASCIIDOC ELEMENTS */
+
+.admonitionblock table {
+  max-width: 800px;
+  background-color: #eeeeee;
+}
+
+.admonitionblock table td.icon {
+  vertical-align: top;
+  padding-top: 14px;
+}
+
+.admonitionblock table td.content {
+  border-left: 0;
 }

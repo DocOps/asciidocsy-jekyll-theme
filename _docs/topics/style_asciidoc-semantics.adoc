@@ -176,7 +176,8 @@ Use with or without visual wrapping charactes (such as `< >` or `${ }`).
 | Quotes
 |  backtick
 | Example
-m| Use the format +++[.code]+++`base.<file_ext>`, where +++[.sub]+++`<file_ext>` is the filename followed by an underscore and the file extension.+++
+m| Use the format +++[.code]`base.&lt;file_ext>`+++, where +++[.sub]`&ltfile_ext>`+++ is the filename followed by an underscore and the file extension.+++
+// the markup in the above cell is only valid post-render
 | Renders
 | Use the format [.code]`base.<file_ext>`, where [.sub]`<file_ext>` is the filename followed by an underscore and the file extension.
 |===

@@ -1,5 +1,22 @@
 # Defines forms
+$doc:
+  desc: Ad-hoc forms for the theme.
 feedback-form:
+  $doc:
+    desc: Populates the feedback form and results.
+    args:
+      show_name:
+      show_text:
+      show_icon:
+      send_opts:
+        type: Array
+        desc: |
+          Array items are objects that contain:
+
+          `slug`:: Required, value string.
+          `text`:: Optional, text label to show.
+          `echo`:: Response to show after this option is selected.
+          `icon`:: Optional, icon to display for this option.
   show:
     name: Feedback, please.
     text: Did you find this page helpful?
@@ -26,7 +43,9 @@ feedback-form:
           More text
         icon: fa fa-line-chart
 gdpr-alert:
-# NOT YET IMPLEMENTED
+  $doc:
+    name: GDPR Alert
+    desc: NOT YET IMPLEMENTED.
   sign:
     text: I accept.
     icon: fa fa-thumbs-up

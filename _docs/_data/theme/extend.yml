@@ -1,5 +1,7 @@
 # Experimental extension system
 # Designate extensions here for everywhere in a template that an extension hook is in place
+$doc:
+  desc: Listing of extension hooks, as described in xref:/docs/theme/extend[Extend the Theme]
 # tag::example[]
 hooks:
   templates:

@@ -1,0 +1,23 @@
+{% include string-eval.liquid string=include.key_str %}
+{% for obj in data_obj %}
+  {% capture obj_str %}{{ include.key_str }}.{{ obj[0] }}{% endcapture %}
+  {% unless obj[1]['$doc'] == 'none' %}
+  {% if obj[1] and obj[0] != '$doc' %}
+    {% assign docs = obj[1]['$doc'] %}
+    {% assign name_def = obj[0] | capitalize %}
+    {% assign obj_name = docs.name | default: name_def %}
+
+=== {{ obj_name }}
+
+[big]`{{ obj_str }}`
+    {% if docs %}
+      {% if docs.desc %}
+{{ docs.desc }}
+      {% endif %}
+      {% if docs.args.size > 0 %}
+{% include config-api-properties.asciidoc base=obj_str args=docs.args %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+  {% endunless %}
+{% endfor %}
