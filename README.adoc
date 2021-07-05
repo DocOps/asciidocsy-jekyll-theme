@@ -43,10 +43,34 @@ AsciiDocsy is designed by a technical documentation specialist who builds bespok
 Designed to meet the technical documentation deployment needs of full-scale, multi-product software companies, AsciiDocsy remains fully aware that all such enterprises start small and still need world-class docs.
 
 [.case]*_On the back end_*, AsciiDocsy [.buz]_unifies_.
-The codebase brings together developers and technical writers, allowing the latter to achieve momentous feats on behalf of -- and with occasional help from -- the developers whose work they document.
+The codebase brings together developers and technical writers, allowing the latter to achieve momentous feats in collaboration with the developers whose work they document.
 // end::purpose[]
 
 == Pre-1.0 History and Roadmap
+
+AsciiDocsy will probably reach "`general availability`"/v1.0 (GA) status sometime after v0.4.0 is out, which will hopefully be late 2021.
+Until that point, backward compatibility is not guaranteed, but AsciiDocsy will try to make no breaking changes between major releases starting at v1.0.
+
+=== 1.0 Objectives
+
+The following are areas where AsciiDocsy's author thinks good GA-ready software meets a high standard but that AsciiDocsy presently does not yet measure up.
+
+extreme configurability::
+There should never be a need to modify template files just to make minor changes.
+Everything should be defined in data files.
+The system is in place for this as of v0.2.0, but lots of settings and strings need to be moved into these files.
+
+front-end quality::
+The jQuery/JavaScript I write is fairly rudimentary.
+Fortunately, the challenges are also pretty straightforward, but it will still be best if a JS specialist goes over the code and maybe writes some tests.
+Other quality aspects include getting
+
+back-end quality::
+Dependency management for the entire LiquiDoc Ops toolchain must be sensible and seamless.
+Vendor code must be separately manageable, including as independently maintained forks.
+
+clean, well-documented source::
+Mainly thinking of YAML and Liquid code here, lots of these source files need proper headers and style review.
 
 === Changes so Far
 
@@ -63,6 +87,9 @@ The codebase brings together developers and technical writers, allowing the latt
 ** toggles to show/hide all text/blocks w/ certain classes
 ** token swaps to change front-end variables on/after page load
 ** HTML DOM amender for altering HEAD elements
+* [add] sophisticated, data-file-based theme configuration
+** `data`-scoped configs for all theme features, settings, strings, etc
+** simplistic system for documenting data objects inside YAML files
 * [add] Highlight.js syntax highlighting w/ syntax styles
 * [add] "`Toggler`" feature to show/hide page elements by role
 * [add] inline AsciiDoc semantics
@@ -99,11 +126,11 @@ The codebase brings together developers and technical writers, allowing the latt
 ** specialized layouts by topic type
 ** suggested pages based on sibling topics of other types
 * [add] GDPR notice
-** banner or modal
+** banner and/or modal w/ dialog
 ** user selects permitted cookie types
 ** feature actually suppresses unpermitted cookies
 * [add] a dark theme option (user-controlled if you wish) (link:{project_issues_path}/35[#35])
-* [add] call to action (c2a) modal
+* [add] call-to-action (c2a) modal
 * [add] search results page w/ 3rd optional instantsearch field
 * [improve] feedback form with follow-up query
 * [refactor] as Ruby gem/Jekyll plugin (link:{project_issues_path}/31[#31])
@@ -118,7 +145,6 @@ The codebase brings together developers and technical writers, allowing the latt
 ** ElasticSearch support via https://github.com/omc/searchyll[Searchyll]
 ** ElasticLunr.js?
 * [add] option to build data-driven left navs from frontmatter
-* [add] JS-based subject nav sourcing generated post-build
 * [add] policy-based content toggles for user roles
 
 // end::overview[]
