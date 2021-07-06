@@ -14,24 +14,21 @@ AsciiDocsy's implementation of Algolia's Jekyll plugin (link:https://github.com/
 
 == Search Settings
 
-The `site.services.algolia` object, by default defined in `_config.yml`.
+The `site.algolia` object, by default defined in `_config.yml`.
 
-.Algolia object in default configuration file
+.Object: `site.algolia`
 [source,yaml]
 ----
-  services:
-    search:
-include::_docs/_data/configs/services.yml[tags=algolia]
+include::_config.yml[tags=algolia]
 ----
 
 Additionally, each search form on your site needs some more data.
 By default the search forms draw this info from objects inside `site.data.theme.search`, such as `search-site` and `search-subject`.
 These objects need properties for `show.spot` and `meta.index`.
 
+.Object: `site.data.theme.search.site`
 [source,yaml]
 ----
-  actions:
-    search-site:
 include::_docs/_data/theme/search.yml[tags=search-site-core]
 ----
 
@@ -69,7 +66,7 @@ Alternatively, stash the key as in a file called `_algolia_api_key` (no file ext
 [IMPORTANT]
 Be sure to add this file to your [.path]`.gitignore` file.
 
-In this case, you may run simply:name: value
+In this case, you may run the following.
 
 .Example commandline with no ENV variable
  bundle exec jekyll algolia --config _config.yml,_data/configs/jekyll-search-x.yml`

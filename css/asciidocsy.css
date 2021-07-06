@@ -415,13 +415,15 @@ input::-ms-input-placeholder { /* Microsoft Edge */
 .aa-input-icon {
   height: 16px;
   width: 16px;
-  position: absolute;
-  top: 20px;
-  right: 16px;
+  position: relative;
+  top: 1.1em;
+  right: 1.7em;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   fill: #CCCCCC;
 }
+
+
 
 .aa-hint {
   color: #DDDDDD;

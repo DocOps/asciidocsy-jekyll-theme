@@ -16,6 +16,7 @@ site:
     spot: "#nav-site"
   meta:
     index: asciidocsy-pages
+    id: search-site
 # end::search-site-core[]
 subject:
   $doc:
@@ -31,3 +32,4 @@ subject:
     spot: "#sidebar-left" # where this should appear (alt: leftside nav)
   meta:
     index: asciidocsy-topics
+    id: subject-search

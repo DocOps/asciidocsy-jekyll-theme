@@ -8,7 +8,7 @@ Generates links for page-related functions.
   {% for feature in site.data.theme.page-actions[page.kind] %}
     {% assign feat = feature[0] %}
     {% assign ftr = feature[1] %}
-    {% unless feat == "data" and page.data-source == nil %}
+    {% unless feat == "$doc" or feat == "data" and page.data-source == nil %}
   <li class="nav-item {% if ftr.role %}role-{{ ftr.role }}-plus{% endif %} nav-item-{{ feat }}">
     <a href="" class="nav-link"><i class="icon {{ ftr.icon }} fa-fw"></i> {{ ftr.text }}</a>
   </li>

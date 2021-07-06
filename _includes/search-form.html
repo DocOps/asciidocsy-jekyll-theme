@@ -1,35 +1,41 @@
 {% include hook.liquid template="search-form_html" spot="file" %}
 {% unless hook_replace_tpl %}
-{% assign search-name = include.search %}
+{% assign search_name = include.search %}
 {% assign searchname = include.search | replace:"-","" %}
-{% assign search = site.data.theme.search[searchname] %}
+{% assign config = site.data.theme.search[searchname] %}
+{% assign id = config.meta.id | default: search_name %}
 {% include hook.liquid template="search-form_html" spot="head" %}
 <script>
 var hrefChanged = false;
 </script>
-<span class="algolia-autocomplete">
-  <input id="{{ search-name }}" type="search" class="aa-input-search aa-hint" autocomplete="off" readonly="" aria-hidden="true" spellcheck="false" tabindex="-1"/>
-  <input type="search" id="aa-{{ search-name }}-input" class="aa-input-search aa-input" placeholder="{{ search.show.text | default: 'Search for keywords…' }}" name="search" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="both" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"/>
-  <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Open Sans&quot;, Arial, &quot;sans serif&quot;; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"/>
-  </pre>
-  <span class="aa-dropdown-menu" role="listbox" id="algolia-autocomplete-listbox-0"/>
-    <div class="aa-dataset-1"></div>
+<div class="aa-input-container" id="aa-input-container">
+  <span class="algolia-autocomplete">
+    <input id="{{ id }}" type="search" class="aa-input-search aa-hint" autocomplete="off" readonly="" aria-hidden="true" spellcheck="false" tabindex="-1"/>
+    <input type="search" id="aa-{{ id }}-input" class="aa-input-search aa-input" placeholder="{{ config.show.text | default: 'Search for keywords…' }}" name="search" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="both" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"/>
+    <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Open Sans&quot;, Arial, &quot;sans serif&quot;; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"/>
+    </pre>
+    <span class="aa-dropdown-menu" role="listbox" id="algolia-autocomplete-listbox-0"/>
+      <div class="aa-dataset-1"></div>
+    </span>
   </span>
-</span>
+  <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+    <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z"></path>
+  </svg>
+</div>
 <!-- Initialize autocomplete menu -->
 <script>
-$( "#aa-{{ search-name }}-input" ).keydown(function(e) {
+$( "#aa-{{ search_name }}-input" ).keydown(function(e) {
   e = e || window.event;
   if (!hrefChanged && (e.keyCode || e.which) == 13) {
     // Enter key pressed
-    window.location.href = "/docs/search.html?q=" + $( "#aa-{{ search-name }}-input" ).val().replace(' ', '+');
+    window.location.href = "/docs/search.html?q=" + $( "#aa-{{ id }}-input" ).val().replace(' ', '+');
   }
 });
 
-var client = algoliasearch('{{ site.data.theme.services.search.algolia.application_id }}', '{{ site.data.theme.services.search.algolia.search_only_api_key }}');
-var index = client.initIndex('{{ site.data.theme.search[search-name].meta.index }}');
+var client = algoliasearch('{{ site.algolia.application_id }}', '{{ site.algolia.search_only_api_key }}');
+var index = client.initIndex('{{ config.meta.index }}');
 // Initialize autocomplete on search input (ID selector must match).
-autocomplete('#aa-{{ search-name }}-input',
+autocomplete('#aa-{{ id }}-input',
 { hint: true, autoselect: false }, {
     source: autocomplete.sources.hits(index, {hitsPerPage: 5, typoTolerance: 'false', advancedSyntax: 'true'}),
     // Value to be displayed in input control after user's suggestion selection.
@@ -50,7 +56,7 @@ autocomplete('#aa-{{ search-name }}-input',
       empty: function(suggestion) {
         // Add the see more results option when no suggestion is found...
         // just in case the user prefers to search in the main search page.
-        var hrefValue = "/search?q=" + document.getElementById('aa-{{ search-name }}-input').value.replace(' ', '+');
+        var hrefValue = "/search?q=" + document.getElementById('aa-{{ id }}-input').value.replace(' ', '+');
         return '<div class="aa-suggestion" role="option"><a id="show-more-link" class="suggestion-link" href="' + hrefValue + '">See more results...</a></div>';
       },
       footer: function(suggestion) {
@@ -59,7 +65,7 @@ autocomplete('#aa-{{ search-name }}-input',
         if (suggestion.isEmpty){
           return;
         }
-        var hrefValue = "/search?q=" + document.getElementById('aa-{{ search-name }}-input').value.replace(' ', '+');
+        var hrefValue = "/search?q=" + document.getElementById('aa-{{ id }}-input').value.replace(' ', '+');
         return '<div class="aa-suggestion" role="option"><a id="show-more-link" class="suggestion-link" href="' + hrefValue + '">See more results...</a></div>';
       },
       // 'suggestion' templating function used to render a single suggestion.
@@ -99,7 +105,7 @@ autocomplete('#aa-{{ search-name }}-input',
       linkValue = window.location.href.substring(0, window.location.href.indexOf('{{site.base_url}}') - 1) + suggestion.url;
     } else {
       // Show more results.
-      linkValue = "search.html?q=" + document.getElementById('aa-{{ search-name }}-input').value.replace(' ', '+');
+      linkValue = "search.html?q=" + document.getElementById('aa-{{ id }}-input').value.replace(' ', '+');
     }
     window.location.href = linkValue;
     hrefChanged = true;

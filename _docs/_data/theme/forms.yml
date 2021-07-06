@@ -12,11 +12,12 @@ feedback-form:
         type: Array
         desc: |
           Array items are objects that contain:
-
-          `slug`:: Required, value string.
-          `text`:: Optional, text label to show.
-          `echo`:: Response to show after this option is selected.
-          `icon`:: Optional, icon to display for this option.
+          +
+          [horizontal]
+          `slug`::: Required, value string.
+          `text`::: Optional, text label to show.
+          `echo`::: Response to show after this option is selected.
+          `icon`::: Optional, icon to display for this option.
   show:
     name: Feedback, please.
     text: Did you find this page helpful?
