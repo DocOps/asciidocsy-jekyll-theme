@@ -1,0 +1,29 @@
+{% if include.args.size > 0 %}
+[discrete]
+==== Properties
+
+[.api-object-properties]
+--
+  {% for arg in include.args %}
+    {% assign arg_key = arg[0] | replace: "_","." %}
+    {% capture prop_key %}{{ include.base }}.{{ arg_key }}{% endcapture %}
+
+[discrete]
+===== `{{ prop_key }}`
+
+[horizontal]
+    {%- if arg[1].desc %}
+usage:: {{ arg[1].desc }}
+    {%- endif %}
+    {%- if arg[1].type %}
+type:: {{ arg[1].type }}
+    {%- endif %}
+{%- include string-eval.liquid string=prop_key %}
+    {%- if data_obj %}
+default:: `{{ data_obj }}`
+    {% endif %}
+  {% endfor %}
+--
+{% else %}
+No properties found.
+{% endif %}

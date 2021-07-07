@@ -17,7 +17,6 @@
     - text:
       href:
 
-
 - term: flat files
   slug: flat-files
   desc: Files containing only ASCII or UTF-8 text.
@@ -43,6 +42,17 @@
     Plaintext syntax intended to designate text with formatting, semantic, or functional intent, to be parsed into rich-text or other more-complex output.
   also: [lightweight]
 
+- term: data object
+  slug: data-object
+  desc: |
+    An instance of any data type.
+    A string is a data object of the String data type.
+
+- term: data type
+  slug: data-type
+  desc: |
+    A classification of data objects based on form.
+
 - term: open block (AsciiDoc)
   slug: open-block-asciidoc
   desc: A non-semantic container element that can be assigned block options and contain other block elements (except other open blocks).
@@ -58,3 +68,8 @@
   desc: |
     The process of embedding code from another file into the current file for processing.
     Known as "`transclusion`" in some languages, invoked in AsciiDoc using the `include::[]` macro and in Liquid using the `{% include %}` tag.
+
+- term: versioning
+  slug: versioning
+  desc: |
+    Versioning is the division of a subject according to how it is

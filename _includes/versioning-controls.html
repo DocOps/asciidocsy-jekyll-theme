@@ -3,9 +3,9 @@ Assembles version-handler features in various spot-specific clusters
 {% endcomment %}
 {% include hook.liquid template="versioning-controls_html" spot="file" %}
 {% unless hook_replace_tpl %}
-{% assign all_handlers = site.features.actions.versioning %}
+{% assign all_handlers = site.data.theme.versioning.handlers %}
 {% unless show_handlers %}
-  {% assign default_handlers = all_handlers.defaults[layout.kind]['list'] %}
+  {% assign default_handlers = site.data.theme.versioning.defaults[layout.kind]['list'] %}
   {% assign page_handlers = page.version-handlers | split:"," %}
   {% for hdlr in page_handlers %}
     {% assign hdlr_split = hdlr | split:"" %}

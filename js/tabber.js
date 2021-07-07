@@ -12,7 +12,7 @@ layout: null
 /**
 Liquid generate JSON object of version handlers block
 **/
-{% assign handlers = site.features.actions.versioning %}
+{% assign handlers = site.data.theme.versioning.handlers %}
 const tabSets = {
   {% for ts in handlers %}
     {% if ts[1].verb == "tab" %}

@@ -4,7 +4,7 @@
 Prepares content for toggling and executes toggle functionality
 **/
 $( document ).ready(function() {
-  {% assign handlers = site.features.actions.versioning %}
+  {% assign handlers = site.data.theme.versioning.handlers %}
   const toggleSets = {
     {%- for ts in handlers %}
       {%- if ts[1].verb == "toggle" %}
@@ -30,7 +30,7 @@ $( document ).ready(function() {
     $(activeClass).show();
     $.cookie(thisToggle, thisVal);
   }
-  $('input').on('focus', toggleButton)
+  $('.toggle-handler input').on('focus', toggleButton)
   $('.toggle-handler').each( function() {
     var thisToggle = $(this).attr('name')
     var pick = toggleSets[thisToggle]['swap']['pick']

@@ -3,8 +3,8 @@ Generates feedback form.
 {% endcomment %} -->
 {% include hook.liquid template="feedback_html" spot="file" %}
 {% unless hook_replace_tpl %}
-{% if site.features.actions.feedback-form %}
-{% assign fform = site.features.actions.feedback-form %}
+{% if site.data.theme.forms.feedback-form %}
+{% assign fform = site.data.theme.forms.feedback-form %}
 <style>
   .feedback--answer {
     display: inline-block;

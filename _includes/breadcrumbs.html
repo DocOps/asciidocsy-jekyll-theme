@@ -7,9 +7,9 @@ Defined by:
 {% include hook.liquid template="breadcrumbs_html" spot="file" %}
 {% unless hook_replace_tpl %}
 {% assign crumbs = page.url | remove:'/index.html' | split: '/' %}
-{% assign delim = site.features.navigation.breadcrumbs.show.opts.delim | default: "/" %}
+{% assign delim = site.data.navs.breadcrumbs.show.opts.delim | default: "/" %}
 <div id="breadcrumbs">
-<a href="/">{{ site.features.navigation.breadcrumbs.show.home | default: "Home" }}</a>
+<a href="/">{{ site.data.navs.breadcrumbs.show.home | default: "Home" }}</a>
 {% for crumb in crumbs offset: 1 %}
   {% if forloop.last %}
     {{delim}} {{ page.title }}

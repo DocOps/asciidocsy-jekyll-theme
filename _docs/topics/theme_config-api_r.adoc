@@ -1,7 +1,7 @@
 :page-permalink: /docs/theme/config/api-reference
-:page-cats-list: features,services,semantics
 :page-data-source: _config.yml
 :page-liquid:
+:page-layout: reference
 = Theme Configuration API
 
 [NOTE]
@@ -17,29 +17,5 @@ The truth is, a simple configuration file that can be commented inline and must 
 
 But do look at the AsciiDoc and YAML sources (see links to the right icon:right-arrow[]) for this page if you need inspiration for your own complex content.
 
-{% assign cats = page.cats-list | split: "," %}
-{% for base in cats %}
-== {{ base | capitalize }}
-  {% for cat in site[base] %}
-    {% assign cat_name = cat[0] %}
-    {% assign cat_head = cat_name | capitalize %}
-    {% if cat_head == "Actions" %}
-      {% assign cat_head = "User Actions" %}
-    {% endif %}
-
-=== {{ cat_head }}
-    {% for feature in site.features[cat_name] %}
-      {% unless feature[0] == "actions" %}
-{% include theme-api-object.asciidoc obj=feature %}
-      {% else %}
-        {% for actcat in feature %}
-
-==== {{ actcat }}
-          {% for feat in actcat -%}
-{% include theme-api-object.asciidoc obj=feat %}
-          {% endfor %}
-        {% endfor %}
-      {% endunless %}
-    {% endfor %}
-  {% endfor %}
-{% endfor %}
+// Liquid transclusion tag
+{% include config-api.asciidoc %}

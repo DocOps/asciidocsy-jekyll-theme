@@ -1,0 +1,14 @@
+$doc:
+  desc: Defines inline and block-level semantic elements
+inline:
+  role:
+    term: # here 'term' is the name of the role
+      show:
+        icon:
+          text: fa fa-info-circle
+          tilt: 15
+          spin: true
+        spot: "#sidebar-right"
+    # next role here
+blocks:
+  admonitions:

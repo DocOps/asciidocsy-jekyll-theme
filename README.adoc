@@ -1,5 +1,8 @@
 = AsciiDocsy
 // tag::globals[]
+:prod_vrsn_this: 0.1.1
+:prod_date_this: 2021-05-26
+:prod_vrsn_next: 0.2.0
 :experimental:
 :imagesdir: images
 :forked_source_www: https://vsoch.github.io
@@ -28,7 +31,7 @@ This is a major fork of the awesome link:https://github.com/vsoch/docsy-jekyll[D
 The last commit from the Docsy Jekyll version was retained for convenient diffing and just to maintain full credit.
 
 [horizontal]
-Now serving:: `v0.1.1` (2021-05-26)
+Now serving:: `v{prod_vrsn_this}` ({prod_date_this})
 
 image::asciidocsy-screenshot.png[title='Screenshot of AsciiDocsy theme']
 
@@ -40,10 +43,34 @@ AsciiDocsy is designed by a technical documentation specialist who builds bespok
 Designed to meet the technical documentation deployment needs of full-scale, multi-product software companies, AsciiDocsy remains fully aware that all such enterprises start small and still need world-class docs.
 
 [.case]*_On the back end_*, AsciiDocsy [.buz]_unifies_.
-The codebase brings together developers and technical writers, allowing the latter to achieve momentous feats on behalf of -- and with occasional help from -- the developers whose work they document.
+The codebase brings together developers and technical writers, allowing the latter to achieve momentous feats in collaboration with the developers whose work they document.
 // end::purpose[]
 
 == Pre-1.0 History and Roadmap
+
+AsciiDocsy will probably reach "`general availability`"/v1.0 (GA) status sometime after v0.4.0 is out, which will hopefully be late 2021.
+Until that point, backward compatibility is not guaranteed, but AsciiDocsy will try to make no breaking changes between major releases starting at v1.0.
+
+=== 1.0 Objectives
+
+The following are areas where AsciiDocsy's author thinks good GA-ready software meets a high standard but that AsciiDocsy presently does not yet measure up.
+
+extreme configurability::
+There should never be a need to modify template files just to make minor changes.
+Everything should be defined in data files.
+The system is in place for this as of v0.2.0, but lots of settings and strings need to be moved into these files.
+
+front-end quality::
+The jQuery/JavaScript I write is fairly rudimentary.
+Fortunately, the challenges are also pretty straightforward, but it will still be best if a JS specialist goes over the code and maybe writes some tests.
+Other quality aspects include getting
+
+back-end quality::
+Dependency management for the entire LiquiDoc Ops toolchain must be sensible and seamless.
+Vendor code must be separately manageable, including as independently maintained forks.
+
+clean, well-documented source::
+Mainly thinking of YAML and Liquid code here, lots of these source files need proper headers and style review.
 
 === Changes so Far
 
@@ -55,14 +82,14 @@ The codebase brings together developers and technical writers, allowing the latt
 ** instantsearch
 ** multi-index ready
 ** site search & subject search in separate fields
-* [add] tabbed panel content changer
-** tabs show/hide one or more _overlayed_ blocks of content
-** sourced entirely in standard AsciiDoc, rendered w/ JS)
-** configurable under `site.features`
 * [add] entire versioning suite
-** toggles to show/hide text/blocks w/ certain classes
+** tabbed panes for switching content in place
+** toggles to show/hide all text/blocks w/ certain classes
 ** token swaps to change front-end variables on/after page load
 ** HTML DOM amender for altering HEAD elements
+* [add] sophisticated, data-file-based theme configuration
+** `data`-scoped configs for all theme features, settings, strings, etc
+** simplistic system for documenting data objects inside YAML files
 * [add] Highlight.js syntax highlighting w/ syntax styles
 * [add] "`Toggler`" feature to show/hide page elements by role
 * [add] inline AsciiDoc semantics
@@ -99,11 +126,11 @@ The codebase brings together developers and technical writers, allowing the latt
 ** specialized layouts by topic type
 ** suggested pages based on sibling topics of other types
 * [add] GDPR notice
-** banner or modal
+** banner and/or modal w/ dialog
 ** user selects permitted cookie types
 ** feature actually suppresses unpermitted cookies
 * [add] a dark theme option (user-controlled if you wish) (link:{project_issues_path}/35[#35])
-* [add] call to action (c2a) modal
+* [add] call-to-action (c2a) modal
 * [add] search results page w/ 3rd optional instantsearch field
 * [improve] feedback form with follow-up query
 * [refactor] as Ruby gem/Jekyll plugin (link:{project_issues_path}/31[#31])
@@ -118,7 +145,6 @@ The codebase brings together developers and technical writers, allowing the latt
 ** ElasticSearch support via https://github.com/omc/searchyll[Searchyll]
 ** ElasticLunr.js?
 * [add] option to build data-driven left navs from frontmatter
-* [add] JS-based subject nav sourcing generated post-build
 * [add] policy-based content toggles for user roles
 
 // end::overview[]
@@ -137,13 +163,11 @@ Documentation for this theme can be found at link:{theme_docs_www}[].
 
 Alternatively, <<build-the-docs,build your own locally>>.
 
-== Setup
-
-=== Quickstart
+== Quickstart
 
 Assuming you have a <<requirements,proper Ruby runtime>> environment installed, all you need to do is install dependencies and run the Jekyll command.
 
-==== Requirements
+=== Requirements
 // tag::requirements-ruby[]
 Other than a Ruby runtime environment, this codebase installs all dependencies using Bundler.
 
@@ -167,7 +191,7 @@ Jekyll 4.0.0 and the jekyll-asciidoc plugin both require Ruby 2.4.0 or later.
 // end::requirements-ruby[]
 
 [[build-the-docs]]
-==== Build the Docs
+=== Build the Docs
 // tag::quickstart-build[]
 With a Ruby environment in place, these steps should generate the website sourced in the AsciiDocsy theme repository.
 
@@ -252,11 +276,12 @@ Please don't hesitate to create an issue or or pull request in the meantime!
 Since I've received a couple of small pull requests from folks, I should probably track my conventions and process here to minimize frustration.
 
 Right now I am developing on trunk branches just so I can keep releases straight.
-I will find a better way to do this, but for now it's `trunk-0.2.0`, `trunk-0.3.0`.
+I will find a better way to do this, but for now I am trunking for each upcoming minor release.
+So it's `trunk-0.2.0`, `trunk-0.3.0`, etc.
 These branch off `main`, and PRs can be merged to the `trunk-` branches, unless they are patches, which can be merged to `main` and then rebased to `trunk-`.
 
 Since this is complicated and potentially disruptive, most patches will await a minor release.
-Therefore, they can be branched from and merged to `trunk-`.
+Therefore, they can be branched from and merged to the current `trunk-` branch.
 
 == Licensing
 

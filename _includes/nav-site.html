@@ -4,7 +4,7 @@
 Generates header navigation menu.
 {% endcomment %} -->
 <ul class="navbar-nav mt-2 mt-lg-0">
-{% for link in site.data.navigation.header.links %}
+{% for link in site.data.navs.header.links %}
   {% assign link_match = link.href | append: "/" | replace: "//","/" %}
   {% assign page_path = page.url | truncate: link_match.size, "" | append: "/" | replace: "//","/" %}
   {% if link_match == page_path %}
