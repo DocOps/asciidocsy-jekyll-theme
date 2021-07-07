@@ -1,0 +1,6 @@
+$doc:
+  desc: Custom styles for elements of the theme
+logo:
+  width: 50px
+color:
+  theme-primary: "#30638e"

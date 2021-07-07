@@ -1,0 +1,83 @@
+# Defines link elements to appear in pages of various types
+$doc:
+  skip: true
+topic: # order these objects as you wish them to appear
+  $doc:
+    desc: Topic-specific functions and links
+    name: "Page Actions: Topic"
+  peel: # display print-friendly version
+    $doc:
+      desc: Make the page print-friendly by removing the sidebars.
+      args: {"text":,"icon":,"func":}
+    text: Print-friendly
+    icon: fa fa-newspaper-o
+    func: ""
+    # role: auth0 # explicitly sets role limit
+  edit:
+    $doc:
+      desc: Link to edit this topic in Git.
+      args: {"text":,"icon":}
+    text: Edit this topic
+    icon: fa fa-pencil-square
+    # role: auth0 # explicitly sets role limit
+    # fork: # overrides default forking policy
+  data:
+    $doc:
+      desc: Link to edit this topic datasource in Git.
+      args: {"text":,"icon":}
+    text: Edit topic datasource
+    icon: fa fa-database
+    # role: auth0
+    # fork: # overrides default forking policy
+  make:
+    $doc:
+      desc: Link to make a new topic in Git.
+      args: {"text":,"icon":}
+    text: Create a (sub)topic
+    icon: fa fa-file-text-o
+    # role: auth0
+    # fork: # overrides default forking policy
+  open-docs:
+    $doc:
+      name: Open Docs Ticket
+      desc: Link to making a docs ticket.
+      args: {"text":,"icon":,"path": Path to append to the `tickets_www` URL}
+    text: Open a docs ticket.
+    icon: fa fa-ticket
+    path: /new?labels=documentation
+    # role: auth0
+    # fork: # overrides default forking policy
+  open-subj:
+    $doc:
+      name: Open Subject Ticket
+      desc: Link to making a subject (product) ticket.
+      args: {"text":,"icon":,"path": Path to append to the `tickets_www` URL}
+    text: Open a product ticket.
+    icon: fa fa-tag
+    path: /new
+    # role: auth0
+page:
+  edit:
+    $doc:
+      desc: Link to edit this page.
+      args: {"text":,"icon":}
+    text: Edit this page in Git.
+    icon: fa fa-pencil
+    # role: auth0
+    # fork: # overrides default forking policy
+  data:
+    $doc:
+      desc: Link to edit this page's datasource.
+      args: {"text":,"icon":}
+    text: Edit page datasource in Git.
+    icon: fa fa-database
+    # role: auth0
+    # fork: # overrides default forking policy
+  make:
+    $doc:
+      desc: Create a new page in Git.
+      args: {"text":,"icon":}
+    text: Suggest a new page
+    icon: fa fa-file-text-o
+    # role: auth0
+    # fork: # overrides default forking policy

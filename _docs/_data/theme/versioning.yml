@@ -1,0 +1,149 @@
+defaults:
+  topic:
+    list: [theme-skin-amend,syntax-skin-amend]
+  page:
+    list: [theme-skin-amend,syntax-skin-amend]
+handlers:
+  $doc:
+    desc: |
+      Defines version handlers.
+      Documentation available in xref:/docs/theme/config/versioning#[Config > Version Handlers].
+  user-os-toggle: # arbitrary toggler name
+    verb: toggle
+    # form is inferred (buttons)
+    spot: '#sidebar-right .sidebar-mid'
+    show:
+      text: "Your operating system:"
+      icon: fa fa-laptop
+    swap:
+      pick: os-mac
+      opts:
+        - text: Windows
+          slug: os-win
+          icon: fa fa-windows
+        - text: Linux/Unix
+          slug: os-nix
+          icon: fa fa-linux
+        - text: MacOS
+          slug: os-mac
+          icon: fa fa-apple
+  patch-swap-0_2:
+  # tag::sample-swap-patch[]
+    verb: swap
+    form: select
+    spot: "#sidebar-right .sidebar-end"
+    show:
+      text: "Choose your patch version:"
+      icon: fa fa-wrench
+    swap:
+      pick: 0.2.0
+      slug: vrsn # <1>
+      opts: ['0.2.0','0.2.1','0.2.2'] # <2>
+  # end::sample-swap-patch[]
+  patch-swap-0_2-btns:
+    verb: swap
+    form: buttons
+    spot: "#sidebar-right .sidebar-end"
+    swap:
+      pick: 0.2.0
+      slug: vrsn # <1>
+      opts: ['0.2.0','0.2.1','0.2.2','0.2.3'] # <2>
+  # THESE ARE JOKE DEMO VALUES
+  spoof-tokens-swap:
+  # tag::sample-swap-spoof[]
+    verb: swap
+    form: select
+    spot: "#sidebar-right .sidebar-end"
+    show:
+      text: "AsciiDocsy Edition:"
+      icon: fa fa-font
+    swap:
+      pick: foss
+      dict: # <1>
+        company: DocOps.org
+        company_url: https://www.docopslab.org
+        theme: AsciiDocsy
+      opts: # <2>
+        - text: FOSS
+          slug: foss
+          dict:
+            slogan: Free docs for everyone!
+        - text: Freemium
+          slug: freemium
+          dict: # <3>
+            theme: AsciiDocsy Premium
+            company_url: https://www.docopslab.com
+            slogan: Free docs until you're a big deal (then chip in).
+        - text: SellOut
+          slug: sellout
+          dict: # <3>
+            theme: ACMEDocsy
+            company: AsciiDocs4Sale.com
+            company_url: https://asciidocs4sale.com
+            slogan: No free docs.
+  # end::sample-swap-spoof[]
+  # tag::sample-swap-piggyback[]
+  user-os-swap:
+    verb: swap
+    form: "#user-os-toggle"
+    spot: "#sidebar-right .sidebar-end"
+    swap:
+      opts:
+        - slug: os-mac
+          dict:
+            your_os: Your operaing system is very classy.
+            you: You appreciate good design and are willing to pay for it.
+        - slug: os-nix
+          dict:
+            your_os: Your operating system is very... rugged.
+            you: You like the illusion that you take charge of your devices.
+        - slug: os-win
+          dict:
+            your_os: Your operating system is practical.
+            you: You don't overthink things.
+  # end::sample-swap-piggyback[]
+  # / END JOKE DEMO VALUES
+  theme-skin-amend:
+    verb: amend
+    form: select
+    spot: "#sidebar-right .sidebar-end"
+    show:
+      text: "Theme skin:"
+      icon: fa fa-paint-brush
+    swap:
+      data: site.data.theme.skin-styles
+      pick: foundation
+      # opts: >-
+      #   {{site.assets_url}}/css/skins/{{value}}.css
+    func:
+      name: change-href
+      targ: "#theme-skin"
+      href: >- # defaults to $(this).val(); allows Liquid
+        '{{site.assets_url}}/css/skins/' + $(this).val() + '.css'
+  # tag::syntax-skin-amend[]
+  syntax-skin-amend:
+    verb: amend
+    form: select
+    spot: "#sidebar-right .sidebar-end"
+    show:
+      text: "Code highlight skin:"
+      icon: fa fa-code
+    swap:
+      data: site.data.theme.syntax-styles
+      pick: a11y-light
+    func:
+      name: change-href
+      targ: "#syntax-skin" # <1>
+      href: >- # <2>
+        '{{site.assets_url}}/css/syntax/hljs/' + $(this).val() + '.css'
+  # end::syntax-skin-amend[]
+
+  data-format-tabber: # arbitrary tabset name
+    verb: tab
+    swap:
+      pick: data-json
+      opts:
+        - text: YAML Data
+          slug: data-yaml
+        - text: JSON Data
+          slug: data-json

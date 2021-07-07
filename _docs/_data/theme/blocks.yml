@@ -1,0 +1,32 @@
+$doc:
+  desc: Placement and design of various layout elements.
+page-header:
+  $doc:
+    desc: Settings for the `header` area of the layout
+    args:
+      show_logo_source: {type: String, desc: Path of header logo image file}
+      show_logo_width: {type: String, desc: Width of the header logo image}
+  show:
+    logo:
+      source: /images/logo.png
+      width: 50px
+page-footer:
+  $doc:
+    desc: Settings for the `footer` area of the layout
+    args:
+      show_logo_source: {type: String, desc: Path of footer logo image file}
+      show_logo_width: {type: String, desc: Width of the footer logo image}
+      opts_first-col-class: {type: String, desc: The class of the first column in the footer}
+  show:
+    logo:
+      source: /images/docops-labs-logo.png
+      width: 150px
+    opts:
+      first-col-class: offset-2 # how far to offset the link columns
+social-links:
+  $doc:
+    desc: Settings for social links.
+    args:
+      show_spot: Where in the layout to place the social links.
+  show:
+    spot: footer

@@ -1,0 +1,53 @@
+# Defines navigation elements in the theme
+$doc:
+  desc: All navigation elements are defined here.
+anchor-links:
+  $doc:
+    name: Anchor Links
+    desc: Adds self-referential links to all headers of the listed types.
+    args:
+      show_list:
+        type: String
+        desc: Comma-delimited list of heading elements to bookmark
+  show:
+    list: h2,h3,h4,h5 # make empty to disable anchor links
+subject-menu:
+  $doc:
+    name: Subject Menu
+    desc: Determines the source and display of the _subject_ navigation menu.
+    args:
+      opts_show_type_icons:
+        type: String
+  opts:
+    show_type_icons: false
+toc:
+  $doc:
+    name: Table of Contents
+    desc: Shows and sets the depth of the table of contents for a topic/page.
+    args:
+      show_text: Text label for the TOC
+      show_spot: Where the TOC will go
+      show_opts_header-level-depth: What header level to reflect in TOC
+  show:
+    text: In this topic…
+    spot: "#sidebar-right"
+    opts:
+      header-level-depth: "h3"
+breadcrumbs:
+  $doc:
+    name: Page Breadcrumbs
+    desc: Displays and designs the breadcrumb trail.
+    tips:
+      - Crumb paths are further defined in data/manifest.yml.
+    args:
+      show_home:
+        type: String
+        desc: The label for the base crumb
+        dflt: Home
+      show_opts_delim:
+        type: String
+        desc: Character(s) to insert between crumbs
+  show:
+    home: Home
+    opts:
+      delim: ">" # defaults to "/"

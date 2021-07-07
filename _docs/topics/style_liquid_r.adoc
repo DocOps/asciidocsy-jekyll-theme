@@ -63,7 +63,7 @@ The key to mixed nesting is to pick whether to nest the two languages together o
 [source,html]
 ----
 <ul>
-{% for link in site.data.navigation %}
+{% for link in site.data.navs %}
   {% if link.kids %}
   <li>
     <a href="{{ link.href | default: '#' }}">
@@ -90,7 +90,7 @@ The key to mixed nesting is to pick whether to nest the two languages together o
 [source,html]
 ----
 <ul>
-  {% for link in site.data.navigation %}
+  {% for link in site.data.navs %}
     {% if link.kids %}
       <li>
         <a href="{{ link.href | default: '#' }}">

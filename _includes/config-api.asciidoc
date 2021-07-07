@@ -1,0 +1,29 @@
+[.api-reference]
+{% for cat in site.data.theme %}
+  {% assign catkey = cat[0] %}
+  {% capture catkey_str %}site.data.theme.{{ catkey }}{% endcapture %}
+  {% if cat[1]['$doc'] %}
+    {% assign doc = cat[1]['$doc'] %}
+    {% unless doc.skip %}
+== {{catkey | replace: "-"," " | upcase}}
+
+[big]`{{ catkey_str }}`
+      {% if doc.desc %}
+{{ doc.desc }}
+      {% endif %}
+{% include config-api-objects.asciidoc key_str=catkey_str %}
+    {% else %}
+      {% for subcat in site.data.theme[catkey] %}
+        {% unless subcat[0] == "$doc" %}
+          {% assign subkey = subcat[0] %}
+          {% capture subkey_str %}{{ catkey_str }}.{{ subkey }}{% endcapture %}
+== {{catkey | replace: "-"," " | upcase}}: {{ subkey | upcase }}
+
+[big]`{{ subkey_str }}`
+
+{% include config-api-objects.asciidoc key_str=subkey_str %}
+        {% endunless %}
+      {% endfor %}
+    {% endunless %}
+  {% endif %}
+{% endfor %}
