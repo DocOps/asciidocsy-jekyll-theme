@@ -1,17 +1,17 @@
 {% include hook.liquid template="footer_html" spot="file" %}
 {% unless hook_replace_tpl %}
-{% assign footer_config = site.data.theme.blocks.footer %}
+{% assign footer_config = site.data.theme.blocks.page-footer %}
 {% assign footer_nav    = site.data.navs.footer %}
 {% assign footer_str    = site.data.theme.strings.footer %}
 {% comment %}var alt_links set by hook{% endcomment %}
 {% include hook.liquid template="footer_html" spot="head" %}
-<footer><!-- COMPANY REF/NAV -->
+<footer class="{{ footer_config.show.opts.class | default: 'row flex-xl-nowrap' }}"><!-- COMPANY REF/NAV -->
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-4">
   {% if footer_config.show.logo %}
         <span class="company-logo">
-          <img src="{{ site.data.theme.blocks.footer.show.logo.source }}" class="logo" width="{{ site.data.theme.blocks.footer.show.logo.width | default: '100px' }}">
+          <img src="{{ footer_config.show.logo.source }}" class="logo" width="{{ footer_config.show.logo.width | default: '100px' }}">
         </span>
   {% endif %}
   {% if footer_str.title %}

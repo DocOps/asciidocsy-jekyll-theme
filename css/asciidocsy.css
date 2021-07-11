@@ -140,6 +140,10 @@ pre .conum, i.conum {
   background-color: #666 !important;
 }
 
+.hide {
+  display: none !important;
+}
+
 @media screen and (min-width: 768px) {
     .dlist.grid dl {
         display:grid;
