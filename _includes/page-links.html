@@ -10,7 +10,7 @@ Generates links for page-related functions.
     {% assign ftr = feature[1] %}
     {% unless feat == "$doc" or feat == "data" and page.data-source == nil %}
   <li class="nav-item {% if ftr.role %}role-{{ ftr.role }}-plus{% endif %} nav-item-{{ feat }}">
-    <a href="" class="nav-link"><i class="icon {{ ftr.icon }} fa-fw"></i> {{ ftr.text }}</a>
+    <a href="#" class="nav-link"><i class="icon {{ ftr.icon }} fa-fw"></i> {{ ftr.text }}</a>
   </li>
       {% assign git_actions = "make,edit,data,open-docs,open-subj" | split: "," %}
   <script>
@@ -35,6 +35,8 @@ Generates links for page-related functions.
       {% elsif feat == "peel" %}
     $('.nav-item-peel .nav-link').click(function() {
       $('#sidebar-left').toggleClass('hide')
+      $('header').toggleClass('hide')
+      $('#sidebar-right').toggleClass('hide')
       $('footer').toggleClass('hide')
     });
       {% endif %}
