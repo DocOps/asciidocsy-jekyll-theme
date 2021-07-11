@@ -22,6 +22,7 @@ page-footer:
       source: /images/docops-labs-logo.png
       width: 150px
     opts:
+      class: "row flex-xl-nowrap"
       first-col-class: offset-2 # how far to offset the link columns
 social-links:
   $doc:
