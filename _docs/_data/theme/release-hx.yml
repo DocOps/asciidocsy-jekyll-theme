@@ -1,0 +1,156 @@
+$doc:
+  name: Release History (ReleaseHx)
+  desc: Template for parsing version history into Release Notes and/or Changelog
+  args:
+    rn:
+      desc: Settings for release-notes listings.
+    cl:
+      desc: Settings for changelog listings.
+    parts:
+      desc: |
+        Product components or aspects -- sub-subjects.
+
+        `name`:: A label for this part.
+        `slug`:: A key for this part.
+        `icon`:: Font icon to represent this part.
+    types:
+      desc: |
+        The kinds of changes recorded.
+
+        `name`:: A label for this type.
+        `slug`:: A key for this type.
+        `verb`:: An action word for this type.
+        `icon`:: Font icon to represent this type.
+        `text`:: A brief explainer for this type.
+    tags:
+      desc: Special attributes about recorded changes deserving of being flagged.
+    roles:
+      desc: User types affected by recorded changes.
+    cats:
+      desc: General categories for search/filtering, not for flagging.
+policy:
+  patches: flatten # flatten* or merged (shown with next minor/major revision)
+rn:
+  empty-group: show
+cl:
+  empty-group: hide
+parts:
+  - name: Layout/Styles
+    slug: design
+    icon: paint-brush
+  - name: Content Management
+    slug: content
+    icon: map-o
+  - name: Back-end
+    slug: backend
+    icon: server
+  - name: Documentation
+    slug: docs
+    icon: file-text-o
+types:
+  -
+    name: addition
+    verb: added
+    slug: new-feature
+    text: for new features
+    icon: plus-circle
+  -
+    name: improvement
+    verb: improved
+    slug: improvement
+    text: for changes in existing functionality
+    icon: magic
+  -
+    name: deprecation
+    verb: deprecated
+    slug: deprecation
+    text: for soon-to-be removed features
+    icon: exclamation-circle
+  -
+    name: removal
+    verb: removed
+    slug: removal
+    text: for now-removed features
+    icon: minus-circle
+  -
+    name: bugfix
+    verb: fixed
+    slug: bugfix
+    text: for any bug fixes
+    icon: wrench
+tags:
+  -
+    name: Security
+    slug: security
+    text: for changes made to secure a component
+    icon: lock
+    tone: danger
+  -
+    name: Privacy
+    slug: privacy
+    icon: user-secret
+    tone: dark
+  -
+    name: Experimental
+    slug: experimental
+    text: for possibly unstable or temporary features
+    icon: flask
+    tone: warning
+  -
+    name: Compliance
+    slug: compliance
+    text: for changes made to conform to regulations
+    icon: balance-scale
+    tone: success
+  -
+    name: Breaking
+    slug: breaking
+    text: for changes that violate backward compatibility
+    icon: unlink
+    tone: warning
+roles:
+  - name: Admin
+    slug: admin
+    text: Maintainer of a product instance.
+  - name: Designer
+    slug: designer
+    text: Shapes an application of the product for a user instance.
+  - name: Author
+    slug: author
+    text: End user, documentation contributor.
+cats:
+  - name: User experience
+    slug: ux
+    text: Enhances the UX of an interface/procedure.
+  - name: Code refactor
+    slug: refactor
+    text: Involves radical improvement of the code; may carry bug risks.
+  - name: User-authored
+    slug: user-author
+    text: Derived from a user contribution of code or documentation.
+  - name: Free and open-source
+    slug: foss
+    text: This component is openly authored and permissively licensed.
+defaults: # default values for properties, organized by block
+  revision: # establish default values for properties
+    down: true # whether to show download link
+  item:
+  note:
+  both:
+patterns: # value patterns for properties, organized by block
+  revision: # value patterns for the revision block
+    vcode:        "v{{ rvsn.code }}"
+    heading:      "Version {{ rvsn.code }}, {{ rvsn.date }}"
+    download-url: "{{ site.source_www }}/releases/tag/v{{ rvsn.code }}"
+    download-label:
+      standard:   "Get {{ rvsn.code }}"
+      latest:     "Get {{ rvsn.code }} icon:flag-checkered[] Latest!"
+      go-to-latest: "Get {{ latest_release.code }} icon:flag-checkered[]"
+    admonition:
+  item: # changelog-item-specific settings
+  note: # release-note-specific settings
+  both: # release-note- and changelog-specific settings
+    ticket-link: # vars: tick
+      href: "{{ site.subject_tickets_www }}/{{ item.tick }}"
+      text: "Issue #{{ item.tick }}"
+      icon: github
