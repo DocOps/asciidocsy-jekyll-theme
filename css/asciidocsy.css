@@ -549,6 +549,12 @@ main h1, main h2, main h3, main h4, main h5, main h6 {
   color: {{ site.data.theme.styles.color.theme-primary }};
 }
 
+.td-content > h1 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 2.25em;
+}
+
 main h2 {
   font-size: 1.8em;
 }
@@ -639,4 +645,56 @@ footer .social-links {
 
 .admonitionblock table td.content {
   border-left: 0;
+/* RELEASE NOTES FORMATTING */
+}
+
+h3 {
+  margin-top: 0;
+}
+
+h3[id]:before {
+  height: auto;
+  margin-top: 0;
+}
+
+h5.change-summary {
+  font-size: 1em;
+}
+
+.openblock.skip-link p {
+  position: relative;
+  top: 27px;
+  left: 300px;
+  margin: 0
+}
+
+/* RELEASE NOTE STYLES */
+
+.release-note.card {
+  padding: 0 1rem .5rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.release-note p {
+  margin-bottom: 1em;
+}
+
+.release-note .hdlist td {
+  padding-bottom: .3em;
+}
+.release-note .hdlist td p {
+  margin-bottom: 0;
+}
+
+.release-note.card table {
+  margin-bottom: 0;
+}
+
+.cl-tag {
+  background: #99999940;
+  padding: 5px;
+  border-radius: 6px;
+}
+a.cli-tag:first-child {
+  margin-left: 0
 }
