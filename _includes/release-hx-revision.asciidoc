@@ -1,0 +1,86 @@
+{%- assign rvsn  = include.revision %}
+{%- assign code  = rvsn.code %}
+{%- assign vcode = config.patterns.revision.vcode | liquify %}
+{%- assign flags = "" | split:"," %}
+{%- assign tags_map = rvsn.work | map:"tags" %}
+{%- assign is_latest = false %}
+{%- assign download_btn_label = config.patterns.revision.download-label.standard | default: "Get v{{rvsn.code}}" %}
+{%- assign download_btn_tone  = "primary" %}
+{%- assign download_btn_go-to-latest = config.patterns.revision.download-label.go-to-latest %}
+{%- if rvsn.code == latest_release.code %}
+{%-   assign is_latest = true %}
+{%-   assign download_btn_label = hx.patterns.revision.download-label.latest | default: "Latest version! v{{rvsn.code}} icon:flag-checkered[]" %}
+{%-   assign download_btn_tone  = "success" %}
+{%- endif %}
+{%- for tags_array in tags_map %}
+{%-   if tags_array.size %}
+{%-     assign flags = flags | concat: tags_array | uniq %}
+{%-   endif %}
+{%- endfor %}
+{%- assign rvsn_hash_mini = rvsn.hash | truncate: 7, "" %}
+{%- assign rvsn_work = rvsn.work %}
+{%- capture memo_def %}
+Release history for v{{ rvsn.code }}.
+{%- endcapture %}
+{%- if include.merge %}
+{%-   assign patch_rvsns = "" | split:"," %}
+{%-   for patch in include.merge %}
+{%-     assign v_code = patch.code | prepend: "v" | split:"," %}
+{%-     assign patch_rvsns = patch_rvsns | concat: v_code %}
+{%-     assign rvsn_work = rvsn_work | concat: patch.work %}
+{%-   endfor %}
+{%-   capture patch_merge_memo %}
+Changes made in patch revisions to previous minor/major release{% if patch_vrsns.size > 1 %}es{% endif %} (*{{ patch_rvsns | array_to_sentence_string }}*) are incorporated here for convenience.
+{%-   endcapture %}
+{%- endif %}
+
+== {{ config.patterns.revision.heading | liquify }}
+
+[center.text-center]
+--
+[big]#link:{{ config.patterns.revision.download-url | liquify }}[icon:download[] {{ download_btn_label | liquify }},role="btn btn-{{download_btn_tone}} btn-download"]#
+{% unless is_latest -%}
+[big]#xref:#release-{{ latest_release.code }}[{{ download_btn_go-to-latest | liquify }},role="btn btn-success btn-download"]#
+{% endunless %}
+--
+
+[NOTE]
+====
+{{ rvsn.memo | default: memo_def | liquify }}
+====
+{% if patch_merge_memo %}
+[NOTE]
+====
+{{ patch_merge_memo }}
+====
+{% endif %}
+{% if flags[0] %}
+[WARNING]
+====
+The following flags appear in changes made in this release.
+{% for flag in flags %}
+{%-   assign t = tags | where:"slug",flag | first %}
+[.rn-tag.btn.btn-sm.btn-{{ t.tone | default: 'primary' }}]#icon:{{ t.icon }}[{{ t.name | default: tag | capitalize }}] {{ t.name | default: tag | capitalize }}#
+{%- endfor %}
+====
+{% endif %}
+
+{%- assign count = 0 %}
+{% for log in log-order %}
+{%-  if log-order.size > 1 %}
+[.skip-link]
+--
+{%-    if count == 0 %}
+{%-      assign count = count | plus: 1 %}
+xref:{{log-order[1]}}-{{rvsn_hash_mini}}[icon:fast-forward[] Skip to] <<{{log-order[1]}}-{{rvsn_hash_mini}}>>
+{%-    else %}
+xref:{{log-order[0]}}-{{rvsn_hash_mini}}[icon:fast-backward[] Back to] <<{{log-order[0]}}-{{rvsn_hash_mini}}>>
+{%-    endif %}
+--
+{%-  endif %}
+{%-  if log == "release-notes" %}
+{%     include release-hx-notes-listing.asciidoc %}
+{%-  elsif log == "changelog" %}
+{%     include release-hx-changes-listing.asciidoc %}
+{%-  endif %}
+{% endfor %}

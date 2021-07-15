@@ -1,0 +1,58 @@
+{%- assign config     = site.data.theme.release-hx %}
+{%- assign hx         = include.history    | default: site.data.releases %}
+{%- assign cats       = include.categories | default: config.cats %}
+{%- assign parts      = include.parts      | default: config.parts %}
+{%- assign types      = include.types      | default: config.types %}
+{%- assign tags       = include.tags       | default: config.tags %}
+{%- assign roles      = include.roles      | default: config.roles %}
+{%- assign rn_groupby = include.rn_groupby | default: 'part' %}
+{%- assign rn_sortby  = include.rn_sortby  | default: 'type' %}
+{%- assign cl_groupby = include.cl_groupby | default: 'type' %}
+{%- assign cl_sortby  = include.cl_sortby  | default: 'part' %}
+{%- assign log-order  = include.log-order  | default: "release-notes,changelog" | split: "," %}
+{%- assign patches       = include.patches | default: "nested" %}
+{%- assign rn_groupsby   = rn_groupby | append: "s" %}
+{%- assign cl_groupsby   = cl_groupby | append: "s" %}
+{%- assign rn_groups_def = config[rn_groupsby] %}
+{%- assign cl_groups_def = config[cl_groupsby] %}
+{%- assign rn_groups     = include.groups | default: rn_groups_def %}
+{%- assign cl_groups     = include.groups | default: cl_groups_def %}
+{%- assign patch_pol     = include.patch_policy | default: config.policy.patches | default: "flatten" %}
+{% for revision in hx.revisions %}
+{%-  assign loose_patches = false %}
+{%-  assign merge_patches = false %}
+{%-  assign next_rvsn = forloop.index %}
+// CHECK FOR LOOSE PATCHES TO THE LATEST VERSION
+{%-  if patch_pol == "merge" and forloop.index == 1 %}
+{%-    assign patches = hx.revisions[0]['patches'] %}
+{%-    if patches %}
+{%-      assign loose_patches = true %}
+{%-    endif %}
+{%-  elsif patch_pol == "flatten" %}
+{%-    assign patches = revision['patches'] %}
+{%-  endif %}
+// IF THERE ARE PATCHES AT THE TOP OF THE LISTING...
+{%-  if patch_pol == "flatten" or loose_patches %}
+{%-    assign parent_idx = forloop.index %}
+{%     for patch_rvsn in patches %}
+{%-      if forloop.index == 1 and parent_idx == 1 %}
+{%-        assign latest_patch = patch_rvsn %}
+{%-      endif %}
+{%       include release-hx-revision.asciidoc revision=patch_rvsn %}
+{%     endfor %}
+{%-    if forloop.index == 1 %}
+{%-      assign latest_release = latest_patch | default: revision %}
+{%-    endif %}
+{%     include release-hx-revision.asciidoc revision=revision %}
+{%-  else %}
+{%-    if forloop.index == 1 %}
+{%-      assign latest_release = revision %}
+{%-    endif %}
+{%-    if patch_pol == "merge" and hx.revisions[next_rvsn]['patches'] %}
+{%-      assign patches = hx.revisions[next_rvsn]['patches'] %}
+{%       include release-hx-revision.asciidoc revision=revision merge=patches %}
+{%-    else %}
+{%       include release-hx-revision.asciidoc revision=revision %}
+{%-    endif %}
+{%-  endif %}
+{% endfor %}
