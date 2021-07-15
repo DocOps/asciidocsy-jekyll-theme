@@ -1,0 +1,14 @@
+[[changelog-{{ rvsn_hash_mini }}]]
+=== Changelog
+{% for grp in cl_groups %}
+{%-  assign entries = rvsn_work | where: cl_groupby, grp.slug | sort: cl_sortby %}
+{%-  if entries.size > 0 or config.cl.empty-group == 'show' %}
+==== {{ grp.verb | default: grp.slug | capitalize }}
+[cols="1a,15a,12a",frame=none,grid=none,stripes=odd]
+|===
+{%     for item in entries %}
+{%       include release-hx-change.asciidoc %}
+{%     endfor %}
+|===
+{%-  endif %}
+{% endfor %}

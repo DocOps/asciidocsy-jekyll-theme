@@ -1,0 +1,44 @@
+{%- assign note_hash_mini = item.hash | truncate: 7, "" %}
+{%- capture summary -%}
+{%-   assign note_type = types | where:"slug",item.type | first %}
+{%-   assign note_classes = "" | split: "" %}
+{%-   if item.tags %}
+{%-     assign note_classes = note_classes | concat: item.tags %}
+{%-   endif %}
+{%-   if item.cats %}
+{%-     assign note_classes = note_classes | concat: item.cats %}
+{%-   endif %}
+{%- if note_type.icon %}icon:{{ note_type.icon }}[]{% else %}{{ note_type.name | default: note_type.slug | upcase }}:{% endif %} {{ item.summ }}
+{%- endcapture -%}
+[#release-note-{{ note_hash_mini }},role="card release-note {{ note_type }}{{ note_classes | join:' ' }}"]
+--
+[discrete.note-summary.card-title]
+===== {{ summary }}
+
+{{ item.note }}
+
+[horizontal]
+{%- if item.docs %}
+docs::
+{% for doc in item.docs -%}
+{% if item.docs.size > 1 -%}* {% endif -%}
+{%- if doc.href -%}link:{{- doc.href | liquify -}}{% else %}xref:{{ doc.xref | liquify }}#{% endif %}[{{ doc.text | default: "Coverage of this item" | liquify }}]
+{% endfor %}
+{%- endif %}
+{%- if item.tags and sortby != "tags" %}
+tags::
+{%- for tag in item.tags %}
+{%-   assign t = tags | where:"slug",tag | first %}
+[.rn-tag.btn.btn-sm.btn-{{ t.tone | default: 'primary' }}]#icon:{{ t.icon }}[] {{ t.name | default: tag | capitalize }}#
+{%- endfor %}
+{%- endif %}
+{%- if item.cats and rn_groupby != "cats" %}
+categories:: {{ item.cats | array_to_sentence_string }}
+{%- endif %}
+{%- if item.tick %}
+ticket:: link:{{ config.patterns.item.ticket-link.href | liquify }}[{{ config.patterns.item.ticket-link.text | liquify }}]
+{%- endif %}
+{%- if item.hash %}
+commit:: link:{{ site.source_www }}/commit/{{ item.hash }}[{{ item.hash }}]
+{%- endif %}
+--

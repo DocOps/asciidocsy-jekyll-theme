@@ -1,0 +1,16 @@
+[[release-notes-{{ rvsn_hash_mini }}]]
+=== Release Notes for v{{ rvsn.code }}
+{% for grp in rn_groups %}
+{%-  assign grp_name_def = grp.slug | capitalize %}
+{%-  assign notes = rvsn_work | where: rn_groupby, grp.slug | where_exp:"i","i.note != nil" %}
+{%-  if notes.size > 0 or config.rn.empty-group == 'show' %}
+==== {{ grp.name | default: grp_name_def | capitalize }} changes in v{{ rvsn.code }}
+{%-    if notes.size > 0 %}
+{%       for item in notes %}
+{%         include release-hx-note.asciidoc %}
+{%-      endfor %}
+{%-    else %}
+No special notes for {{ grp.name }} changes in this release.
+{%-    endif %}
+{%-  endif %}
+{% endfor %}
