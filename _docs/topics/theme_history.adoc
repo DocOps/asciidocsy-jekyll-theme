@@ -20,4 +20,4 @@ Try some alternative versions of this page:
 * <</docs/theme/history-patches-merged#,Patch versions merged with next major/minor docs>>
 ====
 
-{% include release-hx.asciidoc %}
+{% include release-hx.asciidoc log-order="changelog,release-notes" %}
