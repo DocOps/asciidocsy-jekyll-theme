@@ -46,21 +46,21 @@
 <meta itemprop="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
 {% include hook.liquid template="head_html" spot="css_head" %}
-<link rel="stylesheet" href="{{ site.theme_dir }}/css/bootstrap-4.3.css"/>
-<link rel="stylesheet" href="{{ site.theme_dir }}/css/bootstrap-toc.css"/>
-<link rel="stylesheet" href="{{ site.theme_dir }}/css/jquery.navgoco.css"/>
-<link rel="stylesheet" href="{{ site.theme_dir }}/css/palette.css"/>
-<link rel="stylesheet" href="{{ site.theme_dir }}/css/asciidoctor.css"/>
-<link rel="stylesheet" href="{{ site.theme_dir }}/css/font-awesome.css"/>
-<link rel="stylesheet" href="{{ site.theme_dir }}/css/skins/foundation.css" id="theme-skin"/>
-<link rel="stylesheet" href="{{ site.theme_dir }}/css/syntax/hljs/a11y-light.css" id="syntax-skin"/>
+<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/bootstrap-4.3.css"/>
+<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/bootstrap-toc.css"/>
+<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/jquery.navgoco.css"/>
+<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/palette.css"/>
+<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/asciidoctor.css"/>
+<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/font-awesome.css"/>
+<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/skins/foundation.css" id="theme-skin"/>
+<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/syntax/hljs/a11y-light.css" id="syntax-skin"/>
 {% if site.source-highlighter == "highlight.js" %}
-<link rel="stylesheet" href="{{ site.theme_dir }}/css/highlight.pack.css"/>
+<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/highlight.pack.css"/>
 {% endif %}
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch-theme-algolia.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css" integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8=" crossorigin="anonymous"/>
-<link rel="stylesheet" href="{{ site.theme_dir }}/css/asciidocsy.css"/>
-<link rel="stylesheet" href="{{ site.theme_dir }}/css/custom.css"/>
+<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/asciidocsy.css"/>
+<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/custom.css"/>
 {% include hook.liquid template="head_html" spot="css_tail" %}
 
 {% assign empty_array = "" | split: "," %}
