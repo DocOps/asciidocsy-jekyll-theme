@@ -1,0 +1,125 @@
+# SUPPORTED product revisions for ASCIIDOCSY
+# LATEST TO OLDEST
+revisions:
+
+  - code: 0.2.0
+    date: 2021-07-15
+    memo: |
+      This release introduces a <<suite of version-handling features>> as well as a new <<theme configuration system>> and experimental <<ReleaseHx>> templates.
+      Several bugfixes are also included.
+    hash: 4e39baa4 # Git hash for the release
+    down: false
+    work:
+      -
+        tick: 10
+        hash: 62bf5dd5ad400011b3239718ef9381b221d1b0c3
+        type: new-feature
+        part: content
+        summ: Added version-handling features and config system
+        tags: [breaking]
+        note: |
+          A full suite of versioning options now enables amending the DOM, swapping tokens, toggling classes, and tabbing panes.
+          Also resolves link:https://github.com/DocOps/asciidocsy-jekyll-theme/issues/9[Issue #9].
+        docs:
+          - xref: /docs/theme/config/versioning
+            text: configuration reference
+      -
+        tick: 41 # ID for the issue ticket
+        hash: cced5cd9f995daf4f0013121f689872c35e5bef9 # Commit hash (7+ chars)
+        type: new-feature
+        part: content
+        summ: Refactored the theme config system, moving from `site` scope to `site.data` scope
+        tags: [breaking]
+        note: |
+          A full suite of versioning options now enables amending the DOM, swapping tokens, toggling classes, and tabbing panes.
+        docs:
+          - xref: /docs/theme/config/versioning
+            text: configuration reference
+      -
+        hash: 428a4ebff412d7a988830105eee6a99487b869e7
+        type: new-feature
+        part: content
+        summ: Added ReleaseHx "`release history`" templates
+        note: |
+          AsciiDocsy provides a templates and a YAML format for generating release notes and/or a changelog.
+          If you are reading this as HTML or PDF, you are most likely looking at one such generated release history, for AsciiDocsy itself.
+          Documentation is forthcoming; this feature may change without notice prior to 1.0.
+        tags: [experimental]
+      -
+        hash: unknown
+        type: new-feature
+        part: docs
+        summ: Started reporting Release History for AsciiDocsy
+        note: |
+          The flagship implementation of the ReleaseHx minimum-viable product is the AsciiDocsy Release Notes and Changelog itself.
+        docs:
+          text: Release History
+          xref: /docs/theme/history#
+
+      -
+        tick: 4 # ID for the issue ticket
+        hash: a65cfee896b66067fc4dd92ba178167085d55674
+        type: bugfix
+        part: design
+        summ: Fixed "`peel`" ("`print-friendly`") function/page-link
+      -
+        tick: 2 # ID for the issue ticket
+        hash: e45db56e8a203ae215ee28152a3c60ea688003c0
+        type: bugfix
+        part: design
+        summ: Widened footer, removed unwanted margins
+      -
+        tick: 58 # ID for the issue ticket
+        hash: 9337ab4c1a7a02154ce57d4a720627900e1e3141
+        type: bugfix
+        part: backend
+        summ: Started tracking Gemfile.lock in Git (removed from .gitignore)
+
+  - code: 0.1.0 # unique revision ID
+    date: 2021-05-19 # release date
+    memo: |
+      This first release of AsciiDocsy has a long way to go, but it is already more mature than many Jekyll docs themes.
+    hash: 884003cfc64754445c71dd5863bd64a54bbf2749
+    work: # NOT YET DELINEATED
+      -
+        hash: 884003cfc64754445c71dd5863bd64a54bbf2749 # Commit hash (7+ chars)
+        type: new-feature #
+        part: backend #
+        summ: Added initial back-end and front-end infrastructure.
+      -
+        hash: 64ad492730b1fcb7d6385bf84721c1ad22ff0d6b
+        type: new-feature
+        part: docs
+        summ: Added initial technical documentation.
+        note: |
+          Basic documentation site uses AsciiDocsy theme under _docs/ directory.
+          Also introduces rudimentary Config API reference platform/DSL.
+        docs:
+          - text: Live Website
+            href: "{{site.deploy_url}}/docs"
+          - text: Source
+            href: "{{site.source_www}}/tree/{{site.source_trunk_branch}}/_docs"
+    patches:
+      - code: 0.1.1
+        date: 2021-05-26
+        hash: 4986070b45d553d1b9c2a5f78df46afd01fb304c
+        memo: |
+          A few promised fixes, nothing backward incompatible.
+        work:
+          - hash: f0a3071bf7d3c9523f0b16a7ad444157d44b885c
+            summ: Split search into 2 indices as was already indicated in UI
+            part: backend
+            type: bugfix
+            note: Both searches were drawing off the same index, so we switched them up into *site search* and *subject search*.
+          - hash: 06b3b93b296b112306fcbcdc010558602617bf16
+            summ: Fixed Navgoco (subject) menu highlights
+            part: design
+            type: bugfix
+          - hash: ec35702c953efc0c9d12c2fede52d17905f65207
+            summ: Fixed semantic term icon spin feature
+            part: design
+            type: bugfix
+          - hash: a1a61769086268bd38dd8a377b1a6b999e401b2b
+            summ: Improved the install instructions with basic Netlify deployment option
+            part: docs
+            type: improvement
