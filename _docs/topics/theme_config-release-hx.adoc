@@ -1,0 +1,4 @@
+:page-permalink: /docs/theme/config/release-hx
+= ReleaseHx Product History Feature
+
+Documentation slated for 0.2.1.
