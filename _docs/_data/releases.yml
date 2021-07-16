@@ -77,7 +77,8 @@ revisions:
       -
         hash: 5a21cd5d3152d2862a8299c0a6a1279096f25e39
         type: bugfix
-        part: 
+        part: frontend
+        summ: Fix handling of site.baseurl in head hrefs
 
   - code: 0.1.0 # unique revision ID
     date: 2021-05-19 # release date
