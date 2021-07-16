@@ -46,7 +46,7 @@ revisions:
           Documentation is forthcoming; this feature may change without notice prior to 1.0.
         tags: [experimental]
       -
-        hash: unknown
+        hash: 8d7ab51c636e2c7bede590be173ec7c96c45b22d
         type: new-feature
         part: docs
         summ: Started reporting Release History for AsciiDocsy
