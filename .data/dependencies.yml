@@ -1,6 +1,7 @@
   - name: FontAwesome
     slug: fontawesome
     description: The iconic font and CSS toolkit.
+    version: 4.7.0
     license: Open Font License
     copyright:
       holder: Dave Gandy
@@ -8,7 +9,7 @@
     site-url: http://fontawesome.io/
 
   - name: Bootstrap
-    slug: fontawesome
+    slug: bootstrap
     description: Twitter's killer HTML/CSS/JS framework
     license: MIT
     version: 4.3.1
