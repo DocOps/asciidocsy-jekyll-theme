@@ -1,4 +1,8 @@
 {% assign spot_scripts = all_scripts[include.spot] | where_exp:"s","page_scripts contains s.slug" %}
 {% for script in spot_scripts %}
-<script src="{{ script.href }}" integrity="{{ script.meta.integrity }}" crossorigin="anonymous"></script>
+{%   assign script_href = script.href %}
+{%   unless script_href contains "http" %}
+{%     assign script_href = script_href | prepend: site.theme_url | prepend: site.basurl %}
+{%   endunless %}
+<script src="{{ script_href }}" integrity="{{ script.meta.integrity }}" crossorigin="anonymous"></script>
 {% endfor %}
