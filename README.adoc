@@ -1,8 +1,8 @@
 = AsciiDocsy
 // tag::globals[]
-:prod_vrsn_this: 0.1.1
-:prod_date_this: 2021-05-26
-:prod_vrsn_next: 0.2.0
+:prod_vrsn_this: 0.2.0
+:prod_date_this: 2021-07-15
+:prod_vrsn_next: 0.3.0
 :experimental:
 :imagesdir: images
 :forked_source_www: https://vsoch.github.io
@@ -74,41 +74,44 @@ Mainly thinking of YAML and Liquid code here, lots of these source files need pr
 
 === Changes so Far
 
-* [add] AsciiDoc integration
+* [added] AsciiDoc integration
 ** jekyll-asciidoc plugin & configs
 ** Asciidoctor styles and skins
-* [add] Algolia search integration
+* [added] Algolia search integration
 ** default search results page
 ** instantsearch
 ** multi-index ready
 ** site search & subject search in separate fields
-* [add] entire versioning suite
+* [added] entire versioning suite
 ** tabbed panes for switching content in place
 ** toggles to show/hide all text/blocks w/ certain classes
 ** token swaps to change front-end variables on/after page load
 ** HTML DOM amender for altering HEAD elements
-* [add] sophisticated, data-file-based theme configuration
+* [added] sophisticated, data-file-based theme configuration
 ** `data`-scoped configs for all theme features, settings, strings, etc
 ** simplistic system for documenting data objects inside YAML files
-* [add] Highlight.js syntax highlighting w/ syntax styles
-* [add] "`Toggler`" feature to show/hide page elements by role
-* [add] inline AsciiDoc semantics
+* [added] feature-rich "ReleaseHX" release history template & data format
+* [added] Highlight.js syntax highlighting w/ syntax styles
+* [added] "`Toggler`" feature to show/hide page elements by role
+* [added] inline AsciiDoc semantics
 ** custom styling for terms with semantic roles
 ** popovers for known glossary terms (try it!)
 ** "`terms on this page`" listing (JS)
-* [add] new docs for AsciiDocsy
-* [add] example writing/templating style guides
-* [add] rudimentary AsciiDoc-based "`landing page`" layout
-* [refactor] flatten assets path into root
-* [refactor] data structure for configuration of features, services, etc
-* [add] scrollspy page TOC
-* [remove] example and stub files
-* [remove] Lunr.js (for now)
-* [remove] docs for Docsy Jekyll
-* [remove] unnecessary templates (such as `alerts.html`, `doc.html`)
-* [change] default Git branch to `main`
-* [change] tab indents to spaces
-* [add] enable explicit breadcrumb rewrites
+* [added] new docs for AsciiDocsy
+* [added] example writing/templating style guides
+* [added] rudimentary AsciiDoc-based "`landing page`" layout
+* [refactored] flatten assets path into root
+* [refactored] data structure for configuration of features, services, etc
+* [added] scrollspy page TOC
+* [removed] example and stub files
+* [removed] Lunr.js (for now)
+* [removed] docs for Docsy Jekyll
+* [removed] unnecessary templates (such as `alerts.html`, `doc.html`)
+* [changed] default Git branch to `main`
+* [changed] tab indents to spaces
+* [added] explicit breadcrumb rewrites
+
+See the xref:{deploy_www}/docs/theme/history[AsciiDocsy Release History] for more.
 
 === Revision 1.0 Targets
 
