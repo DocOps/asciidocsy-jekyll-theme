@@ -60,13 +60,13 @@ revisions:
         tick: 4 # ID for the issue ticket
         hash: a65cfee896b66067fc4dd92ba178167085d55674
         type: bugfix
-        part: design
+        part: frontend
         summ: Fixed "`peel`" ("`print-friendly`") function/page-link
       -
         tick: 2 # ID for the issue ticket
         hash: e45db56e8a203ae215ee28152a3c60ea688003c0
         type: bugfix
-        part: design
+        part: frontend
         summ: Widened footer, removed unwanted margins
       -
         tick: 58 # ID for the issue ticket
@@ -74,6 +74,10 @@ revisions:
         type: bugfix
         part: backend
         summ: Started tracking Gemfile.lock in Git (removed from .gitignore)
+      -
+        hash: 5a21cd5d3152d2862a8299c0a6a1279096f25e39
+        type: bugfix
+        part: 
 
   - code: 0.1.0 # unique revision ID
     date: 2021-05-19 # release date
@@ -113,11 +117,11 @@ revisions:
             note: Both searches were drawing off the same index, so we switched them up into *site search* and *subject search*.
           - hash: 06b3b93b296b112306fcbcdc010558602617bf16
             summ: Fixed Navgoco (subject) menu highlights
-            part: design
+            part: frontend
             type: bugfix
           - hash: ec35702c953efc0c9d12c2fede52d17905f65207
             summ: Fixed semantic term icon spin feature
-            part: design
+            part: frontend
             type: bugfix
           - hash: a1a61769086268bd38dd8a377b1a6b999e401b2b
             summ: Improved the install instructions with basic Netlify deployment option

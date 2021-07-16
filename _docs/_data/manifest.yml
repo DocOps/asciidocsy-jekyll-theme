@@ -42,6 +42,8 @@ menu:
       href: /docs/theme/extend
     - text: Advanced Applications
       href: /docs/theme/advanced
+    - text: Release History
+      href: /docs/theme/history
 - text: Docs-as-Code Style Guides
   type: domain
   href: /docs/style
