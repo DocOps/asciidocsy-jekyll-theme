@@ -36,7 +36,7 @@ cl:
   empty-group: hide
 parts:
   - name: Layout/Styles
-    slug: design
+    slug: frontend
     icon: paint-brush
   - name: Content Management
     slug: content
