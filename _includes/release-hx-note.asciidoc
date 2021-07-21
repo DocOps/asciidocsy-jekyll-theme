@@ -12,7 +12,7 @@
 {%- endcapture -%}
 [#release-note-{{ note_hash_mini }},role="card release-note {{ note_type }}{{ note_classes | join:' ' }}"]
 --
-[discrete.note-summary.card-title]
+[discrete.note-summary.card-title,id={{ note_hash_mini }}]
 ===== {{ summary }}
 
 {{ item.note }}
@@ -39,6 +39,6 @@ categories:: {{ item.cats | array_to_sentence_string }}
 ticket:: link:{{ config.patterns.item.ticket-link.href | liquify }}[{{ config.patterns.item.ticket-link.text | liquify }}]
 {%- endif %}
 {%- if item.hash %}
-commit:: link:{{ site.source_www }}/commit/{{ item.hash }}[{{ item.hash }}]
+commit:: link:{{ site.source_www }}/commit/{{ item.hash }}[{{ note_hash_mini }}]
 {%- endif %}
 --
