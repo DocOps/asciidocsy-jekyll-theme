@@ -3,7 +3,7 @@
 revisions:
 
   - code: 0.2.0
-    date: 2021-07-15
+    date: 2021-07-21
     memo: |
       This release introduces a <<#62bf5dd,suite of version-handling features>> as well as a new <<#cced5cd,theme configuration system>> and experimental <<#428a4eb,ReleaseHx>> templates.
       Several bugfixes are also included.
