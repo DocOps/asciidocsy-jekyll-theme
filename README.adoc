@@ -1,7 +1,7 @@
 = AsciiDocsy
 // tag::globals[]
 :prod_vrsn_this: 0.2.0
-:prod_date_this: 2021-07-15
+:prod_date_this: 2021-07-21
 :prod_vrsn_next: 0.3.0
 :experimental:
 :imagesdir: images
