@@ -7,7 +7,7 @@
 [cols="1a,15a,12a",frame=none,grid=none,stripes=odd]
 |===
 {%     for item in entries %}
-{%       include release-hx-change.asciidoc %}
+{%       include release-hx-change.asciidoc item=item %}
 {%     endfor %}
 |===
 {%-  endif %}

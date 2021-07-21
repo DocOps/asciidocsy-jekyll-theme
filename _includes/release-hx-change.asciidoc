@@ -1,6 +1,7 @@
-{%- assign item_hash_mini = item.hash | truncate: 7, "" %}
-| {% if cl_groupby == "type" %}icon:{{ parts | where:"slug",item.part | map:"icon" }}[title='{{ item.part | capitalize}}']{% else %}{{ types | where:"slug",item.type | first | map:"icon" }}[]{% endif %}
+{%- assign i = include.item %}
+{%- assign i_hash_mini = i.hash | truncate: 7, "" %}
+| {% if cl_groupby == "type" %}icon:{{ parts | where:"slug",i.part | map:"icon" }}[title='{{ i.part | capitalize}}']{% else %}{{ types | where:"slug",i.type | first | map:"icon" }}[]{% endif %}
 
-| {{ item.summ }}
+| {{ i.summ }}
 
-| {% for tag in item.tags -%}{%- assign t = tags | where:"slug",tag | first %} [.cl-tag.text-{{ t.tone | default: 'primary' }}]#icon:{{ t.icon }}[title='{{ t.name }}']# {% endfor %}{% if item.note %}xref:release-note-{{ item_hash_mini }}[icon:sticky-note[] Note,role='cl-tag']{% endif %} {% if item.tick %}link:{{ site.subject_tickets_www }}/{{ item.tick }}[icon:tag[] {{ item.tick }},role='cl-tag']{% endif %} {% if item.hash %}link:{{ site.source_www }}/commit/{{ item.hash }}[icon:github[] {{ item_hash_mini }},role='cl-tag']{% endif %}{% if item.docs %}{% if item.docs.size > 1 -%}xref:release-note-{{ item_hash_mini }}{% else -%}link:{{ docs[0]['href'] | default: docs[0]['xref'] }}{% endif -%}[icon:book[] Docs,role='cl-tag']{% endif -%}
+| {sp}{% for tag in i.tags -%}{%- assign t = tags | where:"slug",tag | first %} [.cl-tag.text-{{ t.tone | default: 'primary' }}]#icon:{{ t.icon }}[title='{{ t.name }}']# {% endfor %}{% if i.note %}xref:release-note-{{ i_hash_mini }}[icon:sticky-note[] Note,role='cl-tag']{% endif %} {% if i.tick %}link:{{ site.subject_tickets_www }}/{{ i.tick }}[icon:tag[] {{ i.tick }},role='cl-tag']{% endif %} {% if i.hash %}link:{{ site.source_www }}/commit/{{ i.hash }}[icon:github[] {{ i_hash_mini }},role='cl-tag']{% endif %}{% if i.docs %}{% if i.docs.size > 1 -%}xref:release-note-{{ i_hash_mini }}{% else -%}link:{{ docs[0]['href'] | default: docs[0]['xref'] }}{% endif -%}[icon:book[] Docs,role='cl-tag']{% endif -%}
