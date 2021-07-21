@@ -26,7 +26,7 @@ revisions:
       -
         tick: 41 # ID for the issue ticket
         hash: cced5cd9f995daf4f0013121f689872c35e5bef9 # Commit hash (7+ chars)
-        type: new-feature
+        type: improvement
         part: content
         summ: Refactored the theme config system, moving from `site` scope to `site.data` scope
         tags: [breaking]
@@ -73,12 +73,12 @@ revisions:
         hash: 9337ab4c1a7a02154ce57d4a720627900e1e3141
         type: bugfix
         part: backend
-        summ: Started tracking Gemfile.lock in Git (removed from .gitignore)
+        summ: Started tracking `Gemfile.lock` in Git (removed from `.gitignore`)
       -
         hash: 5a21cd5d3152d2862a8299c0a6a1279096f25e39
         type: bugfix
         part: frontend
-        summ: Fix handling of site.baseurl in head hrefs
+        summ: Fix handling of `site.baseurl` in head hrefs
 
   - code: 0.1.0 # unique revision ID
     date: 2021-05-19 # release date
