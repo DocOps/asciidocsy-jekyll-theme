@@ -5,7 +5,7 @@ revisions:
   - code: 0.2.0
     date: 2021-07-15
     memo: |
-      This release introduces a <<suite of version-handling features>> as well as a new <<theme configuration system>> and experimental <<ReleaseHx>> templates.
+      This release introduces a <<#62bf5dd,suite of version-handling features>> as well as a new <<#cced5cd,theme configuration system>> and experimental <<#428a4eb,ReleaseHx>> templates.
       Several bugfixes are also included.
     hash: 4e39baa4 # Git hash for the release
     down: false
@@ -27,14 +27,16 @@ revisions:
         tick: 41 # ID for the issue ticket
         hash: cced5cd9f995daf4f0013121f689872c35e5bef9 # Commit hash (7+ chars)
         type: improvement
-        part: content
+        part: backend
         summ: Refactored the theme config system, moving from `site` scope to `site.data` scope
         tags: [breaking]
         note: |
           A full suite of versioning options now enables amending the DOM, swapping tokens, toggling classes, and tabbing panes.
         docs:
-          - xref: /docs/theme/config/versioning
-            text: configuration reference
+          - xref: /docs/theme/config/
+            text: configuration overview
+          - xref: /docs/theme/config/api-reference
+            text: config API reference
       -
         hash: 428a4ebff412d7a988830105eee6a99487b869e7
         type: new-feature
@@ -53,8 +55,8 @@ revisions:
         note: |
           The flagship implementation of the ReleaseHx minimum-viable product is the AsciiDocsy Release Notes and Changelog itself.
         docs:
-          text: Release History
-          xref: /docs/theme/history#
+          - text: Release History
+            xref: /docs/theme/history#
 
       -
         tick: 4 # ID for the issue ticket
