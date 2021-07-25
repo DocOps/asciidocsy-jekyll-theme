@@ -63,7 +63,7 @@ The system is in place for this as of v0.2.0, but lots of settings and strings n
 front-end quality::
 The jQuery/JavaScript I write is fairly rudimentary.
 Fortunately, the challenges are also pretty straightforward, but it will still be best if a JS specialist goes over the code and maybe writes some tests.
-Other quality aspects include getting
+Another challenge is to make sure all HTML link:https://github.com/DocOps/asciidocsy-jekyll-theme/issues/69[meets accessibility standards].
 
 back-end quality::
 Dependency management for the entire LiquiDoc Ops toolchain must be sensible and seamless.
