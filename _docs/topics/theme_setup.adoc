@@ -1,6 +1,5 @@
 :page-permalink: /docs/theme/setup
 :page-togglers: user-os
-:outfilesuffix:
 = AsciiDocsy Setup
 
 These topics topic will guide you through the nitty-gritty of setting up AsciiDocsy with Jekyll -- either integrating it into your existing Jekyll site or starting from scratch.
