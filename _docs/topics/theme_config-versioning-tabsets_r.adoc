@@ -1,4 +1,5 @@
 :page-permalink: /docs/theme/config/versioning/tabsets
+:tab-table-options: frame=none,cols=1a,caption=''
 = Pane Tabs
 
 include::{path_to_snippets}/handlers-table.adoc[tags="table-head,table-row-tabsets,table-tail"]
