@@ -47,6 +47,7 @@ asciidoctor:
   safe: 0
   base_dir: .
   attributes:
+    outfilesuffix: ''
     imagesdir: /images
     icons: font
     source-highlighter: highlight.js
