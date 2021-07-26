@@ -512,6 +512,14 @@ input::-ms-input-placeholder { /* Microsoft Edge */
   padding: 2px 0 2px 2px;
 }
 
+.algolia-credit {
+  text-align: center;
+}
+
+.algolia-credit img {
+  height: 1.5em;
+}
+
 /* LANDING PAGE FEATURES */
 
 main.landing {
