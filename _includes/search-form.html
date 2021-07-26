@@ -5,6 +5,7 @@
 {% assign config = site.data.theme.search[searchname] %}
 {% assign id = config.meta.id | default: search_name %}
 {% include hook.liquid template="search-form_html" spot="head" %}
+{% capture algolia_link %}<div class="algolia-credit"><a href="https://www.algolia.com"><img src="{{ site.assets_url }}/images/search-by-algolia-light-background.svg"></div>{% endcapture %}
 <script>
 var hrefChanged = false;
 </script>
@@ -57,7 +58,7 @@ autocomplete('#aa-{{ id }}-input',
         // Add the see more results option when no suggestion is found...
         // just in case the user prefers to search in the main search page.
         var hrefValue = "/search?q=" + document.getElementById('aa-{{ id }}-input').value.replace(' ', '+');
-        return '<div class="aa-suggestion" role="option"><a id="show-more-link" class="suggestion-link" href="' + hrefValue + '">See more results...</a></div>';
+        return '<div class="aa-suggestion" role="option"><a id="show-more-link" class="suggestion-link" href="' + hrefValue + '">See more results...</a></div>{{ algolia_link }}';
       },
       footer: function(suggestion) {
         // If no result is returned, don't add the show more results option
@@ -66,7 +67,7 @@ autocomplete('#aa-{{ id }}-input',
           return;
         }
         var hrefValue = "/search?q=" + document.getElementById('aa-{{ id }}-input').value.replace(' ', '+');
-        return '<div class="aa-suggestion" role="option"><a id="show-more-link" class="suggestion-link" href="' + hrefValue + '">See more results...</a></div>';
+        return '<div class="aa-suggestion" role="option"><a id="show-more-link" class="suggestion-link" href="' + hrefValue + '">See more results...</a></div>{{ algolia_link }}';
       },
       // 'suggestion' templating function used to render a single suggestion.
       suggestion: function(suggestion) {
