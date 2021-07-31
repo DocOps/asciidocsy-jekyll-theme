@@ -63,7 +63,7 @@ The system is in place for this as of v0.2.0, but lots of settings and strings n
 front-end quality::
 The jQuery/JavaScript I write is fairly rudimentary.
 Fortunately, the challenges are also pretty straightforward, but it will still be best if a JS specialist goes over the code and maybe writes some tests.
-Other quality aspects include getting
+Another challenge is to make sure all HTML link:https://github.com/DocOps/asciidocsy-jekyll-theme/issues/69[meets accessibility standards].
 
 back-end quality::
 Dependency management for the entire LiquiDoc Ops toolchain must be sensible and seamless.
@@ -111,7 +111,7 @@ Mainly thinking of YAML and Liquid code here, lots of these source files need pr
 * [changed] tab indents to spaces
 * [added] explicit breadcrumb rewrites
 
-See the xref:{deploy_www}/docs/theme/history[AsciiDocsy Release History] for more.
+See the xref:{theme_docs_www}/theme/history[AsciiDocsy Release History] for more.
 
 === Revision 1.0 Targets
 
@@ -125,7 +125,7 @@ See the xref:{deploy_www}/docs/theme/history[AsciiDocsy Release History] for mor
 * [add] Strings management _with Liquid- and Asciidoctor-parsed strings_ sourced as YAML
 * [add] Lunr.js back in as a backup/secondary search (link:{project_issues_path}/8[#8])
 * [add] Custom admonition blocks including several AsciiDocsy templates
-* [add] DITA-like semantic handling of topic types (task, concept, reference)
+* [add] link:https://www.informit.com/articles/article.aspx?p=1745125&seqNum=3[DITA]/link:https://diataxis.fr/[Diátaxis]-like semantic handling of topic types (task, concept, reference)
 ** specialized layouts by topic type
 ** suggested pages based on sibling topics of other types
 * [add] GDPR notice
@@ -239,11 +239,11 @@ Learn more about applying AsciiDocsy to your use case in the link:{theme_docs-bo
 == Production Environment Details
 
 The demo/docs site included in this repository generates a site at {theme_demo_www}.
-This site is deployed
+This site is built and served for free by link:https://www.netlify.com/[Netlify].
 
 === Deploying
 
-The site automatically generates and deploys each time a commit is merged to the `main` branch.
+The live site at {theme_docs_www} automatically generates and deploys each time a commit is merged to the `main` branch.
 
 === Search Indexing
 
@@ -272,19 +272,23 @@ I plan for it to be a primary project with regular, ongoing maintenance, as I ex
 I will work up contributor guidelines and PR templates well before v1.0.
 Please standby.
 
-Please don't hesitate to create an issue or or pull request in the meantime!
+Please don't hesitate to create an link:project_issues_path[issue] or pull request in the meantime!
 
 === Contribution Notes
 
 Since I've received a couple of small pull requests from folks, I should probably track my conventions and process here to minimize frustration.
 
 Right now I am developing on trunk branches just so I can keep releases straight.
-I will find a better way to do this, but for now I am trunking for each upcoming minor release.
-So it's `trunk-0.2.0`, `trunk-0.3.0`, etc.
-These branch off `main`, and PRs can be merged to the `trunk-` branches, unless they are patches, which can be merged to `main` and then rebased to `trunk-`.
+I will find a better way to do this, but for now I am trunking for each upcoming release, including patches.
+So it's `trunk-0.2.0`, `trunk-0.2.1`, `trunk-0.3.0`, etc.
+These branch off `main`, and PRs can be merged to the `trunk-` branches.
 
-Since this is complicated and potentially disruptive, most patches will await a minor release.
-Therefore, they can be branched from and merged to the current `trunk-` branch.
+If you wish to contribute a *bugfix*, PR against a patch-revision trunk branch (like `0.1.*x*`).
+If you are proposing a *new or improved feature*, PR against a minor-revision trunk branch (like `0.*x*.0`).
+If no such branch exists, create one on your own or message me.
+
+*Documentation-only patches* may be merged directly to the main branch for realtime deployment.
+These changes will be brought into trunk branches through frequent rebasing.
 
 == Licensing
 
