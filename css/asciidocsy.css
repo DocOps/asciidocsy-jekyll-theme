@@ -230,6 +230,10 @@ ul.list-unstyled {
   z-index: 0;
 }
 
+#sidebar-left .sidebar-top {
+  text-align: center;
+}
+
 #sidebar-right {
   padding-top: 80px;
 }
