@@ -166,6 +166,17 @@ pre .conum, i.conum {
     }
 }
 
+@media screen and (max-width:767.98px) {
+  .td-navbar .td-navbar-nav-scroll {
+    height: unset;
+    max-width: unset;
+  }
+  .td-navbar .td-navbar-nav-scroll ul.navbar-nav {
+    overflow-x: unset;
+  }
+
+}
+
 .dlist.grid dt {
 
 }
