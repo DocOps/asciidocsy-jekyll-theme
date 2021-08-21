@@ -94,7 +94,7 @@ include::_docs/_data/theme/versioning.yml[tags="sample-swap-spoof"]
 ----
 
 The top-level `dict:` [.out]#2# object defines the default dictionary.
-Thereafter, slates (items in `opts:` [.out]#3#) can override the defaults as needed using a nested `dict:` [.out]#4# (x2) property of their own.
+Thereafter, slates (items in `opts:` [.out]#2#) can override the defaults as needed using a nested `dict:` [.out]#3# (x2) property of their own.
 
 Here we see the first slate (`foss`) simply uses the default dictionary while each of the next two define overrides.
 
