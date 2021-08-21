@@ -2,7 +2,7 @@
 === Release Notes for v{{ rvsn.code }}
 {% for grp in rn_groups %}
 {%-  assign grp_name_def = grp.slug | capitalize %}
-{%-  assign notes = rvsn_work | where: rn_groupby, grp.slug | where_exp:"i","i.note != nil" %}
+{%-  assign notes = rvsn_work | where: rn_groupby, grp.slug | where_exp:"i","i.note != nil or i.docs.size > 1" %}
 {%-  if notes.size > 0 or config.rn.empty-group == 'show' %}
 ==== {{ grp.name | default: grp_name_def | capitalize }} changes in v{{ rvsn.code }}
 {%-    if notes.size > 0 %}
