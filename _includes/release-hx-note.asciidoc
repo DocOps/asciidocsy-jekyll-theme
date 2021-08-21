@@ -36,7 +36,17 @@ tags::
 categories:: {{ item.cats | array_to_sentence_string }}
 {%- endif %}
 {%- if item.tick %}
-ticket:: link:{{ config.patterns.item.ticket-link.href | liquify }}[{{ config.patterns.item.ticket-link.text | liquify }}]
+{%-   if config.patterns.item.ticket-link.href %}
+{%-     assign ticket_href = config.patterns.item.ticket-link.href | liquify %}
+{%-   elsif config.patterns.both.ticket-link.href %}
+{%-     assign ticket_href = config.patterns.both.ticket-link.href | liquify %}
+{%-   endif %}
+{%-   if config.patterns.item.ticket-link.text %}
+{%-     assign ticket_text = config.patterns.item.ticket-link.text | liquify %}
+{%-   elsif config.patterns.both.ticket-link.text %}
+{%-     assign ticket_text = config.patterns.both.ticket-link.text | liquify %}
+{%-   endif %}
+ticket:: link:{{ ticket_href }}[{{ ticket_text }}]
 {%- endif %}
 {%- if item.hash %}
 commit:: link:{{ site.source_www }}/commit/{{ item.hash }}[{{ note_hash_mini }}]
