@@ -16,6 +16,7 @@ Optional:
   include.href: Liquid; For URL-based changers, non-variable portion of URL
   include.args: Object; a way to pass an object to your function template
   include.icon: String; FontAwesome reference
+  include.text: String; label for form field
 {% endcomment %}
 {% assign handler = handler | default: 0 | plus: 1 %}
 {% assign verb = include.verb %}
@@ -59,7 +60,17 @@ Optional:
 </div>
 
   {% when "buttons" %}
-<div class="btn-group btn-group-toggle {{verb}}-handler" id="{{form_id}}" name="{{form_id}}" data-toggle="buttons">
+  {% if include.text or include.icon %}
+  <label for="{{ form_id }}">
+    {% if include.icon %}
+      <i class="{{ include.icon }}"></i>
+    {% endif %}
+    {% if include.text %}
+      {{ include.text | asciidocify:'inline' }}
+    {% endif %}
+  </label>
+  {% endif %}
+<div class="btn-group btn-group-toggle {{verb}}-handler" id="{{form_id}}" data-toggle="buttons">
   {% for item in include.opts %}
     {% if item['text'] %}
       {% assign text = item['text'] %}

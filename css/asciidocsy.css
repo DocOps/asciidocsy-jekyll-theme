@@ -223,6 +223,10 @@ ul.list-unstyled {
   padding-top: 80px;
 }
 
+#sidebar-right label {
+  margin-top: .5em;
+}
+
 #subject-menu {
   margin-top: 70px;
 }
