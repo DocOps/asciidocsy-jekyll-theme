@@ -34,15 +34,14 @@
 // IF THERE ARE PATCHES AT THE TOP OF THE LISTING...
 {%-  if patch_pol == "flatten" or loose_patches %}
 {%-    assign parent_idx = forloop.index %}
+{%-    assign latest_patch = nil %}
 {%     for patch_rvsn in patches %}
 {%-      if forloop.index == 1 and parent_idx == 1 %}
 {%-        assign latest_patch = patch_rvsn %}
+{%-        assign latest_release = latest_patch %}
 {%-      endif %}
 {%       include release-hx-revision.asciidoc revision=patch_rvsn %}
 {%     endfor %}
-{%-    if forloop.index == 1 %}
-{%-      assign latest_release = latest_patch | default: revision %}
-{%-    endif %}
 {%     include release-hx-revision.asciidoc revision=revision %}
 {%-  else %}
 {%-    if forloop.index == 1 %}

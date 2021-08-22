@@ -9,7 +9,7 @@
 {%- assign download_btn_go-to-latest = config.patterns.revision.download-label.go-to-latest %}
 {%- if rvsn.code == latest_release.code %}
 {%-   assign is_latest = true %}
-{%-   assign download_btn_label = hx.patterns.revision.download-label.latest | default: "Latest version! v{{rvsn.code}} icon:flag-checkered[]" %}
+{%-   assign download_btn_label = config.patterns.revision.download-label.latest | default: "Get v{{rvsn.code}} -- Latest! icon:flag-checkered[]" %}
 {%-   assign download_btn_tone  = "success" %}
 {%- endif %}
 {%- for tags_array in tags_map %}
@@ -57,7 +57,7 @@ Changes made in patch revisions to previous minor/major release{% if patch_vrsns
 {% if flags[0] %}
 [WARNING]
 ====
-The following flags appear in changes made in this release.
+{{ config.patterns.revision.admonition | liquify }}
 {% for flag in flags %}
 {%-   assign t = tags | where:"slug",flag | first %}
 [.rn-tag.btn.btn-sm.btn-{{ t.tone | default: 'primary' }}]#icon:{{ t.icon }}[{{ t.name | default: tag | capitalize }}] {{ t.name | default: tag | capitalize }}#
