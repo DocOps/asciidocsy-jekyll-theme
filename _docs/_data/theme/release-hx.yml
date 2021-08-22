@@ -108,6 +108,12 @@ tags:
     text: for changes that violate backward compatibility
     icon: unlink
     tone: warning
+  -
+    name: Deprication
+    slug: deprecation
+    text: announces future cancelation/removal of feature/capability
+    icon: warning
+    tone: warning
 roles:
   - name: Admin
     slug: admin
@@ -144,9 +150,10 @@ patterns: # value patterns for properties, organized by block
     download-url: "{{ site.source_www }}/releases/tag/v{{ rvsn.code }}"
     download-label:
       standard:   "Get {{ rvsn.code }}"
-      latest:     "Get {{ rvsn.code }} icon:flag-checkered[] Latest!"
+      latest:     "Get v{{rvsn.code}} -- Latest release! icon:flag-checkered[]"
       go-to-latest: "Get {{ latest_release.code }} icon:flag-checkered[]"
-    admonition:
+    admonition: |-
+      The following flag{% if flags.size > 1 %}s{% endif %} appear{% unless flags.size > 1 %}s{% endunless %} in this release.
   item: # changelog-item-specific settings
   note: # release-note-specific settings
   both: # release-note- and changelog-specific settings
