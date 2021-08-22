@@ -81,6 +81,68 @@ revisions:
         type: bugfix
         part: frontend
         summ: Fix handling of `site.baseurl` in head hrefs
+    patches:
+      - code: 0.2.1
+        date: 2021-08-22
+        hash: nohashyetgetahash
+        memo: |
+          Front-end cleanup and dropping the `.html`.
+        work:
+          -
+            hash: e841ea3e561905f9baddffe1d429a78009d6498b
+            tick: 64
+            type: improvement
+            part: backend
+            summ: Stopped Asciidoctor from appending `.html` to xrefs
+          -
+            hash: ff96b2f065070f401b367e180f4eecc3d4a842d6
+            tick: 62
+            type: bugfix
+            part: frontend
+            summ: Added the obligitory Algolia logo to search forms
+          -
+            hash: 750d7875650229e96646532fc922a1a3a28e7269
+            tick: 15
+            type: bugfix
+            part: frontend
+            summ: Stopped the top navbar from scrolling at mobile widths
+          -
+            hash: 3b7510c0f896259f2e3f316d2ed589094a6fb31f
+            tick: 13
+            type: bugfix
+            tags: [deprecation]
+            part: frontend
+            summ: Removed Iconic from skins selection list
+            note: |
+              Because the Iconic skin imposed an ugly box under the page header that was not obviously fixable, Iconic will no longer be an option for users to select in the AsciiDocsy demo site skin changer.
+              The Iconic skin source itself may be removed as early as v0.3.0.
+              Mostly this note was just an excuse to use the `deprecation` tag, also added in this release.
+
+          -
+            hash: d7e9eddc3fee360489df40b70c10764fa5095487
+            tick: 14
+            type: bugfix
+            part: frontend
+            summ: Eliminated scrolling of right sidebar in shorter browsers
+          -
+            hash: 1e3886d223849f6e7ecc978adda210498976fc18
+            tick: 50
+            type: bugfix
+            part: frontend
+            summ: Added optional labels, icons to button-based handlers
+          -
+            hash: a28686e
+            type: bugfix
+            part: frontend
+            summ: Fixed ticket-link template rendering in ReleaseHx
+          -
+            hash: f4346d5
+            type: bugfix
+            part: frontend
+            summ: Fixed Docs link feature in Changelog entries
+            note: |
+              Changelog entries with one and only one doc link will now hyperlink directly to that doc URL.
+              Those with 2 or more doc entries still link to the Release Note entry for the same change, but now all changes with 2+ doc entries will always appear under Release Notes, even if they have no `note` property, so their multiple docs links can appear.
 
   - code: 0.1.0 # unique revision ID
     date: 2021-05-19 # release date
