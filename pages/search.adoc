@@ -1,3 +1,0 @@
-= Search
-:page-layout: search
-:page-permalink: /docs/search
