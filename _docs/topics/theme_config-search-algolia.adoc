@@ -29,7 +29,7 @@ These objects need properties for `show.spot` and `meta.index`.
 .Object: `site.data.theme.search.site`
 [source,yaml]
 ----
-include::_docs/_data/theme/search.yml[tags=search-site-core]
+include::_data/theme/search.yml[tags=search-site-core]
 ----
 
 [WARNING]
@@ -44,7 +44,7 @@ This configuration file can be called instead of or in addition to the main Jeky
 ._docs/_data/configs/search-index-pages.yml
 [source,yaml]
 ----
-include::_docs/_data/configs/search-index-pages.yml[]
+include::_data/configs/search-index-pages.yml[]
 ----
 
 The search is performed by running a `jekyll algolia` operation with your private API key added.
