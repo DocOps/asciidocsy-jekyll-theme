@@ -1,8 +1,0 @@
-= AsciiDocsy Product Data
-
-The `.data/` path is for _product data about the AsciiDocsy theme itself_.
-To avoid confusion, files in this directory can be incorporated into your application if you wish -- just please be sure to reorient them to your own product.
-
-This is data that is generally part of a product source repository.
-And in this case, AsciiDocsy is the product.
-The AsciiDocsy site itself is configured to incorporate some of this data, such as the Release History, based on the `.data/revisions.yml` file.
