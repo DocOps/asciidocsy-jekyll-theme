@@ -1,0 +1,16 @@
+NOTICE / BILL OF MATERIALS
+====== DO NOT EDIT =======
+This file was automatically generated before release
+from:    lib/data/dependencies.yml
+command: rake build_notice
+
+The AsciiDocsy Jekyll theme acknowledges the following upstream contributions
+packaged in the AsciiDocsy gem:
+{% for dep in data %}
+Project:    {{ dep.name }}
+Author:     {{ dep.original.author }}
+License:    {{ dep.original.license }}
+Source:     {{ dep.original.uris.repo-www }}
+{% endfor %}
+For dependencies not included in the AsciiDocsy gem package,
+ see ./Gemfile.lock in this repository.
