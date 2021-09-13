@@ -1,6 +1,0 @@
-algolia:
-  application_id: 'SELDDHION6'
-  index_name: asciidocsy-topics
-  extensions_to_index: [adoc]
-  files_to_exclude:
-    - pages/**

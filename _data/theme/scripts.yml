@@ -5,7 +5,7 @@ $doc:
     tail: {type: Array,desc: "JavaScript files to include in the `tail` div."}
 head:
   - slug: jquery
-    href: /js/jquery-3.3.1.min.js
+    href: /assets/js/jquery-3.3.1.min.js
   - slug: popper
     href: https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js
     meta:
@@ -13,7 +13,7 @@ head:
   - slug: bootstrap
     href: https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js
   - slug: jquery-cookie
-    href: /js/jquery.cookie.js
+    href: /assets/js/jquery.cookie.js
   - slug: algolia-instantsearch
     href: https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js
     meta:
@@ -23,21 +23,21 @@ head:
   - slug: algoliasearch-3
     href: https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js
   - slug: anchors
-    href: /js/anchor.min.js
+    href: /assets/js/anchor.min.js
   - slug: navgoco
-    href: /js/jquery.navgoco.js
+    href: /assets/js/jquery.navgoco.js
   - slug: bootstrap-toc
-    href: /js/bootstrap-toc.js
+    href: /assets/js/bootstrap-toc.js
   - slug: highlight-js
-    href: /js/highlight.pack.js
+    href: /assets/js/highlight.pack.js
   - slug: asciidoctor
-    href: /js/asciidoctor.min.js
+    href: /assets/js/asciidoctor.min.js
   - slug: asciidocsy-tabber
-    href: /js/tabber.js
+    href: /assets/js/tabber.js
   - slug: asciidocsy-toggler
-    href: /js/toggler.js
+    href: /assets/js/toggler.js
   - slug: asciidocsy-semantics
-    href: /js/semantics.js
+    href: /assets/js/semantics.js
 tail:
   - slug: asciidocsy-tail
-    href: /js/tail.js
+    href: /assets/js/tail.js

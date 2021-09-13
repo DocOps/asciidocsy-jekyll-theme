@@ -2,6 +2,9 @@
 # LATEST TO OLDEST
 revisions:
 
+  - code: 0.3.0-dev
+    date: 2021-09-12
+
   - code: 0.2.0
     date: 2021-07-21
     memo: |
@@ -80,7 +83,7 @@ revisions:
         hash: 5a21cd5d3152d2862a8299c0a6a1279096f25e39
         type: bugfix
         part: frontend
-        summ: Fix handling of `site.baseurl` in head hrefs
+        summ: Fix handling of `site.base_url` in head hrefs
     patches:
       - code: 0.2.1
         date: 2021-08-22

@@ -1,5 +1,7 @@
 $doc:
   desc: Custom styles for elements of the theme
+nav-site:
+  position: fixed
 logo:
   width: 50px
 color:
