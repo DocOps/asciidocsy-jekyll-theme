@@ -11,7 +11,7 @@
       <div class="col-md-4">
   {% if footer_config.show.logo %}
         <span class="company-logo">
-          <img src="{{ footer_config.show.logo.source }}" class="logo" width="{{ footer_config.show.logo.width | default: '100px' }}">
+          <img src="{{ footer_config.show.logo.source | liquify }}" class="logo" width="{{ footer_config.show.logo.width | default: '100px' }}">
         </span>
   {% endif %}
   {% if footer_str.title %}

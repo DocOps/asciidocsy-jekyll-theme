@@ -2,7 +2,7 @@
 {% for script in spot_scripts %}
 {%   assign script_href = script.href %}
 {%   unless script_href contains "http" %}
-{%     assign script_href = script_href | prepend: site.theme_url | prepend: site.basurl %}
+{%     assign script_href = script_href | prepend: scripts_url %}
 {%   endunless %}
 <script src="{{ script_href }}" integrity="{{ script.meta.integrity }}" crossorigin="anonymous"></script>
 {% endfor %}

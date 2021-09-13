@@ -1,5 +1,5 @@
 {% include hook.liquid template="head_html" spot="file" %}
-{% unless hook_replace_tpl %}
+{% include _settings.liquid %}
 <head>
 <meta charset="utf-8">
 <!-- Some HTML templates copyright 2019-2021 Vanessa Sochat | Apache 2.0 License -->
@@ -16,17 +16,17 @@
 <meta name="robots" content="{{ search_index }}, follow">
 {% assign canonical_def = site.canonical_url | append: page.url %}
 <link rel="canonical" href="{{ page.canonical | default: canonical_def }}" />
-<link rel="shortcut icon" href="{{ site.theme_dir }}/images/favicons/favicon.ico" >
-<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/favicon-16x16.png" sizes="16x16">
-<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="shortcut icon" href="{{ images_url }}/favicons/favicon.ico" >
+<link rel="icon" type="image/png" href="{{ images_url }}/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="{{ images_url }}/favicons/favicon-32x32.png" sizes="32x32">
 <!--
-<link rel="apple-touch-icon" href="{{ site.theme_dir }}/images/favicons/apple-touch-icon-180x180.png" sizes="180x180">
-<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/android-36x36.png" sizes="36x36">
-<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/android-48x48.png" sizes="48x48">
-<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/android-72x72.png" sizes="72x72">
-<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/android-96x196.png" sizes="96x196">
-<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/android-144x144.png" sizes="144x144">
-<link rel="icon" type="image/png" href="{{ site.theme_dir }}/images/favicons/android-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="{{ images_url }}/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="{{ images_url }}/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="{{ images_url }}/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="{{ images_url }}/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="{{ images_url }}/favicons/android-96x196.png" sizes="96x196">
+<link rel="icon" type="image/png" href="{{ images_url }}/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="{{ images_url }}/favicons/android-192x192.png" sizes="192x192">
 -->
 
 <title>
@@ -46,21 +46,21 @@
 <meta itemprop="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
 {% include hook.liquid template="head_html" spot="css_head" %}
-<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/bootstrap-4.3.css"/>
-<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/bootstrap-toc.css"/>
-<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/jquery.navgoco.css"/>
-<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/palette.css"/>
-<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/asciidoctor.css"/>
-<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/font-awesome.css"/>
-<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/skins/foundation.css" id="theme-skin"/>
-<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/syntax/hljs/a11y-light.css" id="syntax-skin"/>
+<link rel="stylesheet" href="{{ styles_url }}/bootstrap.css"/>
+<link rel="stylesheet" href="{{ styles_url }}/bootstrap-toc.css"/>
+<link rel="stylesheet" href="{{ styles_url }}/jquery.navgoco.css"/>
+<link rel="stylesheet" href="{{ styles_url }}/palette.css"/>
+<link rel="stylesheet" href="{{ styles_url }}/asciidoctor.css"/>
+<link rel="stylesheet" href="{{ styles_url }}/font-awesome.css"/>
+<link rel="stylesheet" href="{{ styles_url }}/skins/foundation.css" id="theme-skin"/>
+<link rel="stylesheet" href="{{ styles_url }}/syntax/hljs/a11y-light.css" id="syntax-skin"/>
 {% if site.source-highlighter == "highlight.js" %}
-<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/highlight.pack.css"/>
+<link rel="stylesheet" href="{{ styles_url }}/highlight.pack.css"/>
 {% endif %}
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch-theme-algolia.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css" integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8=" crossorigin="anonymous"/>
-<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/asciidocsy.css"/>
-<link rel="stylesheet" href="{{ site.baseurl }}{{ site.theme_dir }}/css/custom.css"/>
+<link rel="stylesheet" href="{{ styles_url }}/asciidocsy.css"/>
+<link rel="stylesheet" href="{{ styles_url }}/custom.css"/>
 {% include hook.liquid template="head_html" spot="css_tail" %}
 
 {% assign empty_array = "" | split: "," %}
@@ -73,4 +73,3 @@ hljs.highlightAll();
 </script>
 {% include hook.liquid template="head_html" spot="tail" %}
 </head>
-{% endunless %}
