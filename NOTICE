@@ -1,0 +1,61 @@
+NOTICE / BILL OF MATERIALS
+====== DO NOT EDIT =======
+This file was automatically generated before release
+from:    lib/data/dependencies.yml
+command: rake build_notice
+
+The AsciiDocsy Jekyll theme acknowledges the following upstream contributions
+packaged in the AsciiDocsy gem:
+
+Project:    FontAwesome
+Author:     Dave Gandy
+License:    Open Font License
+Source:     https://github.com/FortAwesome/Font-Awesome
+
+Project:    Bootstrap
+Author:     Twitter Inc and The Bootstrap Authors
+License:    MIT
+Source:     https://github.com/twbs/bootstrap
+
+Project:    jQuery
+Author:     OpenJS Foundation and other contributors
+License:    MIT
+Source:     https://github.com/jquery/jquery
+
+Project:    JQuery Cookie
+Author:     Klaus Hartl
+License:    MIT
+Source:     https://github.com/carhartl/jquery-cookie
+
+Project:    Navgoco
+Author:     Christodoulos Tsoulloftas
+License:    BSD-3
+Source:     https://github.com/tefra/navgoco
+
+Project:    Bootstrap TOC
+Author:     Aidan Feldman
+License:    MIT
+Source:     https://github.com/afeld/bootstrap-toc
+
+Project:    AsciidoctorJS
+Author:     Dan Allen, Guillaume Grossetie, Anthonny Quérouil and the Asciidoctor Project
+License:    MIT
+Source:     https://github.com/asciidoctor/asciidoctor.js
+
+Project:    Asciidoctor Extensions Lab
+Author:     The Asciidoctor Project
+License:    MIT
+Source:     https://github.com/asciidoctor/asciidoctor-extensions-lab
+
+Project:    Asciidoctor Stylesheet Factory
+Author:     The Asciidoctor Project
+License:    MIT
+Source:     https://github.com/asciidoctor/asciidoctor-stylesheet-factory
+
+Project:    Docsy Jekyll
+Author:     Vanessa Sochat
+License:    Apache 2.0
+Source:     https://github.com/vsoch/docsy-jekyll
+
+For dependencies not included in the AsciiDocsy gem package,
+ see ./Gemfile.lock in this repository.
