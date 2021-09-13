@@ -45,12 +45,12 @@ This article documents the specific implementation suggested by AsciiDocsy, also
 
 == Inline Semantic Roles
 
-The following roles are established for nCipher product docs, matched with their quote character (`_`, `pass:[`]`, or `*`).
+The following roles are matched with their quote character (`_`, `pass:[`]`, `*`, or `#`).
 The rendered rich-text formatting such as font face, color, and styling may vary in published editions.
 
 [NOTE]
 This is a listing of AsciiDocsy's default settings for inline semantics, including the semantics namespace itself and how to display the various types in HTML.
-To customize for your purposes, see link:/theme/config/semantics[Semantics Configuration].
+To customize for your purposes, see link:/docs/theme/config/semantics[Semantics Configuration].
 
 `.term`::
 For significant terms, usually only used for the first appearance.

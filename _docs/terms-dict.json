@@ -1,5 +1,0 @@
----
-layout: null
-permalink: /docs/data/terms-dict.json
----
-{{ site.data.terms | jsonify }}

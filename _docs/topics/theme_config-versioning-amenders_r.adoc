@@ -32,7 +32,7 @@ Here is the source of the syntax skin changer in the right-hand sidebar.
 
 [source,yaml]
 ----
-include::_docs/_data/theme/versioning.yml[tags=syntax-skin-amend]
+include::_data/theme/versioning.yml[tags=syntax-skin-amend]
 ----
 
 <1> The `targ:` property accepts a String in the form of a link:https://api.jquery.com/category/selectors/[jQuery selector] determining the element to act upon.

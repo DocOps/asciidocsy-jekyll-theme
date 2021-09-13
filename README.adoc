@@ -1,13 +1,15 @@
-= AsciiDocsy
+= AsciiDocsy Jekyll Theme (Gem)
 // tag::globals[]
-:prod_vrsn_this: 0.2.1
-:prod_date_this: 2021-08-21
+:prod_vrsn_this: 0.3.0-dev
+:prod_date_this: 2021-09-12
 :prod_vrsn_next: 0.3.0
 :experimental:
 :imagesdir: images
 :forked_source_www: https://vsoch.github.io
 :theme_demo_www: https://asciidocsy.netlify.app
 :theme_docs_www: https://asciidocsy.netlify.app/docs
+:theme_docs_repo_www: https://github.com/DocOps/asciidocsy-docs-www
+:theme_docs_repo_git: git@github.com:DocOps/asciidocsy-docs-www.git
 :theme_docs-bootstrapping_www: {theme_docs_www}/theme/setup/bootstrap
 :theme_repo_www: https://github.com/DocOps/asciidocsy-jekyll-theme
 :theme_repo_git: git@github.com:DocOps/asciidocsy-jekyll-theme.git
@@ -26,9 +28,6 @@ endif::[]
 // tag::opener[]
 AsciiDocsy is an Asciidoctor-ready *Jekyll theme for technical documentation*, adaptable to pretty much any Jekyll application.
 // end::opener[]
-
-This is a major fork of the awesome link:https://github.com/vsoch/docsy-jekyll[Docsy Jekyll port] done by link:{forked_source_www}[VanessaSaurus], itself a fork of Google's link://www.docsy.dev[Docsy theme for Hugo].
-The last commit from the Docsy Jekyll version was retained for convenient diffing and just to maintain full credit.
 
 [horizontal]
 Now serving:: `v{prod_vrsn_this}` ({prod_date_this})
@@ -156,7 +155,10 @@ See the xref:{theme_docs_www}/theme/history[AsciiDocsy Release History] for more
 
 Out of the box, this theme is ready for a somewhat plainly structured Jekyll application, with AsciiDoc support and tons of additional features.
 
-AsciiDocsy has hooks and features specifically designed to take advantage of such applications when built using the LiquiDoc Ops framework, but it should be handy for any Jekyll site, AsciiDoc-based or not.
+[NOTE]
+As of version 0.3.0, AsciiDocsy ships as a gem-formatted Jekyll plugin.
+All core AsciiDocsy files are now stored in the gem, not your application repository.
+You only need local paths and files such as `_includes/`, `_layouts/`, `assets/css/`, `_data/`, and so forth, when you wish to override a default file.
 
 [CAUTION]
 If you intend to use AsciiDocsy for *Markdown* in addition to or rather than AsciiDoc content source, at this time you will need to undo some of the configuration changes made for this demo repo.
@@ -193,48 +195,8 @@ Jekyll 4.0.0 and the jekyll-asciidoc plugin both require Ruby 2.4.0 or later.
 
 // end::requirements-ruby[]
 
-[[build-the-docs]]
-=== Build the Docs
-// tag::quickstart-build[]
-With a Ruby environment in place, these steps should generate the website sourced in the AsciiDocsy theme repository.
 
-. Clone (or download and inflate) this repo.
-+
-.Clone
-[subs=+attributes]
- git clone {theme_repo_git}
-+
-.Download & inflate
---
-image::github-repo-download_screenshot.png[GitHub repository download button]
---
-+
-[TIP]
-Use [.cmd]`git clone {theme_repo_git} my-asciidocsy-project` to name the containing directory something other than `asciidocsy`.
-Or clone normally and freely rename the directory at any time.
 
-. Install Ruby dependencies.
-+
- bundle install
-+
-If Bundler is not installed, [.cmd]`gem install bundler`, then repeat [.cmd]`bundle install`.
-
-. Change to the new directory.
-+
-.Example
- cd my-asciidocsy-project
-
-. Generate and serve the demo site.
-+
- bundle exec jekyll serve
-
-You should now be able to view the site at `http://localhost:4000` in any local browser.
-
-You will find the generated files at `_site/`.
-// end::quickstart-build[]
-
-[TIP]
-Learn more about applying AsciiDocsy to your use case in the link:{theme_docs-bootstrapping_www}[Bootstrapping guide].
 
 == Production Environment Details
 
@@ -293,22 +255,16 @@ These changes will be brought into trunk branches through frequent rebasing.
 == Licensing
 
 All sources of copyrighted material incorporated into this theme are duly licensed and attributed, falling under MIT or Apache 2.0 permissive licenses.
+See the `NOTICE` file in this repo for a complete listing.
 Most cases of third-party source code showing up in this codebase will be transitioned by release 1.0 vendor code as dependencies to be hosted elsewhere.
 
 An *exception* to individually attributed code snippets is the *Docsy Jekyll* theme by link:https://vsoch.github.io[*VanessaSaurus*].
-I left a copyright notice in the templates for now, but will happily negotiate attribution while this project is in pre-release status.
-Much of the code in the `_includes/` and `_layouts/` directories remains from the original.
+Some of the code in the `_includes/` and `_layouts/` directories remains from the original.
 
-[NOTE]
-While this project is not an active fork of Docsy Jekyll, it was forked at commit # link:{theme_repo_www}/tree/b5f32a12c6358b18d716755b6605ef9ed0bb2526[b5f32a1], if you want to run a diff.
-
-The remainder of the code is released under *both MIT and Apache 2.0 licenses*.
 Basically, if you fork this codebase, know that it comes without warranty, and please leave a trail back to those whose work you're building on if you release something that contains our code.
 
 The other *exception* is Navgoco, the jQuery menu generator, which is licensed under the BSD-3-clause license.
 The Navgoco project has been dormant for years, so we will swap this navigation out for something equivalent.
-
-See the `.data/dependencies.yml` file in this repository for a listing of third-party code.
 
 All other dependencies are Ruby gems.
 See `Gemfile.lock` for all versions of all Bundler-managed dependencies.

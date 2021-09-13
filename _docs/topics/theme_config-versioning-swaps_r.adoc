@@ -64,7 +64,7 @@ features:
     versioning:
       ...
       patch-swap-0_2:
-include::_docs/_data/theme/versioning.yml[tags="sample-swap-patch"]
+include::_data/theme/versioning.yml[tags="sample-swap-patch"]
 ----
 
 In this example, the swap pivots on a single token and a single set of values.
@@ -90,7 +90,7 @@ features:
     versioning:
       ...
       theme-name-tokens:
-include::_docs/_data/theme/versioning.yml[tags="sample-swap-spoof"]
+include::_data/theme/versioning.yml[tags="sample-swap-spoof"]
 ----
 
 The top-level `dict:` [.out]#2# object defines the default dictionary.
@@ -161,7 +161,7 @@ features:
   actions:
     versioning:
       ...
-include::_docs/_data/theme/versioning.yml[tags="sample-swap-piggyback"]
+include::_data/theme/versioning.yml[tags="sample-swap-piggyback"]
 ----
 
 .See the swap in action
