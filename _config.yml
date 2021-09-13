@@ -2,24 +2,24 @@
 #
 # This is a "default" Jekyll config file for this theme, but it is probably
 # not what you want to use in production.
-# Be sure to check out the README, which contextualizes this project.
+# Be sure to check out the README, which contextualizes this project and
+#  points to the official theme documentation.
+#
 # See also https://jekyllrb.com/docs/configuration/default/ for more
 #  configuration options.
-# NOTE: AsciiDocsy makes much heavier than typical use of the `site.` and
-#  `data.` scopes in order to minimize the need to modify templates.
-# NOTE: Where you see the likes of `tag::some-text[]` and `end::some-text[]`
-#  in this file, these are AsciiDoc flags marking places to extract for
-#  sourcing the docs for this theme itself.
-
-title: AsciiDocsy
-tagline: An AsciiDoc-ready Jekyll theme for technical documentation
-deploy_url: https://asciidocsy.netlify.app # your site's URL
-canonical_url: https://asciidocsy.netlify.app # URL of original content
+#
+# Global custom properties
+title: My AsciiDocsy-based Site
+tagline: A site built with the AsciiDoc-ready Jekyll theme for technical documentation
+deploy_url: https://docs.example.com # your site's URL
+canonical_url: https://docs.example.com # URL of original content
 # DO NOT CHANGE the canonical URL if you deploy a copy the AsciiDocsy site
 # DO change it if you replace all the content or start from scratch
-company_name: DocOps Lab
+company_name: ACME Everything
+source_git: git@github.com:DocOps/MY-PROJECT.git # git@-formatted address
+source_www: https://github.com/example-account/MY-PROJECT
 
-# SITEWIDE JEKYLL SETTINGS
+# Sitewide Jekyll settings
 baseurl: "" # Leave blank if your site will deploy at the root of a domain
             #  such as http://docs.yourcompany.com/
 # The following paths are all relative to the project base
@@ -29,16 +29,11 @@ layouts_dir: _layouts
 includes_dir: _includes
 
 # Global AsciiDocsy settings
-theme_dir: "" # <1> path to asset directories (css/ images/ js/ etc)
-assets_url: ""
-data_dir: _docs/_data
-source_git: git@github.com:DocOps/asciidocsy-jekyll-theme.git # git@-formatted address
-source_www: https://github.com/DocOps/asciidocsy-jekyll-theme
+theme_dir: assets # path to asset SOURCE directories (css/ images/ js/ etc)
+assets_url: assets # baseurl to assets (default: assets)
+data_dir: _data
 source_icon: fa fa-github
 source_trunk_branch: main # path from repo home url to projet root
-images_path: /images
-subject_tickets_www: https://github.com/DocOps/asciidocsy-jekyll-theme/issues
-docs_tickets_www: https://github.com/DocOps/asciidocsy-jekyll-theme/issues
 
 # tag::asciidoctor[]
 asciidoc: {}
@@ -52,11 +47,11 @@ asciidoctor:
     icons: font
     source-highlighter: highlight.js
     ### paths from topic/ to root files
-    topics_path: _docs/topics
+    topics_path: content/topics
     path_to_jekyll_config: _config.yml
     path_to_readme: README.adoc
-    path_to_data_dir: _docs/_data
-    path_to_snippets: _docs/snippets
+    path_to_data_dir: _data
+    path_to_snippets: content/snippets
     example-capition: ''
     experimental:
 # end::asciidoctor[]
@@ -81,7 +76,7 @@ defaults:
       sidebar-left: true
       sidebar-right: true
   - scope:
-      path: _docs/topics/
+      path: content/topics/
     values:
       layout: topic
       kind: topic
@@ -93,17 +88,13 @@ defaults:
 
 # Paths to render with Jekyll that would not be rendered by default
 include:
-  - _docs
-  - _docs/_data/terms-dict.json
-  - _docs/theme-api.asciidoc
+  - _data/terms-dict.json
 
 # Paths to skip that would normally be rendered
 exclude:
-  - .data # the root data/ dir is for data ABOUT AsciiDocsy
   - "**/README.adoc" # if we want content from READMEs, we include:: it
   - COPYRIGHT
   - LICENSE
-  - _docs/snippets
 
 # tag::algolia[]
 algolia:
