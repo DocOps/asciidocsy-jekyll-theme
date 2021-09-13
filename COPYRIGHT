@@ -1,6 +1,7 @@
-Substantial portions of this codebase are Copyright 2019-2021 Vanessa Sochat
+Original copyright 2019-2021 Vanessa Sochat
+See https://github.com/vsoch/docsy-jekyll for Docsy Jekyll.
 
-See https://github.com/vsoch/docsy-jekyll for Docsy Jekyll proper.
+Major fork copyright 2021 Brian Dominick and DocOps Lab
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
