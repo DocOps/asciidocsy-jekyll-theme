@@ -1,8 +1,7 @@
-_site
-_scraps
+*.gem
+.bundle
 .jekyll-cache
 .sass-cache
-.jekyll-cache
-.jekyll-metadata
+_site
+Gemfile.lock
 vendor
-_algolia_api_key
