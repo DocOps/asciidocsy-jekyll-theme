@@ -5,7 +5,7 @@
 {% assign config = site.data.theme.search[searchname] %}
 {% assign id = config.meta.id | default: search_name %}
 {% include hook.liquid template="search-form_html" spot="head" %}
-{% capture algolia_link %}<div class="algolia-credit"><a href="https://www.algolia.com"><img src="{{ site.assets_url }}/images/search-by-algolia-light-background.svg"></div>{% endcapture %}
+{% capture algolia_link %}<div class="algolia-credit"><a href="https://www.algolia.com"><img src="{{ images_url }}/search-by-algolia-light-background.svg"></div>{% endcapture %}
 <script>
 var hrefChanged = false;
 </script>

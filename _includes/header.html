@@ -1,11 +1,10 @@
 {% include hook.liquid template="header_html" spot="file" %}
-{% unless hook_replace_tpl %}
 <header><!-- DOCSITE REF/NAV -->
-  <nav id="nav-site" class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
-    <a class="navbar-brand" href="{{ site.baseurl }}/">
+  <nav id="nav-site" class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar td-navbar-{{ site.data.theme.styles.nav-site.position | default: 'fixed' }}">
+    <a class="navbar-brand" href="/{{ site.baseurl }}">
       <span class="navbar-logo"></span>
       <img src="{{ site.data.theme.blocks.header.show.logo.source }}" class="logo" width="{{ site.data.theme.blocks.header.show.logo.width | default: '50px' }}">
-       <span class="site-title">{{ site.title }}</span>
+       <span class="site-title">{{ site.name }}</span>
 	  </a>
   	<div class="td-navbar-nav-scroll ml-md-auto align-content-end" id="navbarNavDropdown">
       {% include nav-site.html %}
@@ -22,4 +21,3 @@
     {% endif %}
   </nav>
 </header>
-{% endunless %}
