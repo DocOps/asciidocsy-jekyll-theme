@@ -63,13 +63,13 @@ scripts:
         </main>
 {% if layout.sidebar-right %}
         <div id="sidebar-right" class="d-none d-xl-block col-xl-2 td-toc d-print-none"><!-- TOPIC/PAGE REF/NAV -->
-          <div class=".sidebar-top">
+          <div class="sidebar-top">
             {% include versioning-controls.html spot="#sidebar-right .sidebar-top" %}
             <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
               {% include page-links.html %}
             </div>
           </div>
-          <div class=".sidebar-mid">
+          <div class="sidebar-mid">
             {% include versioning-controls.html spot="#sidebar-right .sidebar-mid" %}
   {% if layout.toc == "sidebar" and site.data.theme.navigation.toc.show.spot == "#sidebar-right" %}
             <nav id="toc-side" data-spy="affix" data-toggle="toc"></nav>
@@ -78,8 +78,9 @@ scripts:
           <div class="sidebar-end">
             {% include versioning-controls.html spot="#sidebar-right .sidebar-end" %}
     {% if site.data.theme.semantics.role.term.show.spot == "#sidebar-right" %}
-          <nav id="terms-listing"></nav>
+            <nav id="terms-listing"></nav>
     {% endif %}
+          </div>
         </div><!-- /#sidebar-right -->
 {% endif %}
       </div><!-- /.row.flex-xl-nowrap -->
