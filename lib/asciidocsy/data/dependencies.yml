@@ -1,0 +1,142 @@
+- name: FontAwesome
+  slug: fontawesome
+  desc: The iconic font and CSS toolkit.
+  version: 4.7.0
+  original:
+    author: Dave Gandy
+    license: Open Font License
+    uris:
+      site-www: http://fontawesome.io
+      repo-www: https://github.com/FortAwesome/Font-Awesome
+      # repo-uri: # infers git@:github.com:FortAwesome/Font-Awesome.git
+
+- name: Bootstrap
+  slug: bootstrap
+  desc: Twitter's killer HTML/CSS/JS framework
+  version: 4.3.1
+  original:
+    author: Twitter Inc and The Bootstrap Authors
+    license: MIT
+    uris:
+      repo-www: https://github.com/twbs/bootstrap
+      site-www: https://getbootstrap.com/docs/4.3
+  vendor:
+    repo: git@github.com:DocOps/bootstrap.git
+    ref: v4.3.1
+    builds:
+      - # Sass compile command
+    # path: vendor/bootstrap # inferred
+    cdn:
+      - css: https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css
+        integrity: sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh
+      - js: https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js
+        integrity: sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6
+
+- name: jQuery
+  slug: jquery
+  desc: Google's JavaScript framework
+  original:
+    author: OpenJS Foundation and other contributors
+    license: MIT
+    uris:
+      repo-www: https://github.com/jquery/jquery
+      site-www: https://jquery.com
+  vendor:
+    type: static
+    repo: https://github.com/DocOps/jquery
+    path: vendor/jquery
+    ref: 3.3.1
+    migrate:
+      - # jquery and jquery.min files
+
+- name: JQuery Cookie
+  desc: Component for handing cookies
+  note: Used by Navgoco and AsciiDocsy
+  original:
+    author: Klaus Hartl
+    license: MIT
+    uris:
+      repo-www: https://github.com/carhartl/jquery-cookie
+  vendor:
+    source:
+      repo-www: https://github.com/DocOps/jquery-cookie
+      ref: v1.4.1
+
+- name: Navgoco
+  slug: navgoco
+  desc: jQuery collapsible menu
+  original:
+    author: Christodoulos Tsoulloftas
+    license: BSD-3
+    uris:
+      repo-www: https://github.com/tefra/navgoco
+  vendor:
+    source:
+      repo-www: https://github.com/DocOps/navgoco
+      ref: 898fd27
+
+
+- name: Bootstrap TOC
+  slug: bootstrap-ext-toc
+  desc: Unofficial Bootstrap table-of-contents extension
+  original:
+    author: Aidan Feldman
+    license: MIT
+    uris:
+      repo-www: https://github.com/afeld/bootstrap-toc
+      site-www: https://afeld.github.io/bootstrap-toc/
+  vendor:
+    source:
+      repo: git@github.com:DocOps/bootstrap-toc.git
+      ref: v1.0.1
+      cdn:
+    migrate:
+      - # javascript file
+      - # CSS file
+
+- name: AsciidoctorJS
+  slug: asciidoctor-js
+  desc: JavaScript-based AsciiDoc converter
+  original:
+    author: Dan Allen, Guillaume Grossetie, Anthonny Quérouil and the Asciidoctor Project
+    license: MIT
+    uris:
+      repo-www: https://github.com/asciidoctor/asciidoctor.js
+
+- name: Asciidoctor Extensions Lab
+  slug: asciidoctor-extensions
+  desc: Asciidoctor extensions
+  original:
+    author: The Asciidoctor Project
+    license: MIT
+    uris:
+      repo-www: https://github.com/asciidoctor/asciidoctor-extensions-lab
+      docs-www: https://docs.asciidoctor.org/asciidoctor/latest/extensions
+  vendor:
+    source:
+      repo: git@github.com:DocOps/asciidoctor-extensions-lab.git
+      ref: "6975c66"
+
+- name: Asciidoctor Stylesheet Factory
+  slug: asciidoctor-stylesheets
+  desc: Build AsciiDoc-friendly CSS skins from Sass
+  original:
+    author: The Asciidoctor Project
+    license: MIT
+    uris:
+      repo-www: https://github.com/asciidoctor/asciidoctor-stylesheet-factory
+      docs-www: https://asciidoctor.org/docs/produce-custom-themes-using-asciidoctor-stylesheet-factory/
+  vendor:
+    source:
+      repo: git@github.com:DocOps/asciidoctor-stylesheet-factory.git
+      ref: bcb291c
+    compile: # Sass compile command
+
+- name: Docsy Jekyll
+  slug: docsy-jekyll
+  desc: Original Jekyll port of Docsy theme
+  original:
+    author: Vanessa Sochat
+    license: Apache 2.0
+    uris:
+      repo-www: https://github.com/vsoch/docsy-jekyll
