@@ -1,8 +1,0 @@
-= AsciiDocsy Theme User Guide
-:page-permalink: /docs/theme/manual
-:page-layout: page
-:page-type: manual
-:page-search-index: false
-:topics_path: topics
-
-:leveloffset: +1
