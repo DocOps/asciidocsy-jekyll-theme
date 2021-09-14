@@ -1,6 +1,0 @@
-:page-permalink: /docs/theme
-= AsciiDocsy Setup & Configuration Docs
-
-include::{path_to_readme}[tags=purpose]
-
-image::asciidocsy-screenshot.png[]

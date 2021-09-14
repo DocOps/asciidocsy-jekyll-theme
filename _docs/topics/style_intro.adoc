@@ -1,2 +1,0 @@
-:page-permalink: /docs/style
-= Docs-as-Code Style Guides
