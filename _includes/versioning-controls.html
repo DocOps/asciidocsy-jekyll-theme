@@ -1,8 +1,6 @@
 {% comment %}
 Assembles version-handler features in various spot-specific clusters
 {% endcomment %}
-{% include hook.liquid template="versioning-controls_html" spot="file" %}
-{% unless hook_replace_tpl %}
 {% assign all_handlers = site.data.theme.versioning.handlers %}
 {% unless show_handlers %}
   {% assign default_handlers = site.data.theme.versioning.defaults[layout.kind]['list'] %}
@@ -88,4 +86,3 @@ Assembles version-handler features in various spot-specific clusters
        %}
   {% endif %}
 {% endfor %}
-{% endunless %}

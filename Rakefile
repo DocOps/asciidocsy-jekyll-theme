@@ -1,13 +1,18 @@
+# frozen_string_literal: true
+
+require "bundler/gem_tasks"
+require "rspec/core/rake_task"
 require 'rake'
 require 'safe_yaml'
 require 'fileutils'
-require 'liquid'
-require 'git'
 require 'jekyll'
 require 'asciidoctor'
 
 SafeYAML::OPTIONS[:deserialize_symbols] = true
 SafeYAML::OPTIONS[:default_mode] = :safe
+RSpec::Core::RakeTask.new(:spec)
+
+task default: :spec
 
 @config       = YAML.load_file("_config.yml")
 @upstream     = YAML.load_file('lib/asciidocsy/data/dependencies.yml')

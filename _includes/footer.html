@@ -1,5 +1,3 @@
-{% include hook.liquid template="footer_html" spot="file" %}
-{% unless hook_replace_tpl %}
 {% assign footer_config = site.data.theme.blocks.page-footer %}
 {% assign footer_nav    = site.data.navs.footer %}
 {% assign footer_str    = site.data.theme.strings.footer %}
@@ -59,4 +57,3 @@
   {% endif %}
   {% include hook.liquid template="footer_html" spot="tail" %}
 </footer>
-{% endunless %}

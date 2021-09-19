@@ -6,7 +6,6 @@ require "asciidocsy/version"
 
 Gem::Specification.new do |spec|
   spec.bindir        = "bin"
-  spec.executables   = ["adxy"]
   spec.require_paths = ["lib"]
 
   spec.name          = "asciidocsy-jekyll-theme"
@@ -18,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://asciidocsy.netlify.app/docs/theme"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(lib|_docs|_data|assets|_sass|LICENSE|_config\.yml)!i) }
+  spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(lib|_docs|_data|assets|_sass|LICENSE|_config\.yml|_layouts|_includes)!i) }
 
   spec.add_runtime_dependency "jekyll", "~> 4.2"
   spec.add_development_dependency "bundler", "~> 2.2"

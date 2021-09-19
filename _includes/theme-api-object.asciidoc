@@ -1,5 +1,3 @@
-{% include hook.liquid template="theme-api-object_asciidoc" spot="file" %}
-{% unless hook_replace_tpl %}
 {%- comment -%}
 ////
 Generates a reference table for documenting an API object.
@@ -35,4 +33,3 @@ m| {{ prop[1] }}
   {% endunless %}
 {% endfor %}
 |===
-{% endunless %}
