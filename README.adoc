@@ -76,6 +76,8 @@ Mainly thinking of YAML and Liquid code here, lots of these source files need pr
 * [added] AsciiDoc integration
 ** jekyll-asciidoc plugin & configs
 ** Asciidoctor styles and skins
+* [refactored] as Ruby gem/Jekyll plugin
+* [refactored] CSS to Sass
 * [added] Algolia search integration
 ** default search results page
 ** instantsearch
@@ -115,7 +117,6 @@ See the xref:{theme_docs_www}/theme/history[AsciiDocsy Release History] for more
 === Revision 1.0 Targets
 
 * [add] full-featured, YAML-driven landing-page layout & components (link:{project_issues_path}/5[#5])
-* [refactor] CSS to Sass (link:{project_issues_path}/24[#24])
 * [improve] Vendor-code integration: (link:{project_issues_path}/32[#32])
 ** SCSS files (Asciidoctor, Bootstrap, Font-Awesome, Highlight.js, et al)
 ** JS (JQuery, Bootsrap, components)
@@ -135,7 +136,6 @@ See the xref:{theme_docs_www}/theme/history[AsciiDocsy Release History] for more
 * [add] call-to-action (c2a) modal
 * [add] search results page w/ 3rd optional instantsearch field
 * [improve] feedback form with follow-up query
-* [refactor] as Ruby gem/Jekyll plugin (link:{project_issues_path}/31[#31])
 * [add] sufficient unit and integration tests
 * [improve] and finalize dependency/upstream license handling
 
@@ -158,15 +158,9 @@ Out of the box, this theme is ready for a somewhat plainly structured Jekyll app
 [NOTE]
 As of version 0.3.0, AsciiDocsy ships as a gem-formatted Jekyll plugin.
 All core AsciiDocsy files are now stored in the gem, not your application repository.
-You only need local paths and files such as `_includes/`, `_layouts/`, `assets/css/`, `_data/`, and so forth, when you wish to override a default file.
-
-[CAUTION]
-If you intend to use AsciiDocsy for *Markdown* in addition to or rather than AsciiDoc content source, at this time you will need to undo some of the configuration changes made for this demo repo.
-Between your existing configuration file and link:{forked_source_www}[VanessaSaurus's Docsy Jekyll theme source and docs], you should be able to adapt this codebase to render `.md` files of your flavor.
+You only need local paths and files such as `_includes/`, `_layouts/`, `assets/css/`, `_data/`, and so forth, when you wish to override a default/core file.
 
 Documentation for this theme can be found at link:{theme_docs_www}[].
-
-Alternatively, <<build-the-docs,build your own locally>>.
 
 == Quickstart
 

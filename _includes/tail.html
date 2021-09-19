@@ -1,5 +1,3 @@
-{% include hook.liquid template="tail_html" spot="file" %}
-{% unless hook_replace_tpl %}
 {% include hook.liquid template="tail_html" spot="head" %}
 {% include scripts.html spot="tail" %}
 <script>
@@ -7,4 +5,3 @@
 anchors.add('{{ site.data.theme.navigation.anchors.show.list | default: "h2,h3,h4,h5" }}');
 </script>
 {% include hook.liquid template="tail_html" spot="tail" %}
-{% endunless %}

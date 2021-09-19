@@ -1,5 +1,3 @@
-{% include hook.liquid template="social-links_html" spot="file" %}
-{% unless hook_replace_tpl %}
 {% assign list-class = include.list-type | default: "list" %}
 <ul class="social-links {{ list-class }} mb-0">
   {% for link in site.data.social.apps %}
@@ -10,4 +8,3 @@
   </li>
   {% endfor %}
 </ul>
-{% endunless %}

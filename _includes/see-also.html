@@ -1,5 +1,3 @@
-{% include hook.liquid template="see-also_html" spot="file" %}
-{% unless hook_replace_tpl %}
 {% assign see-also_title = site.data.strings.see-also.title | default: "Related Topics" %}
 {% assign related = "" | split: "," %}
 {% for tag in page.tags %}
@@ -17,4 +15,3 @@
   </ul>
 </div>
 {% endif %}
-{% endunless %}

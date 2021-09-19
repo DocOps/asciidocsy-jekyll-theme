@@ -43,48 +43,17 @@ asciidoctor:
   base_dir: .
   attributes:
     outfilesuffix: ''
+    example-capition: ''
+    experimental:
     imagesdir: /images
     icons: font
     source-highlighter: highlight.js
-    ### paths from topic/ to root files
-    topics_path: content/topics
-    path_to_jekyll_config: _config.yml
-    path_to_readme: README.adoc
-    path_to_data_dir: _data
-    path_to_snippets: content/snippets
-    example-capition: ''
-    experimental:
 # end::asciidoctor[]
 
 liquid:
   error_mode: warn
   strict_filters: false
   strict_variables: false
-
-# Default PAGE scopes for content sourced in certain paths
-defaults:
-  - scope:
-      path: ""
-    values:
-      search-index: false
-      style-changers: false
-  - scope:
-      path: pages/
-    values:
-      layout: page
-      kind: page
-      sidebar-left: true
-      sidebar-right: true
-  - scope:
-      path: content/topics/
-    values:
-      layout: topic
-      kind: topic
-      sidebar-left: true
-      sidebar-right: true
-      search-index: true
-      anchors: true
-      toc: [sidebar]
 
 # Paths to render with Jekyll that would not be rendered by default
 include:
@@ -95,9 +64,3 @@ exclude:
   - "**/README.adoc" # if we want content from READMEs, we include:: it
   - COPYRIGHT
   - LICENSE
-
-# tag::algolia[]
-algolia:
-  application_id: 'SELDDHION6'
-  search_only_api_key: 'b9112b0485d58729c3e7c7b64291cbd9'
-# end::algolia[]

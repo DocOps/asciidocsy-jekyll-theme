@@ -4,8 +4,6 @@ Defined by:
   `breadcrumbs` object of `site.data.manifest.breadcrumbs`
   `breadcrumbs` object in the Jekyll configuration path
 {% endcomment %} -->
-{% include hook.liquid template="breadcrumbs_html" spot="file" %}
-{% unless hook_replace_tpl %}
 {% assign crumbs = page.url | remove:'/index.html' | split: '/' %}
 {% assign delim = site.data.navs.breadcrumbs.show.opts.delim | default: "/" %}
 <div id="breadcrumbs">
@@ -20,4 +18,3 @@ Defined by:
   {% endif %}
 {% endfor %}
 </div>
-{% endunless %}

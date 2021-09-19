@@ -6,4 +6,5 @@ include::README.adoc[tags=globals]
 
 To see AsciiDocsy and Jekyll in action, try building the demo site.
 
-include::{path_to_readme}[tags=quickstart-build]
+// includes the DOCS repo's own README file
+include::README.adoc[tags=quickstart-build]

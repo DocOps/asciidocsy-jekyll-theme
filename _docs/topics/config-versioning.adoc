@@ -131,4 +131,4 @@ By AsciiDocsy 1.0, an additional means of overriding a default option will inclu
 [[handlers-review]]
 == Version Handlers Review
 
-include::content/snippets/handlers-table.adoc[]
+include::{path_to_snippets}/handlers-table.adoc[]

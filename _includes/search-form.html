@@ -1,5 +1,3 @@
-{% include hook.liquid template="search-form_html" spot="file" %}
-{% unless hook_replace_tpl %}
 {% assign search_name = include.search %}
 {% assign searchname = include.search | replace:"-","" %}
 {% assign config = site.data.theme.search[searchname] %}
@@ -113,4 +111,3 @@ autocomplete('#aa-{{ id }}-input',
   }
 });
 </script>
-{% endunless %}
