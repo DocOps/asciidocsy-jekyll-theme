@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.bindir        = "bin"
   spec.require_paths = ["lib"]
 
-  spec.name          = "asciidocsy-jekyll-theme"
+  spec.name          = "asciidocsy"
   spec.version       = AsciiDocsy::VERSION
   spec.authors       = ["Brian Dominick"]
   spec.email         = ["badominick@gmail.com"]

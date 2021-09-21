@@ -39,7 +39,7 @@ Since AsciiDocsy (post 0.3.0) is a gem-formatted theme, the core theme files are
 Therefore, you may override any data file or template file by replacing it your local path.
 
 The typical way to replace a file is to start with its upstream source.
-Use [.cmd]`bundle info asciidocsy-jekyll-theme` to find the path to your local AsciiDocsy gem.
+Use [.cmd]`bundle info asciidocsy` to find the path to your local AsciiDocsy gem.
 Otherwise, just go to the link:{theme_repo_www}[AsciiDocsy source repo] and copy/paste the file contents into your own.
 
 [[template-hooks]]

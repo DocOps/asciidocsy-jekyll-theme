@@ -1,9 +1,8 @@
 = AsciiDocsy Jekyll Theme (Gem)
 // tag::globals[]
-:prod_vrsn_this: 0.3.0-dev
-:prod_date_this: 2021-09-12
-:prod_vrsn_next: 0.3.0
-:experimental:
+:prod_vrsn_this: 0.3.0
+:prod_date_this: 2021-09-21
+:prod_vrsn_next: 0.4.0:experimental:
 :imagesdir: images
 :forked_source_www: https://vsoch.github.io
 :theme_demo_www: https://asciidocsy.netlify.app
