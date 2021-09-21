@@ -1,0 +1,49 @@
+:page-permalink: /docs/theme/setup/upgrade-0-3-0
+include::{path_to_readme}[tags="globals"]
+= Upgrading to AsciiDocsy v0.3.0
+
+As of AsciiDocsy v0.3.0, the whole theme ships as a proper Ruby gem.
+Jekyll handles gemified themes differently than collocated themes.
+
+The latter type, as with AsciiDocsy prior to 0.3.0, means storing all core theme files locally.
+With a gemified theme, you only store alternate files locally, for overwriting core theme files.
+
+In order to release AsciiDocsy as a conventionally structured Jekyll theme plugin, I made changes that may necessitate some reorganizing if you wish to upgrade from a prior release.
+
+With a few small adjustments, you should be able to serve exactly the same site using the new gem-based theme.
+
+[NOTE]
+No significant front-end or back-end feature changes were made for the 0.3.0 release, other than the major repackaging alterations.
+It should generate HTML in an identical fashion, and the newly organized styles should match up 1:1.
+
+== Alterations
+
+Here are the major changes:
+
+. Assets moved to `assets/` directory.
+* `css/`, `images/`, `js/`, and `fonts/` all moved.
+* `_includes/` and `_layouts/` stayed in root path.
+
+. Bootstrap and AsciiDocsy styles are now sourced as Sass.
+* New `_sass/` directory contains dynamic CSS source.
+* New files `assets/css/bootstrap.scss` and `assets/css/asciidocsy.scss` define compiling of Sass source.
+
+. AsciiDocsy's own docs content has moved around a bit.
+* The strings `theme_` and `style_` prepended to filenames in `_docs/topics/` have been removed.
+* Files from `_docs/topics/` that were labeled with `style_` and displayed under the Style Guides domain have been moved to the new link:{theme_docs_repo_www}[AsciiDocsy Docs repo].
+
+. Dependency definitions are included in gem specification.
++
+--
+* Theme-specific dependencies like jekyll-liquify, jekyll-asciidoc will be imported automatically.
+--
++
+[NOTE]
+We still advise including `jekyll` gem explicitly in your application's Gemfile.
+
+== Using AsciiDocsy 0.3.0
+
+It's easier than ever to add AsciiDocsy to your theme!
+Use any of the link:https://jekyllrb.com/docs/themes/#installing-a-theme[methods Jekyll provides].
+
+See the link:{theme_docs_repo_www}/blob/main/Gemfile[Gemfile in the AsciiDocsy Docs repo] for exemplary usage.

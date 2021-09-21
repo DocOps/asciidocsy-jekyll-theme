@@ -7,3 +7,25 @@ These topics topic will guide you through the nitty-gritty of setting up AsciiDo
 [.case]*_If you are already at home with Jekyll and Asciidoctor_*, try the <</docs/theme/setup/quickstart#,Quickstart guide>> or go straight to the <</docs/theme/setup/bootstrap#,Boostrapping guide>>.
 
 [.case]*_If you are new to Jekyll or Asciidoctor_*, get familiar with the <</docs/theme/setup/environment#,environment and related tools for this project>> before <</docs/theme/setup/quickstart#,installing and building>> for the first time.
+
+== Basic Installation
+
+Use either of link:https://jekyllrb.com/docs/themes/#installing-a-theme[Jekyll's supported methods] for adding a gem-based theme to a Jekyll application.
+
+We highly recommend using Bundler and a Gemfile.
+
+. Enter AsciiDocsy as a plugin to Jekyll.
++
+[source,ruby]
+.Gemfile entry
+----
+include::Gemfile[tags=jekyll-plugins]
+----
+
+. Set AsciiDocsy as your theme.
++
+[source,yaml]
+._config.yml
+----
+theme: asciidocsy-jekyll-theme
+----

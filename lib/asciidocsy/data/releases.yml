@@ -2,8 +2,56 @@
 # LATEST TO OLDEST
 revisions:
 
-  - code: 0.3.0-rc1
-    date: 2021-09-20
+  - code: 0.3.0-rc2
+    date: 2021-09-21
+    hash: 050b33f239a0756db37de2dcb7e4219684dc7a44
+    memo: |
+      The third minor release of AsciiDocsy refactors the entire theme as a proper Ruby gem!
+      Now you can modify and extend AsciiDocsy while staying in-sync with the upstream releases.
+      There is some disruption involved -- see <</docs/theme/setup/upgrade-0-3-0,Upgrading to 0.3.0>> for full details.
+    work:
+      -
+        tick: 31
+        hash: 70d37a30881a70e5afdfcce6406c85b23bafe8cf
+        type: improvement
+        part: backend
+        summ: Repackaged theme as Ruby gem
+        tags: [breaking]
+        note: |
+          AsciiDocsy can now be installed as a gem.
+          Add it to your Gemfile under `:jekyll_plugins` and indicate the theme in the `site.theme` parameter.
+          See the docs for details.
+        docs:
+          - xref: /docs/theme/setup/upgrade-0-3-0
+            text: Upgrading to AsciiDocsy 0.3.0
+      -
+        tick: 24
+        hash: 1c655634165ac34a2ce4f6fd5af653da2f4673b3
+        type: improvement
+        part: backend
+        summ: Converted styles to Sass
+        tags: [breaking]
+        note: |
+          All Bootstrap and AsciiDocsy CSS is now sourced as Sass under the `_sass/` path.
+        docs:
+          - xref: /docs/theme/extend
+            text: Extending the Theme
+      -
+        tick: 65
+        type: improvement
+        part: docs
+        summ: Moved docs-site definitions to separate repo
+        note: |
+          While the source of AsciiDocsy technical documentation remains in the AsciiDocsy theme repo under `_docs/`, and the attributes-data source has moved to `lib/asciidocsy/data/`, the files that configure the AsciiDocsy documentation deployment have moved to a distinct repo.
+
+          This move was mainly to model a proper docs-as-code deployment chain for the AsciiDocsy docs themselves.
+          The AsciiDocsy theme repository is treated as a Git submodule of that documentation repo, so the docs repo always has ready access to the documentation and data directories of the subject repo.
+
+          The new repo is at: {theme_docs_repo_www}
+        docs:
+          - xref: /docs/theme/setup/upgrade-0-3-0
+            text: Upgrading to AsciiDocsy 0.3.0
+
 
   - code: 0.2.0
     date: 2021-07-21
