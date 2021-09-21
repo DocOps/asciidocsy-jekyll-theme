@@ -27,5 +27,5 @@ include::Gemfile[tags=jekyll-plugins]
 [source,yaml]
 ._config.yml
 ----
-theme: asciidocsy-jekyll-theme
+theme: asciidocsy
 ----
