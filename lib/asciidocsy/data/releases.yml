@@ -2,7 +2,8 @@
 # LATEST TO OLDEST
 revisions:
 
-  - code: 0.3.0    date: 2021-09-21
+  - code: 0.3.0
+    date: 2021-09-21
     hash: 050b33f239a0756db37de2dcb7e4219684dc7a44
     memo: |
       The third minor release of AsciiDocsy refactors the entire theme as a proper Ruby gem!
