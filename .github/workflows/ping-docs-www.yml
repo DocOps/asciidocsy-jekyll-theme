@@ -26,7 +26,7 @@ jobs:
       - name: ping the docs repo
         env:
           GITHUB_TOKEN: ${{ secrets.DOCS_DEPLOY_TOKEN }}
-          EVENT: deploy-docs-deploy
+          EVENT: instigate-deploy
           ORG: docops
           REPO: asciidocsy-docs-www
           REF: ${{ github.ref }}
