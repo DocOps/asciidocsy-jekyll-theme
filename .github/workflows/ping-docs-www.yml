@@ -25,9 +25,10 @@ jobs:
 
       - name: ping the docs repo
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          EVENT: deploy-docs-${{ github.ref }}
+          GITHUB_TOKEN: ${{ secrets.DOCS_DEPLOY_TOKEN }}
+          EVENT: deploy-docs-deploy
           ORG: docops
           REPO: asciidocsy-docs-www
+          REF: ${{ github.ref }}
         run: |
-          curl -d "{\"event_type\": \"${EVENT}\"}" -H "Content-Type: application/json" -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.everest-preview+json" "https://api.github.com/repos/${ORG}/${REPO}/dispatches"
+          curl -d "{\"event_type\": \"${EVENT}\"}, \"client_payload\": {\"ref\": \"${REF}\"}}" -H "Content-Type: application/json" -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.everest-preview+json" "https://api.github.com/repos/${ORG}/${REPO}/dispatches"
