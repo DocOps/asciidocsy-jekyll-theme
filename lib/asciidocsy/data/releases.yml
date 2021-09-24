@@ -8,7 +8,7 @@ revisions:
     memo: |
       The third minor release of AsciiDocsy refactors the entire theme as a proper Ruby gem!
       Now you can modify and extend AsciiDocsy while staying in-sync with the upstream releases.
-      There is some disruption involved -- see <</docs/theme/setup/upgrade-0-3-0,Upgrading to 0.3.0>> for full details.
+      There is some disruption involved -- see <</docs/theme/setup/upgrade-0-3-0#,Upgrading to 0.3.0>> for full details.
     work:
       -
         tick: 31
