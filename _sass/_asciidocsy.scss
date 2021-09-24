@@ -66,13 +66,15 @@ a, a:hover {
 	white-space: nowrap;
 }
 
-.cli, code.cmd {
-	font-weight: normal;
-	color: #fff ;
-	background-color: #333 ;
-	padding: 0 6px ;
-	border-radius: 0px ;
-	white-space: nowrap;
+:not(pre):not([class^=L]) {
+  > .cli, .cmd {
+  	font-weight: normal;
+  	color: #fff ;
+  	background-color: #333 ;
+  	padding: 0 6px ;
+  	border-radius: 0px ;
+  	white-space: nowrap;
+  }
 }
 
 .code {
