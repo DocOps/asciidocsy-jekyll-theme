@@ -22,6 +22,8 @@
 {%-  assign loose_patches = false %}
 {%-  assign merge_patches = false %}
 {%-  assign next_rvsn = forloop.index %}
+// ASSIGN LATEST_RELEASE DEFAULTING TO FIRST ENTRY
+{%-  assign latest_release = hx.revisions[0] %}
 // CHECK FOR LOOSE PATCHES TO THE LATEST VERSION
 {%-  if patch_pol == "merge" and forloop.index == 1 %}
 {%-    assign patches = hx.revisions[0]['patches'] %}
@@ -44,9 +46,6 @@
 {%     endfor %}
 {%     include release-hx-revision.asciidoc revision=revision %}
 {%-  else %}
-{%-    if forloop.index == 1 %}
-{%-      assign latest_release = revision %}
-{%-    endif %}
 {%-    if patch_pol == "merge" and hx.revisions[next_rvsn]['patches'] %}
 {%-      assign patches = hx.revisions[next_rvsn]['patches'] %}
 {%       include release-hx-revision.asciidoc revision=revision merge=patches %}
