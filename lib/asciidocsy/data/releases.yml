@@ -51,6 +51,22 @@ revisions:
         docs:
           - xref: /docs/theme/setup/upgrade-0-3-0
             text: Upgrading to AsciiDocsy 0.3.0
+    patches:
+      - code: 0.3.1
+        date: 2022-01-26
+        hash: nohashyetgetahash
+        memo: |
+          Correct handling of `baseurl` variable.
+        work:
+          -
+            hash:
+            tick: 64
+            type: bugfix
+            part: backend
+            summ: Fixed handling of `site.baseurl` and corrected all references to `base_url`.
+            note: |
+              To properly handle paths between the domain root (`www.example.com`) and the permalink.
+              This should not in practice be a breaking change unless you had a `site.baseurl` set.
 
 
   - code: 0.2.0

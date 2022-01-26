@@ -1,7 +1,7 @@
 = AsciiDocsy Jekyll Theme (Gem)
 // tag::globals[]
-:prod_vrsn_this: 0.3.0
-:prod_date_this: 2021-09-21
+:prod_vrsn_this: 0.3.1
+:prod_date_this: 2022-01-26
 :prod_vrsn_next: 0.4.0
 :experimental:
 :imagesdir: assets/images
