@@ -1,2 +1,3 @@
-{% capture images_url %}{% unless site.baseurl == "" %}/{{ site.baseurl }}{% endunless %}/{{ site.assets_url }}/images{% endcapture %}
-{% capture styles_url %}{% unless site.baseurl == "" %}/{{ site.baseurl }}{% endunless %}/{{ site.assets_url }}/css{% endcapture %}
+{% capture images_url %}{{ site.assets_url | prepend: site.baseurl }}/{{ site.images_url | default: "/images" }}/{% endcapture %}
+{% capture styles_url %}{{ site.assets_url | prepend: site.baseurl }}/{{ site.styles_url | default: "/css" }}/{% endcapture %}
+{% capture scripts_url %}{{ site.assets_url | prepend: site.baseurl }}/{{ site.scripts_url | default: "/js" }}/{% endcapture %}

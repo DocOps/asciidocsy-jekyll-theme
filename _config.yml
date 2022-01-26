@@ -30,7 +30,7 @@ includes_dir: _includes
 
 # Global AsciiDocsy settings
 theme_dir: assets # path to asset SOURCE directories (css/ images/ js/ etc)
-assets_url: assets # baseurl to assets (default: assets)
+assets_url: /assets # baseurl to assets (default: /assets)
 data_dir: _data
 source_icon: fa fa-github
 source_trunk_branch: main # path from repo home url to projet root

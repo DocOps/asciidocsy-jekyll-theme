@@ -91,7 +91,7 @@ autocomplete('#aa-{{ id }}-input',
         }
 
         // Define target link.
-        var linkValue = window.location.href.substring(0, window.location.href.indexOf('{{site.base_url}}') - 1) + suggestion.url;
+        var linkValue = window.location.href.substring(0, window.location.href.indexOf('{{site.baseurl}}') - 1) + suggestion.url;
 
         return '<a class="suggestion-link" href="' + linkValue + '"><span>' + titleValue + '</span><span>' +
           contentValue + '</span></a>';
@@ -101,7 +101,7 @@ autocomplete('#aa-{{ id }}-input',
   if (event._args.length > 0) {
     var linkValue;
     if (suggestion) {
-      linkValue = window.location.href.substring(0, window.location.href.indexOf('{{site.base_url}}') - 1) + suggestion.url;
+      linkValue = window.location.href.substring(0, window.location.href.indexOf('{{site.baseurl}}') - 1) + suggestion.url;
     } else {
       // Show more results.
       linkValue = "search.html?q=" + document.getElementById('aa-{{ id }}-input').value.replace(' ', '+');
