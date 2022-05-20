@@ -1,4 +1,4 @@
-{% assign page_url = page.url | append: "/" | replace:"//","/" %}
+{% assign page_url = page.url | prepend: site.baseurl | append: "/" | replace:"//","/" %}
 {% assign link_url = include.href | append: "/" | replace:"//","/" %}
 {% assign page_url_array = page_url | split: "/" %}
 {% assign path_to_page_url = page_url_array | pop | join: "/" | append: "/" %}
